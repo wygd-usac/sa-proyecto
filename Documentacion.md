@@ -1,3 +1,29 @@
+# Soccer Stats
+
+## Lenguaje de Programación 💻
+
+### Node Js 
+ 
+ El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestionar multiples conexiones al mismo tiempo.
+
+ Node.js será utilizado para desarrollar todos los microservicios del lado del backend.
+ 
+
+<center> 
+
+![Logo nodeJS](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/220px-Node.js_logo.svg.png)  
+
+</center> 
+
+### JWT
+Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestionar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
+
+<br>
+
+-----
+<br>
+
+
 ## Herramientas de Metodología
 ### Scrum
 Se utilizará la metodología scrum. Se llevará a cabo por medio de *sprints*, con duración de una(1) semana para lograr el desarrollo de una función específica, tiempo que se considera adecuado para realizar la entrega de esa funcionalidad. De esta forma, se asegura la entrega continua de un producto que se ira completando con el tiempo, y a la vez, con la certeza que se están controlando los cambios.
