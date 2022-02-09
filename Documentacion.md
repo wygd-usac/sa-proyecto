@@ -97,23 +97,17 @@ Sera utilizado para automatizar las tareas necesarias para realizar la integraci
 
 MySQL es un código abierto sistema de gestión de base de datos relacional (RDBMS).  Es un software gratuito y de código abierto bajo los términos de la Licencia Pública General GNU y también está disponible bajo una variedad de licencias propietarias 
 
-<center> 
-
-![Logo nodeJS](https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png)  
-
-</center> 
-
-
+<center>
+<img src="https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png" width="350"/>
+</center>
 
 #### Angular
 
 Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. En esta ocacion podremos llegar a una plataforma intuitiva y amigable.
 
-<center> 
-
-![Logo nodeJS](https://angular.io/assets/images/logos/angular/angular.svg)  
-
-</center> 
+<center>
+<img src="https://angular.io/assets/images/logos/angular/angular.svg" width="250"/>
+</center>
 
 #### Node Js 
  
