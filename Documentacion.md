@@ -141,10 +141,13 @@ En el sitio web tendremos una sección de quinielas se mostrará el usuario que 
 En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
 
 
-### Diagrama de Arquitectura
+## Diagrama de Arquitectura
 
+<center>
+<img src="Imagenes/Arquitectura.png"/>
+</center>
 
-## Ciclo DevOps
+### Ciclo DevOps
 <center>
 <img src="Imagenes/CicloDevOps.png"/>
 </center>
