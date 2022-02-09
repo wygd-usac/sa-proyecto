@@ -130,3 +130,18 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 #### JWT
 Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestionar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
 
+## Maquetación 
+
+### Quinielas
+
+<center>
+<img src="Imagenes/QuinielaWeb.png" width="400"/>
+</center>
+
+En el sitio web tendremos una sección de quinielas se mostrará el usuario que creo la quiniela y la fecha, además abajo aparecerán los nombres y escudos de los equipos de futbol, se tendrá un label donde el usuario podrá ingresar el puntaje de los partidos y participar por un premio de una membresía de 2 meses.
+
+<center>
+<img src="Imagenes/QuinielaMovil.png" width="150"/>
+</center>
+
+En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
