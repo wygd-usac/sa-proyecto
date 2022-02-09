@@ -116,23 +116,17 @@ Sera utilizado para automatizar las tareas necesarias para realizar la integraci
 
 MySQL es un código abierto sistema de gestión de base de datos relacional (RDBMS).  Es un software gratuito y de código abierto bajo los términos de la Licencia Pública General GNU y también está disponible bajo una variedad de licencias propietarias 
 
-<center> 
-
-![Logo nodeJS](https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png)  
-
-</center> 
-
-
+<center>
+<img src="https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png" width="350"/>
+</center>
 
 #### Angular
 
 Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. En esta ocacion podremos llegar a una plataforma intuitiva y amigable.
 
-<center> 
-
-![Logo nodeJS](https://angular.io/assets/images/logos/angular/angular.svg)  
-
-</center> 
+<center>
+<img src="https://angular.io/assets/images/logos/angular/angular.svg" width="250"/>
+</center>
 
 #### Node Js 
  
@@ -150,7 +144,34 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 
 Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestionar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
 
+## Maquetación 
 ## Documentación de la aplicación
+
+### Quinielas
+
+<center>
+<img src="Imagenes/QuinielaWeb.png" width="400"/>
+</center>
+
+En el sitio web tendremos una sección de quinielas se mostrará el usuario que creo la quiniela y la fecha, además abajo aparecerán los nombres y escudos de los equipos de futbol, se tendrá un label donde el usuario podrá ingresar el puntaje de los partidos y participar por un premio de una membresía de 2 meses.
+
+<center>
+<img src="Imagenes/QuinielaMovil.png" width="150"/>
+</center>
+
+En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
+
+
+## Diagrama de Arquitectura
+
+<center>
+<img src="Imagenes/Arquitectura.png"/>
+</center>
+
+### Ciclo DevOps
+<center>
+<img src="Imagenes/CicloDevOps.png"/>
+</center>
 
 ### Historias de Usuario
 
