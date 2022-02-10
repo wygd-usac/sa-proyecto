@@ -154,9 +154,18 @@ En la aplicación móvil también se podrá visualizar las quinielas, la única 
 <img src="Imagenes/Arquitectura.png"/>
 </center>
 
+El backend del proyecto se desarrollará en nodejs, los servicios se encuentran dividido en microservicios los cuales son: usuarios, clientes, empleado, administrador, noticias y predicción. Cada uno de ellos posee autenticación jwt y se conecta al frontend para poder consumir los diferentes endpoints. 
+
+Cada uno de los microservicios, así como la app de angular estará desplegado en un contenedor. Utilizaremos Jenkins para automatizar el proyecto y permitir el flujo de la integración continua y la entrega continua, posteriormente de integrar los cambios y pasar las pruebas se procederá a realizar el lanzamiento de nuestro proyecto con Ansible. Esto se realizará con maquinas virtuales de google cloud. 
+
 ### Ciclo DevOps
 <center>
 <img src="Imagenes/CicloDevOps.png"/>
+</center>
+
+## ER
+<center>
+<img src="Imagenes/ER.png"/>
 </center>
 
 ### Historias de Usuario
