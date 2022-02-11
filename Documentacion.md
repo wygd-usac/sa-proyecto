@@ -205,6 +205,7 @@ El listado de partidos se mostrara al usuario por medio de una tabla. El nombre 
 <img src="Imagenes/listado_2+.png" width="150"/>
 </center>
 El listado movil tendrá el mismo funcionamiento que el listado de partidos web.
+
 #### Quinielas
 
 <center>
