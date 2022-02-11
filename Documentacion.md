@@ -1,5 +1,41 @@
 # Soccer Stats
 
+**Índice** 
+1. [Información sobre la empresa](#Informaci%C3%B3n%20sobre%20la%20empresa)
+    * [Logo](#Logo)
+    * [Misión](#Misi%C3%B3n)
+    * [Visión](#Visi%C3%B3n)
+2. [Resumen de la aplicación](#Resumen%20de%20la%20aplicaci%C3%B3n)
+3. [Lenguaje de programación](#Lenguaje%20de%20programaci%C3%B3n)
+    * [SQL](#SQL)
+    * [Javascript](#Javascript)
+4. [Herramientas de metodología](#Herramientas%20de%20Metodolog%C3%ADa)
+    * [SCRUM](#SCRUM)
+    * [Product y Sprint Backlog - Trello](#Product%20y%20Sprint%20Backlog%20-%20Trello)
+5. [Tecnologías y Frameworks a Utilizar](#Tecnolog%C3%ADas%20y%20Frameworks%20a%20Utilizar)
+    * [Integración Continua](#Integraci%C3%B3n%20Continua)
+        * [Microservicios - Docker](#Microservicios%20-%20Docker)
+        * [Orquestación de Contenedores - Docker Compose](#Orquestaci%C3%B3n%20de%20Contenedores%20-%20Docker%20Compose)
+        * [Automatización - Jenkins](#Automatizaci%C3%B3n%20-%20Jenkins)
+        * [MySQl - RDBMS](#MySQl%20-%20RDBMS)
+        * [Angular](#Angular)
+        * [NodeJs](#NodeJs)
+        * [JWT](#JWT)
+6. [Documentación de la aplicación](#Documentaci%C3%B3n%20de%20la%20aplicaci%C3%B3n)
+    * [Maquetación](#Maquetaci%C3%B3n)
+        * [Login](#Login)
+        * [Quinielas](#Quinielas)
+7. [Casos de uso](#Casos%20de%20uso)
+8. [Diagrama de arquitectura](#Diagrama%20de%20Arquitectura)
+9. [Ciclo DevOps](#Ciclo%20DevOps)
+10. [ER](#ER)
+11. [Historias de usuario](#Historias%20de%20Usuario)
+    * [Cliente](#Cliente)
+    * [Empleado](#Empleado)
+    * [Administrador](#Administrador)
+12. [Algoritmo de predicción](#Algoritmo%20de%20predicci%C3%B3n)
+13. [Anexos](#Anexos)
+
 ## Información sobre la empresa
 
 ### Logo
@@ -49,9 +85,9 @@ Dado que que en esta ocacion es una pagina web y una app, un lenguaje ideal es j
 
 ## Herramientas de Metodología
 
-### Scrum
+### SCRUM
 
-Se utilizará la metodología scrum. Se llevará a cabo por medio de *sprints*, con duración de una(1) semana para lograr el desarrollo de una función específica, tiempo que se considera adecuado para realizar la entrega de esa funcionalidad. De esta forma, se asegura la entrega continua de un producto que se ira completando con el tiempo, y a la vez, con la certeza que se están controlando los cambios.
+Se utilizará la metodología SCRUM. Se llevará a cabo por medio de *sprints*, con duración de una(1) semana para lograr el desarrollo de una función específica, tiempo que se considera adecuado para realizar la entrega de esa funcionalidad. De esta forma, se asegura la entrega continua de un producto que se ira completando con el tiempo, y a la vez, con la certeza que se están controlando los cambios.
 
 En general se trata de definir las tareas a realizar en todo el proyecto, luego elegir las que se realizaran en cada sprint, y ponerlo en marcha. Las tareas se organizan y listan en los llamados product y sprint backlog, los cuales tendrán todas las tareas y las que se realizarán en cada sprint, respectivamente.
 
@@ -76,7 +112,7 @@ A través de un tablero Kanban proporcionado por la herramienta Trello se listar
 -----
 <br>
 
-## Tecnologías y Frameworks a Utilizar.
+## Tecnologías y Frameworks a Utilizar
 
 ### Integración Continua
 
@@ -128,7 +164,7 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="250"/>
 </center>
 
-#### Node Js 
+#### NodeJs
  
  El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestiónar multiples conexiones al mismo tiempo.
 
@@ -144,10 +180,32 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 
 Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestiónar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
 
-## Maquetación 
 ## Documentación de la aplicación
 
-### Quinielas
+### Maquetación
+
+#### Login
+
+<center>
+<img src="Imagenes/login.png" width="400"/>
+</center>
+La pagina de inicio de sesión contrara con tan solo los campos "Email" y "Password", los cuales son requeridos para validar al usuario.
+<center>
+<img src="Imagenes/loginMovil.png" width="400"/>
+</center>
+El login en movil contará con los mismos campos que la versión web.
+
+#### Listado de partidos
+
+<center>
+<img src="Imagenes/listado_partidos.png" width="400"/>
+</center>
+El listado de partidos se mostrara al usuario por medio de una tabla. El nombre de un partido estara dentro de un link, el cual llevara a una pagina donde se mostrara información mas detallada de dicho partido.
+<center>
+<img src="Imagenes/listado_2+.png" width="400"/>
+</center>
+El listado movil tendrá el mismo funcionamiento que el listado de partidos web.
+#### Quinielas
 
 <center>
 <img src="Imagenes/QuinielaWeb.png" width="400"/>
@@ -163,6 +221,7 @@ En la aplicación móvil también se podrá visualizar las quinielas, la única 
 
 
 ## Casos de uso
+
 <center>
 <img src="Imagenes/casos_de_uso1-Page-1.png" width="230"/>
 </center>
@@ -203,7 +262,7 @@ El backend del proyecto se desarrollará en nodejs, los servicios se encuentran 
 
 Cada uno de los microservicios, así como la app de angular estará desplegado en un contenedor. Utilizaremos Jenkins para automatizar el proyecto y permitir el flujo de la integración continua y la entrega continua, posteriormente de integrar los cambios y pasar las pruebas se procederá a realizar el lanzamiento de nuestro proyecto con Ansible. Esto se realizará con maquinas virtuales de google cloud. 
 
-### Ciclo DevOps
+## Ciclo DevOps
 <center>
 <img src="Imagenes/CicloDevOps.png"/>
 
@@ -214,9 +273,9 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 <img src="Imagenes/ER.png"/>
 </center>
 
-### Historias de Usuario
+## Historias de Usuario
 
-#### Cliente
+### Cliente
 
 |     3 | Historia de usuario                                                                                                                                             | Descripción                                                                                                                                                                                                                                                                                                                                         | Criterios de aceptación                                                                                                                                                                         | Dependencias |
 |------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
@@ -234,7 +293,7 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 | HUC12 | Como cliente, quiero tener acceso a un módulo de predicción de resultados de partidos, para tener una ayuda en la toma de decisiones en las quinielas.          | El usuario puede elegir realizar una predicción para un partido, donde se analizaron datos históricos y se presenta una predicción del resultado.                                                                                                                                                                                                   | Se ofrece una predicción del resultado del partido al usuario.                                                                                                                                  | HUC8         |
 | HUC13 | Como cliente, quiero participar en quinielas, para poder obtener premios.                                                                                       | El usuario puede ingresar los resultados para un partido antes de que éste inicie. Si el usuario acierta, recibe un incentivo.                                                                                                                                                                                                                      | El usuario ingresa su predicción de resultado y se almacena en el sistema. Solo se puede ingresar o modificar antes de que el partido inicie. Se valida los resultados al finalizar el partido. | HUC8         |
 
-#### Empleado
+### Empleado
 
 | Cod. | Historia de usuario                                                                                                      | Descripción                                                                                                                                                             | Criterios de aceptación                                                                                                        | Dependencia |
 |------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-------------|
@@ -247,7 +306,7 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 | HUE7 | Como empleado, quiero agregar noticias sobre un equipo, para que estas estén disponibles a los usuarios.                 | El empleado agrega un artículo el cual está relacionado con un equipo, y éste será accesible por los usuarios en la página de noticias.                                 | La noticia es almacenada en la base de datos y es accesible por los usuarios.                                                  |             |
 | HUE8 | Como empleado, quiero crear quinielas, para que los clientes puedan participar en ellas.                                 | El empleado crea una nueva quiniela y la pone a disposición de los usuarios.                                                                                            | La quiniela se almacena en el sistema. Los usuarios pueden participar en la quiniela.                                          |             |
 
-#### Administrador
+### Administrador
 
 | Cod. | Historia de usuario                                                                                                                                                           | Descripción                                                                                                                                                                  | Criterios de aceptación                                                                                                                                                               | Dependencia |
 |------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
