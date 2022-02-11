@@ -130,7 +130,7 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 
 #### Node Js 
  
- El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestionar multiples conexiones al mismo tiempo.
+ El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestiónar multiples conexiones al mismo tiempo.
 
  Node.js será utilizado para desarrollar todos los microservicios del lado del backend.
 
@@ -142,7 +142,7 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 
 #### JWT
 
-Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestionar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
+Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestiónar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
 
 ## Maquetación 
 ## Documentación de la aplicación
@@ -161,6 +161,37 @@ En el sitio web tendremos una sección de quinielas se mostrará el usuario que 
 
 En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
 
+
+## Casos de uso
+<center>
+<img src="Imagenes/casos_de_uso1-Page-1.png" width="230"/>
+</center>
+El primer diagrama de casos de uso es de alto nivel y representa 3 acciones fundamentales para el administrador.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-2.png" width="230"/>
+</center>
+El segundo diagrama es un caso expandido del administrador y la gestión de los equipos.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-3.png" width="230"/>
+</center>
+El tercer diagrama es un caso de gestión de partidos para el usuario administrador.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-4.png" width="230"/>
+</center>
+El cuarto diagrama es un caso de gestión de ligas o grupos para el usuario administrador este diagrama es el menos importante ya que no debe ser obligatorio el ingreso de una liga para crear los partidos.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-6.png" width="230"/>
+</center>
+El quinto diagrama es un caso que identifica la diferencias en las vistas de un usuario con membresía o un usuario común.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-5.png" width="230"/>
+</center>
+El sexto diagrama es un caso del usuario final contratando la membresía y algunas expansiones que adquiere.
 
 ## Diagrama de Arquitectura
 
@@ -225,6 +256,20 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 | HUA3 | Como administrador, quiero tener acceso al log de operaciones realizadas sobre usuarios, para tener control de las acciones realizadas sobre los usuarios en el sistema.      | Un administrador, puede visualizar el log de acciones sobre otras cuentas realizadas, donde se muestra la descripción de porqué se realizó dicha operación.                  | El administrador visualiza los datos del log de acciones sobre cuentas.                                                                                                               |             |
 | HUA4 | Como administrador, quiero que exista una página de "Access Denied", para informar a los usuarios que no tienen acceso a un área del sistema.                                 | Se muestra una página con un mensaje de acceso denegado, cuando el usuario intenta ingresar a un modula al cual no tiene permisos.                                           | El usuario visualiza una página de "Access Denied" cuando intenta visualizar un módulo al cual no tiene acceso.                                                                       |             |
 | HUA5 | Como administrador, quiero realizar reportes sobre los usuarios usando distintos criterios e imprimirlos en pdf si es necesario, para tener idea del desempeño de los mismos. | El administrador cuenta con un módulo de reportes donde puede realizar consulta sobre aspectos claves para usuarios "Empleado" y "Cliente".                                  | El administrador puede visualizar e imprimir en pdf reportes realizados sobre los usuarios y sus características, cumpliendo los reportes del listado de "Reportes de administrador". |             |
+
+
+## Algoritmo de predicción 
+
+Existen diferente algoritmos de predicción que se pueden utilizar para este requerimiento, pero se escogió uno de modelos de predicción de resultados de fútbol más famosos: el Dixon & Coles, basado en la distribución de Poisson y publicado en 1997.
+
+La distribución de Poisson es una distribución discreta que nos dice la probabilidad de que se produzcan un número determinado de sucesos en un período de tiempo (en nuestro caso, la duración de un partido de fútbol). El número de sucesos que queremos calcular es el número de goles marcados por el equipo X. Para ello, debemos alimentar el modelo con el número medio de sucesos, es decir, el número esperado de goles que el equipo debería marcar según sus partidos anteriores.
+
+De momento este modelo se adapta mejor a consultas que se pueden ejecutar directamente en la base de datos, ya que estadísticamente el algoritmo trabaja con tablas.
+
+[procedimiento completo](https://ejemplo.com/imagen.jpg)
+
+
+
 
 ## Anexos
 
