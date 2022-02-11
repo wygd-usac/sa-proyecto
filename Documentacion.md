@@ -191,7 +191,7 @@ Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para
 </center>
 La pagina de inicio de sesión contrara con tan solo los campos "Email" y "Password", los cuales son requeridos para validar al usuario.
 <center>
-<img src="Imagenes/loginMovil.png" width="400"/>
+<img src="Imagenes/loginMovil.png" width="150"/>
 </center>
 El login en movil contará con los mismos campos que la versión web.
 
@@ -202,7 +202,7 @@ El login en movil contará con los mismos campos que la versión web.
 </center>
 El listado de partidos se mostrara al usuario por medio de una tabla. El nombre de un partido estara dentro de un link, el cual llevara a una pagina donde se mostrara información mas detallada de dicho partido.
 <center>
-<img src="Imagenes/listado_2+.png" width="400"/>
+<img src="Imagenes/listado_2+.png" width="150"/>
 </center>
 El listado movil tendrá el mismo funcionamiento que el listado de partidos web.
 #### Quinielas
