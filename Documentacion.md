@@ -175,7 +175,7 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 ### Ciclo DevOps
 <center>
 <img src="Imagenes/CicloDevOps.png"/>
-<<<<<<< HEAD
+
 </center>
 
 ## ER
@@ -260,6 +260,3 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 - Listado de partidos en X año
 - Listado de partidos entre X equipo contra Y equipo
 - Listado de partidos de X equipo
-=======
-</center>
->>>>>>> reqdoc_DiagramaArquitectura
