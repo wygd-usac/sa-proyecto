@@ -1,40 +1,52 @@
 # Soccer Stats
 
 **Índice** 
-1. [Información sobre la empresa](#Informaci%C3%B3n-sobre-la-empresa)
-    * [Logo](#Logo)
-    * [Misión](#Misi%C3%B3n)
-    * [Visión](#Visi%C3%B3n)
-2. [Resumen de la aplicación](#Resumen-de-la-aplicaci%C3%B3n)
-3. [Lenguaje de programación](#Lenguaje-de-programaci%C3%B3n)
-    * [SQL](#SQL)
-    * [Javascript](#Javascript)
-4. [Herramientas de metodología](#Herramientas-de-Metodolog%C3%ADa)
-    * [SCRUM](#SCRUM)
-    * [Product y Sprint Backlog - Trello](#Product-y-Sprint-Backlog---Trello)
-5. [Tecnologías y Frameworks a Utilizar](#Tecnolog%C3%ADas-y-Frameworks-a-Utilizar)
-    * [Integración Continua](#Integraci%C3%B3n-Continua)
-        * [Microservicios - Docker](#Microservicios---Docker)
-        * [Orquestación de Contenedores - Docker Compose](#Orquestaci%C3%B3n-de-Contenedores---Docker-Compose)
-        * [Automatización - Jenkins](#Automatizaci%C3%B3n---Jenkins)
-        * [MySQl - RDBMS](#MySQl---RDBMS)
-        * [Angular](#Angular)
-        * [NodeJs](#NodeJs)
-        * [JWT](#JWT)
-6. [Documentación de la aplicación](#Documentaci%C3%B3n-de-la-aplicaci%C3%B3n)
-    * [Maquetación](#Maquetaci%C3%B3n)
-        * [Login](#Login)
-        * [Quinielas](#Quinielas)
-7. [Casos de uso](#Casos-de-uso)
-8. [Diagrama de arquitectura](#Diagrama-de-Arquitectura)
-9. [Ciclo DevOps](#Ciclo-DevOps)
-10. [ER](#ER)
-11. [Historias de usuario](#Historias-de-Usuario)
-    * [Cliente](#Cliente)
-    * [Empleado](#Empleado)
-    * [Administrador](#Administrador)
-12. [Algoritmo de predicción](#Algoritmo-de-predicci%C3%B3n)
-13. [Anexos](#Anexos)
+- [Soccer Stats](#soccer-stats)
+  - [Información sobre la empresa](#información-sobre-la-empresa)
+    - [Logo](#logo)
+    - [Misión](#misión)
+    - [Visión](#visión)
+  - [Resumen de la aplicación](#resumen-de-la-aplicación)
+  - [Lenguaje de Programación 💻](#lenguaje-de-programación-)
+    - [SQL](#sql)
+    - [JavaScript](#javascript)
+  - [Herramientas de Metodología](#herramientas-de-metodología)
+    - [SCRUM](#scrum)
+    - [Product y Sprint Backlog - Trello](#product-y-sprint-backlog---trello)
+  - [Tecnologías y Frameworks a Utilizar](#tecnologías-y-frameworks-a-utilizar)
+    - [Integración Continua](#integración-continua)
+      - [Microservicios - Docker](#microservicios---docker)
+      - [Orquestación de Contenedores - Docker Compose](#orquestación-de-contenedores---docker-compose)
+      - [Automatización - Jenkins](#automatización---jenkins)
+      - [MySQl - RDBMS](#mysql---rdbms)
+      - [Angular](#angular)
+      - [NodeJs](#nodejs)
+      - [JWT](#jwt)
+  - [Documentación de la aplicación](#documentación-de-la-aplicación)
+    - [Maquetación](#maquetación)
+      - [Login](#login)
+      - [Listado de partidos](#listado-de-partidos)
+      - [Quinielas](#quinielas)
+      - [Resultados](#resultados)
+  - [Casos de uso](#casos-de-uso)
+  - [Diagrama de Arquitectura](#diagrama-de-arquitectura)
+  - [Ciclo DevOps](#ciclo-devops)
+  - [Diagramas de Flujo](#diagramas-de-flujo)
+    - [Inicio de Sesión](#inicio-de-sesión)
+    - [Vista de Pantalla Principal](#vista-de-pantalla-principal)
+    - [Membresía](#membresía)
+    - [Sumar puntaje](#sumar-puntaje)
+    - [Agregar resultado](#agregar-resultado)
+    - [CerrarSesion](#cerrarsesion)
+  - [Diagrama Entidad Relación](#diagrama-entidad-relación)
+  - [Historias de Usuario](#historias-de-usuario)
+    - [Cliente](#cliente)
+    - [Empleado](#empleado)
+    - [Administrador](#administrador)
+  - [Algoritmo de predicción](#algoritmo-de-predicción)
+  - [Anexos](#anexos)
+    - [Listado reportes de "Administrador"](#listado-reportes-de-administrador)
+    - [Listado de consultas estadisticas para usuarios](#listado-de-consultas-estadisticas-para-usuarios)
 
 ## Información sobre la empresa
 
@@ -220,6 +232,20 @@ En el sitio web tendremos una sección de quinielas se mostrará el usuario que 
 
 En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
 
+#### Resultados
+
+<center>
+<img src="Imagenes/ResultadosWeb.png" width="400"/>
+</center>
+
+En el sitio web tendremos una sección de resultados, en la que se mostrarán los juegos finalizados hasta la fecha. Se mostrarán los equipos que jugaron el partido y el marcador final.
+
+<center>
+<img src="Imagenes/ResultadosMovil.png" width="150"/>
+</center>
+
+En la aplicación móvil también se podrán visualizar los resutaldos.
+
 
 ## Casos de uso
 
@@ -269,7 +295,46 @@ Cada uno de los microservicios, así como la app de angular estará desplegado e
 
 </center>
 
-## ER
+## Diagramas de Flujo
+
+### Inicio de Sesión
+
+<center>
+<img src="Imagenes/DDF_Login.png" width="500"/>
+</center>
+
+### Vista de Pantalla Principal
+
+<center>
+<img src="Imagenes/DDF_InicioSesion.png" width="500"/>
+</center>
+
+### Membresía
+
+<center>
+<img src="Imagenes/DDF_Membresia.png" width="400"/>
+</center>
+
+### Sumar puntaje
+
+<center>
+<img src="Imagenes/DDF_Quiniela.png" width="400"/>
+</center>
+
+### Agregar resultado
+
+<center>
+<img src="Imagenes/DDF_AgregarResultado.png" width="200"/>
+</center>
+
+### CerrarSesion
+
+<center>
+<img src="Imagenes/DDF_Membresia.png" width="400"/>
+</center>
+
+## Diagrama Entidad Relación
+
 <center>
 <img src="Imagenes/ER.png"/>
 </center>
