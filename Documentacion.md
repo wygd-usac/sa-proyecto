@@ -395,9 +395,11 @@ De momento este modelo se adapta mejor a consultas que se pueden ejecutar direct
 [procedimiento completo](https://vencex.com/2018/01/01/prediccion-en-futbol-a-partir-de-los-goles-marcados-la-distribucion-de-poisson-i)
 
 
-## Video de presentación
+## Video Presentación
 
 [![Alt text](https://img.youtube.com/vi/4pS0G80aTK4/0.jpg)](https://www.youtube.com/watch?v=4pS0G80aTK4)
+
+Click en la imagen.
 
 ## Anexos
 
