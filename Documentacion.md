@@ -391,7 +391,7 @@ La distribución de Poisson es una distribución discreta que nos dice la probab
 
 De momento este modelo se adapta mejor a consultas que se pueden ejecutar directamente en la base de datos, ya que estadísticamente el algoritmo trabaja con tablas.
 
-[procedimiento completo](https://ejemplo.com/imagen.jpg)
+[procedimiento completo](https://vencex.com/2018/01/01/prediccion-en-futbol-a-partir-de-los-goles-marcados-la-distribucion-de-poisson-i)
 
 
 
