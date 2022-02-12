@@ -1,5 +1,68 @@
 # Soccer Stats
 
+**Índice** 
+- [Soccer Stats](#soccer-stats)
+  - [Información sobre la empresa](#información-sobre-la-empresa)
+    - [Logo](#logo)
+    - [Misión](#misión)
+    - [Visión](#visión)
+  - [Resumen de la aplicación](#resumen-de-la-aplicación)
+  - [Lenguaje de Programación 💻](#lenguaje-de-programación-)
+    - [SQL](#sql)
+    - [JavaScript](#javascript)
+  - [Herramientas de Metodología](#herramientas-de-metodología)
+    - [SCRUM](#scrum)
+    - [Product y Sprint Backlog - Trello](#product-y-sprint-backlog---trello)
+  - [Tecnologías y Frameworks a Utilizar](#tecnologías-y-frameworks-a-utilizar)
+    - [Integración Continua](#integración-continua)
+      - [Microservicios - Docker](#microservicios---docker)
+      - [Orquestación de Contenedores - Docker Compose](#orquestación-de-contenedores---docker-compose)
+      - [Automatización - Jenkins](#automatización---jenkins)
+      - [MySQl - RDBMS](#mysql---rdbms)
+      - [Angular](#angular)
+      - [NodeJs](#nodejs)
+      - [JWT](#jwt)
+  - [Documentación de la aplicación](#documentación-de-la-aplicación)
+    - [Maquetación](#maquetación)
+      - [Login](#login)
+      - [Listado de partidos](#listado-de-partidos)
+      - [Quinielas](#quinielas)
+      - [Resultados](#resultados)
+  - [Casos de uso](#casos-de-uso)
+  - [Diagrama de Arquitectura](#diagrama-de-arquitectura)
+  - [Ciclo DevOps](#ciclo-devops)
+  - [Diagramas de Flujo](#diagramas-de-flujo)
+    - [Inicio de Sesión](#inicio-de-sesión)
+    - [Vista de Pantalla Principal](#vista-de-pantalla-principal)
+    - [Membresía](#membresía)
+    - [Sumar puntaje](#sumar-puntaje)
+    - [Agregar resultado](#agregar-resultado)
+    - [CerrarSesion](#cerrarsesion)
+  - [Diagrama Entidad Relación](#diagrama-entidad-relación)
+  - [Historias de Usuario](#historias-de-usuario)
+    - [Cliente](#cliente)
+    - [Empleado](#empleado)
+    - [Administrador](#administrador)
+  - [Algoritmo de predicción](#algoritmo-de-predicción)
+  - [Video Presentación](#video-presentación)
+  - [Anexos](#anexos)
+    - [Listado reportes de "Administrador"](#listado-reportes-de-administrador)
+    - [Listado de consultas estadisticas para usuarios](#listado-de-consultas-estadisticas-para-usuarios)
+
+## Información sobre la empresa
+
+### Logo
+
+![Logo](img/soccer_stats_logo.png)
+
+### Misión
+
+Proveer a los usuarios con lo último en noticias sobre fútbol, siendo una herramienta que les permita buscar y evaluar el desempeño pasado, presente y futuro de sus equipos favoritos a través de análisis estadísticos a solo unos clics.
+
+### Visión
+
+Ser un referente mundial en el medio de noticias y datos historicos para los amantes del fútbol, poniendo al alcance de todos la información y herramientas para su análisis a través de la innovación tecnológica.
+
 ## Resumen de la aplicación
 
 "Soccer Stats" es un sistema web, pensado para aficionados al fútbol que deseen verificar datos estadísticos de partidos anteriores, con el propósito de realizar un análisis de los resultados de los futuros partidos.
@@ -35,9 +98,9 @@ Dado que que en esta ocacion es una pagina web y una app, un lenguaje ideal es j
 
 ## Herramientas de Metodología
 
-### Scrum
+### SCRUM
 
-Se utilizará la metodología scrum. Se llevará a cabo por medio de *sprints*, con duración de una(1) semana para lograr el desarrollo de una función específica, tiempo que se considera adecuado para realizar la entrega de esa funcionalidad. De esta forma, se asegura la entrega continua de un producto que se ira completando con el tiempo, y a la vez, con la certeza que se están controlando los cambios.
+Se utilizará la metodología SCRUM. Se llevará a cabo por medio de *sprints*, con duración de una(1) semana para lograr el desarrollo de una función específica, tiempo que se considera adecuado para realizar la entrega de esa funcionalidad. De esta forma, se asegura la entrega continua de un producto que se ira completando con el tiempo, y a la vez, con la certeza que se están controlando los cambios.
 
 En general se trata de definir las tareas a realizar en todo el proyecto, luego elegir las que se realizaran en cada sprint, y ponerlo en marcha. Las tareas se organizan y listan en los llamados product y sprint backlog, los cuales tendrán todas las tareas y las que se realizarán en cada sprint, respectivamente.
 
@@ -62,7 +125,7 @@ A través de un tablero Kanban proporcionado por la herramienta Trello se listar
 -----
 <br>
 
-## Tecnologías y Frameworks a Utilizar.
+## Tecnologías y Frameworks a Utilizar
 
 ### Integración Continua
 
@@ -102,27 +165,21 @@ Sera utilizado para automatizar las tareas necesarias para realizar la integraci
 
 MySQL es un código abierto sistema de gestión de base de datos relacional (RDBMS).  Es un software gratuito y de código abierto bajo los términos de la Licencia Pública General GNU y también está disponible bajo una variedad de licencias propietarias 
 
-<center> 
-
-![Logo nodeJS](https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png)  
-
-</center> 
-
-
+<center>
+<img src="https://1000marcas.net/wp-content/uploads/2020/11/MySQL-logo.png" width="350"/>
+</center>
 
 #### Angular
 
 Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. En esta ocacion podremos llegar a una plataforma intuitiva y amigable.
 
-<center> 
+<center>
+<img src="https://angular.io/assets/images/logos/angular/angular.svg" width="250"/>
+</center>
 
-![Logo nodeJS](https://angular.io/assets/images/logos/angular/angular.svg)  
-
-</center> 
-
-#### Node Js 
+#### NodeJs
  
- El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestionar multiples conexiones al mismo tiempo.
+ El proyecto será desarrollado en node Js, que es un entorno en tiempo real de ejecución multiplataforma, basado en Javascript y orientado a eventos asíncronos. Esta diseñado para crear aplicaciones escalables, permitiendo establecer y gestiónar multiples conexiones al mismo tiempo.
 
  Node.js será utilizado para desarrollar todos los microservicios del lado del backend.
 
@@ -134,52 +191,215 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 
 #### JWT
 
-Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestionar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
+Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestiónar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
 
 ## Documentación de la aplicación
 
-### Historias de Usuario
+### Maquetación
 
-#### Cliente
+#### Login
 
-| Cod.  | Historia de usuario                                                                                                                                             | Descripción                                                                                                                                                                                                                                                                                                                                         | Criterios de aceptación                                                                                                                                                                         | Dependencias |
-|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| HUC1  | Como cliente, quiero registrarme en el sistema, para tener un perfil personal.                                                                                  | Se crea un nuevo usuario con información del cliente y sus preferencias, y se almacena en la base de datos, a traves de un formulario disponible en el sistema. La nueva cuenta debe ser validada por el usuario a traves de un link enviado a su correo electronico. La cuenta toma el estatus de "Activa" cuando ha sido validada por el usuario. | - El cliente activa la cuenta a traves de el link recibido en su correo electrónico. - El cliente puede iniciar sesión con sus credenciales registradas.                                        |              |
-| HUC2  | Como cliente, quiero iniciar sesión en el sistema, para poder tener acceso a la información de la aplicación.                                                   | El cliente ingresa su correo electrónico y su contraseña, esto para validar e iniciar sesión en el sistema.                                                                                                                                                                                                                                         | El usuario es valido y se encuentra activo. Se muestra el nombre del usuario en un area de la pagina. Se redirige al usuario a la pagina de bienvenida.                                         | HUC1         |
-| HUC3  | Como cliente, quiero cerrar la sesión en el sistema, para mantener mi privacidad.                                                                               | El cliente solicita el cierre de sesión a traves de un boton en alguna parte de la pagina. La sesión es cerrada por lo que ya no puedra acceder a ningun modulo.                                                                                                                                                                                    | Se elimina la sesión activa del usuario. Ya no es accesible ningun modulo del sistema por falta de permiso.                                                                                     | HUC2         |
-| HUC4  | Como cliente, quiero visualizar la información ingresada en mi cuenta, para validar que dicha información es correcta.                                          | Se presentan los datos del usuario en la pagina de "Perfil".                                                                                                                                                                                                                                                                                        | Los datos pueden ser visualizados por el usuario.                                                                                                                                               | HUC2         |
-| HUC5  | Como cliente, quiero editar la información de mi cuenta, para mantener dicha información actualizada.                                                           | Se presenta al usuario un boton "Editar" en la pagina "Perfil", el cual lleva al usuario a un formulario con los datos actuales, los cuales pueden ser modificados y guardados nuevamente.                                                                                                                                                          | El usuario puede modificar cualquier dato personal que no sea el correo electronicó.                                                                                                            | HUC2         |
-| HUC6  | Como cliente, quiero eliminar mi cuenta, para que ya no sea posible acceder a la misma de manera permanente.                                                    | Se presenta un boton "Eliminar Cuenta" en la pagina de "Perfil", la cual presenta un mensaje de confirmación para eliminar la cuenta, cuando el usuario confirma la acción, la cuenta es marcada como inactiva y no se puede iniciar sesión.                                                                                                        | La cuenta es inactivada, y el usuario ya no puede iniciar sesión con su usuario y contraseña.                                                                                                   | HUC2         |
-| HUC7  | Como cliente, quierio reestablecer mi contraseña a traves de correo electronicó, para tener un medio de recuperación en caso de perdida.                        | El usuario solicita la recuperación de contraseña al correo, recibiendo un correo con el link al login y una contraseña provisional la cual debe ser cambiada por el usuario.                                                                                                                                                                       | El usuario registra una nueva contraseña para su cuenta y puede iniciar sesión nuevamente.                                                                                                      | HUC1         |
-| HUC8  | Como cliente, quiero poder pagar una membresia, para tener acceso a contenido exclusivo.                                                                        | El cliente, paga una membresia mensual, la cual le da acceso a caracteristicas premium.                                                                                                                                                                                                                                                             | El usuario pago el mes de membresia. El usuario tiene acceso a las caracteristicas premium.                                                                                                     | HUC2         |
-| HUC9  | Como cliente, quiero "Seguir" a mis equipos favoritos, para tener acceso rapido a sus estadisticas y noticias.                                                  | El cliente puede agregar un equipo a sus favoritos, por lo que podra acceder de manera mas facil a la información de dicho equipo en la pagina principal.                                                                                                                                                                                           | El usuario puede seguir a un equipo. El equipo aparece en el listado de equipos seguidos. En la pagina principal, aparecen las ultimas noticias referentes a dicho equipo.                      | HUC8         |
-| HUC10 | Como cliente, quiero realizar consultas de datos estadisticos, para poder realizar analisis propios del desempeño de un equipo, jugador, tecnico, etc.          | Se le presenta al cliente una lista de consultas que puede realizar, donde el cliente completa los datos solicitados para realizar dicha consulta, luego se le muestra los resultados.                                                                                                                                                              | El usuario tiene acceso al modulo de consultas. Puede realizar consultas.                                                                                                                       | HUC8         |
+<center>
+<img src="Imagenes/login.png" width="400"/>
+</center>
+La pagina de inicio de sesión contrara con tan solo los campos "Email" y "Password", los cuales son requeridos para validar al usuario.
+<center>
+<img src="Imagenes/loginMovil.png" width="150"/>
+</center>
+El login en movil contará con los mismos campos que la versión web.
+
+#### Listado de partidos
+
+<center>
+<img src="Imagenes/listado_partidos.png" width="400"/>
+</center>
+El listado de partidos se mostrara al usuario por medio de una tabla. El nombre de un partido estara dentro de un link, el cual llevara a una pagina donde se mostrara información mas detallada de dicho partido.
+<center>
+<img src="Imagenes/listado_2+.png" width="150"/>
+</center>
+El listado movil tendrá el mismo funcionamiento que el listado de partidos web.
+
+#### Quinielas
+
+<center>
+<img src="Imagenes/QuinielaWeb.png" width="400"/>
+</center>
+
+En el sitio web tendremos una sección de quinielas se mostrará el usuario que creo la quiniela y la fecha, además abajo aparecerán los nombres y escudos de los equipos de futbol, se tendrá un label donde el usuario podrá ingresar el puntaje de los partidos y participar por un premio de una membresía de 2 meses.
+
+<center>
+<img src="Imagenes/QuinielaMovil.png" width="150"/>
+</center>
+
+En la aplicación móvil también se podrá visualizar las quinielas, la única diferencia del diseño web es que en esta sección ya no apareceran los nombres del equipo, solamente el escudo del equipo. 
+
+#### Resultados
+
+<center>
+<img src="Imagenes/ResultadosWeb.png" width="400"/>
+</center>
+
+En el sitio web tendremos una sección de resultados, en la que se mostrarán los juegos finalizados hasta la fecha. Se mostrarán los equipos que jugaron el partido y el marcador final.
+
+<center>
+<img src="Imagenes/ResultadosMovil.png" width="150"/>
+</center>
+
+En la aplicación móvil también se podrán visualizar los resutaldos.
+
+
+## Casos de uso
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-1.png" width="230"/>
+</center>
+El primer diagrama de casos de uso es de alto nivel y representa 3 acciones fundamentales para el administrador.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-2.png" width="230"/>
+</center>
+El segundo diagrama es un caso expandido del administrador y la gestión de los equipos.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-3.png" width="230"/>
+</center>
+El tercer diagrama es un caso de gestión de partidos para el usuario administrador.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-4.png" width="230"/>
+</center>
+El cuarto diagrama es un caso de gestión de ligas o grupos para el usuario administrador este diagrama es el menos importante ya que no debe ser obligatorio el ingreso de una liga para crear los partidos.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-6.png" width="230"/>
+</center>
+El quinto diagrama es un caso que identifica la diferencias en las vistas de un usuario con membresía o un usuario común.
+
+<center>
+<img src="Imagenes/casos_de_uso1-Page-5.png" width="230"/>
+</center>
+El sexto diagrama es un caso del usuario final contratando la membresía y algunas expansiones que adquiere.
+
+## Diagrama de Arquitectura
+
+<center>
+<img src="Imagenes/Arquitectura.png"/>
+</center>
+
+El backend del proyecto se desarrollará en nodejs, los servicios se encuentran dividido en microservicios los cuales son: usuarios, clientes, empleado, administrador, noticias y predicción. Cada uno de ellos posee autenticación jwt y se conecta al frontend para poder consumir los diferentes endpoints. 
+
+Cada uno de los microservicios, así como la app de angular estará desplegado en un contenedor. Utilizaremos Jenkins para automatizar el proyecto y permitir el flujo de la integración continua y la entrega continua, posteriormente de integrar los cambios y pasar las pruebas se procederá a realizar el lanzamiento de nuestro proyecto con Ansible. Esto se realizará con maquinas virtuales de google cloud. 
+
+## Ciclo DevOps
+<center>
+<img src="Imagenes/CicloDevOps.png"/>
+
+</center>
+
+## Diagramas de Flujo
+
+### Inicio de Sesión
+
+<center>
+<img src="Imagenes/DDF_Login.png" width="500"/>
+</center>
+
+### Vista de Pantalla Principal
+
+<center>
+<img src="Imagenes/DDF_InicioSesion.png" width="500"/>
+</center>
+
+### Membresía
+
+<center>
+<img src="Imagenes/DDF_Membresia.png" width="400"/>
+</center>
+
+### Sumar puntaje
+
+<center>
+<img src="Imagenes/DDF_Quiniela.png" width="400"/>
+</center>
+
+### Agregar resultado
+
+<center>
+<img src="Imagenes/DDF_AgregarResultado.png" width="200"/>
+</center>
+
+### CerrarSesion
+
+<center>
+<img src="Imagenes/DDF_Membresia.png" width="400"/>
+</center>
+
+## Diagrama Entidad Relación
+
+<center>
+<img src="Imagenes/ER.png"/>
+</center>
+
+## Historias de Usuario
+
+### Cliente
+
+|     3 | Historia de usuario                                                                                                                                             | Descripción                                                                                                                                                                                                                                                                                                                                         | Criterios de aceptación                                                                                                                                                                         | Dependencias |
+|------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| HUC1  | Como cliente, quiero registrarme en el sistema, para tener un perfil personal.                                                                                  | Se crea un nuevo usuario con información del cliente y sus preferencias, y se almacena en la base de datos, a través de un formulario disponible en el sistema. La nueva cuenta debe ser validada por el usuario a través de un link enviado a su correo electrónico. La cuenta toma el estatus de "Activa" cuando ha sido validada por el usuario. | - El cliente activa la cuenta a través de el link recibido en su correo electrónico. - El cliente puede iniciar sesión con sus credenciales registradas.                                        |              |
+| HUC2  | Como cliente, quiero iniciar sesión en el sistema, para poder tener acceso a la información de la aplicación.                                                   | El cliente ingresa su correo electrónico y su contraseña, esto para validar e iniciar sesión en el sistema.                                                                                                                                                                                                                                         | El usuario es válido y se encuentra activo. Se muestra el nombre del usuario en un área de la página. Se redirige al usuario a la página de bienvenida.                                         | HUC1         |
+| HUC3  | Como cliente, quiero cerrar la sesión en el sistema, para mantener mi privacidad.                                                                               | El cliente solicita el cierre de sesión a través de un botón en alguna parte de la página. La sesión es cerrada por lo que ya no pueda acceder a ningún módulo.                                                                                                                                                                                     | Se elimina la sesión activa del usuario. Ya no es accesible ningún módulo del sistema por falta de permiso.                                                                                     | HUC2         |
+| HUC4  | Como cliente, quiero visualizar la información ingresada en mi cuenta, para validar que dicha información es correcta.                                          | Se presentan los datos del usuario en la página de "Perfil".                                                                                                                                                                                                                                                                                        | Los datos pueden ser visualizados por el usuario.                                                                                                                                               | HUC2         |
+| HUC5  | Como cliente, quiero editar la información de mi cuenta, para mantener dicha información actualizada.                                                           | Se presenta al usuario un botón "Editar" en la página "Perfil", el cual lleva al usuario a un formulario con los datos actuales, los cuales pueden ser modificados y guardados nuevamente.                                                                                                                                                          | El usuario puede modificar cualquier dato personal que no sea el correo electronicó.                                                                                                            | HUC2         |
+| HUC6  | Como cliente, quiero eliminar mi cuenta, para que ya no sea posible acceder a la misma de manera permanente.                                                    | Se presenta un botón "Eliminar Cuenta" en la página de "Perfil", la cual presenta un mensaje de confirmación para eliminar la cuenta, cuando el usuario confirma la acción, la cuenta es marcada como inactiva y no se puede iniciar sesión.                                                                                                        | La cuenta es inactivada, y el usuario ya no puede iniciar sesión con su usuario y contraseña.                                                                                                   | HUC2         |
+| HUC7  | Como cliente, quiero restablecer mi contraseña a través de correo electronicó, para tener un medio de recuperación en caso de perdida.                          | El usuario solicita la recuperación de contraseña al correo, recibiendo un correo con el link al login y una contraseña provisional la cual debe ser cambiada por el usuario.                                                                                                                                                                       | El usuario registra una nueva contraseña para su cuenta y puede iniciar sesión nuevamente.                                                                                                      | HUC1         |
+| HUC8  | Como cliente, quiero poder pagar una membresía, para tener acceso a contenido exclusivo.                                                                        | El cliente, paga una membresía mensual, la cual le da acceso a características premium.                                                                                                                                                                                                                                                             | El usuario pagó el mes de membresía. El usuario tiene acceso a las características premium.                                                                                                     | HUC2         |
+| HUC9  | Como cliente, quiero "Seguir" a mis equipos favoritos, para tener acceso rápido a sus estadísticas y noticias.                                                  | El cliente puede agregar un equipo a sus favoritos, por lo que podrá acceder de manera más fácil a la información de dicho equipo en la página principal.                                                                                                                                                                                           | El usuario puede seguir a un equipo. El equipo aparece en el listado de equipos seguidos. En la página principal, aparecen las últimas noticias referentes a dicho equipo.                      | HUC8         |
+| HUC10 | Como cliente, quiero realizar consultas de datos estadísticos, para poder realizar análisis propios del desempeño de un equipo, jugador, técnico, etc.          | Se le presenta al cliente una lista de consultas que puede realizar, donde el cliente completa los datos solicitados para realizar dicha consulta, luego se le muestra los resultados.                                                                                                                                                              | El usuario tiene acceso al módulo de consultas. Puede realizar consultas.                                                                                                                       | HUC8         |
 | HUC11 | Como cliente, quiero filtrar las noticias respecto a mis equipos favoritos, o ver el listado general, para poder tener mayor control de la información que leo. | El usuario puede elegir si filtrar las noticias en las que aparezcan sus equipos favoritos, o listar todas las noticias.                                                                                                                                                                                                                            | Se presenta un menú con la opción de filtrar por equipos seguidos o general. Se muestra el listado que cumpla con el filtro.                                                                    | HUC8         |
-| HUC12 | Como cliente, quiero tener acceso a un modulo de predicción de resultados de partidos, para tener una ayuda en la toma de desiciónes en las quinielas.          | El usuario puede elegir realizar una predicción para un partido, donde se analizaran datos historicos y se presentara una predicción del resultado.                                                                                                                                                                                                 | Se ofrece una predicción del resultado del partido al usuario.                                                                                                                                  | HUC8         |
-| HUC13 | Como cliente, quiero participar en quinielas, para poder obtener premios.                                                                                       | El usuario puede ingresar los resultados para un partido antes de que este inicie. Si el usuario acierta, recibe un incentivo.                                                                                                                                                                                                                      | El usuario ingresa su predicción de resultado y se almacena en el sistema. Solo se puede ingresar o modificar antes de que el partido inicie. Se valida los resultados al finalizar el partido. | HUC8         |
+| HUC12 | Como cliente, quiero tener acceso a un módulo de predicción de resultados de partidos, para tener una ayuda en la toma de decisiones en las quinielas.          | El usuario puede elegir realizar una predicción para un partido, donde se analizaron datos históricos y se presenta una predicción del resultado.                                                                                                                                                                                                   | Se ofrece una predicción del resultado del partido al usuario.                                                                                                                                  | HUC8         |
+| HUC13 | Como cliente, quiero participar en quinielas, para poder obtener premios.                                                                                       | El usuario puede ingresar los resultados para un partido antes de que éste inicie. Si el usuario acierta, recibe un incentivo.                                                                                                                                                                                                                      | El usuario ingresa su predicción de resultado y se almacena en el sistema. Solo se puede ingresar o modificar antes de que el partido inicie. Se valida los resultados al finalizar el partido. | HUC8         |
 
-#### Empleado
+### Empleado
 
 | Cod. | Historia de usuario                                                                                                      | Descripción                                                                                                                                                             | Criterios de aceptación                                                                                                        | Dependencia |
 |------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-------------|
-| HUE1 | Como empleado, quiero ingresar información al sistema, para mantener actualizada la base de datos estadistica.           | El empleado cuenta con formularios de ingreso para nuevos elementos de información, como estadios, equipos, partidos, resultados, etc.                                  | La información es almacenada en la base de datos y se encuentra disponible para ser consultada por los usuarios.               |             |
-| HUE2 | Como empleado, quiero modificar información ingresada anteriormente, para poder mantener los datos actualizados.         | El empleado tiene acceso a modificar los datos ingresados anteriormente, y puede guardar los nuevos cambios.                                                            | Los cambios en la información se ve reflejada de manera inmedita despues de guardarlos.                                        |             |
-| HUE3 | Como empleado, quiero transferir jugadores de un equipo a otro, para martener la plantilla de jugadores actualizada.     | El empleado cambia la afiliación de un jugador a otro equipo. Dicho cambio se debe registrar en la bitacora de equipos del jugador.                                     | El jugador aparece en la plantilla del nuevo equipo. En el perfil del jugador aparece que pertenece al nuevo equipo.           |             |
-| HUE4 | Como empleado, quiero transferir un tecnico a otro equipo, para mantener la plantilla tecnica actualizada.               | El empleado cambia el equipo al cual pertenece un tecnico. El cambio se registra en la bitacora del tecnico.                                                            | El cambio se ve reflejado en el perfil del equipo. Se validan correctamente la relación de 1 a 1 entre un tecnico y un equipo. |             |
+| HUE1 | Como empleado, quiero ingresar información al sistema, para mantener actualizada la base de datos estadística.           | El empleado cuenta con formularios de ingreso para nuevos elementos de información, como estadios, equipos, partidos, resultados, etc.                                  | La información es almacenada en la base de datos y se encuentra disponible para ser consultada por los usuarios.               |             |
+| HUE2 | Como empleado, quiero modificar información ingresada anteriormente, para poder mantener los datos actualizados.         | El empleado tiene acceso a modificar los datos ingresados anteriormente, y puede guardar los nuevos cambios.                                                            | Los cambios en la información se ve reflejada de manera inmediata despues de guardarlos.                                       |             |
+| HUE3 | Como empleado, quiero transferir jugadores de un equipo a otro, para mantener la plantilla de jugadores actualizada.     | El empleado cambia la afiliación de un jugador a otro equipo. Dicho cambio se debe registrar en la bitácora de equipos del jugador.                                     | El jugador aparece en la plantilla del nuevo equipo. En el perfil del jugador aparece que pertenece al nuevo equipo.           |             |
+| HUE4 | Como empleado, quiero transferir un técnico a otro equipo, para mantener la plantilla técnica actualizada.               | El empleado cambia el equipo al cual pertenece un técnico. El cambio se registra en la bitácora del técnico.                                                            | El cambio se ve reflejado en el perfil del equipo. Se validan correctamente la relación de 1 a 1 entre un técnico y un equipo. |             |
 | HUE5 | Como empleado, quiero modificar el estado de un partido, para que concuerde con el estado real.                          | El empleado puede cambiar el estado de un partido a Sin iniciar, En proceso, Finalizado, Suspendido.                                                                    | El cambio de estado se ve reflejado de manera inmediata.                                                                       |             |
-| HUE6 | Como empleado,quiero agregar incidencias durante la realización de un partido, para mantener la información actualizada. | El empleado agrega registros de eventos que suceden durante el partido, como lo es faltas, penalizaciónes, etc. Esto solo es posible mientras el partido esta en curso. | La incidencia crea un registro en la base de datos, y esta se refleja en los datos del partido de manera inmediata.            |             |
-| HUE7 | Como empleado, quiero agregar noticias sobre un equipo, para que estas esten disponibles a los usuarios.                 | El empleado agrega un articulo el cual esta relacionado con un equipo, y este sera accesible por los usuarios en la pagina de noticias.                                 | La noticia es almacenada en la base de datos y es accesible por los usuarios.                                                  |             |
+| HUE6 | Como empleado,quiero agregar incidencias durante la realización de un partido, para mantener la información actualizada. | El empleado agrega registros de eventos que suceden durante el partido, como lo es faltas, penalizaciones, etc. Esto solo es posible mientras el partido está en curso. | La incidencia crea un registro en la base de datos, y está se refleja en los datos del partido de manera inmediata.            |             |
+| HUE7 | Como empleado, quiero agregar noticias sobre un equipo, para que estas estén disponibles a los usuarios.                 | El empleado agrega un artículo el cual está relacionado con un equipo, y éste será accesible por los usuarios en la página de noticias.                                 | La noticia es almacenada en la base de datos y es accesible por los usuarios.                                                  |             |
 | HUE8 | Como empleado, quiero crear quinielas, para que los clientes puedan participar en ellas.                                 | El empleado crea una nueva quiniela y la pone a disposición de los usuarios.                                                                                            | La quiniela se almacena en el sistema. Los usuarios pueden participar en la quiniela.                                          |             |
 
-#### Administrador
+### Administrador
 
 | Cod. | Historia de usuario                                                                                                                                                           | Descripción                                                                                                                                                                  | Criterios de aceptación                                                                                                                                                               | Dependencia |
 |------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| HUA1 | Como administrador, quiero crear nuevas cuentas, para poder dar acceso al sistema.                                                                                            | Un usario administrador puede crear nuevas cuentas, sin importar si el rol es Cliente, Empleado u Administrador.                                                             | El administrador puede crear nuevos usuarios validos en el sistema.                                                                                                                   |             |
+| HUA1 | Como administrador, quiero crear nuevas cuentas, para poder dar acceso al sistema.                                                                                            | Un usuario administrador puede crear nuevas cuentas, sin importar si el rol es Cliente, Empleado u Administrador.                                                            | El administrador puede crear nuevos usuarios válidos en el sistema.                                                                                                                   |             |
 | HUA2 | Como administrador, quiero modificar el estatus de una cuenta, para poder tener un control sobre las mismas.                                                                  | Un administrador puede dar de alta, baja, congelar, visualizar o actualizar una cuenta de cualquier usuario, para lo cual debe registrar la razón de dicha acción en un log. | El estado de la cuenta cambia al estado definido por el administrador.                                                                                                                |             |
-| HUA3 | Como administrador, quiero tener acceso al log de operaciónes realizadas sobre usuarios, para tener control de las acciónes realizadas sobre los usuarios en el sistema.      | Un administrador, puede visualizar el log de acciónes sobre otras cuentas realizadas, donde se muestra la descripción de porque se realizó dicha operación.                  | El administrador visualiza los datos del log de acciónes sobre cuentas.                                                                                                               |             |
-| HUA4 | Como administrador, quiero que exista una pagina de "Access Denied", para informar a los usuarios que no tienen acceso a un area del sistema.                                 | Se muestra una pagina con un mensaje de acceso denegado, cuando el usuario intenta ingresar a un modula al cual no tiene permisos.                                           | El usuario visualiza una pagina de "Access Denied" cuando intenta visualizar un modulo al cual no tiene acceso.                                                                       |             |
-| HUA5 | Como administrador, quiero realizar reportes sobre los usuarios usando distintos criterios e imprimirlos en pdf si es necesario, para tener idea del desempeño de los mismos. | El administrador cuenta con un modulo de reportes donde puede realizar consulta sobre aspectos claves para usuarios "Empleado" y "Cliente".                                  | El administrador puede visualizar e imprimir en pdf reportes realizados sobre los usuarios y sus caracteristicas, cumpliendo los reportes del listado de "Reportes de administrador". |             |
+| HUA3 | Como administrador, quiero tener acceso al log de operaciones realizadas sobre usuarios, para tener control de las acciones realizadas sobre los usuarios en el sistema.      | Un administrador, puede visualizar el log de acciones sobre otras cuentas realizadas, donde se muestra la descripción de porqué se realizó dicha operación.                  | El administrador visualiza los datos del log de acciones sobre cuentas.                                                                                                               |             |
+| HUA4 | Como administrador, quiero que exista una página de "Access Denied", para informar a los usuarios que no tienen acceso a un área del sistema.                                 | Se muestra una página con un mensaje de acceso denegado, cuando el usuario intenta ingresar a un modula al cual no tiene permisos.                                           | El usuario visualiza una página de "Access Denied" cuando intenta visualizar un módulo al cual no tiene acceso.                                                                       |             |
+| HUA5 | Como administrador, quiero realizar reportes sobre los usuarios usando distintos criterios e imprimirlos en pdf si es necesario, para tener idea del desempeño de los mismos. | El administrador cuenta con un módulo de reportes donde puede realizar consulta sobre aspectos claves para usuarios "Empleado" y "Cliente".                                  | El administrador puede visualizar e imprimir en pdf reportes realizados sobre los usuarios y sus características, cumpliendo los reportes del listado de "Reportes de administrador". |             |
+
+
+## Algoritmo de predicción 
+
+Existen diferente algoritmos de predicción que se pueden utilizar para este requerimiento, pero se escogió uno de modelos de predicción de resultados de fútbol más famosos: el Dixon & Coles, basado en la distribución de Poisson y publicado en 1997.
+
+La distribución de Poisson es una distribución discreta que nos dice la probabilidad de que se produzcan un número determinado de sucesos en un período de tiempo (en nuestro caso, la duración de un partido de fútbol). El número de sucesos que queremos calcular es el número de goles marcados por el equipo X. Para ello, debemos alimentar el modelo con el número medio de sucesos, es decir, el número esperado de goles que el equipo debería marcar según sus partidos anteriores.
+
+De momento este modelo se adapta mejor a consultas que se pueden ejecutar directamente en la base de datos, ya que estadísticamente el algoritmo trabaja con tablas.
+
+[procedimiento completo](https://vencex.com/2018/01/01/prediccion-en-futbol-a-partir-de-los-goles-marcados-la-distribucion-de-poisson-i)
+
+
+## Video Presentación
+
+[![Alt text](https://img.youtube.com/vi/4pS0G80aTK4/0.jpg)](https://www.youtube.com/watch?v=4pS0G80aTK4)
+
+Click en la imagen.
 
 ## Anexos
 
