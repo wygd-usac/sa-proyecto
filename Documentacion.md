@@ -415,7 +415,7 @@ De momento este modelo se adapta mejor a consultas que se pueden ejecutar direct
 
 De manera general, se utilizara el siguiente algoritmo como base para obtener datos, sobre los cuales se aplicaran los modelos de predicción descritos anteriormente.
 <center>
-<img src="Imagenes/algoritmo_prediccion_base.png" width="200"/>
+<img src="Imagenes/algoritmo_prediccion_base.png" width="617"/>
 </center>
 
 ## Video Presentación
