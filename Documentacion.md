@@ -209,6 +209,7 @@ Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para
 
 El framework Angular provee una sencilla integración con el motor Karma y Jasmine para pruebas unitarias y funcionales, por lo que se hará uso de estas herramientas para realizar las pruebas.
 Tambien se implementaran pruebas unitarias en cada uno de los microservicios utilizando el framework Mocha.
+
 ![test](https://i.postimg.cc/2yBmbc04/test.png)
 
 ## Documentación de la aplicación
