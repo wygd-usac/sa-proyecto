@@ -13,6 +13,7 @@
   - [Herramientas de Metodología](#herramientas-de-metodología)
     - [SCRUM](#scrum)
     - [Product y Sprint Backlog - Trello](#product-y-sprint-backlog---trello)
+    - [Sistema de numeración para versionamiento](Sistema-de-numeración-para-versionamiento)
   - [Tecnologías y Frameworks a Utilizar](#tecnologías-y-frameworks-a-utilizar)
     - [Integración Continua](#integración-continua)
       - [Microservicios - Docker](#microservicios---docker)
@@ -22,6 +23,7 @@
       - [Angular](#angular)
       - [NodeJs](#nodejs)
       - [JWT](#jwt)
+      - [Pruebas a implementar](#Pruebas-a-implementar)
   - [Documentación de la aplicación](#documentación-de-la-aplicación)
     - [Maquetación](#maquetación)
       - [Login](#login)
@@ -120,6 +122,16 @@ A través de un tablero Kanban proporcionado por la herramienta Trello se listar
 
  </center> 
 
+
+### Sistema de numeración para versionamiento
+
+Se asignaran numeros que iran incrementando conforme el desarrollo del software aumente y se requiera la asignación de un nuevo número único.
+Se aumenta el número cuando:
+
+  - mayor: el software sufre grandes cambios y mejoras. Ej: versión 4.0 a versión 5.0
+  - menor: el software sufre pequeños cambios y/o correcciones de errores. Ej: versión 4.1 a versión 4.2
+  - micro: se aplica una corrección al software, y a su vez sufre pocos cambios. Ej: versión 3.1.2 a versión 3.1.3
+
 <br>
 
 -----
@@ -192,6 +204,12 @@ Angular es un framework para aplicaciones web desarrollado en TypeScript, de có
 #### JWT
 
 Se necesita la verificación de permisos de acuerdo al rol de cada usuario, para dicha tarea se implementara JWT para poder gestiónar las credenciales como tokens y proporcionar el acceso a los módulos correspondientes.
+
+#### Pruebas a implementar
+
+El framework Angular provee una sencilla integración con el motor Karma y Jasmine para pruebas unitarias y funcionales, por lo que se hará uso de estas herramientas para realizar las pruebas.
+Tambien se implementaran pruebas unitarias en cada uno de los microservicios utilizando el framework Mocha.
+![test](https://i.postimg.cc/2yBmbc04/test.png)
 
 ## Documentación de la aplicación
 
@@ -394,6 +412,10 @@ De momento este modelo se adapta mejor a consultas que se pueden ejecutar direct
 
 [procedimiento completo](https://vencex.com/2018/01/01/prediccion-en-futbol-a-partir-de-los-goles-marcados-la-distribucion-de-poisson-i)
 
+De manera general, se utilizara el siguiente algoritmo como base para obtener datos, sobre los cuales se aplicaran los modelos de predicción descritos anteriormente.
+<center>
+<img src="Imagenes/algoritmo_prediccion_base.png" width="200"/>
+</center>
 
 ## Video Presentación
 
