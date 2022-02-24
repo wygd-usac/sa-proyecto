@@ -5,13 +5,9 @@ const router = Router();
 const {validate_session,validate_premium} = require('../../middleware/validations');
 
 router.get('/', (req, res) => {
-    res.send("Modulo de Cliente");
+    res.send("Modulo de Prediccion");
 });
 
-
-router.get('/listar',validate_session, (req, res) => {
-    res.send("Modulo de Cliente");
-});
 
 
 

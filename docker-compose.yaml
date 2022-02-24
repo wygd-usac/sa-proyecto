@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile.cliente
     ports:
-      - "5000:5000"
+      - "5010:5000"
     depends_on:
       - db
     networks:
@@ -25,7 +25,47 @@ services:
       context: .
       dockerfile: Dockerfile.administracion
     ports:
-      - "5010:5000"
+      - "5020:5000"
+    depends_on:
+      - db
+    networks:
+      - red-backend
+  servicio_administrativo:
+    build:
+      context: .
+      dockerfile: Dockerfile.servicio_admin
+    ports:
+      - "5030:5000"
+    depends_on:
+      - db
+    networks:
+      - red-backend
+  usuario:
+    build:
+      context: .
+      dockerfile: Dockerfile.usuario
+    ports:
+      - "5040:5000"
+    depends_on:
+      - db
+    networks:
+      - red-backend
+  reporte:
+    build:
+      context: .
+      dockerfile: Dockerfile.reporte
+    ports:
+      - "5050:5000"
+    depends_on:
+      - db
+    networks:
+      - red-backend
+  prediccion:
+    build:
+      context: .
+      dockerfile: Dockerfile.prediccion
+    ports:
+      - "5060:5000"
     depends_on:
       - db
     networks:
@@ -39,7 +79,7 @@ services:
       - administracion
       #- server2
     ports:
-      - "5020:5000"
+      - "5000:5000"
     networks:
       - red-backend
 networks:

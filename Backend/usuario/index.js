@@ -3,7 +3,7 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
-const context = '/servicio_administrativo';
+const context = '/usuario';
 const router = require('./rutas/router');
 
 app.use(cors());
