@@ -1,0 +1,7 @@
+
+name: flawless-psyche-341722:us-central1:proyecto-sa
+Host: 173.255.118.184
+User: sa-proyecto
+pass: grupoH
+
+Nombre de la base de datos: sa
