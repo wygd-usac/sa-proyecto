@@ -141,25 +141,26 @@ CREATE TABLE IF NOT EXISTS `SA`.`Partido` (
   `id_partido` INT NOT NULL AUTO_INCREMENT,
   `game_date` DATE NOT NULL,
   `attendees` INT NOT NULL,
-  `result` INT NOT NULL,
+  `result_local` INT NOT NULL,
+  `result_visiting` INT NOT NULL,
   `state` VARCHAR(45) NOT NULL,
-  `incidents` INT NOT NULL,
+  `incidents` INT  NULL,
   `id_stadium` INT NOT NULL,
-  `id_team_1` INT NOT NULL,
-  `id_team_2` INT NOT NULL,
-  PRIMARY KEY (`id_partido`, `id_stadium`, `id_team_1`, `id_team_2`),
+  `id_team_local` INT NOT NULL,
+  `id_team_visiting` INT NOT NULL,
+  PRIMARY KEY (`id_partido`, `id_stadium`, `id_team_local`, `id_team_visiting`),
   CONSTRAINT `fk_Equipo_Estadio1`
     FOREIGN KEY (`id_stadium`)
     REFERENCES `SA`.`Estadio` (`id_Estadio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo1`
-    FOREIGN KEY (`id_team_1`)
+    FOREIGN KEY (`id_team_local`)
     REFERENCES `SA`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo2`
-    FOREIGN KEY (`id_team_2`)
+    FOREIGN KEY (`id_team_visiting`)
     REFERENCES `SA`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
