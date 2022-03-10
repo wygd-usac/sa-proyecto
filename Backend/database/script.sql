@@ -14,8 +14,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema SA
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `SA` DEFAULT CHARACTER SET utf8 ;
-USE `SA` ;
+CREATE SCHEMA IF NOT EXISTS `sa` DEFAULT CHARACTER SET utf8 ;
+USE `sa` ;
 
 -- -----------------------------------------------------
 -- Table `SA`.`Country`
@@ -137,30 +137,31 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `SA`.`Partido`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sa`.`Partido` (
+CREATE TABLE IF NOT EXISTS `SA`.`Partido` (
   `id_partido` INT NOT NULL AUTO_INCREMENT,
-  `date_game` DATE NOT NULL,
-  `viewers` INT NOT NULL,
-  `result` VARCHAR(45) NOT NULL,
-  `status_game` VARCHAR(45) NOT NULL,
-  `winner` VARCHAR(45) NOT NULL,
-  `id_Estadio` INT NOT NULL,
-  `local_team` INT NOT NULL,
-  `visiting_team` INT NOT NULL,
-  PRIMARY KEY (`id_partido`, `id_Estadio`, `local_team`, `visiting_team`),
+  `game_date` DATE NOT NULL,
+  `attendees` INT NOT NULL,
+  `result_local` INT NOT NULL,
+  `result_visiting` INT NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `incidents` INT  NULL,
+  `id_stadium` INT NOT NULL,
+  `id_team_local` INT NOT NULL,
+  `id_team_visiting` INT NOT NULL,
+  PRIMARY KEY (`id_partido`, `id_stadium`, `id_team_local`, `id_team_visiting`),
   CONSTRAINT `fk_Equipo_Estadio1`
-    FOREIGN KEY (`id_Estadio`)
-    REFERENCES `sa`.`Estadio` (`id_Estadio`)
+    FOREIGN KEY (`id_stadium`)
+    REFERENCES `SA`.`Estadio` (`id_Estadio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo1`
-    FOREIGN KEY (`local_team`)
-    REFERENCES `sa`.`Equipo` (`id_team`)
+    FOREIGN KEY (`id_team_local`)
+    REFERENCES `SA`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo2`
-    FOREIGN KEY (`visiting_team`)
-    REFERENCES `sa`.`Equipo` (`id_team`)
+    FOREIGN KEY (`id_team_visiting`)
+    REFERENCES `SA`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
