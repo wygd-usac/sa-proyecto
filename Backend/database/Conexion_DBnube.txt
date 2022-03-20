@@ -1,0 +1,7 @@
+
+name: bionic-factor-344701:us-central1:proyecto-bdgh
+Host: 34.72.212.208
+User: grupoH
+pass: sagh-2022
+
+Nombre de la base de datos: sa

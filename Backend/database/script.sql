@@ -14,245 +14,96 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema SA
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `SA` DEFAULT CHARACTER SET utf8 ;
-USE `SA` ;
-
--- -----------------------------------------------------
--- Table `SA`.`Competencia`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Competencia` (
-  `id_competencia` INT NOT NULL,
-  `name_competition` VARCHAR(45) NOT NULL,
-  `winner` VARCHAR(45) NOT NULL,
-  `id_tipo` INT NOT NULL,
-  `Country_id_Country` INT NOT NULL,
-  PRIMARY KEY (`id_competencia`, `Country_id_Country`),
-  INDEX `fk_Competencia_Country1_idx` (`Country_id_Country` ASC) VISIBLE,
-  CONSTRAINT `fk_Competencia_Country1`
-    FOREIGN KEY (`Country_id_Country`)
-    REFERENCES `SA`.`Country` (`id_Country`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
+CREATE SCHEMA IF NOT EXISTS `sa` DEFAULT CHARACTER SET utf8 ;
+USE `sa` ;
 
 -- -----------------------------------------------------
 -- Table `SA`.`Country`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Country` (
-  `id_Country` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Country` (
+  `id_Country` INT NOT NULL AUTO_INCREMENT,
   `country` VARCHAR(45) NOT NULL,
   `nationality` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_Country`))
 ENGINE = InnoDB;
 
+ -----------------------------------------------------
+-- Table `SA`.`Competencia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Competencia` (
+  `id_competencia` INT NOT NULL AUTO_INCREMENT,
+  `name_competition` VARCHAR(45) NOT NULL,
+  `winner` VARCHAR(45) NOT NULL,
+  `id_tipo` INT NOT NULL,
+  `Country_id_Country` INT NOT NULL,
+  PRIMARY KEY (`id_competencia`, `Country_id_Country`),
+  CONSTRAINT `fk_Competencia_Country1`
+    FOREIGN KEY (`Country_id_Country`)
+    REFERENCES `sa`.`Country` (`id_Country`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `SA`.`Equipo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Equipo` (
-  `id_team` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Equipo` (
+  `id_team` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `fundation_date` DATE NOT NULL,
   `photo` VARCHAR(45) NOT NULL,
   `id_Country` INT NOT NULL,
   PRIMARY KEY (`id_team`, `id_Country`),
-  INDEX `fk_Equipo_Country1_idx` (`id_Country` ASC) VISIBLE,
   CONSTRAINT `fk_Equipo_Country1`
     FOREIGN KEY (`id_Country`)
-    REFERENCES `SA`.`Country` (`id_Country`)
+    REFERENCES `sa`.`Country` (`id_Country`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `SA`.`Estadio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Estadio` (
-  `id_Estadio` INT NOT NULL,
-  `name_stadium` VARCHAR(45) NOT NULL,
-  `inauguration_date` DATE NOT NULL,
-  `photo_stadium` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Estadio` (
+  `id_Estadio` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `fundation_date` DATE NOT NULL,
+  `photo` VARCHAR(45) NOT NULL,
   `capacity` INT NOT NULL,
-  `status_stadium` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
   `address` VARCHAR(45) NOT NULL,
   `id_Country` INT NOT NULL,
   PRIMARY KEY (`id_Estadio`, `id_Country`),
-  INDEX `fk_Estadio_Country1_idx` (`id_Country` ASC) VISIBLE,
   CONSTRAINT `fk_Estadio_Country1`
     FOREIGN KEY (`id_Country`)
-    REFERENCES `SA`.`Country` (`id_Country`)
+    REFERENCES `sa`.`Country` (`id_Country`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SA`.`Incidencia`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Incidencia` (
-  `id_incidencia` INT NOT NULL,
-  `descripcion` VARCHAR(100) NOT NULL,
-  `minuto` INT NOT NULL,
-  `id_person` INT NOT NULL,
-  `id_team` INT NOT NULL,
-  `id_partido` INT NOT NULL,
-  PRIMARY KEY (`id_incidencia`, `id_person`, `id_team`, `id_partido`),
-  INDEX `fk_Incidencia_Person1_idx` (`id_person` ASC, `id_team` ASC) VISIBLE,
-  INDEX `fk_Incidencia_Partido1_idx` (`id_partido` ASC) VISIBLE,
-  CONSTRAINT `fk_Incidencia_Person1`
-    FOREIGN KEY (`id_person` , `id_team`)
-    REFERENCES `SA`.`Person` (`id_person` , `id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Incidencia_Partido1`
-    FOREIGN KEY (`id_partido`)
-    REFERENCES `SA`.`Partido` (`id_partido`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SA`.`Noticia`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Noticia` (
-  `id_new` INT NOT NULL,
-  `news` VARCHAR(300) NOT NULL,
-  `Equipo_id_team` INT NOT NULL,
-  PRIMARY KEY (`id_new`, `Equipo_id_team`),
-  INDEX `fk_Noticia_Equipo1_idx` (`Equipo_id_team` ASC) VISIBLE,
-  CONSTRAINT `fk_Noticia_Equipo1`
-    FOREIGN KEY (`Equipo_id_team`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SA`.`Partido`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Partido` (
-  `id_partido` INT NOT NULL,
-  `date_game` DATE NOT NULL,
-  `viewers` INT NOT NULL,
-  `result` VARCHAR(45) NOT NULL,
-  `status_game` VARCHAR(45) NOT NULL,
-  `winner` VARCHAR(45) NOT NULL,
-  `id_Estadio` INT NOT NULL,
-  `local_team` INT NOT NULL,
-  `visiting_team` INT NOT NULL,
-  PRIMARY KEY (`id_partido`, `id_Estadio`, `local_team`, `visiting_team`),
-  INDEX `fk_Equipo_Estadio1_idx` (`id_Estadio` ASC) VISIBLE,
-  INDEX `fk_Partido_Equipo1_idx` (`local_team` ASC) VISIBLE,
-  INDEX `fk_Partido_Equipo2_idx` (`visiting_team` ASC) VISIBLE,
-  CONSTRAINT `fk_Equipo_Estadio1`
-    FOREIGN KEY (`id_Estadio`)
-    REFERENCES `SA`.`Estadio` (`id_Estadio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Partido_Equipo1`
-    FOREIGN KEY (`local_team`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Partido_Equipo2`
-    FOREIGN KEY (`visiting_team`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SA`.`Person`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Person` (
-  `id_person` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
-  `birthday` DATE NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
-  `photo` VARCHAR(45) NULL,
-  `id_stand` INT NULL,
-  `type` INT NOT NULL,
-  `id_team` INT NOT NULL,
-  `nationality` INT NOT NULL,
-  PRIMARY KEY (`id_person`, `id_team`, `nationality`),
-  INDEX `fk_Jugador_Posicion1_idx` (`id_stand` ASC) VISIBLE,
-  INDEX `fk_Jugador_Equipo1_idx` (`id_team` ASC, `nationality` ASC) VISIBLE,
-  CONSTRAINT `fk_Jugador_Posicion1`
-    FOREIGN KEY (`id_stand`)
-    REFERENCES `SA`.`Posicion` (`id_stand`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Jugador_Equipo1`
-    FOREIGN KEY (`id_team` , `nationality`)
-    REFERENCES `SA`.`Equipo` (`id_team` , `id_Country`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `SA`.`Posicion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Posicion` (
-  `id_stand` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Posicion` (
+  `id_stand` INT NOT NULL AUTO_INCREMENT,
   `stand` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_stand`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `SA`.`Rol`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Rol` (
-  `id_rol` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Rol` (
+  `id_rol` INT NOT NULL AUTO_INCREMENT,
   `rol` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_rol`))
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `SA`.`Transferencias`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Transferencias` (
-  `id` INT NOT NULL,
-  `first_date` DATE NOT NULL,
-  `Last_date` DATE NOT NULL,
-  `Person_id` INT NOT NULL,
-  `team_origin` INT NOT NULL,
-  `team_destination` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Transferencias_Person1_idx` (`Person_id` ASC) VISIBLE,
-  INDEX `fk_Transferencias_Equipo1_idx` (`team_origin` ASC) VISIBLE,
-  INDEX `fk_Transferencias_Equipo2_idx` (`team_destination` ASC) VISIBLE,
-  CONSTRAINT `fk_Transferencias_Person1`
-    FOREIGN KEY (`Person_id`)
-    REFERENCES `SA`.`Person` (`id_person`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Transferencias_Equipo1`
-    FOREIGN KEY (`team_origin`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Transferencias_Equipo2`
-    FOREIGN KEY (`team_destination`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `SA`.`Usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Usuario` (
-  `id_user` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `sa`.`Usuario` (
+  `id_user` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(25) NOT NULL,
   `lastname` VARCHAR(25) NOT NULL,
   `password` VARCHAR(25) NOT NULL,
@@ -270,17 +121,140 @@ CREATE TABLE IF NOT EXISTS `SA`.`Usuario` (
   `id_Country` INT NOT NULL,
   `id_rol` INT NOT NULL,
   PRIMARY KEY (`id_user`, `id_Country`, `id_rol`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  INDEX `fk_Usuario_Country_idx` (`id_Country` ASC) VISIBLE,
-  INDEX `fk_Usuario_Rol1_idx` (`id_rol` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_Usuario_Country`
     FOREIGN KEY (`id_Country`)
-    REFERENCES `SA`.`Country` (`id_Country`)
+    REFERENCES `sa`.`Country` (`id_Country`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Usuario_Rol1`
     FOREIGN KEY (`id_rol`)
-    REFERENCES `SA`.`Rol` (`id_rol`)
+    REFERENCES `sa`.`Rol` (`id_rol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `SA`.`Partido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Partido` (
+  `id_partido` INT NOT NULL AUTO_INCREMENT,
+  `game_date` DATE NOT NULL,
+  `attendees` INT NOT NULL,
+  `result_local` INT NOT NULL,
+  `result_visiting` INT NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `incidents` INT  NULL,
+  `id_stadium` INT NOT NULL,
+  `id_team_local` INT NOT NULL,
+  `id_team_visiting` INT NOT NULL,
+  PRIMARY KEY (`id_partido`, `id_stadium`, `id_team_local`, `id_team_visiting`),
+  CONSTRAINT `fk_Equipo_Estadio1`
+    FOREIGN KEY (`id_stadium`)
+    REFERENCES `sa`.`Estadio` (`id_Estadio`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Partido_Equipo1`
+    FOREIGN KEY (`id_team_local`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Partido_Equipo2`
+    FOREIGN KEY (`id_team_visiting`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `SA`.`Person  Tecnico o Jugador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Person` (
+  `id_person` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `birthday` DATE NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
+  `photo` VARCHAR(45) NULL,
+  `id_stand` INT NULL,
+  `type` INT NOT NULL,
+  `id_team` INT NOT NULL,
+  `nationality` INT NOT NULL,
+  PRIMARY KEY (`id_person`, `id_team`, `nationality`),
+  CONSTRAINT `fk_Jugador_Posicion1`
+    FOREIGN KEY (`id_stand`)
+    REFERENCES `sa`.`Posicion` (`id_stand`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Jugador_Equipo1`
+    FOREIGN KEY (`id_team` , `nationality`)
+    REFERENCES `sa`.`Equipo` (`id_team` , `id_Country`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `SA`.`Incidencia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Incidencia` (
+  `id_incidencia` INT NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(100) NOT NULL,
+  `minuto` INT NOT NULL,
+  `id_person` INT NOT NULL,
+  `id_team` INT NOT NULL,
+  `id_partido` INT NOT NULL,
+  PRIMARY KEY (`id_incidencia`, `id_person`, `id_team`, `id_partido`),
+  CONSTRAINT `fk_Incidencia_Person1`
+    FOREIGN KEY (`id_person` , `id_team`)
+    REFERENCES `sa`.`Person` (`id_person` , `id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Incidencia_Partido1`
+    FOREIGN KEY (`id_partido`)
+    REFERENCES `sa`.`Partido` (`id_partido`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `SA`.`Noticia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Noticia` (
+  `id_new` INT NOT NULL AUTO_INCREMENT,
+  `news` VARCHAR(300) NOT NULL,
+  `Equipo_id_team` INT NOT NULL,
+  PRIMARY KEY (`id_new`, `Equipo_id_team`),
+  CONSTRAINT `fk_Noticia_Equipo1`
+    FOREIGN KEY (`Equipo_id_team`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `SA`.`Transferencias`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sa`.`Transferencias` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_date` DATE NOT NULL,
+  `Last_date` DATE NOT NULL,
+  `Person_id` INT NOT NULL,
+  `team_origin` INT NOT NULL,
+  `team_destination` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_Transferencias_Person1`
+    FOREIGN KEY (`Person_id`)
+    REFERENCES `sa`.`Person` (`id_person`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Transferencias_Equipo1`
+    FOREIGN KEY (`team_origin`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Transferencias_Equipo2`
+    FOREIGN KEY (`team_destination`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
