@@ -16,5 +16,19 @@ pipeline {
       }
     }
 
+    stage('Push-producción') {
+      when {
+        branch 'main'
+      }
+      environment {
+        DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+        //sh 'docker push wygd/pagina:latest'
+        sh 'docker logout'
+      }
+    }
+
   }
 }
