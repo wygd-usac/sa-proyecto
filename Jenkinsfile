@@ -17,9 +17,9 @@ pipeline {
     }
 
     stage('Push-producción') {
-      when {
+      /*when {
         branch 'main'
-      }
+      }*/
       environment {
         DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
       }
