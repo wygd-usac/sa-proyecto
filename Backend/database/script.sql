@@ -137,7 +137,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `SA`.`Partido`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SA`.`Partido` (
+CREATE TABLE IF NOT EXISTS `sa`.`Partido` (
   `id_partido` INT NOT NULL AUTO_INCREMENT,
   `game_date` DATE NOT NULL,
   `attendees` INT NOT NULL,
@@ -151,17 +151,17 @@ CREATE TABLE IF NOT EXISTS `SA`.`Partido` (
   PRIMARY KEY (`id_partido`, `id_stadium`, `id_team_local`, `id_team_visiting`),
   CONSTRAINT `fk_Equipo_Estadio1`
     FOREIGN KEY (`id_stadium`)
-    REFERENCES `SA`.`Estadio` (`id_Estadio`)
+    REFERENCES `sa`.`Estadio` (`id_Estadio`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo1`
     FOREIGN KEY (`id_team_local`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Partido_Equipo2`
     FOREIGN KEY (`id_team_visiting`)
-    REFERENCES `SA`.`Equipo` (`id_team`)
+    REFERENCES `sa`.`Equipo` (`id_team`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
