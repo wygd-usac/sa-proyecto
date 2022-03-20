@@ -32,13 +32,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sa`.`Competencia` (
   `id_competencia` INT NOT NULL AUTO_INCREMENT,
-  `name_competition` VARCHAR(45) NOT NULL,
-  `winner` VARCHAR(45) NOT NULL,
-  `id_tipo` INT NOT NULL,
-  `Country_id_Country` INT NOT NULL,
-  PRIMARY KEY (`id_competencia`, `Country_id_Country`),
+  `name` VARCHAR(100) NOT NULL,
+  `champion_team` INT NULL,
+  `type` VARCHAR(100) NOT NULL,
+  `year` INT NOT NULL,
+  `id_Country` INT NOT NULL,
+  PRIMARY KEY (`id_competencia`, `id_Country`),
   CONSTRAINT `fk_Competencia_Country1`
-    FOREIGN KEY (`Country_id_Country`)
+    FOREIGN KEY (`id_Country`)
     REFERENCES `sa`.`Country` (`id_Country`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
