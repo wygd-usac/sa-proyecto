@@ -1,0 +1,12 @@
+- hosts: test
+  become: true
+  tasks:
+    - name: copy Docker Compose files
+      copy:
+        src: ../docker-compose.yml
+        dest: ~/test/docker-compose.yml
+
+    # use files parameter to use multiple docker-compose.yml files
+    - name: deploy Docker Compose stack
+      docker_compose:
+        project_src: ~/test/docker-compose.yaml

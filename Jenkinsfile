@@ -10,7 +10,7 @@ pipeline {
     stage('ImageBuild-Prueba docker desde jenkins') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        //sh 'docker build --no-cache --rm -t wygd/pagina:latest -f Practica4/Dockerfile ./Practica4'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Dockerfile.cliente .'
         sh 'docker images'
         sh 'docker ps'
       }
@@ -25,7 +25,7 @@ pipeline {
       }
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-        //sh 'docker push wygd/pagina:latest'
+        sh 'docker push wygd/ms-cliente:lates'
         sh 'docker logout'
       }
     }
