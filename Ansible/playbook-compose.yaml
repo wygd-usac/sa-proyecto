@@ -76,4 +76,4 @@
       remote_user: app-admin
       docker_compose:
         project_src: test/
-        state: absent
+        state: present
