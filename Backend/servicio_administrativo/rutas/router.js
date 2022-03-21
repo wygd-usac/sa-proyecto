@@ -32,9 +32,9 @@ router.get("/soccer-game",soccerGameCtl.findAll);
 router.delete("/soccer-game/", soccerGameCtl.delete);
 
 //Competencia
-router.post("/competition", competitionCtl.create);
-router.put("/competition", competitionCtl.update);
-router.get("/competition",competitionCtl.findAll);
-router.delete("/competition/", competitionCtl.delete);
+router.post("/competition", competitionCtl.create); //http://localhost:5000/servicio_administrativo/competition
+router.put("/competition", competitionCtl.update); //http://localhost:5000/servicio_administrativo/competition
+router.get("/competition",competitionCtl.findAll); //http://localhost:5000/servicio_administrativo/competition?id=5
+router.delete("/competition/", competitionCtl.delete); //http://localhost:5000/servicio_administrativo/competition/?id=4
 
 module.exports = router;

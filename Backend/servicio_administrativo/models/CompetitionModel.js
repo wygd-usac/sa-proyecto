@@ -5,7 +5,7 @@ const Competition = function(competition){
     this.champion_team = competition.champion_team;
     this.type = competition.type;
     this.year = competition.year;
-    this.id_Country = competition.id_country; 
+    this.id_Country = competition.country; 
 };
 
 Competition.create = (newCompetition, result) => {
@@ -15,10 +15,11 @@ Competition.create = (newCompetition, result) => {
             result(err,null);
             return;
         }
-        console.log("competition created successfully”,: ", {id: res.insertId, ...newCompetition});
+        console.log("se creo una nueva competencia: ", {id: res.insertId, ...newCompetition});
         result(null, {id: res.insertId, ...newCompetition});
     });
 };
+
 
 Competition.updateById = (id, competition, result) => {
     conexion.query(
@@ -44,7 +45,7 @@ Competition.updateById = (id, competition, result) => {
 
 Competition.getAll = (id, result) => {
     //let query = "SELECT * FROM Estadio";
-    let query = "select id_competencia,name, champion_team, type,year, id_Country, (select country FROM Country where id_Country = id_Country) as Country From Competencia;";
+    let query = "select id_competencia,name, champion_team, type,year, id_Country, (select country FROM Country where id_Country = id_Country limit 1) as Country From Competencia";
   
     if(id == ''){
       conexion.query(query, (err, res) => {

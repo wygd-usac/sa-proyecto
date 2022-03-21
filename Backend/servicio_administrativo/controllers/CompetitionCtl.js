@@ -1,23 +1,20 @@
 const Competition = require("../models/CompetitionModel");
 
-// Creacion de un nuevo equipo
 exports.create = (req, res) => {
-    // Validate request
     if (!req.body) {
       res.status(400).send({
         status: 500,
-        message: "Error al crear la competencia",
+        message: "Error al crear competencia, los campos no pueden estar en blanco",
         data: []
       });
     }
   
-    // Crear estadio
-    const Competition = new Competition({
+    const competition = new Competition({
         name : req.body.name,
+        champion_team : req.body.champion_team,
         type : req.body.type,
         year : req.body.year,
-        champion_team : req.body.champion_team || null,
-        id_country: req.body.country
+        country: req.body.country
     });
   
     //Crear Estadio
