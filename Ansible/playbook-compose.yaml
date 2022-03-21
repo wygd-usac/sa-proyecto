@@ -57,14 +57,13 @@
       shell: pwd
       register: playbook_path_output
     - name: Find out playbook's path
-      shell: ls
+      shell: ls /temp
       register: playbook_path_output
     - debug: var=playbook_path_output.stdout
     - name: copy Docker Compose files
       copy:
         src: docker-compose.yml
         dest: /test/docker-compose.yml
-        remote_src: no
 
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
