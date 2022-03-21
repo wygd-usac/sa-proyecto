@@ -53,6 +53,10 @@
 - hosts: test
   become: true
   tasks:
+    - name: Find out playbook's path
+      shell: pwd
+      register: playbook_path_output
+    - debug: var=playbook_path_output.stdout
     - name: copy Docker Compose files
       copy:
         src: ../docker-compose.yml
