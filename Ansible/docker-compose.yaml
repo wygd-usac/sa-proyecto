@@ -4,8 +4,6 @@ services:
     image: wygd/ms-cliente:latest
     ports:
       - "5010:5000"
-    depends_on:
-      - db
     networks:
       - red-backend
   # administracion:
