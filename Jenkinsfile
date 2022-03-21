@@ -30,5 +30,15 @@ pipeline {
       }
     }
 
+    stage('Deploy-Ansible-Producción') {
+      // when {
+      //   branch 'main'
+      // }
+      steps {
+        sh 'ls -a'
+        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose.yaml'
+      }
+    }
+
   }
 }
