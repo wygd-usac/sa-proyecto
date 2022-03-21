@@ -64,7 +64,7 @@
       copy:
         src: docker-compose.yml
         dest: /test/docker-compose.yml
-        remote_src: false
+        remote_src: no
 
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
