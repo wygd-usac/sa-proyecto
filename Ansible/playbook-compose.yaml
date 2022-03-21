@@ -59,9 +59,9 @@
     - debug: var=playbook_path_output.stdout
     - name: copy Docker Compose files
       copy:
-        remote_src: no
-        src: docker-compose.yml
-        dest: /test/docker-compose.yml
+        remote_src: no+
+        src: docker-compose.yaml
+        dest: /test/docker-compose.yaml
 
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
