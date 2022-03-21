@@ -25,7 +25,7 @@ pipeline {
       }
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-        sh 'docker push wygd/ms-cliente:lates'
+        sh 'docker push wygd/ms-cliente:latest'
         sh 'docker logout'
       }
     }
