@@ -63,7 +63,9 @@
         remote_src: no
         src: docker-compose.yaml
         dest: test/docker-compose.yaml
-
+    - name: Find out playbook's twice
+      shell: pwd
+      register: playbook_path_output
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
       remote_user: app-admin
