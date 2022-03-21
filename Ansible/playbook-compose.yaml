@@ -32,6 +32,14 @@
       pip:
         name: docker
 
+    - name: Install Docker Module for Python
+      pip:
+        name: docker-py
+    
+    - name: Install Docker Module for Python
+      pip:
+        name: docker-compose
+
     - name: Add "app-admin" user to "docker" group
       remote_user: app-admin
       user:
@@ -50,41 +58,24 @@
     #   docker_image:
     #     name: "{{ default_container_image }}"
     #     source: pull
-# - hosts: test
-#   become: true
-#   tasks:
-#     - name: Find out playbook's path
-#       shell: pwd
-#       register: playbook_path_output
-#     - debug: var=playbook_path_output.stdout
-#     - name: copy Docker Compose files
-#       remote_user: app-admin
-#       copy:
-#         remote_src: no
-#         src: docker-compose.yaml
-#         dest: test/docker-compose.yaml
-#     - name: Find out playbook's twice
-#       shell: pwd
-#       register: playbook_path_output
-#     # use files parameter to use multiple docker-compose.yml files
-#     - name: deploy Docker Compose stack
-#       remote_user: app-admin
-#       docker_compose:
-#         project_src: test/docker-compose.yaml
-
-- name: Run with inline v2 compose
-  hosts: test
-  gather_facts: no
+- hosts: test
+  become: true
   tasks:
-    - community.docker.docker_compose:
-        project_src: flask
-        state: absent
-
-    - community.docker.docker_compose:
-        project_name: flask
-        definition:
-          version: '2'
-          services:
-            db:
-              image: postgres
-      register: output
+    - name: Find out playbook's path
+      shell: pwd
+      register: playbook_path_output
+    - debug: var=playbook_path_output.stdout
+    - name: copy Docker Compose files
+      remote_user: app-admin
+      copy:
+        remote_src: no
+        src: docker-compose.yaml
+        dest: test/docker-compose.yaml
+    - name: Find out playbook's twice
+      shell: pwd
+      register: playbook_path_output
+    # use files parameter to use multiple docker-compose.yml files
+    - name: deploy Docker Compose stack
+      remote_user: app-admin
+      docker_compose:
+        project_src: test/docker-compose.yaml
