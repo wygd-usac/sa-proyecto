@@ -62,7 +62,21 @@
       shell: pwd
       register: playbook_path_output
     - debug: var=playbook_path_output.stdout
+    - name: Creates directory
+      file:
+        path: /test
+        state: directory
+    - name: Creates directory
+      file:
+        path: /test
+        state: directory
     - name: copy Docker Compose files
+      remote_user: app-admin
+      copy:
+        remote_src: no
+        src: ../Backend/nginx/nginx.conf
+        dest: test/nginx.conf
+    - name: copy nginx file
       remote_user: app-admin
       copy:
         remote_src: no
