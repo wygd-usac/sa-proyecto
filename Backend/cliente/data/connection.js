@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const conexion = mysql.createPool({
-    host: 'localhost',
-    user: 'admin',
-    password: '1234',
-    database: 'SA'
+    host: '34.72.212.208',
+    user: 'grupoH',
+    password: 'sagh-2022',
+    database: 'sa'
 });
 
 executeQ = (consulta) => {

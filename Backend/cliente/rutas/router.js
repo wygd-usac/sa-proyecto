@@ -60,12 +60,8 @@ router.post('/follow',validate_session,async (req,res) => {
     }
     console.log(id_client);
     console.log(id_team);
-    /*
-    
-    
-    */
-
-    const result = dataOp.getResponse(200,"Ahora estas siguiendo al equipo.");
+    const result = await dataOp.followTeam(id_client,id_team);
+    console.log(result);
     res.send(JSON.stringify(result));
 });
 
