@@ -66,4 +66,4 @@
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
       docker_compose:
-        project_src: ~/test/docker-compose.yaml
+        project_src: docker-compose.yaml
