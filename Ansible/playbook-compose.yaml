@@ -70,13 +70,13 @@
       file:
         path: /test
         state: directory
-    - name: copy Docker Compose files
+    - name: copy nginx files
       remote_user: app-admin
       copy:
         remote_src: no
         src: ../Backend/nginx/nginx.conf
         dest: test/nginx.conf
-    - name: copy nginx file
+    - name: copy docker-compose file
       remote_user: app-admin
       copy:
         remote_src: no
@@ -87,4 +87,4 @@
       remote_user: app-admin
       docker_compose:
         project_src: test/
-        state: absent
+        state: present
