@@ -58,12 +58,14 @@
       register: playbook_path_output
     - debug: var=playbook_path_output.stdout
     - name: copy Docker Compose files
+      remote_user: app-admin
       copy:
         remote_src: no
         src: docker-compose.yaml
-        dest: ~/test/docker-compose.yaml
+        dest: test/docker-compose.yaml
 
     # use files parameter to use multiple docker-compose.yml files
     - name: deploy Docker Compose stack
+      remote_user: app-admin
       docker_compose:
-        project_src: ~/test/docker-compose.yaml
+        project_src: test/docker-compose.yaml
