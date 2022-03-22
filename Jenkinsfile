@@ -46,7 +46,7 @@ pipeline {
         branch 'feature/frontend'
       }
       steps {
-        sh 'ls -a'
+        sh 'ls Frontend -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend.yaml'
       }
     }
