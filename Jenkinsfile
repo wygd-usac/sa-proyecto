@@ -30,6 +30,17 @@ pipeline {
       }
     }
 
+    stage('Push-producción') {
+      when {
+        branch 'feature/frontend'
+      }
+      
+      steps {
+        sh 'node -v'
+      }
+    }
+
+
     stage('Deploy-Ansible-Producción') {
       // when {
       //   branch 'main'
