@@ -35,13 +35,21 @@ pipeline {
         sh 'node -v'
         dir(path: 'Frontend') {
           sh 'pwd'
-          sh 'npm install'
-          sh 'npm run build --prod'
+          //sh 'npm install'
+          //sh 'npm run build --prod'
         }
 
       }
     }
-
+    stage('Deploy-frontend-test') {
+      when {
+        branch 'feature/frontend'
+      }
+      steps {
+        sh 'ls -a'
+        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend.yaml'
+      }
+    }
     stage('Deploy-Ansible-Producción') {
       when {
         branch 'main'
