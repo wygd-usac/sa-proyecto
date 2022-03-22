@@ -4,10 +4,11 @@ pipeline {
     stage('Pull-Repository') {
       steps {
         echo 'Repository was pulled.'
+        sh 'docker rmi $(docker images -q)'
       }
     }
 
-    stage('ImageBuild-Prueba docker desde jenkins') {
+    stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Dockerfile.cliente .'
@@ -16,13 +17,51 @@ pipeline {
       }
     }
 
-    stage('Push-producción') {
+    stage('Push-Microservicio Cliente') {
       environment {
         DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
       }
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-cliente:latest'
+        sh 'docker logout'
+      }
+    }
+
+    stage('ImageBuild-MicroServicio Administracion') {
+      steps {
+        echo 'Se ejecutara el deploy en producción.'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Dockerfile.administracion .'
+      }
+    }
+
+    stage('Push-Microservicio Administracion') {
+      environment {
+        DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+        sh 'docker push wygd/ms-administracion:latest'
+        sh 'docker logout'
+      }
+    }
+
+    stage('ImageBuild-MicroServicio Serv-Admin') {
+      steps {
+        echo 'Se ejecutara el deploy en producción.'
+        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Dockerfile.servicio_admin .'
+        sh 'docker images'
+        sh 'docker ps'
+      }
+    }
+
+    stage('Push-Microservicio Servicio Administrativo') {
+      environment {
+        DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
+      }
+      steps {
+        sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+        sh 'docker push wygd/ms-serv-admin:latest'
         sh 'docker logout'
       }
     }

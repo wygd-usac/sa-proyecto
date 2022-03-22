@@ -4,30 +4,20 @@ services:
     image: wygd/ms-cliente:latest
     ports:
       - "5010:5000"
-    depends_on:
-      - db
     networks:
       - red-backend
-  # administracion:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.administracion
-  #   ports:
-  #     - "5020:5000"
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - red-backend
-  # servicio_administrativo:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.servicio_admin
-  #   ports:
-  #     - "5030:5000"
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - red-backend
+  administracion:
+    image: wygd/ms-administracion:latest
+    ports:
+      - "5020:5000"
+    networks:
+      - red-backend
+  servicio_administrativo:
+    image: wygd/ms-serv-admin:latest
+    ports:
+      - "5030:5000"
+    networks:
+      - red-backend
   # usuario:
   #   build:
   #     context: .
