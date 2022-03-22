@@ -28,6 +28,7 @@
       become: yes
     - name: copy the content of the web site
       copy:
+        remote_src: no
         src: ../Frontend/dist
         dest: /var/www/html/Frontend/
     - name: restart nginx
