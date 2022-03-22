@@ -1,0 +1,73 @@
+version: "3.9"
+services:
+  cliente:
+    image: wygd/ms-cliente:latest
+    ports:
+      - "5010:5000"
+    networks:
+      - red-backend
+  # administracion:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.administracion
+  #   ports:
+  #     - "5020:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  # servicio_administrativo:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.servicio_admin
+  #   ports:
+  #     - "5030:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  # usuario:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.usuario
+  #   ports:
+  #     - "5040:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  # reporte:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.reporte
+  #   ports:
+  #     - "5050:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  # prediccion:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.prediccion
+  #   ports:
+  #     - "5060:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - cliente
+      #- server2
+    ports:
+      - "5000:5000"
+    networks:
+      - red-backend
+networks:
+  #se crea la red "red-servidores" usando el driver de tipo "bridge"
+  red-backend:
+    driver: bridge

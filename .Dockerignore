@@ -1,2 +1,15 @@
 node_modules
 npm-debug.log
+
+.git
+.firebase
+.editorconfig
+Frontend/node_modules
+Frontend/node_modules
+/e2e
+Frontend/e2e
+Frontend/docs
+/docs
+.gitignore
+*.zip
+*.md
