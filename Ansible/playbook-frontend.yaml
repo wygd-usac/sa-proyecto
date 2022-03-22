@@ -23,7 +23,7 @@
       become: yes
     - name: Creates directory
       file:
-        path: /var/www/html/Frontend
+        path: Frontend
         state: directory
         owner: root
         group: root
@@ -33,7 +33,7 @@
       copy:
         remote_src: no
         src: ../Frontend/dist/
-        dest: /var/www/html/Frontend
+        dest: Frontend
     - name: restart nginx
       service:
         name: nginx
