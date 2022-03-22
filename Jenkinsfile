@@ -17,16 +17,16 @@ pipeline {
       }
     }
 
-    stage('Push-Microservicio Cliente') {
-      environment {
-        DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
-      }
-      steps {
-        sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-        sh 'docker push wygd/ms-cliente:latest'
-        sh 'docker logout'
-      }
-    }
+    // stage('Push-Microservicio Cliente') {
+    //   environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
+    //   }
+    //   steps {
+    //     sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+    //     sh 'docker push wygd/ms-cliente:latest'
+    //     sh 'docker logout'
+    //   }
+    // }
 
     stage('ImageBuild-MicroServicio Administracion') {
       steps {
@@ -35,16 +35,16 @@ pipeline {
       }
     }
 
-    stage('Push-Microservicio Administracion') {
-      environment {
-        DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
-      }
-      steps {
-        sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-        sh 'docker push wygd/ms-administracion:latest'
-        sh 'docker logout'
-      }
-    }
+    // stage('Push-Microservicio Administracion') {
+    //   environment {
+    //     DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
+    //   }
+    //   steps {
+    //     sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+    //     sh 'docker push wygd/ms-administracion:latest'
+    //     sh 'docker logout'
+    //   }
+    // }
 
     stage('ImageBuild-MicroServicio Serv-Admin') {
       steps {
@@ -62,6 +62,8 @@ pipeline {
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin:latest'
+        sh 'docker push wygd/ms-cliente:latest'
+        sh 'docker push wygd/ms-administracion:latest'
         sh 'docker logout'
       }
     }
@@ -90,10 +92,10 @@ pipeline {
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend.yaml'
       }
     }
-    stage('Deploy-Ansible-Producción') {
-      when {
+    stage('Deploy-Ansible-test') {
+      /*when {
         branch 'main'
-      }
+      }*/
       steps {
         sh 'ls -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose.yaml'
