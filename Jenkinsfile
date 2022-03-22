@@ -35,8 +35,8 @@ pipeline {
         sh 'node -v'
         dir(path: 'Frontend') {
           sh 'pwd'
-          sh 'npm install'
-          sh 'npm run build --prod'
+          //sh 'npm install'
+          //sh 'npm run build --prod'
           sh 'ls -a'
         }
 

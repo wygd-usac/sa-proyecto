@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- hosts: test
+  become: true
   tasks:
     - name: ensure nginx is at the latest version
       apt: name=nginx state=latest
@@ -25,14 +26,15 @@
       file:
         path: Frontend
         state: directory
-        owner: root
-        group: root
+        owner: app-admin
+        group: app-admin
         mode: 0755
       become: yes
     - name: copy the content of the web site
       copy:
         remote_src: no
-        src: ../Frontend/dist/
+        #src: ../Frontend/dist/
+        src: ../Frontend/
         dest: Frontend
     - name: restart nginx
       service:
