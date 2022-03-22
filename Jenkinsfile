@@ -30,7 +30,7 @@ pipeline {
       }
     }
 
-    stage('Push-producción') {
+    stage('node testing') {
       when {
         branch 'feature/frontend'
       }
@@ -42,9 +42,9 @@ pipeline {
 
 
     stage('Deploy-Ansible-Producción') {
-      // when {
-      //   branch 'main'
-      // }
+      when {
+         branch 'main'
+      }
       steps {
         sh 'ls -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose.yaml'
