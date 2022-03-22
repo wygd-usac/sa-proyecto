@@ -33,8 +33,7 @@
     - name: copy the content of the web site
       copy:
         remote_src: no
-        #src: ../Frontend/dist/
-        src: ../Frontend/
+        src: ../Frontend/dist/
         dest: Frontend
     - name: restart nginx
       service:
