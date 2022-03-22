@@ -25,6 +25,9 @@
       file:
         path: /var/www/html/Frontend
         state: directory
+        owner: root
+        group: root
+        mode: 0755
       become: yes
     - name: copy the content of the web site
       copy:
