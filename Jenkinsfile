@@ -17,9 +17,6 @@ pipeline {
     }
 
     stage('Push-producción') {
-      /*when {
-        branch 'main'
-      }*/
       environment {
         DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
       }
@@ -34,16 +31,18 @@ pipeline {
       when {
         branch 'feature/frontend'
       }
-      
       steps {
         sh 'node -v'
+        dir(path: 'Frontend') {
+          sh 'pwd'
+        }
+
       }
     }
 
-
     stage('Deploy-Ansible-Producción') {
       when {
-         branch 'main'
+        branch 'main'
       }
       steps {
         sh 'ls -a'
