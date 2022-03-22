@@ -25,6 +25,7 @@
       file:
         path: /var/www/html/Frontend
         state: directory
+      become: yes
     - name: copy the content of the web site
       copy:
         src: ../Frontend/dist
