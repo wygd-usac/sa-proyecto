@@ -17,18 +17,18 @@
       become: yes
     - name: create symlink
       file:
-        src: /etc/nginx/sites-available/static_site.cfg
+        src: /etc/nginx/sites-available/nginx.conf
         dest: /etc/nginx/sites-enabled/default
         state: link
       become: yes
     - name: Creates directory
       file:
-        path: /frontend
+        path: /var/www/html/Frontend
         state: directory
     - name: copy the content of the web site
       copy:
         src: ../Frontend/dist
-        dest: /Frontend/
+        dest: /var/www/html/Frontend/
     - name: restart nginx
       service:
         name: nginx
