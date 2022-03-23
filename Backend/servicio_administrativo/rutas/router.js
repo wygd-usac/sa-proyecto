@@ -5,6 +5,7 @@ const teamCtl = require('../controllers/TeamCtl');
 const soccerGameCtl = require('../controllers/Soccer_GameCtl');
 const transferenciaCtl = require('../controllers/TransferLogCtl');
 const IndicediciaCtl = require('../controllers/IncidenciaCtl');
+const competitionCtl = require('../controllers/CompetitionCtl');
 
 //middleware para validar rutas y permisos
 const {validate_session,validate_premium} = require('../../middleware/validations');
@@ -42,5 +43,11 @@ router.post("/update-state", IndicediciaCtl.UpdateStatePerson);
 //Noticias
 router.post("/notice", IndicediciaCtl.InsertNew);
 router.get("/notice", IndicediciaCtl.getNoticias);
+
+//Competencia
+router.post("/competition", competitionCtl.create); //http://localhost:5000/servicio_administrativo/competition
+router.put("/competition", competitionCtl.update); //http://localhost:5000/servicio_administrativo/competition
+router.get("/competition",competitionCtl.findAll); //http://localhost:5000/servicio_administrativo/competition?id=5
+router.delete("/competition/", competitionCtl.delete); //http://localhost:5000/servicio_administrativo/competition/?id=4
 
 module.exports = router;

@@ -43,7 +43,7 @@ Team.updateById = (id, team, result) => {
 
 Team.getAll = (id, result) => {
     //let query = "SELECT * FROM Equipo";
-    let query = "SELECT id_team,name, fundation_date,photo, id_Country, (select country FROM Country where id_Country = id_Country) as country FROM Equipo" ;
+    let query = "SELECT id_team,name, fundation_date,photo, id_Country, (select country FROM Country where id_Country = id_Country limit 1) as country FROM Equipo" ;
   
     if(id == ''){
       conexion.query(query, (err, res) => {
