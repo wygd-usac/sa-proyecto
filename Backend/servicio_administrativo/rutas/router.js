@@ -3,6 +3,8 @@ const router = Router();
 const estadioCtl = require('../controllers/StadiumCtl');
 const teamCtl = require('../controllers/TeamCtl');
 const soccerGameCtl = require('../controllers/Soccer_GameCtl');
+const transferenciaCtl = require('../controllers/TransferLogCtl');
+const IndicediciaCtl = require('../controllers/IncidenciaCtl');
 
 //middleware para validar rutas y permisos
 const {validate_session,validate_premium} = require('../../middleware/validations');
@@ -29,5 +31,16 @@ router.post("/soccer-game", soccerGameCtl.create);
 router.put("/soccer-game", soccerGameCtl.update);
 router.get("/soccer-game",soccerGameCtl.findAll);
 router.delete("/soccer-game/", soccerGameCtl.delete);
+
+//Transferencia
+router.get("/transfer-log-coach", transferenciaCtl.getTransefernces);
+
+//Incidencias
+router.post("/add-incidence", IndicediciaCtl.InsertTransefernces);
+router.post("/update-state", IndicediciaCtl.UpdateStatePerson);
+
+//Noticias
+router.post("/notice", IndicediciaCtl.InsertNew);
+router.get("/notice", IndicediciaCtl.getNoticias);
 
 module.exports = router;
