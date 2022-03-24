@@ -77,7 +77,7 @@ async function UpdateUser(req, res, next){
                     if(comprobadorUndifined(helper[0].birthday, birth_date)){
                         const date = new Date(helper[0].birthday);
                         console.log("date:" + date);
-                        birth_date = date.getDay()+'/'+date.getDate()+'/'+date.getFullYear();
+                        birth_date = formatDate(date);
                     }
                     if(comprobadorUndifined(helper[0].address, address )){
                         address = helper[0].address;
@@ -201,6 +201,20 @@ async function loginUser(req, res, next){
 
 function comprobadorUndifined(v1 , v2){
     return v1 !== undefined && v2 === undefined
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [month, day, year].join('/');
 }
 
 module.exports.InsertUser = InsertUser;
