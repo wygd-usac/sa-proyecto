@@ -2,7 +2,7 @@ const Router = require('express');
 const router = Router();
 const dataOp = require('../data/dataOp');
 //middleware para validar rutas y permisos
-const {validate_session,validate_premium} = require('../../middleware/validations');
+const {validate_session,validate_premium} = require('../middleware/validations');
 
 
 
@@ -12,7 +12,8 @@ const {validate_session,validate_premium} = require('../../middleware/validation
 //-----------------------------------------------------
 
 
-router.get('/', (req, res) => {
+router.get('/',validate_session,validate_premium, (req, res) => {
+    //console.log(req.body.data);
     res.send("Modulo de Cliente");
 });
 
