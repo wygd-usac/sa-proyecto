@@ -1,0 +1,5 @@
+[test]
+34.132.139.69 ansible_connection=ssh ansible_user=app-admin
+
+[test:vars]
+ansible_python_interpreter=/usr/bin/python3
