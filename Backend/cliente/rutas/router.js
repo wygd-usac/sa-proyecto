@@ -2,7 +2,7 @@ const Router = require('express');
 const router = Router();
 const dataOp = require('../data/dataOp');
 //middleware para validar rutas y permisos
-const {validate_session,validate_premium} = require('../../middleware/validations');
+const {validate_session,validate_premium} = require('../middleware/validations');
 
 
 
@@ -12,7 +12,8 @@ const {validate_session,validate_premium} = require('../../middleware/validation
 //-----------------------------------------------------
 
 
-router.get('/', (req, res) => {
+router.get('/',validate_session,validate_premium, (req, res) => {
+    //console.log(req.body.data);
     res.send("Modulo de Cliente");
 });
 
@@ -72,12 +73,7 @@ router.get('/notifications',validate_session, async (req,res) => {
     }
     console.log(id);
 
-    const result = dataOp.getResponse(200,"Se envia las notificaciones",[ {
-        id_news :1,
-        id_team : 2,
-        name_team : "Cremoras"
-    }
-]);
+    const result = await dataOp.getNotifications(id);
     res.send(result);
 });
 
@@ -86,12 +82,7 @@ router.post('/quiniela',validate_session,async (req,res) => {
     if(id_client == undefined || id_game == undefined || result_1 == undefined || result_2 == undefined){
         res.send(dataOp.getResponse(400,"Error al actualizar el estado de la quiniela."));
     }
-    /*
-    
-    
-    */
-
-    const result = dataOp.getResponse(200,"Estado de la quiniela actualizado",[]);
+    const result = await dataOp.setQuinielaResult(id_game,id_client,result_1,result_2);
     res.send(result);
 });
 
@@ -102,21 +93,11 @@ router.get('/reports/person/',validate_session,async (req,res)=>{
         res.send(dataOp.getResponse(400,"Error en el id del equipo."));
     }
     console.log(id_team);
-
-    const result = dataOp.getResponse(200,"Jugadores o entrenador de equipo",[
-        {
-            id_person : 2,
-            name : "luis perez",
-            lastname : "perez",
-            photo : "url de la foto",
-            id_team : id_team,
-            name_team : "Cremoras"
-        }
-    ]
-);
+    const result = await dataOp.getTeamPersons(id_team);
     res.send(result);
-
 });
+
+
 
 
 router.get('/reports/person/higher/',validate_session,async (req,res) => {
