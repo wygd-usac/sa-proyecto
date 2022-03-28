@@ -25,7 +25,7 @@ services:
     depends_on:
       - db
     networks:
-      - red-backend# usuario:
+      - red-backend
   #   build:
   #     context: .
   #     dockerfile: Dockerfile.usuario
