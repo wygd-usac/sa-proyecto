@@ -25,7 +25,16 @@ services:
     depends_on:
       - db
     networks:
-      - red-backend
+      - red-backend# usuario:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.usuario
+  #   ports:
+  #     - "5040:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
   # reporte:
   #   build:
   #     context: .
