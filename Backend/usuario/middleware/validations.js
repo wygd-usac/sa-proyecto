@@ -1,7 +1,4 @@
 
-
-
-
 const validate_session = function(req, res, next){
   const token = req.headers['authorization'];
   const jwt_service = 'localhost';
