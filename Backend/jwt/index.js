@@ -65,3 +65,8 @@ app.post('/validate',(req,res)=>{
       }
 
 });
+
+//Ejemplo de como cada uno de nuestros microservcios debe pasar por el midleware (o sea esta clase)
+//El token que que viene aqui viene siempre directo desde el front y estara guardado en localstorage
+// SI YO SE QUE A MI RUTA SOLO PUEDEN ENTRAR USUARIOS CON ROL 1, USO LA VERFICACION 1
+// SI YO SE QUE A MI RUTA SOLO PUEDEN ENTRAR USUARIOS CON ROL 2, USO LA VERFICACION 2

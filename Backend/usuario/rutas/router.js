@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
 //Estadio
 router.post("/add", userCtl.InsertUser);
-router.post("/update", userCtl.UpdateUser);
+router.post("/update", validate_session,userCtl.UpdateUser);
 router.get("/login", userCtl.loginUser);
+router.post("/delete", validate_session, userCtl.deleteUser);
 
 module.exports = router;
