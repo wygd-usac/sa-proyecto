@@ -8,7 +8,7 @@ const IndicediciaCtl = require('../controllers/IncidenciaCtl');
 const competitionCtl = require('../controllers/CompetitionCtl');
 
 //middleware para validar rutas y permisos
-const {validate_session,validate_premium} = require('../../middleware/validations');
+const {validate_session,validate_premium} = require('../middleware/validations');
 const { getAll } = require('../models/StadiumModel');
 
 router.get('/', (req, res) => {
