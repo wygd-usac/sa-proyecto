@@ -233,3 +233,5 @@ module.exports.InsertUser = InsertUser;
 module.exports.UpdateUser = UpdateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser;
+module.exports.getUser = getUser;
+module.exports.confirmUser = confirmUser;

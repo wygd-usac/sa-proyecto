@@ -1,21 +1,39 @@
 version: "3.9"
 services:
   cliente:
-    image: wygd/ms-cliente:latest
+    #image: wygd/ms-cliente:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.cliente
     ports:
       - "5010:5000"
     networks:
       - red-backend
   administracion:
-    image: wygd/ms-administracion:latest
+    #image: wygd/ms-administracion:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.administracion
     ports:
       - "5020:5000"
     networks:
       - red-backend
   servicio_administrativo:
-    image: wygd/ms-serv-admin:latest
+    #image: wygd/ms-serv-admin:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.servicio_admin
     ports:
       - "5030:5000"
+    networks:
+      - red-backend
+  usuario:
+    #image: wygd/ms-serv-admin:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.usuario
+    ports:
+      - "5040:5000"
     networks:
       - red-backend
   # usuario:
@@ -56,6 +74,7 @@ services:
       - cliente
       - administracion
       - servicio_administrativo
+      - usuario
       #- server2
     ports:
       - "5000:5000"
@@ -64,4 +83,3 @@ services:
 networks:
   #se crea la red "red-servidores" usando el driver de tipo "bridge"
   red-backend:
-    driver: bridge

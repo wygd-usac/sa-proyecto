@@ -1,0 +1,2 @@
+sudo docker-compose -f pruebas.yaml build
+sudo docker-compose -f pruebas.yaml up

@@ -92,7 +92,7 @@ async function getUser(id_user){
     }
 }
 
-async function verifyUser(email, code){
+async function confirmUser(email, code){
     try {
         let query = `call confirmEmail`+
             `('${email}','${code}');`;
@@ -107,4 +107,4 @@ module.exports.deleteUser = deleteUser;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.getUser = getUser;
-module.exports.verifyUser = verifyUser;
+module.exports.confirmUser = confirmUser;
