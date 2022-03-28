@@ -67,6 +67,7 @@ pipeline {
         sh 'docker push wygd/ms-serv-admin:latest'
         sh 'docker push wygd/ms-cliente:latest'
         sh 'docker push wygd/ms-administracion:latest'
+        sh 'docker push wygd/ms-usuario:latest'
         sh 'docker logout'
       }
     }
