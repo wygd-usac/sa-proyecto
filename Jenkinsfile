@@ -4,14 +4,16 @@ pipeline {
     stage('Pull-Repository') {
       steps {
         echo 'Repository was pulled.'
-        sh 'docker rmi $(docker images -q)'
+        //sh 'docker rmi $(docker images -q)'
       }
     }
 
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Dockerfile.cliente .'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
+        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker images'
         sh 'docker ps'
       }
@@ -28,12 +30,12 @@ pipeline {
     //   }
     // }
 
-    stage('ImageBuild-MicroServicio Administracion') {
-      steps {
-        echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Dockerfile.administracion .'
-      }
-    }
+    // stage('ImageBuild-MicroServicio Administracion') {
+    //   steps {
+    //     echo 'Se ejecutara el deploy en producción.'
+    //     sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Dockerfile.administracion .'
+    //   }
+    // }
 
     // stage('Push-Microservicio Administracion') {
     //   environment {
@@ -46,14 +48,14 @@ pipeline {
     //   }
     // }
 
-    stage('ImageBuild-MicroServicio Serv-Admin') {
-      steps {
-        echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Dockerfile.servicio_admin .'
-        sh 'docker images'
-        sh 'docker ps'
-      }
-    }
+    // stage('ImageBuild-MicroServicio Serv-Admin') {
+    //   steps {
+    //     echo 'Se ejecutara el deploy en producción.'
+    //     sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Dockerfile.servicio_admin .'
+    //     sh 'docker images'
+    //     sh 'docker ps'
+    //   }
+    // }
 
     stage('Push-Microservicio Servicio Administrativo') {
       environment {
