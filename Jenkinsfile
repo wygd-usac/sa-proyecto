@@ -11,9 +11,9 @@ pipeline {
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Backend/cliente/Dockerfile.cliente .'
-        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Backend/administracion/Dockerfile.administracion .'
-        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin .'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
+        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker images'
         sh 'docker ps'
       }
