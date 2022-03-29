@@ -81,7 +81,7 @@ pipeline {
         dir(path: 'Frontend') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build'
+          sh 'npm run build --prod'
           sh 'ls -a'
         }
       }

@@ -73,7 +73,7 @@
       remote_user: app-admin
       copy:
         remote_src: no
-        src: ../Backend/nginx/nginx-test.conf
+        src: ../Backend/nginx/nginx.conf
         dest: test/nginx.conf
     - name: copy docker-compose file
       remote_user: app-admin

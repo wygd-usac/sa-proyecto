@@ -13,7 +13,7 @@
     - name: copy the nginx config file and restart nginx
       copy:
         remote_src: no
-        src: nginx.conf
+        src: nginx-test.conf
         dest: /etc/nginx/sites-available/nginx.conf
       become: yes
     - name: create symlink
