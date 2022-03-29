@@ -6,6 +6,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'ngx-app',
@@ -20,4 +21,5 @@ export class AppComponent implements OnInit {
     this.analytics.trackPageViews();
     this.seoService.trackCanonicalChanges();
   }
+  environment_url = environment.BASE_URL;
 }
