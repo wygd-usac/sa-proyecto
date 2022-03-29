@@ -112,16 +112,8 @@ export class DashboardComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.initCharts();
+
   }
 
-  initCharts(): void {
-    this.mainChart = this.chartsData.mainChart;
-  }
 
-  setTrafficPeriod(value: string): void {
-    this.trafficRadioGroup.setValue({ trafficRadio: value });
-    this.chartsData.initMainChart(value);
-    this.initCharts();
-  }
 }

@@ -188,7 +188,7 @@ async function loginUser(req, res, next){
         let password = req.body.password;
 
         let resultado = await UserCtl.loginUser(email,password);
-        if(resultado){
+        if(resultado instanceof Array){
 
             const payload = {
                 id_user:resultado["id_user"],
@@ -198,9 +198,13 @@ async function loginUser(req, res, next){
             };
 
             axios.post('http://localhost:5001'+'/esb/jwt/register', payload).then(function (x) {
-                console.log(x.data.token);
-                resultado[0].token = x.data.token;
-                res.status(200).json(resultado);
+                if(x.data.token !== undefined && resultado[0] !== undefined){
+                    console.log(x.data.token);
+                    resultado[0].token = x.data.token;
+                    res.status(200).json(resultado);
+                }else {
+                    res.status(400).json({msg:"error al obtener login"})
+                }
             })
 
         }else{
