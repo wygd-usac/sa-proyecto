@@ -2,8 +2,6 @@ const Router = require("express");
 const router = Router();
 const PersonaCtl = require("../controllers/PersonaCtl");
 
-const {validate_session,validate_premium} = require('../middleware/validations');
-
 router.get("/", (req, res) => {
   res.send("Modulo de Administración");
 });
