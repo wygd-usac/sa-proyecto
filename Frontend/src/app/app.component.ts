@@ -13,13 +13,15 @@ import { environment } from './../environments/environment';
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit {
-
+  public environment_url: string = null;
   constructor(private analytics: AnalyticsService, private seoService: SeoService) {
+    this.environment_url = environment.BASE_URL;
   }
+  
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
     this.seoService.trackCanonicalChanges();
   }
-  environment_url = environment.BASE_URL;
+    
 }
