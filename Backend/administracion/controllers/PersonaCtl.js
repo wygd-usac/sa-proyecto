@@ -10,7 +10,7 @@ exports.create = (req, res) => {
     });
   }
 
-  const Persona = new Persona({
+  const persona = new Persona({
     name: req.body.name,
     lastname: req.body.lastname,
     birthday: req.body.birthday,
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     id_team: req.body.id_team,
     photo: req.body.photo,
   });
-
+  console.log(persona);
   Persona.create(persona, (err, data) => {
     if (err)
       res.status(500).send({
