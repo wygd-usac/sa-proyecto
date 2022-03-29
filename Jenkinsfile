@@ -74,7 +74,7 @@ pipeline {
 
     stage('Build Frontend Test') {
       when {
-        branch 'feature/image-building'
+        branch 'hotfix/image-building'
       }
       steps {
         sh 'node -v'
@@ -104,7 +104,7 @@ pipeline {
     }
     stage('Deploy-frontend-test') {
       when {
-        branch 'feature/image-building'
+        branch 'hotfix/image-building'
       }
       steps {
         sh 'ls Frontend -a'
@@ -112,9 +112,9 @@ pipeline {
       }
     }
     stage('Deploy-Ansible-test') {
-      /*when {
+      when {
         branch 'main'
-      }*/
+      }
       steps {
         sh 'ls -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose-test.yaml'
