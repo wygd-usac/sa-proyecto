@@ -14,6 +14,7 @@ pipeline {
         sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
+        sh 'docker build --no-cache --rm -t wygd/ms-usuario:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker images'
         sh 'docker ps'
       }
@@ -66,6 +67,7 @@ pipeline {
         sh 'docker push wygd/ms-serv-admin:latest'
         sh 'docker push wygd/ms-cliente:latest'
         sh 'docker push wygd/ms-administracion:latest'
+        sh 'docker push wygd/ms-usuario:latest'
         sh 'docker logout'
       }
     }

@@ -18,14 +18,17 @@ services:
       - "5030:5000"
     networks:
       - red-backend
-  # usuario:
+  usuario:
+    image: wygd/ms-usuario:latest
+    ports:
+      - "5040:5000"
+    networks:
+      - red-backend
   #   build:
   #     context: .
   #     dockerfile: Dockerfile.usuario
   #   ports:
   #     - "5040:5000"
-  #   depends_on:
-  #     - db
   #   networks:
   #     - red-backend
   # reporte:
@@ -34,8 +37,6 @@ services:
   #     dockerfile: Dockerfile.reporte
   #   ports:
   #     - "5050:5000"
-  #   depends_on:
-  #     - db
   #   networks:
   #     - red-backend
   # prediccion:
@@ -44,8 +45,6 @@ services:
   #     dockerfile: Dockerfile.prediccion
   #   ports:
   #     - "5060:5000"
-  #   depends_on:
-  #     - db
   #   networks:
   #     - red-backend
   nginx:
@@ -56,6 +55,7 @@ services:
       - cliente
       - administracion
       - servicio_administrativo
+      - usuario
     ports:
       - "5000:5000"
     networks:
