@@ -11,10 +11,10 @@ pipeline {
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-cliente:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
-        sh 'docker build --no-cache --rm -t wygd/ms-administracion:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
-        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
-        sh 'docker build --no-cache --rm -t wygd/ms-usuario:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente:test -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion:test -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
+        sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:test -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
+        sh 'docker build --no-cache --rm -t wygd/ms-usuario:test -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker images'
         sh 'docker ps'
       }
@@ -64,15 +64,30 @@ pipeline {
       }
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
-        sh 'docker push wygd/ms-serv-admin:latest'
-        sh 'docker push wygd/ms-cliente:latest'
-        sh 'docker push wygd/ms-administracion:latest'
-        sh 'docker push wygd/ms-usuario:latest'
+        sh 'docker push wygd/ms-serv-admin:test'
+        sh 'docker push wygd/ms-cliente:test'
+        sh 'docker push wygd/ms-administracion:test'
+        sh 'docker push wygd/ms-usuario:test'
         sh 'docker logout'
       }
     }
 
-    stage('node testing') {
+    stage('Build Frontend Test') {
+      when {
+        branch 'hotfix/image-building'
+      }
+      steps {
+        sh 'node -v'
+        dir(path: 'Frontend') {
+          sh 'pwd'
+          sh 'npm install'
+          sh 'npm run build --prod'
+          sh 'ls -a'
+        }
+      }
+    }
+
+    stage('Build Frontend Production') {
       when {
         branch 'feature/frontend'
       }
@@ -89,20 +104,20 @@ pipeline {
     }
     stage('Deploy-frontend-test') {
       when {
-        branch 'feature/frontend'
+        branch 'hotfix/image-building'
       }
       steps {
         sh 'ls Frontend -a'
-        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend.yaml'
+        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend-test.yaml'
       }
     }
     stage('Deploy-Ansible-test') {
-      /*when {
+      when {
         branch 'main'
-      }*/
+      }
       steps {
         sh 'ls -a'
-        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose.yaml'
+        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-compose-test.yaml'
       }
     }
 
