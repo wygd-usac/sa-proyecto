@@ -24,5 +24,32 @@ export class RequestService {
     return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
   }
 
+  registrerUser(
+    _name: any,
+    _last_name: any,
+    _password: any,
+    _email: any,
+    _phone: any,
+    _photo: any,
+    _gender: any,
+    _birth_date: any,
+    _address: any,
+    _id_Country: any,
+    _type: any
+  ){
+    return this.http.post(this.url_server + 'esb/usuario/add/', {
+      name: _name,
+      last_name: _last_name,
+      password: _password,
+      email: _email,
+      phone: _phone,
+      photo: _photo,
+      gender: _gender,
+      birth_date: _birth_date,
+      address: _address,
+      id_Country: _id_Country,
+      type: _type
+    })
+  }
 
 }
