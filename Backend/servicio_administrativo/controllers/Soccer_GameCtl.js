@@ -18,7 +18,9 @@ exports.create = (req, res) => {
         id_stadium: req.body.id_stadium,
         id_team_local: req.body.id_team_local,
         id_team_visiting: req.body.id_team_visiting,
-        incidents: req.body.incidents || 0 
+        incidents: req.body.incidents || 0 ,
+        id_winner: req.id_winner || 0, 
+        id_competicion: req.id_competicion || 0
     });
   
     Soccer_Game.create(soccer_game, (err, data) => {
