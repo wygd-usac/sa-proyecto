@@ -11,6 +11,7 @@ pipeline {
     stage('Run Test') {
       steps {
         dir(path: 'Backend/cliente') {
+          sh 'npm install'
           sh 'npm test'
         }
 
