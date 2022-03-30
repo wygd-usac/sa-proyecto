@@ -5,7 +5,8 @@ describe("Encryption Password: ", function() {
  it("Check the returned value using: assert.equal(value,'value'): ", function() {
  result   = dataOp.encryptPassword("micontra@secreta");
  console.log(result);
- assert.equal(result, "0db2b499f8f701b2a3564b1d4ba607a6");
+ //assert.equal(result, "0db2b499f8f701b2a3564b1d4ba607a6");
+ assert.equal(result, "1d4ba607a60db2b499f8f701b2a3564b");
  });
  it("Check the returned value using: assert.typeOf(value,'value'): ", function() {
  result   = dataOp.encryptPassword("micontra@secreta");
