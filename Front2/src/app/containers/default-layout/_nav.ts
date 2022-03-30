@@ -10,7 +10,7 @@ export function nivel(){
     sesion = [
       {
         name: 'Dashboard',
-        url: '/dashboard',
+        url: '/admin',
         iconComponent: { name: 'cil-speedometer' },
         badge: {
           color: 'info',

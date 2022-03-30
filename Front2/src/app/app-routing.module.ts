@@ -6,6 +6,7 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { AdminComponent} from './views/pages/admin/admin.component'
 
 const routes: Routes = [
   {
@@ -84,6 +85,13 @@ const routes: Routes = [
     component: Page500Component,
     data: {
       title: 'Page 500'
+    }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    data: {
+      title: 'Administracion'
     }
   },
   {
