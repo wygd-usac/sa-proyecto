@@ -405,10 +405,37 @@ async function getBetweenXY(local,visitante){
 }
 
 function encryptPassword(password){
-    const crypto = require('crypto')
-    let hash = crypto.createHash('md5').update(password).digest("hex")
+    const crypto = require('crypto');
+    let hash = crypto.createHash('md5').update(password).digest("hex");
     return hash;
 }
+
+
+
+function urlEncoded(text){
+    const encoded = encodeURIComponent(text);
+    return encoded;
+}
+
+function urlDecoded(text){
+    const decoded = decodeURIComponent(text);
+    return decoded;
+}
+
+
+function calcularAnios(dateString) {
+    let hoy = new Date()
+    let fechaNacimiento = new Date(dateString)
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
+    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth()
+    if (
+      diferenciaMeses < 0 ||
+      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+    ) {
+      edad--
+    }
+    return edad
+  }
 
 function getResponse(code,message,data){
     return JSON.stringify({status:code,msj:message,data:data});
@@ -435,5 +462,8 @@ module.exports = {
     getTotalCompetitionsWinning,
     getGamesByYear,
     getBetweenXY,
-    encryptPassword
+    encryptPassword,
+    urlEncoded,
+    urlDecoded,
+    calcularAnios
 }
