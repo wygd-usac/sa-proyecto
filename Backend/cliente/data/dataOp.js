@@ -404,6 +404,12 @@ async function getBetweenXY(local,visitante){
     }
 }
 
+function encryptPassword(password){
+    const crypto = require('crypto')
+    let hash = crypto.createHash('md5').update(password).digest("hex")
+    return hash;
+}
+
 function getResponse(code,message,data){
     return JSON.stringify({status:code,msj:message,data:data});
 }
@@ -428,5 +434,6 @@ module.exports = {
     getIncidentsCompetitionYear,
     getTotalCompetitionsWinning,
     getGamesByYear,
-    getBetweenXY
+    getBetweenXY,
+    encryptPassword
 }
