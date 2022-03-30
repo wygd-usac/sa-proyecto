@@ -78,7 +78,7 @@ pipeline {
       }
       steps {
         sh 'node -v'
-        dir(path: 'Front2') {
+        dir(path: 'Frontend') {
           sh 'pwd'
           sh 'npm install'
           sh 'npm run build --prod'
@@ -107,7 +107,7 @@ pipeline {
         branch 'hotfix/image-building'
       }
       steps {
-        sh 'ls Front2 -a'
+        sh 'ls Frontend -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend-test.yaml'
       }
     }
