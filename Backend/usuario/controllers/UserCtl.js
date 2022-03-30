@@ -1,4 +1,5 @@
 const UserCtl = require("../models/UserCtl");
+const axios = require("axios");
 
 async function InsertUser(req, res, next){
     try {
@@ -137,10 +138,10 @@ async function UpdateUser(req, res, next){
 
 async function deleteUser(req, res, next){
     try {
-        const descripcion = req.body.descripcion;
-        let resultado = await UserCtl.updateStateJugador(id_person, state);
+        const id_user = req.body.id_user;
+        let resultado = await UserCtl.updateStateJugador(id_user, state);
         if(resultado){
-            res.status(200).json({msg:"actualizado correctamente"});
+            res.status(200).json({msg:"elimando correctamente"});
         }else{
             res.status(400).json({msg:"error en la actualizacion"});
         }
@@ -148,13 +149,12 @@ async function deleteUser(req, res, next){
         res.status(400).json({msg:"error la actualizacion"});
     }
 }
-
 
 async function confirmUser(req, res, next){
     try {
         const email = req.params['email'];
         const code = req.params['code'];
-        let resultado = await UserCtl.updateStateJugador(id_person, state);
+        let resultado = await UserCtl.deleteUser(id_person);
         if(resultado){
             res.status(200).json({msg:"actualizado correctamente"});
         }else{
@@ -164,7 +164,6 @@ async function confirmUser(req, res, next){
         res.status(400).json({msg:"error la actualizacion"});
     }
 }
-
 
 async function getUser(req, res, next){
     try {
@@ -189,13 +188,30 @@ async function loginUser(req, res, next){
         let password = req.body.password;
 
         let resultado = await UserCtl.loginUser(email,password);
-        if(resultado){
-            res.status(200).json(resultado);
+        if(resultado instanceof Array){
+
+            const payload = {
+                id_user:resultado["id_user"],
+                id_rol:resultado["id_rol"],
+                membership:resultado["membership"],
+                email:resultado["email"]
+            };
+
+            axios.post('http://localhost:5001'+'/esb/jwt/register', payload).then(function (x) {
+                if(x.data.token !== undefined && resultado[0] !== undefined){
+                    console.log(x.data.token);
+                    resultado[0].token = x.data.token;
+                    res.status(200).json(resultado);
+                }else {
+                    res.status(400).json({msg:"error al obtener login"})
+                }
+            })
+
         }else{
-            res.status(400).json({msg:"error al obtener registros"})
+            res.status(400).json({msg:"error al obtener login"})
         }
     }catch(error){
-        res.status(400).json({msg:"error al obtener registros"})
+        res.status(400).json({msg:"error al obtener login"})
     }
 }
 
@@ -220,3 +236,4 @@ function formatDate(date) {
 module.exports.InsertUser = InsertUser;
 module.exports.UpdateUser = UpdateUser;
 module.exports.loginUser = loginUser;
+module.exports.deleteUser = deleteUser;

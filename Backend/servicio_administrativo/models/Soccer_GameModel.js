@@ -10,6 +10,8 @@ const Soccer_Game = function(soccer_game){
     this.id_team_local = soccer_game.id_team_local;
     this.id_team_visiting = soccer_game.id_team_visiting;
     this.incidents = soccer_game.incidents;
+    this.id_competicion = soccer_game.id_competicion;
+    this.id_winner = soccer_game.id_winner;
 };
 
 Soccer_Game.create = (newSoccerGame, result) => {
@@ -26,8 +28,8 @@ Soccer_Game.create = (newSoccerGame, result) => {
 
 Soccer_Game.updateById = (id, soccer_game, result) => {
     conexion.query(
-      "UPDATE Partido SET game_date = ?, attendees = ?, result_local = ?, result_visiting = ?, state = ?, incidents = ?, id_stadium = ? , id_team_local = ? , id_team_visiting = ? WHERE id_partido = ?",
-      [soccer_game.game_date,soccer_game.attendees, soccer_game.result_local, soccer_game.result_visiting, soccer_game.state, soccer_game.incidents,soccer_game.id_stadium, soccer_game.id_team_local, soccer_game.id_team_visiting ,id],
+      "UPDATE Partido SET game_date = ?, attendees = ?, result_local = ?, result_visiting = ?, state = ?, incidents = ?, id_stadium = ? , id_team_local = ? , id_team_visiting = ?,id_competicion = ?, id_winner = ? WHERE id_partido = ?",
+      [soccer_game.game_date,soccer_game.attendees, soccer_game.result_local, soccer_game.result_visiting, soccer_game.state, soccer_game.incidents,soccer_game.id_stadium, soccer_game.id_team_local, soccer_game.id_team_visiting, soccer_game.id_competicion,soccer_game.id_winner ,id],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -48,7 +50,7 @@ Soccer_Game.updateById = (id, soccer_game, result) => {
 
 Soccer_Game.getAll = (id, result) => {
     //let query = "SELECT * FROM Estadio";
-    let query = "select id_partido,game_date,attendees,result_local, result_visiting,state,incidents,id_stadium,id_team_local, (Select name from Equipo where id_team_local = id_team) as team_local,id_team_visiting, (Select name from Equipo where id_team_visiting = id_team) as team_visiting From Partido";
+    let query = "select id_partido,game_date,attendees,result_local, result_visiting,state,incidents,id_stadium,id_team_local,(Select name from Equipo where id_team_local = id_team) as team_local,id_team_visiting, (Select name from Equipo where id_team_visiting = id_team) as team_visiting,id_winner, (Select name from Equipo where id_winner = id_team) as Winner, id_competicion, (Select name from Competencia where id_competicion = id_competencia) as Competencia From Partido";
   
     if(id == ''){
       conexion.query(query, (err, res) => {
@@ -74,7 +76,7 @@ Soccer_Game.getAll = (id, result) => {
         result(null, res);
       });
     }
-  };
+};
 
 Soccer_Game.remove = (id, result) => {
     conexion.query("DELETE FROM Partido WHERE id_partido = ?",id, (err, res) => {

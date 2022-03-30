@@ -1,0 +1,71 @@
+version: "3.9"
+services:
+  cliente:
+    build:
+      context: ./Backend/cliente
+      dockerfile: Dockerfile.cliente
+    ports:
+      - "5010:5000"
+    networks:
+      - red-backend
+  administracion:
+    build:
+      context: ./Backend/administracion
+      dockerfile: Dockerfile.administracion
+    ports:
+      - "5020:5000"
+    networks:
+      - red-backend
+  servicio_administrativo:
+    build:
+      context: ./Backend/servicio_administrativo
+      dockerfile: Dockerfile.servicio_admin
+    ports:
+      - "5030:5000"
+    networks:
+      - red-backend
+  usuario:
+    build:
+      context: ./Backend/usuario
+      dockerfile: Dockerfile.usuario
+    ports:
+      - "5040:5000"
+    networks:
+      - red-backend
+  # reporte:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.reporte
+  #   ports:
+  #     - "5050:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  # prediccion:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.prediccion
+  #   ports:
+  #     - "5060:5000"
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - red-backend
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./Backend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - cliente
+      - administracion
+      - servicio_administrativo
+      #- server2
+    ports:
+      - "5000:5000"
+    networks:
+      - red-backend
+networks:
+  #se crea la red "red-servidores" usando el driver de tipo "bridge"
+  red-backend:
+    driver: bridge

@@ -5,7 +5,7 @@ const conexion = require('express-myconnection');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
-const context = '/servicio_administrativo';
+const context = '/esb/servicio_administrativo';
 const router = require('./rutas/router');
 
 app.use(cors());
