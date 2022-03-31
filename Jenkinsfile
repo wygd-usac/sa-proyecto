@@ -22,7 +22,7 @@ pipeline {
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
-        sh 'docker build --no-cache --rm -t wygd/ms-administracion2-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker build --no-cache --rm -t wygd/ms-reporte-test:latest -f ./Backend/reporte/Dockerfile.reporte ./Backend/reporte'
