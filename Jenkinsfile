@@ -123,7 +123,7 @@ pipeline {
     }
     stage('Deploy-Ansible-test') {
       when {
-        branch 'main'
+        branch 'feature/*'
       }
       steps {
         sh 'ls -a'
