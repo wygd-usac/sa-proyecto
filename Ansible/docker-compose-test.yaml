@@ -6,8 +6,8 @@ services:
       - "5010:5000"
     networks:
       - red-backend
-  administracion:
-    image: wygd/ms-administracion:test
+  administracion2:
+    image: wygd/ms-administracion2:test
     ports:
       - "5020:5000"
     networks:

@@ -22,7 +22,7 @@ pipeline {
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente:test -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
-        sh 'docker build --no-cache --rm -t wygd/ms-administracion:test -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
+        sh 'docker build --no-cache --rm -t wygd/ms-administracion2:test -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin:test -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario:test -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker build --no-cache --rm -t wygd/ms-reporte:test -f ./Backend/reporte/Dockerfile.reporte ./Backend/reporte'
@@ -77,7 +77,7 @@ pipeline {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin:test'
         sh 'docker push wygd/ms-cliente:test'
-        sh 'docker push wygd/ms-administracion:test'
+        sh 'docker push wygd/ms-administracion2:test'
         sh 'docker push wygd/ms-usuario:test'
         sh 'docker push wygd/ms-reporte:test'
         sh 'docker logout'
