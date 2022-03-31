@@ -53,6 +53,7 @@ services:
       - administracion
       - servicio_administrativo
       - usuario
+      - reporte
     ports:
       - "5000:5000"
     networks:
