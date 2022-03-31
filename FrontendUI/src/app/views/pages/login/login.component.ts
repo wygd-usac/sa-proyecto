@@ -37,7 +37,7 @@ export class LoginComponent {
             localStorage.setItem("rol", (this.user.id_rol).toString());
             localStorage.setItem("email", this.user.email);
             localStorage.setItem("token", this.user.token);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/administracion']);
             this.toggleLiveDemo();
           } else {
             this.mensaje = 'Ocurrio un error';

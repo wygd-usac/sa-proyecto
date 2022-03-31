@@ -9,9 +9,9 @@ export function nivel(){
   if( x == "1"){
     sesion = [
       {
-        name: 'Dashboard',
-        url: '/dashboard',
-        iconComponent: { name: 'cil-speedometer' },
+        name: 'Adiministaracion',
+        url: '/administracion',
+        iconComponent: { name: 'cil-puzzle' },
         badge: {
           color: 'info',
           text: 'NEW'
