@@ -29,7 +29,7 @@
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button  type="button" class="btn btn-primary px-4" (click)="iniciar(email.value,password.value)">
+                    <button type="button" class="btn btn-primary px-4" (click)="iniciar(email.value,password.value)">
                       Login
                     </button>
                   </c-col>
@@ -46,10 +46,11 @@
             <c-card-body class="text-center">
               <div>
                 <h2>Sign up</h2>
-                <p>
-                  únete a nuestra plataforma, es gratis, solo te llevará 2 minutos y serás parte de este proyecto.
+                <p class="align-content-center">
+                  Únete a nuestra plataforma "Soccer Stats", es gratis, solo
+                  te llevará 2 minutos y serás parte de este proyecto.
                 </p>
-                <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
+                <button [active]="true" cButton class="mt-3" color="light" routerLink="/register">
                   Register Now!
                 </button>
               </div>
