@@ -77,8 +77,8 @@ const validate_session = function(req, res, next){
         var axios = require('axios');
         axios(config)
         .then(function (response) {
-          console.log(response);
-        return response;
+          console.log(response.data.mensaje);
+        return response.data.mensaje;
         })
         .catch(function (error) {
         return error;
