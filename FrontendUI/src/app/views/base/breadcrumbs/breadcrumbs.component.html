@@ -23,54 +23,54 @@
             .
           </p>
           <app-docs-example href="components/breadcrumb">
-            <c-breadcrumb class="mb-2">
-              <c-breadcrumb-item *ngFor="let item of items; index as i; last as isLast"
+            <c-breadcrumb class="mb-2 text-white">
+              <c-breadcrumb-item class="text-white" *ngFor="let item of items; index as i; last as isLast"
                                  [active]="isLast"
                                  [url]="item.url">
                 {{item.label}}
               </c-breadcrumb-item>
             </c-breadcrumb>
             <hr>
-            <c-breadcrumb class="mb-2">
-              <c-breadcrumb-item *ngFor="let item of items.slice(0,1); index as i; last as isLast"
+            <c-breadcrumb class="mb-2 text-white">
+              <c-breadcrumb-item class="text-white" *ngFor="let item of items.slice(0,1); index as i; last as isLast"
                                  [active]="isLast"
                                  [url]="item.url">
                 {{item.label}}
               </c-breadcrumb-item>
             </c-breadcrumb>
-            <c-breadcrumb class="mb-2">
-              <c-breadcrumb-item *ngFor="let item of items.slice(0,2); index as i; last as isLast"
+            <c-breadcrumb class="mb-2 text-white">
+              <c-breadcrumb-item class="text-white" *ngFor="let item of items.slice(0,2); index as i; last as isLast"
                                  [active]="isLast"
                                  [url]="item.url">
                 {{item.label}}
               </c-breadcrumb-item>
             </c-breadcrumb>
-            <c-breadcrumb class="mb-2">
-              <c-breadcrumb-item *ngFor="let item of items.slice(0,3); index as i; last as isLast"
+            <c-breadcrumb class="mb-2 text-white">
+              <c-breadcrumb-item class="text-white" *ngFor="let item of items.slice(0,3); index as i; last as isLast"
                                  [active]="isLast"
                                  [url]="item.url">
                 {{item.label}}
               </c-breadcrumb-item>
             </c-breadcrumb>
-            <c-breadcrumb class="mb-2">
-              <c-breadcrumb-item *ngFor="let item of items.slice(0,4); index as i; last as isLast"
+            <c-breadcrumb class="mb-2 text-white">
+              <c-breadcrumb-item class="text-white" *ngFor="let item of items.slice(0,4); index as i; last as isLast"
                                  [active]="isLast"
                                  [url]="item.url">
                 <span [ngClass]="{'mark': isLast}">{{item.label}}</span>
               </c-breadcrumb-item>
             </c-breadcrumb>
             <hr>
-            <c-breadcrumb class="mb-0">
-              <c-breadcrumb-item url="/">
+            <c-breadcrumb class="text-white" class="mb-0 text-white">
+              <c-breadcrumb-item class="text-white" url="/">
                 Home
               </c-breadcrumb-item>
-              <c-breadcrumb-item url="/">
+              <c-breadcrumb-item class="text-white" url="/">
                 Library
               </c-breadcrumb-item>
-              <c-breadcrumb-item url="/">
+              <c-breadcrumb-item class="text-white" url="/">
                 Data
               </c-breadcrumb-item>
-              <c-breadcrumb-item [active]="true">
+              <c-breadcrumb-item class="text-white" [active]="true">
                 Bootstrap
               </c-breadcrumb-item>
             </c-breadcrumb>

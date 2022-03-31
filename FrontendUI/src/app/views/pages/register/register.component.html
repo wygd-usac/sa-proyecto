@@ -8,29 +8,43 @@
               <h1>Register</h1>
               <p class="text-medium-emphasis">Create your account</p>
               <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
-                </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
+                <input autoComplete="name" #name cFormControl placeholder="name" />
               </c-input-group>
               <c-input-group class="mb-3">
-                <span cInputGroupText>@</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
+                <input autoComplete="last_name" #lastaname cFormControl placeholder="last name" />
               </c-input-group>
               <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
+                <input autoComplete="new-password" #pass cFormControl placeholder="Password" type="password" />
               </c-input-group>
               <c-input-group class="mb-4">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
-                </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
+                <input autoComplete="new-password" #pass2 cFormControl placeholder="Repeat password" type="password" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input autoComplete="email" #email type="email" cFormControl placeholder="email" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input autoComplete="phone" #phone type="number" cFormControl placeholder="phone" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <select cSelect>
+                  <option #genero selected="selected" value="M">M</option>
+                  <option #genero value="F">F</option>
+                </select>
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input autoComplete="birth_date" #birthdate type="date" cFormControl placeholder="birth date" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input cFormControl disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input autoComplete="address" #address cFormControl placeholder="address" />
               </c-input-group>
               <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+                <button cButton color="success" (click)="registrar(name.value,lastaname.value,pass.value,pass2.value,email.value,phone.value,photo.value,genero.value,birthdate.value,address.value)">Create Account</button>
               </div>
             </form>
           </c-card-body>
@@ -39,3 +53,17 @@
     </c-row>
   </c-container>
 </div>
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Mensaje</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>{{mensaje}}</c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
