@@ -24,12 +24,12 @@ services:
       - "5040:5000"
     networks:
       - red-backend
-  administracion:
-    image: wygd/ms-administracion:test
-    ports:
-      - "5050:5000"
-    networks:
-      - red-backend
+  # administracion:
+  #   image: wygd/ms-administracion:test
+  #   ports:
+  #     - "5050:5000"
+  #   networks:
+  #     - red-backend
   reporte:
     image: wygd/ms-reporte:test
     ports:
