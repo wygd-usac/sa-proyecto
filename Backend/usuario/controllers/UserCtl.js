@@ -167,7 +167,7 @@ async function confirmUser(req, res, next){
 
 async function getUser(req, res, next){
     try {
-        let id_user = req.body.id_user;
+        let id_user = req.getParameter("id")
         if(id_user === undefined){
             id_user = null;
         }
@@ -237,3 +237,4 @@ module.exports.InsertUser = InsertUser;
 module.exports.UpdateUser = UpdateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser;
+module.exports.getUser = getUser;

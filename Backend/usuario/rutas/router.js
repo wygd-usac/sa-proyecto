@@ -17,4 +17,5 @@ router.post("/update", validate_session,userCtl.UpdateUser);
 router.post("/login", userCtl.loginUser);
 router.post("/delete", validate_session, userCtl.deleteUser);
 
+
 module.exports = router;

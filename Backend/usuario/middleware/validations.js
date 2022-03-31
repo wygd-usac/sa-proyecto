@@ -21,15 +21,6 @@ const validate_session = function(req, res, next){
         var decoded = response.data;
         if(decoded != undefined && decoded.valido){
             req.body.data = decoded.data;
-            /*
-            Estrutura interna de data:
-                data ={
-                        "id_user": 5,
-                        "id_rol": 3,
-                        "membership": 0,
-                        "email": "correo@gmail.com"  
-                      }
-            */
             next();
         }else{
             
