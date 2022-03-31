@@ -13,4 +13,4 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json({ extended: true, limit: '10mb' }));
 app.use(context, router);
 
-app.listen(port, () => console.log(`${port}... sdfsdf`));
+app.listen(port, () => console.log(`${port}...`));
