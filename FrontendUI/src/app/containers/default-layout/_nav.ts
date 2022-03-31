@@ -11,25 +11,20 @@ export function nivel(){
       {
         name: 'Adiministaracion',
         url: '/administracion',
-        iconComponent: { name: 'cil-puzzle' },
-        badge: {
-          color: 'info',
-          text: 'NEW'
-        }
+        iconComponent: { name: 'cil-puzzle' }
       },
       {
         title: true,
-        name: 'Theme'
+        name: 'Personas'
       },
       {
-        name: 'Colors',
-        url: '/theme/colors',
-        iconComponent: { name: 'cil-drop' }
+        name: 'Crear',
+        url: '/administracion/persona/crear',
+        iconComponent: { name: 'cil-notes' }
       },
       {
-        name: 'Typography',
-        url: '/theme/typography',
-        linkProps: { fragment: 'someAnchor' },
+        name: 'Ver',
+        url: '/administracion/persona/ver',
         iconComponent: { name: 'cil-pencil' }
       },
       {

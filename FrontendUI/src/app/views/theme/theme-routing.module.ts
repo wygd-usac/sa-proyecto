@@ -13,20 +13,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'colors',
+        redirectTo: 'crear',
       },
       {
-        path: 'colors',
+        path: 'crear',
         component: ColorsComponent,
         data: {
-          title: 'Colors',
+          title: 'Crear Persona',
         },
       },
       {
-        path: 'typography',
+        path: 'ver',
         component: TypographyComponent,
         data: {
-          title: 'Typography',
+          title: 'Ver Personas',
         },
       },
     ],
