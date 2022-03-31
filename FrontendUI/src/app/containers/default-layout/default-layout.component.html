@@ -1,7 +1,7 @@
 <!--sidebar-->
 <c-sidebar
   #sidebar="cSidebar"
-  class="d-print-none sidebar sidebar-fixed"
+  class="d-print-none sidebar-lg sidebar sidebar-fixed"
   id="sidebar"
   visible
 >
@@ -38,7 +38,9 @@
 <!--main-->
 <div class="wrapper d-flex flex-column min-vh-100 bg-dark">
   <!--app-header-->
-  <app-default-header class="mb-4 d-print-none header bg-success bg-opacity-50 header-sticky" position="sticky" sidebarId="sidebar"></app-default-header>
+  <div class="text-white">
+    <app-default-header class="mb-4 d-print-none header bg-black bg-opacity-50 header-sticky" position="sticky" sidebarId="sidebar"></app-default-header>
+  </div>
   <!--app-body-->
   <div class="body flex-grow-1 px-3">
     <c-container breakpoint="lg" class="h-auto">

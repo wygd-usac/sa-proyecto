@@ -44,19 +44,39 @@ export class RegisterComponent {
     this.visible = event;
   }
 
+  ValidateEmail(mail)
+  {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+    {
+      return true;
+    }
+    alert("You have entered an invalid email address!")
+    return false;
+  }
+
   registrar(
-    _name: any,
-    _last_name: any,
-    _password: any,
-    _password2: any,
-    _email: any,
-    _phone: any,
-    _photo: any,
-    _gender: any,
-    _birth_date: any,
-    _address: any
+    _name: string,
+    _last_name: string,
+    _password: string,
+    _password2: string,
+    _email: string,
+    _phone: string,
+    _photo: string,
+    _gender: string,
+    _birth_date: string,
+    _address: string
   ) {
     try {
+      if(_password !== _password2){
+        this.mensaje = 'contraseñas no conciden';
+        this.toggleLiveDemo()
+        return;
+      }
+      if(!this.ValidateEmail(_email)){
+        this.mensaje = 'correo invalido';
+        this.toggleLiveDemo()
+        return;
+      }
       this.servicio.registrerUser(
         _name,
         _last_name,
@@ -68,11 +88,10 @@ export class RegisterComponent {
         _birth_date,
         _address,
         2,
-        2
+        3
         ).subscribe((res: any) => {
-          console.log(res);
-          if (res.msj !== undefined && (_password == _password2)) {
-            this.mensaje = res.msj;
+          if (res.msg != undefined) {
+            this.mensaje = res.msg;
             this.toggleLiveDemo();
           } else {
             this.mensaje = 'Ocurrio un error';
@@ -81,12 +100,12 @@ export class RegisterComponent {
         }
         ,
         err => {
-          this.mensaje = 'credenciales invalidas';
+          this.mensaje = 'ocurrio un error, prueba con otro correo o contraseña';
           this.toggleLiveDemo()
         }
       );
     } catch (e) {
-      this.mensaje = 'ocurrio un error';
+      this.mensaje = 'ocurrio un error, prueba con otro correo o contraseña';
       this.toggleLiveDemo()
     }
   }
