@@ -67,6 +67,7 @@ app.post('/validate',(req,res)=>{
 });
 
 app.get('/alive',(req,res)=>{
+  console.log("fui llamado");
   res.send({mensaje:"Si soy accesible desde otros servicios!!"});
 });
 
