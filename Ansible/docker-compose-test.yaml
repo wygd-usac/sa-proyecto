@@ -1,25 +1,25 @@
 version: "3.9"
 services:
   cliente:
-    image: wygd/ms-cliente:latest
+    image: wygd/ms-cliente:test
     ports:
       - "5010:5000"
     networks:
       - red-backend
   administracion:
-    image: wygd/ms-administracion:latest
+    image: wygd/ms-administracion:test
     ports:
       - "5020:5000"
     networks:
       - red-backend
   servicio_administrativo:
-    image: wygd/ms-serv-admin:latest
+    image: wygd/ms-serv-admin:test
     ports:
       - "5030:5000"
     networks:
       - red-backend
   usuario:
-    image: wygd/ms-usuario:latest
+    image: wygd/ms-usuario:test
     ports:
       - "5040:5000"
     networks:
