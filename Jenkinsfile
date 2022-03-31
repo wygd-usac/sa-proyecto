@@ -8,6 +8,16 @@ pipeline {
       }
     }
 
+    stage('Run Test Cliente') {
+      steps {
+        dir(path: 'Backend/cliente') {
+          sh 'npm install'
+          sh 'npm test'
+        }
+
+      }
+    }
+
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
