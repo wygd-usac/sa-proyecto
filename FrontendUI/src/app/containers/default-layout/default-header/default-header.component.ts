@@ -32,6 +32,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   Logeado(){
     if( localStorage.getItem('rol') === '1' || localStorage.getItem('rol') === '2' || localStorage.getItem('rol') === '3' || localStorage.getItem('rol') === '4' ){
       this.estado = "success";
+      // @ts-ignore
+      this.profilepic = localStorage.getItem('photo');
       return true;
     }else {
       this.estado = "dark";

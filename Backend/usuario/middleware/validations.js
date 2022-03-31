@@ -2,7 +2,7 @@
 const validate_session = function(req, res, next){
   const token = req.headers['authorization'];
   const jwt_service = 'localhost';
-  const produccion = false;
+  const produccion = true;
   if (produccion) {
         //se valida que tiene sesion y se retornan valores del usuario
         var data = JSON.stringify({});
@@ -21,15 +21,6 @@ const validate_session = function(req, res, next){
         var decoded = response.data;
         if(decoded != undefined && decoded.valido){
             req.body.data = decoded.data;
-            /*
-            Estrutura interna de data:
-                data ={
-                        "id_user": 5,
-                        "id_rol": 3,
-                        "membership": 0,
-                        "email": "correo@gmail.com"  
-                      }
-            */
             next();
         }else{
             
