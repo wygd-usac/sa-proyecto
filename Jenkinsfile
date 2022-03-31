@@ -4,7 +4,7 @@ pipeline {
     stage('Pull-Repository') {
       steps {
         echo 'Repository was pulled.'
-        //sh 'docker rmi $(docker images -q)'
+        sh 'docker rmi $(docker images -q)'
       }
     }
 
@@ -26,6 +26,7 @@ pipeline {
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker build --no-cache --rm -t wygd/ms-reporte-test:latest -f ./Backend/reporte/Dockerfile.reporte ./Backend/reporte'
+        sh 'docker build --no-cache --rm -t wygd/ms-jwt-test:latest -f ./Backend/jwt/Dockerfile.jwt ./Backend/jwt'
         sh 'docker images'
         sh 'docker ps'
       }
@@ -80,6 +81,8 @@ pipeline {
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
+        sh 'docker push wygd/ms-jwt-test:latest'
+        
         sh 'docker logout'
       }
     }
