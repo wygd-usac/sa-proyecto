@@ -66,6 +66,11 @@ app.post('/validate',(req,res)=>{
 
 });
 
+app.get('/alive',(req,res)=>{
+  console.log("fui llamado");
+  res.send({mensaje:"Si soy accesible desde otros servicios!!"});
+});
+
 //Ejemplo de como cada uno de nuestros microservcios debe pasar por el midleware (o sea esta clase)
 //El token que que viene aqui viene siempre directo desde el front y estara guardado en localstorage
 // SI YO SE QUE A MI RUTA SOLO PUEDEN ENTRAR USUARIOS CON ROL 1, USO LA VERFICACION 1

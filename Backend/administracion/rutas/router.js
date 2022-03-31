@@ -3,7 +3,7 @@ const router = Router();
 const PersonaCtl = require("../controllers/PersonaCtl");
 
 router.get("/", (req, res) => {
-  res.send("Modulo de Administración");
+  res.send("Modulo de Administración se actualiza solo, con los nuevos cambios");
 });
 
 //Persona

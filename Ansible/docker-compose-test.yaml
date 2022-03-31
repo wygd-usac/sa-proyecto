@@ -1,44 +1,41 @@
 version: "3.9"
 services:
   cliente:
-    image: wygd/ms-cliente:latest
+    image: wygd/ms-cliente-test:latest
     ports:
       - "5010:5000"
     networks:
       - red-backend
   administracion:
-    image: wygd/ms-administracion:latest
+    image: wygd/ms-administracion-test:latest
     ports:
       - "5020:5000"
     networks:
       - red-backend
   servicio_administrativo:
-    image: wygd/ms-serv-admin:latest
+    image: wygd/ms-serv-admin-test:latest
     ports:
       - "5030:5000"
     networks:
       - red-backend
   usuario:
-    image: wygd/ms-usuario:latest
+    image: wygd/ms-usuario-test:latest
     ports:
       - "5040:5000"
     networks:
       - red-backend
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.usuario
-  #   ports:
-  #     - "5040:5000"
-  #   networks:
-  #     - red-backend
-  # reporte:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.reporte
-  #   ports:
-  #     - "5050:5000"
-  #   networks:
-  #     - red-backend
+  jwt:
+    image: wygd/ms-jwt-test:latest
+    ports:
+      - "5050:5001"
+    networks:
+      - red-backend
+  reporte:
+    image: wygd/ms-reporte-test:latest
+    ports:
+      - "5060:5000"
+    networks:
+      - red-backend
   # prediccion:
   #   build:
   #     context: .
@@ -56,6 +53,7 @@ services:
       - administracion
       - servicio_administrativo
       - usuario
+      - reporte
     ports:
       - "5000:5000"
     networks:

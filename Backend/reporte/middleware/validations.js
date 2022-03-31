@@ -4,7 +4,7 @@
 
 const validate_session = function(req, res, next){
   const token = req.headers['authorization'];
-  const jwt_service = 'localhost';
+  const jwt_service = 'jwt';
   const produccion = false;
   if (produccion) {
         //se valida que tiene sesion y se retornan valores del usuario

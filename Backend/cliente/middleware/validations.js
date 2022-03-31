@@ -4,7 +4,7 @@
 
 const validate_session = function(req, res, next){
   const token = req.headers['authorization'];
-  const jwt_service = 'localhost';
+  const jwt_service = 'jwt';
   const production = false;
   if (production) {
         //se valida que tiene sesion y se retornan valores del usuario
@@ -63,6 +63,31 @@ const validate_session = function(req, res, next){
       }
  }
 
+ const alive = function(){
+  const jwt_service = 'jwt';
+  const production = true;
+  if (production) {
+        //se valida que tiene sesion y se retornan valores del usuario
+        var data = JSON.stringify({});
+        var config = {
+        method: 'get',
+        url: `http://${jwt_service}:5001/alive`,
+        data : data
+        };
+        var axios = require('axios');
+        axios(config)
+        .then(function (response) {
+          console.log(response.data.mensaje);
+        return response.data.mensaje;
+        })
+        .catch(function (error) {
+        return error;
+        });
+        
+      }
+ }
+
+
  const validate_premium = function(req,res,next){
   next(); //comentar esta linea si se desea 
   //var isPremium = false;
@@ -76,5 +101,6 @@ const validate_session = function(req, res, next){
 
  module.exports = {
    validate_session,
-   validate_premium
+   validate_premium,
+   alive
   };
