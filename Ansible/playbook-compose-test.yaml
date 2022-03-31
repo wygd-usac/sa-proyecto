@@ -87,3 +87,13 @@
       docker_compose:
         project_src: test/
         state: absent
+    - name: Run container
+      remote_user: app-admin
+      shell:
+        cmd: "docker-compose pull"
+        chdir: test/
+    - name: deploy Docker Compose stack
+      remote_user: app-admin
+      docker_compose:
+        project_src: test/
+        state: present
