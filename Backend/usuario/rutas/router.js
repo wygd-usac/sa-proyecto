@@ -16,6 +16,8 @@ router.post("/add", userCtl.InsertUser);
 router.post("/update", validate_session,userCtl.UpdateUser);
 router.post("/login", userCtl.loginUser);
 router.post("/delete", validate_session, userCtl.deleteUser);
-
+router.get("/get", userCtl.getUser);
+router.get("/confirm", userCtl.confirmUser);
+router.post("/")
 
 module.exports = router;
