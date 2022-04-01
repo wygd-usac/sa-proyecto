@@ -87,7 +87,7 @@ pipeline {
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin-test:latest'
-        sh 'docker push wygd/ms-cliente-test:latest'
+        //sh 'docker push wygd/ms-cliente-test:latest'
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
