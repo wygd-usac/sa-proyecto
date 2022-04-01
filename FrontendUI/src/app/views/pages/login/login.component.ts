@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {RequestService} from '../../../../services/request.service'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
+
   }
 
   public visible = false;
@@ -37,9 +39,27 @@ export class LoginComponent {
             localStorage.setItem("rol", (this.user.id_rol).toString());
             localStorage.setItem("email", this.user.email);
             localStorage.setItem("token", this.user.token);
-            localStorage.setItem("photo", this.user.photo)
+            localStorage.setItem("photo", this.user.photo);
+            localStorage.setItem("idu", this.user.id);
             this.router.navigate(['/administracion']);
-            this.toggleLiveDemo();
+            //this.toggleLiveDemo();
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'center',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'success',
+              title: 'Signed in successfully',
+              text: 'Bienvenido '
+            })
           } else {
             this.mensaje = 'Ocurrio un error';
             this.toggleLiveDemo();

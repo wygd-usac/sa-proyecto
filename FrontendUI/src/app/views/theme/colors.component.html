@@ -1,35 +1,75 @@
-<div class="fade-in">
-  <c-card class="mb-4">
-    <c-card-header>
-      Theme colors
-    </c-card-header>
-    <c-card-body>
-      <c-row>
-        <app-theme-color color="primary">
-          <h6>Brand Primary Color</h6>
-        </app-theme-color>
-        <app-theme-color color="secondary">
-          <h6>Brand Secondary Color</h6>
-        </app-theme-color>
-        <app-theme-color color="success">
-          <h6>Brand Success Color</h6>
-        </app-theme-color>
-        <app-theme-color color="danger">
-          <h6>Brand Danger Color</h6>
-        </app-theme-color>
-        <app-theme-color color="warning">
-          <h6>Brand Warning Color</h6>
-        </app-theme-color>
-        <app-theme-color color="info">
-          <h6>Brand Info Color</h6>
-        </app-theme-color>
-        <app-theme-color color="light">
-          <h6>Brand Light Color</h6>
-        </app-theme-color>
-        <app-theme-color color="dark">
-          <h6>Brand Dark Color</h6>
-        </app-theme-color>
-      </c-row>
-    </c-card-body>
-  </c-card>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="7" md="9" xl="6">
+        <c-card class="mx-4">
+          <c-card-body class="p-4">
+            <form cForm>
+              <h1>Crear Persona</h1>
+<!--              <p class="text-medium-emphasis">Create your account</p>-->
+              <label>Name</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="name" #name cFormControl placeholder="name" />
+              </c-input-group>
+              <label>Lastname</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="lastname" #lastname cFormControl placeholder="lastname" />
+              </c-input-group>
+              <label>Status</label>
+              <c-input-group class="mb-3">
+                <select cSelect>
+                  <option #status selected="selected" value="Jugador">Jugador</option>
+                  <option #status value="Director Tecnico">Director Tecnico</option>
+                </select>
+              </c-input-group>
+              <label>Stand</label>
+              <c-input-group class="mb-4">
+                <select #selectstand cSelect >
+                  <option *ngFor="let stand of listStands" #id_stand
+                          value="{{stand.id_stand}}" ngValue="{{stand.id_stand}}"
+                          (click)="getSelectedStand(stand)">
+                    {{stand.stand}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label>Team</label>
+              <c-input-group class="mb-3">
+                <select cSelect >
+                  <option *ngFor="let team of listTeams; index as i" #id_team selected="selected"
+                          value="{{team.id_team}}" (click)="getSelectedTeam(team.id_team)">
+                    {{team.name}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label>Country</label>
+              <c-input-group class="mb-3">
+                <select cSelect >
+                  <option id="{{country.id_Country}}" *ngFor="let country of listCountrys; index as i"
+                          selected="selected" value="{{country.id_Country}}" (click)="getSelectedCountry(country.id_Country)">
+                    {{country.country}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label>Birth Date</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="birthday" #birthday type="date" cFormControl placeholder="birth date" />
+              </c-input-group>
+              <label>Photo</label>
+              <c-input-group class="mb-3">
+                <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <input cFormControl disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
+              </c-input-group>
+              <div class="d-grid">
+                <button cButton color="success" (click)="registrar(name.value,lastname.value,birthday.value,
+                                          status.value,photo.value)">Create Person
+                </button>
+              </div>
+            </form>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
 </div>

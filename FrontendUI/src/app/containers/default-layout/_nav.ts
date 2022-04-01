@@ -1,10 +1,10 @@
 import { INavData } from '@coreui/angular';
-
+import { IconSetService } from '@coreui/icons-angular';
 export function nivel(){
 
   var x =localStorage.getItem("rol");
   console.log(x);
-  console.log(x == "1");
+  //console.log(x == "1");
   let sesion : INavData[] = [];
   if( x == "1"){
     sesion = [
@@ -20,15 +20,15 @@ export function nivel(){
       {
         name: 'Crear',
         url: '/administracion/persona/crear',
-        iconComponent: { name: 'cil-notes' }
+        iconComponent: { name: 'cil-pencil' }
       },
       {
         name: 'Ver',
         url: '/administracion/persona/ver',
-        iconComponent: { name: 'cil-pencil' }
+        iconComponent: { name: 'cil-list' }
       },
       {
-        name: 'Components',
+        name: 'Reportes',
         title: true
       },
       {

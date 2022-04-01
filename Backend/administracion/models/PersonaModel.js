@@ -62,7 +62,7 @@ Persona.updateById = (id, persona, result) => {
 
 Persona.updateStatus = (id, status, result) => {
   conexion.query(
-    "UPDATE Person SET status = ? WHERE id_person = ?",
+    "UPDATE Person SET status = ? WHERE id_person = ? ",
     status,
     id,
     (err, res) => {
@@ -87,12 +87,13 @@ Persona.updateStatus = (id, status, result) => {
 };
 
 Persona.getAll = (id, result) => {
-  let query = `select id_person, name, lastname, birthday, status, photo, id_stand,
-                    (select po.stand from Posicion po where po.id_stand=p.id_stand) as stand ,
-                    type, id_team,
-                    (select e.name from Equipo e where e.id_team=p.id_team) as team,
-                    nationality
-                from Person p`;
+  let query = `select id_person, name, lastname, date_format(birthday,'%d/%m/%Y') as birthday, status, photo, id_stand,
+                (select po.stand from Posicion po where po.id_stand=p.id_stand) as stand ,
+                type, id_team,
+                (select e.name from Equipo e where e.id_team=p.id_team) as team,
+                p.nationality as id_nationality,
+                (select e.country from Country e where e.id_Country=p.nationality) as nationality
+              from Person p`;
 
   if (id == "") {
     conexion.query(query, (err, res) => {
@@ -121,7 +122,7 @@ Persona.getAll = (id, result) => {
 };
 
 Persona.remove = (id, result) => {
-  conexion.query("DELETE FROM Person WHERE id_person = ?", id, (err, res) => {
+  conexion.query("DELETE FROM Person WHERE id_person = ? ", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -135,6 +136,57 @@ Persona.remove = (id, result) => {
     console.log("Se ha eliminado el jugador o DT especificado: ", id);
     result(null, res);
   });
+};
+
+Persona.getStands = (id, result) => {
+  let query = `select id_stand, stand from Posicion`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Stands: ", res);
+      result(null, res);
+    });
+  }
+};
+
+Persona.getCountrys = (id, result) => {
+  let query = `select id_Country, country from Country`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Countrys: ", res);
+      result(null, res);
+    });
+  }
+};
+
+Persona.getTeams = (id, result) => {
+  let query = `select id_team, name from Equipo`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Countrys: ", res);
+      result(null, res);
+    });
+  }
 };
 
 module.exports = Persona;
