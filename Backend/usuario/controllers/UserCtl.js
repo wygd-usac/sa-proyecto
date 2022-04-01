@@ -254,7 +254,7 @@ async function enviarCorreo(correo, texto){
         from: 'proyecto saH',
         to: correo,
         subject: 'SoccerStats',
-        text: "Estamado usuario:  "+texto
+        text: "Estimado usuario:  "+texto
     };
     await transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
