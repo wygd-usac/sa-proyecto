@@ -17,7 +17,7 @@ router.get('/',validate_session,validate_premium, (req, res) => {
     const jwt_result = alive();
     console.log(jwt_result);
     
-    res.send("Modulo de Cliente" + jwt_result);
+    res.send("Modulo de Cliente prueba" + jwt_result);
 });
 
 router.patch('/membership',validate_session,async (req,res) => {
