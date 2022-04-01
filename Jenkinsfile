@@ -31,7 +31,7 @@ pipeline {
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-cliente-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente2-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
@@ -87,7 +87,7 @@ pipeline {
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin-test:latest'
-        sh 'docker push wygd/ms-cliente-test:latest'
+        sh 'docker push wygd/ms-cliente2-test:latest'
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
