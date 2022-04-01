@@ -18,6 +18,16 @@ pipeline {
       }
     }
 
+    stage('Run Test Servicio_Administrativo') {
+      steps {
+        dir(path: 'Backend/servicio_administrativo') {
+          sh 'npm install'
+          sh 'npm test'
+        }
+
+      }
+    }
+
     stage('ImageBuild-MicroServicio Cliente') {
       steps {
         echo 'Se ejecutara el deploy en producción.'
