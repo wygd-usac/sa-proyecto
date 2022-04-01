@@ -1,5 +1,6 @@
-const UserCtl = require("../models/UserCtl");
+const UserModal = require("../models/UserModal");
 const axios = require("axios");
+var nodemailer = require('nodemailer');
 
 async function InsertUser(req, res, next){
     try {
@@ -15,7 +16,7 @@ async function InsertUser(req, res, next){
         const id_Country =req.body.id_Country
         const type = req.body.type
 
-        let resultado = await UserCtl.insertUser(
+        let resultado = await UserModal.insertUser(
             name,
             last_name,
             password,
@@ -29,7 +30,14 @@ async function InsertUser(req, res, next){
             type
         );
         if(resultado){
-            res.status(200).json({msg:"registrado correctamente"});
+            //traer data y actulizarla
+
+            let helper = await UserModal.getUserForEmail(email);
+            await new Promise(r => setTimeout(r, 2000));
+            enviarCorreo(email,"Gracias por ser parte de SoccerStats, utiliza alguno de los enlaces para habilitar tu cuenta" +
+                " http://localhost:5000/esb/usuario/confirm/?code=" + helper[0].id_status + " ó http://34.132.139.69:5000/esb/usuario/confirm/?code="
+            + helper[0].id_status + " codigo: " + helper[0].id_status );
+            res.status(200).json({msg:"registrado correctamente, revisa tu correo"});
         }else{
             res.status(400).json({msg:"error en el registro"});
         }
@@ -56,7 +64,7 @@ async function UpdateUser(req, res, next){
             let id_Country =  req.body.id_Country
             let type = req.body.type
 
-        let helper = await UserCtl.getUser(id_user);
+        let helper = await UserModal.getUser(id_user);
             console.log(helper);
             if(helper instanceof Array){
                 if(helper.length > 0){
@@ -109,7 +117,7 @@ async function UpdateUser(req, res, next){
                 res.status(400).json({msg:"error en la actualizacion"});
             }
 
-        let resultado = await UserCtl.updateUser(
+        let resultado = await UserModal.updateUser(
             id_user,
             name,
             last_name,
@@ -139,7 +147,7 @@ async function UpdateUser(req, res, next){
 async function deleteUser(req, res, next){
     try {
         const id_user = req.body.id_user;
-        let resultado = await UserCtl.updateStateJugador(id_user, state);
+        let resultado = await UserModal.updateStateJugador(id_user, state);
         if(resultado){
             res.status(200).json({msg:"elimando correctamente"});
         }else{
@@ -152,11 +160,10 @@ async function deleteUser(req, res, next){
 
 async function confirmUser(req, res, next){
     try {
-        const email = req.params['email'];
-        const code = req.params['code'];
-        let resultado = await UserCtl.deleteUser(id_person);
+        const code = req.query.code;
+        let resultado = await UserModal.verifyUser(code);
         if(resultado){
-            res.status(200).json({msg:"actualizado correctamente"});
+            res.status(200).json(resultado);
         }else{
             res.status(400).json({msg:"error en la actualizacion"});
         }
@@ -167,11 +174,11 @@ async function confirmUser(req, res, next){
 
 async function getUser(req, res, next){
     try {
-        let id_user = req.getParameter("id")
+        let id_user = req.query.id;
         if(id_user === undefined){
             id_user = null;
         }
-        let resultado = await UserCtl.getUser(id_user);
+        let resultado = await UserModal.getUser(id_user);
         if(resultado){
             res.status(200).json(resultado);
         }else{
@@ -182,12 +189,13 @@ async function getUser(req, res, next){
     }
 }
 
+
 async function loginUser(req, res, next){
     try {
         let email = req.body.email;
         let password = req.body.password;
 
-        let resultado = await UserCtl.loginUser(email,password);
+        let resultado = await UserModal.loginUser(email,password);
         if(resultado instanceof Array){
 
             const payload = {
@@ -233,8 +241,34 @@ function formatDate(date) {
     return [month, day, year].join('/');
 }
 
+async function enviarCorreo(correo, texto){
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'sahproyecto@gmail.com',
+            pass: 'sahproyecto_100'
+        }
+
+    });
+    var mailOptions = {
+        from: 'proyecto saH',
+        to: correo,
+        subject: 'SoccerStats',
+        text: "Estimado usuario:  "+texto
+    };
+    await transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Correo enviado");
+        }
+    });
+}
+
+
 module.exports.InsertUser = InsertUser;
 module.exports.UpdateUser = UpdateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser;
 module.exports.getUser = getUser;
+module.exports.confirmUser = confirmUser;
