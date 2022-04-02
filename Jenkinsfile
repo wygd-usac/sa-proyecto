@@ -150,7 +150,7 @@ pipeline {
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build'
+          sh 'npm run build --configuration=test'
           sh 'ls -a'
         }
       }
@@ -165,7 +165,7 @@ pipeline {
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build --prod'
+          sh 'npm run build --configuration=prod'
           sh 'ls -a'
         }
 
