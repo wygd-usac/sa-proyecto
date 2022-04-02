@@ -32,7 +32,6 @@
       pip:
         name: docker
 
-    
     - name: Install Docker compose Module for Python
       pip:
         name: docker-compose
@@ -66,10 +65,6 @@
       file:
         path: production
         state: directory
-    - name: Creates directory
-      file:
-        path: production
-        state: directory
     - name: copy nginx files
       remote_user: app-admin
       copy:
@@ -80,9 +75,19 @@
       remote_user: app-admin
       copy:
         remote_src: no
-        src: docker-compose.yaml
+        src: docker-compose-production.yaml
         dest: production/docker-compose.yaml
     # use files parameter to use multiple docker-compose.yml files
+    - name: deploy Docker Compose stack
+      remote_user: app-admin
+      docker_compose:
+        project_src: production/
+        state: absent
+    - name: Run container
+      remote_user: app-admin
+      shell:
+        cmd: "docker-compose pull"
+        chdir: production/
     - name: deploy Docker Compose stack
       remote_user: app-admin
       docker_compose:
