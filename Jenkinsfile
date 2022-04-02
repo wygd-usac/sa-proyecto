@@ -150,7 +150,7 @@ pipeline {
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build --configuration=testing'
+          sh 'ng build --configuration=testing'
           sh 'ls -a'
         }
       }
@@ -165,7 +165,7 @@ pipeline {
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build --configuration=production'
+          sh 'ng build --configuration=production'
           sh 'ls -a'
         }
 
