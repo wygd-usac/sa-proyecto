@@ -172,9 +172,9 @@ pipeline {
       }
     }
     stage('Deploy-frontend-test') {
-      when {
-        branch 'master'
-      }
+      // when {
+      //   branch 'master'
+      // }
       steps {
         sh 'ls FrontendUI -a'
         sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend-test.yaml'
