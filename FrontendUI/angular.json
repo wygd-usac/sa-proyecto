@@ -28,6 +28,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "browserTarget": "coreui-free-angular-admin-template:build",
+            "proxyConfig": "src/proxy.conf.json",
             "inlineStyleLanguage": "scss",
             "preserveSymlinks": true,
             "assets": [
@@ -61,6 +63,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/proxy.conf.json",
+                  "with": "src/prox-production.conf.json"
                 }
               ],
               "outputHashing": "all"
@@ -69,6 +75,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.test.ts"
+                },
+                {
+                  "replace": "src/proxy.conf.json",
+                  "with": "src/prox-test.conf.json"
                 }
               ]
             },
