@@ -28,8 +28,6 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "browserTarget": "coreui-free-angular-admin-template:build",
-            "proxyConfig": "src/proxy.conf.json",
             "inlineStyleLanguage": "scss",
             "preserveSymlinks": true,
             "assets": [
@@ -95,6 +93,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "coreui-free-angular-admin-template:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "coreui-free-angular-admin-template:build:production"
