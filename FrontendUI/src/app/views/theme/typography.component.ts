@@ -16,14 +16,14 @@ export class TypographyComponent {
 
   user: any;
 
-  deletePerson(id_person:number,name:string,lastname:string){
+  deletePerson(id_person: number, name: string, lastname: string) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#1d9045',
+      cancelButtonColor: '#a42828',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -31,7 +31,7 @@ export class TypographyComponent {
           this.servicio.deletePerson(id_person).subscribe((res: any) => {
               Swal.fire(
                 'Deleted!',
-                'Se elimino el jugador o DT: '+name+' '+lastname,
+                'Se elimino el jugador o DT: ' + name + ' ' + lastname,
                 'success'
               )
             }
@@ -48,7 +48,6 @@ export class TypographyComponent {
             confirmButtonText: 'Cool'
           })
         }
-
       }
     })
 
@@ -57,10 +56,9 @@ export class TypographyComponent {
   getPersonAll() {
     try {
       this.servicio.getPersonAll().subscribe((res: any) => {
-
-          this.user=res.data;
-          if (this.user.length>0){
-            console.log(this.user);
+          this.user = res.data;
+          if (this.user.length > 0) {
+            //console.log(this.user);
           }
         }
         ,

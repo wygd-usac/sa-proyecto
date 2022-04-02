@@ -43,9 +43,10 @@ export class RequestService {
   }
 
   newPerson(name:string,lastname:string,birthday:string,nationality:number,id_stand:number,
-            status:string,id_team:number,photo:string):any{
-    return this.http.put(this.url_server_admin + 'esb/administracion/persona', {name:name,lastname:lastname,
-            birthday:birthday,nationality:nationality,id_stand:id_stand,status:status,id_team:id_team,photo:photo})
+            status:string,id_team:number,photo:string,type:number):any{
+    return this.http.post(this.url_server_admin + 'esb/administracion/persona/',
+      {name:name,lastname:lastname,birthday:birthday,nationality:nationality,id_stand:id_stand,
+            status:status,id_team:id_team,photo:photo,type:type})
   }
 
   loginUser( _email: any, _password: any ): any{

@@ -13,16 +13,14 @@ const Persona = function (persona) {
 };
 
 Persona.create = (newPersona, result) => {
+  console.log("crear");
   conexion.query("INSERT INTO Person SET ?", newPersona, (err, res) => {
     if (err) {
       console.log("error:", err);
       result(err, null);
       return;
     }
-    console.log("se creo un nuevo jugador o DT: ", {
-      id: res.insertId,
-      ...newPersona,
-    });
+    console.log("se creo un nuevo jugador o DT: ", { newPersona });
     result(null, { id: res.insertId, ...newPersona });
   });
 };
@@ -183,7 +181,7 @@ Persona.getTeams = (id, result) => {
         return;
       }
 
-      console.log("Countrys: ", res);
+      console.log("Teams: ", res);
       result(null, res);
     });
   }
