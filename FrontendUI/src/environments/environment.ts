@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  base_url: "http://34.132.139.69:5000/",
   firebaseConfig : {
     apiKey: "AIzaSyCVxXCkDq49vW4ypQkuERQ7d8x9393rGVU",
     authDomain: "sa2022-2cf26.firebaseapp.com",

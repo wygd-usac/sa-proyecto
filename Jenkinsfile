@@ -29,6 +29,9 @@ pipeline {
     }
 
     stage('ImageBuild-MicroServicio Testing') {
+      when {
+        branch 'develop'
+      }
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente2-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
@@ -44,6 +47,9 @@ pipeline {
 
 
     stage('ImageBuild-MicroServicios Production') {
+      when {
+        branch 'main'
+      }
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente-production:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
@@ -96,6 +102,9 @@ pipeline {
     // }
 
     stage('Push-Microservicio Servicio Testing') {
+      when {
+        branch 'develop'
+      }
       environment {
         DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
       }
@@ -113,6 +122,9 @@ pipeline {
     }
 
     stage('Push-Microservicio Servicio Production') {
+      when {
+        branch 'main'
+      }
           environment {
             DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
           }
