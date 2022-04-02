@@ -1,20 +1,21 @@
-import {Component} from '@angular/core';
-import {RequestService} from '../../../services/request.service'
-import {Router} from "@angular/router";
-import Swal from 'sweetalert2'
+import { Component } from '@angular/core';
+import { RequestService } from '../../../services/request.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: 'typography.component.html',
 })
 export class TypographyComponent {
-  constructor(private router: Router, private servicio: RequestService) {
-  }
+  constructor(private router: Router, private servicio: RequestService) {}
 
   ngOnInit(): void {
     this.getPersonAll();
   }
 
   user: any;
+
+  editPerson(id: number) {}
 
   deletePerson(id_person: number, name: string, lastname: string) {
     Swal.fire({
@@ -24,19 +25,31 @@ export class TypographyComponent {
       showCancelButton: true,
       confirmButtonColor: '#1d9045',
       cancelButtonColor: '#a42828',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          this.servicio.deletePerson(id_person).subscribe((res: any) => {
-              Swal.fire(
-                'Deleted!',
-                'Se elimino el jugador o DT: ' + name + ' ' + lastname,
-                'success'
-              )
-            }
-            ,
-            err => {
+          this.servicio.deletePerson(id_person).subscribe(
+            (res: any) => {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Person deleted successfully ' + name + ' ' + lastname,
+              });
+              window.location.reload();
+            },
+            (err) => {
               console.log(err);
             }
           );
@@ -45,24 +58,23 @@ export class TypographyComponent {
             title: 'Error!',
             text: 'Do you want to continue',
             icon: 'error',
-            confirmButtonText: 'Cool'
-          })
+            confirmButtonText: 'Cool',
+          });
         }
       }
-    })
-
+    });
   }
 
   getPersonAll() {
     try {
-      this.servicio.getPersonAll().subscribe((res: any) => {
+      this.servicio.getPersonAll().subscribe(
+        (res: any) => {
           this.user = res.data;
           if (this.user.length > 0) {
             //console.log(this.user);
           }
-        }
-        ,
-        err => {
+        },
+        (err) => {
           console.log(err);
         }
       );
@@ -71,8 +83,8 @@ export class TypographyComponent {
         title: 'Error!',
         text: 'Do you want to continue',
         icon: 'error',
-        confirmButtonText: 'Cool'
-      })
+        confirmButtonText: 'Cool',
+      });
     }
   }
 }

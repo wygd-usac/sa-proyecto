@@ -10,6 +10,7 @@
         <thead cTableColor="dark">
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Photo</th>
           <th scope="col">Name</th>
           <th scope="col">Lastname</th>
           <th scope="col">Birthday</th>
@@ -24,6 +25,8 @@
         <tbody>
         <tr *ngFor="let person of user; index as i">
           <th scope="row">{{i + 1}}</th>
+          <td>
+          <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
           <td>{{person.name}}</td>
           <td>{{person.lastname}}</td>
           <td>{{person.birthday}}</td>
@@ -31,7 +34,7 @@
           <td>{{person.stand}}</td>
           <td>{{person.team}}</td>
           <td>{{person.nationality}}</td>
-          <td>
+          <td (click)="editPerson(person.id_person)">
             <svg cIcon name="cil-pencil" size="xl" >
 
             </svg>
