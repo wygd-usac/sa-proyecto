@@ -64,7 +64,7 @@
                 },
                 {
                   "replace": "src/proxy.conf.json",
-                  "with": "src/prox-production.conf.json"
+                  "with": "src/proxy-production.conf.json"
                 }
               ],
               "outputHashing": "all"
@@ -76,7 +76,7 @@
                 },
                 {
                   "replace": "src/proxy.conf.json",
-                  "with": "src/prox-test.conf.json"
+                  "with": "src/proxy-test.conf.json"
                 }
               ]
             },
