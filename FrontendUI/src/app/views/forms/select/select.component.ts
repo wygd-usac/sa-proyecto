@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent {
-
+  valor: number=1;
   constructor() { }
 
 }

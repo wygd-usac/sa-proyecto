@@ -9,6 +9,7 @@ import { SelectComponent } from './select/select.component';
 import { ChecksRadiosComponent } from './checks-radios/checks-radios.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ValidationComponent } from './validation/validation.component';
+import { ClienteEquipoComponent } from './cliente-equipo/cliente-equipo.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,13 @@ const routes: Routes = [
         component: ValidationComponent,
         data: {
           title: 'Validation'
+        }
+      },
+      {
+        path: 'cliente_equipo',
+        component: ClienteEquipoComponent,
+        data: {
+          title: 'Cliente'
         }
       }
     ]

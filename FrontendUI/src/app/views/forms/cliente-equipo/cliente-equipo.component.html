@@ -1,0 +1,31 @@
+<p>cliente-equipo works!</p>
+<input type="number" [(ngModel)]="valor" />
+
+<label>Stand</label>
+              <c-input-group class="mb-4">
+                <select #selectstand cSelect >
+                  <option *ngFor="let stand of listStands" #id_stand
+                          value="{{stand.id_stand}}" ngValue="{{stand.id_stand}}"
+                          (click)="getSelectedStand(stand)">
+                    {{stand.stand}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label>Team</label>
+              <c-input-group class="mb-3">
+                <select cSelect >
+                  <option *ngFor="let team of listTeams; index as i" #id_team selected="selected"
+                          value="{{team.id_team}}" (click)="getSelectedTeam(team.id_team)">
+                    {{team.name}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label>Country</label>
+              <c-input-group class="mb-3">
+                <select cSelect >
+                  <option id="{{country.id_Country}}" *ngFor="let country of listCountrys; index as i"
+                          selected="selected" value="{{country.id_Country}}" (click)="getSelectedCountry(country.id_Country)">
+                    {{country.country}}
+                  </option>
+                </select>
+              </c-input-group>
