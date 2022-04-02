@@ -92,11 +92,22 @@ async function getUser(id_user){
     }
 }
 
-async function verifyUser(email, code){
+async function getUserForEmail(email){
+    try {
+        let query = `call getUserEmail`+
+            `('${email}');`;
+        let result = await conexion.ejecutarQuery(query);
+        return result[0];
+    }catch(error){
+        return false;
+    }
+}
+
+async function verifyUser(code){
     try {
         let query = `call confirmEmail`+
-            `('${email}','${code}');`;
-        return await conexion.ejecutarInsercion(query);
+            `('${code}');`;
+        return await conexion.ejecutarQuery(query);
     }catch(error){
         return false;
     }
@@ -108,3 +119,4 @@ module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.getUser = getUser;
 module.exports.verifyUser = verifyUser;
+module.exports.getUserForEmail = getUserForEmail;

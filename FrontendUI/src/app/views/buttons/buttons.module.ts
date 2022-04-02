@@ -26,30 +26,33 @@ import {
 import { IconModule } from '@coreui/icons-angular';
 
 @NgModule({
-  declarations: [
-    ButtonsComponent,
-    ButtonGroupsComponent,
-    DropdownsComponent,
-  ],
-  imports: [
-    CommonModule,
-    ButtonsRoutingModule,
-    ButtonModule,
-    ButtonGroupModule,
-    GridModule,
-    IconModule,
-    CardModule,
-    UtilitiesModule,
-    DropdownModule,
-    SharedModule,
-    FormModule,
-    ReactiveFormsModule,
-    DocsComponentsModule,
-    NavbarModule,
-    CollapseModule,
-    NavModule,
-    NavbarModule
-  ]
+    declarations: [
+        ButtonsComponent,
+        ButtonGroupsComponent,
+        DropdownsComponent,
+    ],
+    exports: [
+        ButtonsComponent
+    ],
+    imports: [
+        CommonModule,
+        ButtonsRoutingModule,
+        ButtonModule,
+        ButtonGroupModule,
+        GridModule,
+        IconModule,
+        CardModule,
+        UtilitiesModule,
+        DropdownModule,
+        SharedModule,
+        FormModule,
+        ReactiveFormsModule,
+        DocsComponentsModule,
+        NavbarModule,
+        CollapseModule,
+        NavModule,
+        NavbarModule
+    ]
 })
 export class ButtonsModule {
 }

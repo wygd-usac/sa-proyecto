@@ -1,5 +1,5 @@
 ---
-- hosts: test
+- hosts: production
   become: true
   tasks:
     - name: ensure nginx is at the latest version
@@ -13,7 +13,7 @@
     - name: copy the nginx config file and restart nginx
       copy:
         remote_src: no
-        src: nginx.conf
+        src: nginx-production.conf
         dest: /etc/nginx/sites-available/nginx.conf
       become: yes
     - name: create symlink
@@ -24,7 +24,7 @@
       become: yes
     - name: Creates directory
       file:
-        path: Frontend
+        path: Frontend_production
         state: directory
         owner: app-admin
         group: app-admin
@@ -33,8 +33,8 @@
     - name: copy the content of the web site
       copy:
         remote_src: no
-        src: ../Frontend/dist/
-        dest: Frontend
+        src: ../FrontendUI/dist/
+        dest: Frontend_production
     - name: restart nginx
       service:
         name: nginx

@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     id_team: req.body.id_team,
     photo: req.body.photo,
   });
-  console.log(persona);
+  //console.log(persona);
   Persona.create(persona, (err, data) => {
     if (err)
       res.status(500).send({
@@ -110,6 +110,7 @@ exports.updateUser = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.query.id;
+  console.log("id ", id);
   Persona.remove(id, (err, data) => {
     if (err) {
       if (err.kind === "Jugador o DT no encontrado") {
@@ -148,6 +149,63 @@ exports.findAll = (req, res) => {
       res.send({
         status: 200,
         message: "Información de jugador o DT",
+        data: data,
+      });
+  });
+};
+
+exports.getStands = (req, res) => {
+  var id = req.query.id || "";
+
+  Persona.getStands(id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        status: 500,
+        message: "Error al obtener Stands",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Información de Stands",
+        data: data,
+      });
+  });
+};
+
+exports.getCountrys = (req, res) => {
+  var id = req.query.id || "";
+
+  Persona.getCountrys(id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        status: 500,
+        message: "Error al obtener Countrys",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Información de Countrys",
+        data: data,
+      });
+  });
+};
+
+exports.getTeams = (req, res) => {
+  var id = req.query.id || "";
+
+  Persona.getTeams(id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        status: 500,
+        message: "Error al obtener Teams",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Información de Teams",
         data: data,
       });
   });
