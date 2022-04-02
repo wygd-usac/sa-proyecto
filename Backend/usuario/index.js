@@ -3,7 +3,7 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
-var corsOptions = { origin: true, optionsSuccessStatus: 200 };
+var corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 const context = '/esb/usuario';
 const router = require('./rutas/router');
 
