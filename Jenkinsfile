@@ -173,7 +173,7 @@ pipeline {
     }
     stage('Deploy-frontend-test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'ls FrontendUI -a'
