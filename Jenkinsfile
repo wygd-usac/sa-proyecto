@@ -143,7 +143,7 @@ pipeline {
 
     stage('Build Frontend Test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'node -v'
