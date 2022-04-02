@@ -22,7 +22,7 @@ pipeline {
       steps {
         dir(path: 'Backend/servicio_administrativo') {
           sh 'npm install'
-          sh 'npm test'
+          //sh 'npm test'
         }
 
       }
@@ -170,7 +170,7 @@ pipeline {
     }
     stage('Deploy-Ansible-test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'ls -a'
