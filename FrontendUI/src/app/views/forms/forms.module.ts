@@ -24,7 +24,7 @@ import { ChecksRadiosComponent } from './checks-radios/checks-radios.component';
 import { InputGroupsComponent } from './input-groups/input-groups.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ValidationComponent } from './validation/validation.component';
-
+import { EditprofileComponent } from './editprofile/editprofile.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { ValidationComponent } from './validation/validation.component';
     ChecksRadiosComponent,
     InputGroupsComponent,
     LayoutComponent,
-    ValidationComponent
+    ValidationComponent,
+    EditprofileComponent
   ],
   imports: [
     CommonModule,
