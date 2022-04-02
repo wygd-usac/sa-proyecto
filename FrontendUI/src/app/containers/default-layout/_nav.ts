@@ -6,6 +6,7 @@ export function nivel(){
   console.log(x);
   //console.log(x == "1");
   let sesion : INavData[] = [];
+  // Usuario Administrador
   if( x == "1"){
     sesion = [
       {
@@ -216,37 +217,6 @@ export function nivel(){
           text: 'NEW'
         }
       },
-      {
-        title: true,
-        name: 'Extras'
-      },
-      {
-        name: 'Pages',
-        url: '/login',
-        iconComponent: { name: 'cil-star' },
-        children: [
-          {
-            name: 'Login',
-            url: '/login'
-          },
-          {
-            name: 'Register',
-            url: '/register'
-          },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
-          },
-          {
-            name: 'Home',
-            url: '/dashboard'
-          }
-        ]
-      },
     ];
   }
   else if( x== "2"){
@@ -425,65 +395,29 @@ export function nivel(){
           text: 'NEW'
         }
       },
-      {
-        title: true,
-        name: 'Extras'
-      },
-      {
-        name: 'Pages',
-        url: '/login',
-        iconComponent: { name: 'cil-star' },
-        children: [
-          {
-            name: 'Login',
-            url: '/login'
-          },
-          {
-            name: 'Register',
-            url: '/register'
-          },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
-          },
-          {
-            name: 'Home',
-            url: '/dashboard'
-          }
-        ]
-      },
     ];
   }
   else {
     sesion = [
       {
-        name: 'Pages',
+        name: 'Access',
         url: '/login',
         iconComponent: { name: 'cil-star' },
         children: [
           {
             name: 'Login',
-            url: '/login'
+            url: '/login',
+            iconComponent: { name: 'cil-lock-locked'}
           },
           {
             name: 'Register',
-            url: '/register'
-          },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
+            url: '/register',
+            iconComponent: { name: 'cil-task' }
           },
           {
             name: 'Home',
-            url: '/dashboard'
+            url: '/',
+            iconComponent: { name: 'cil-home' }
           }
         ]
       },
