@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { ButtonGroupsComponent } from './button-groups/button-groups.component';
@@ -15,6 +16,7 @@ import {
   CardModule,
   CollapseModule,
   DropdownModule,
+  TableModule,
   FormModule,
   GridModule,
   NavbarModule,
@@ -50,6 +52,7 @@ import { IconModule } from '@coreui/icons-angular';
         DocsComponentsModule,
         NavbarModule,
         CollapseModule,
+        TableModule,
         NavModule,
         NavbarModule
     ]

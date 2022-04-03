@@ -25,6 +25,43 @@ export class RequestService {
     this.url_server_admin = environment.base_url;
   }
 
+  //Estadios
+  getStadiums(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/stadium', {})
+  }
+
+  deleteStadium(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/stadium/?id='+id, {})
+  }
+
+  //Partido 
+  getSoccer_Game(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
+  }
+
+  deleteSoccer_Game(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/soccer-game/?id='+id, {})
+  }
+
+  //Equipo
+  getTeam(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/team', {})
+  }
+
+  deleteTeam(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/team/?id='+id, {})
+  }
+
+  //Competencia
+  getCompetition(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/competition', {})
+  }
+
+  deleteCompetition(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/competition/?id='+id, {})
+  }
+
+
   getCountrys(): any{
     return this.http.get(this.url_server_admin + 'esb/administracion/country/', {})
   }

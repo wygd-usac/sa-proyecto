@@ -50,7 +50,7 @@ Soccer_Game.updateById = (id, soccer_game, result) => {
 
 Soccer_Game.getAll = (id, result) => {
     //let query = "SELECT * FROM Estadio";
-    let query = "select id_partido,game_date,attendees,result_local, result_visiting,state,incidents,id_stadium,id_team_local,(Select name from Equipo where id_team_local = id_team) as team_local,id_team_visiting, (Select name from Equipo where id_team_visiting = id_team) as team_visiting,id_winner, (Select name from Equipo where id_winner = id_team) as Winner, id_competicion, (Select name from Competencia where id_competicion = id_competencia) as Competencia From Partido";
+    let query = "select id_partido,game_date,attendees,result_local, result_visiting,state,incidents,id_stadium, (Select name from Estadio where id_stadium = id_Estadio) as stadium,id_team_local,(Select name from Equipo where id_team_local = id_team) as team_local,id_team_visiting, (Select name from Equipo where id_team_visiting = id_team) as team_visiting,id_winner, (Select name from Equipo where id_winner = id_team) as Winner, id_competicion, (Select name from Competencia where id_competicion = id_competencia) as Competencia From Partido";
   
     if(id == ''){
       conexion.query(query, (err, res) => {

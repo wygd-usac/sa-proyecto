@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Buttons'
+      title: 'empleado'
     },
     children: [
       {
@@ -27,14 +27,14 @@ const routes: Routes = [
         path: 'button-groups',
         component: ButtonGroupsComponent,
         data: {
-          title: 'Button groups'
+          title: 'estadios'
         }
       },
       {
         path: 'dropdowns',
         component: DropdownsComponent,
         data: {
-          title: 'Dropdowns'
+          title: 'partido'
         }
       },
     ]
