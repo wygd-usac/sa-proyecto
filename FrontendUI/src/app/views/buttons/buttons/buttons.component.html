@@ -1,12 +1,253 @@
 <div class="fade-in">
-  <c-card class="mb-4">
+  <c-card class="mb-5">
     <c-card-header>
       <strong>
         Reporte de Usuarios por Equipo
       </strong>
     </c-card-header>
     <c-card-body>
-
+      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+        <label>Team</label>
+        <c-input-group class="m-md-auto col-1">
+          <select cSelect formControlName="selectteam">
+            <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
+                    value="{{team.id_team}}" >
+              {{team.name}}
+            </option>
+          </select>
+        </c-input-group>
+        <br>
+        <div class="d-grid align-content-center">
+          <button cButton color="success" type="submit">Search </button>
+        </div>
+        <br>
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let team of listSubsByTeam; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{team.name}}</td>
+            <td>{{team.lastname}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
     </c-card-body>
   </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte de Usuarios Con o Sin Membresia
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Membership</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserMembership; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.membership}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte Top Cantidad de Membresias
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Membership</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserMembershipTop; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.membership}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte de Usuarios por Pais
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscarUser()">
+        <label>Country</label>
+        <c-input-group class="m-md-auto col-1">
+          <select cSelect formControlName="selectcountry">
+            <option *ngFor="let country of listCountrys; index as i" ngValue="{{country.id_Country}}"
+                    value="{{country.id_Country}}" >
+              {{country.country}}
+            </option>
+          </select>
+        </c-input-group>
+        <br>
+        <div class="d-grid align-content-center">
+          <button cButton color="success" type="submit">Search </button>
+        </div>
+        <br>
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserByCountry; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte Mas Dinero Gastado
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Membership</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserExpenses; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+            <td>${{user.membership}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte de Usuarios por Genero
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscarUserbyGenre()">
+        <label>Genero</label>
+        <c-input-group class="m-md-auto col-1">
+          <select cSelect formControlName="selectgenre">
+            <option ngValue="F" value="F" >Femenino</option>
+            <option ngValue="M" value="F" >Masculino</option>
+          </select>
+        </c-input-group>
+        <br>
+        <div class="d-grid align-content-center">
+          <button cButton color="success" type="submit">Search </button>
+        </div>
+        <br>
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserByGenre; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte de Usuarios por Edad
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscarUserbyAge(edad.value)">
+        <label>Edad</label>
+        <c-input-group class="m-md-auto col-1">
+          <input autoComplete="edad" #edad type="number" cFormControl placeholder="age" />
+        </c-input-group>
+        <br>
+        <div class="d-grid align-content-center">
+          <button cButton color="success" type="submit">Search </button>
+        </div>
+        <br>
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of listUserByAge; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.lastname}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
 </div>

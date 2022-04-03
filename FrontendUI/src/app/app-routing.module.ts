@@ -36,7 +36,7 @@ const routes: Routes = [
           import('./views/base/base.module').then((m) => m.BaseModule)
       },
       {
-        path: 'buttons',
+        path: 'reportes',
         loadChildren: () =>
           import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)
       },

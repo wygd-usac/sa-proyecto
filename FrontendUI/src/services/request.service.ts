@@ -25,16 +25,45 @@ export class RequestService {
     this.url_server_admin = environment.base_url;
   }
 
+  //Reportes
+  getSubsByTeam(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/suscribe/?id='+id, {});
+  }
+
+  getUserByCountry(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/country/?id='+id, {});
+  }
+
+  getUserMembership():any{
+    return this.http.get(this.url_server + 'esb/reporte/membership', {});
+  }
+
+  getUserExpenses():any{
+    return this.http.get(this.url_server + 'esb/reporte/expenses', {});
+  }
+
+  getUserByGenre(id:string):any{
+    return this.http.get(this.url_server + 'esb/reporte/genre/?genero='+id, {});
+  }
+
+  getUserByAge(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/age/?edad='+id, {});
+  }
+
+  getUserMembershipTop():any{
+    return this.http.get(this.url_server + 'esb/reporte/memberships', {});
+  }
+
   //Estadios
   getStadiums(): any{
-    return this.http.get(this.url_server + 'esb/servicio_administrativo/stadium', {})
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/stadium', {});
   }
 
   deleteStadium(id:number):any{
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/stadium/?id='+id, {})
   }
 
-  //Partido 
+  //Partido
   getSoccer_Game(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
   }

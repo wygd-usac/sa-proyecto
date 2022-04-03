@@ -34,16 +34,16 @@ export function nivel(){
       },
       {
         name: 'Usuarios',
-        url: '/buttons',
+        url: '/reportes/usuario',
         iconComponent: {name: 'cil-cursor'}
       },
           {
             name: 'Buttons',
-            url: '/buttons/buttons'
+            url: '/reportes/usuario'
           },
           {
             name: 'Button groups',
-            url: '/buttons/button-groups'
+            url: '/reportes/empleado'
           },
           {
             name: 'Dropdowns',

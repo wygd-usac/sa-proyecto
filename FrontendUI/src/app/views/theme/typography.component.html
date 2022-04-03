@@ -36,14 +36,12 @@
           <td>{{person.nationality}}</td>
           <td (click)="editPerson(person.id_person)">
             <svg cIcon name="cil-pencil" size="xl" >
-
             </svg>
           </td>
           <td (click)="deletePerson(person.id_person,person.name,person.lastname)">
             <svg cIcon name="cil-trash" size="xl"></svg>
           </td>
         </tr>
-
         </tbody>
       </table>
     </c-card-body>
