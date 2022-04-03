@@ -56,6 +56,10 @@ export class RequestService {
     return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
   }
 
+  getUser(){
+    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('id_usuario'))
+  }
+
   registrerUser(
     _name: any,
     _last_name: any,

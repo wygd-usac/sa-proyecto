@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
-  ButtonGroupModule,
-  ButtonModule,
-  CardModule,
-  DropdownModule,
-  FormModule,
-  GridModule,
-  ListGroupModule,
-  SharedModule
+    ButtonGroupModule,
+    ButtonModule,
+    CardModule,
+    DropdownModule,
+    FormModule,
+    GridModule,
+    ListGroupModule, ModalModule,
+    SharedModule
 } from '@coreui/angular';
 
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
@@ -38,23 +38,24 @@ import { EditprofileComponent } from './editprofile/editprofile.component'
     ValidationComponent,
     EditprofileComponent
   ],
-  imports: [
-    CommonModule,
-    FormsRoutingModule,
-    DocsComponentsModule,
-    CardModule,
-    FormModule,
-    GridModule,
-    ButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FormModule,
-    ButtonModule,
-    ButtonGroupModule,
-    DropdownModule,
-    SharedModule,
-    ListGroupModule
-  ]
+    imports: [
+        CommonModule,
+        FormsRoutingModule,
+        DocsComponentsModule,
+        CardModule,
+        FormModule,
+        GridModule,
+        ButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FormModule,
+        ButtonModule,
+        ButtonGroupModule,
+        DropdownModule,
+        SharedModule,
+        ListGroupModule,
+        ModalModule
+    ]
 })
 export class CoreUIFormsModule {
 }

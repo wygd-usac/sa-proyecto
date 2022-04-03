@@ -219,6 +219,7 @@ export function nivel(){
       },
     ];
   }
+  // usuario cliente
   else if( x== "2"){
     sesion = [
       {
@@ -394,6 +395,22 @@ export function nivel(){
           color: 'info',
           text: 'NEW'
         }
+      },
+    ];
+  }
+  // Usuario normal
+  else if ( x== "3"){
+    sesion = [
+      {
+        name: 'Profile',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Setting',
+            url: '/forms/editprofile',
+            iconComponent: { name: 'cil-settings'}
+          },
+        ]
       },
     ];
   }
