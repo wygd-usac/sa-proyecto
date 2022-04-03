@@ -13,18 +13,19 @@ import Swal from "sweetalert2";
 })
 export class EditprofileComponent implements OnInit {
 
-  user : any;
+  user : any = {id_user: '', name: '', last_name: '', password: '',
+    phone: '', gender: '', birth_date: '', photo : '' };
 
   constructor(private router: Router, private servicio: RequestService, private storage: AngularFireStorage) {
 
   }
-
 
   public visible = false;
   public mensaje = '';
 
   toggleLiveDemo() {
     this.visible = !this.visible;
+    this.router.navigate(['/forms/editprofile']);
   }
 
   handleLiveDemoChange(event: any) {
@@ -43,7 +44,6 @@ export class EditprofileComponent implements OnInit {
       this.servicio.getUser().subscribe((res: any) => {
           if (res instanceof Array) {
             this.user = res[0];
-            alert(this.user.name);
             //this.urlImage = res[0].photo;
           } else {
             this.mensaje = 'Ocurrio un error';
@@ -52,7 +52,7 @@ export class EditprofileComponent implements OnInit {
         }
         ,
         err => {
-          this.mensaje = 'credenciales invalidas';
+          this.mensaje = 'ocurrio un error, asegurese estar loageado';
           this.toggleLiveDemo()
         }
       );
@@ -60,6 +60,37 @@ export class EditprofileComponent implements OnInit {
       this.mensaje = 'ocurrio un error';
       this.toggleLiveDemo()
     }
+  }
+
+  editUsuer( name, last_name, password, repeat_pass, phone, gender, birth_date, photo ){
+    if( password !== repeat_pass ){
+      this.mensaje = 'contraseñas no coinciden';
+      this.toggleLiveDemo();
+      return;
+    }
+    if( photo === '' ){
+      photo = localStorage.getItem("photo")
+    }
+    this.servicio.editUser( {
+      // @ts-ignore
+      id_user: parseInt(localStorage.getItem('id_usuario')),
+      name: name,
+      last_name: last_name,
+      password: password,
+      phone: phone,
+      gender: gender,
+      birth_date: birth_date,
+      photo : photo } ).subscribe(
+      (res: any) => {
+        this.mensaje = res.msg;
+        this.toggleLiveDemo();
+      }
+      ,
+      err => {
+        this.mensaje = 'ocurrio un error, asegurese estar loageado';
+        this.toggleLiveDemo()
+      }
+    );
   }
 
   onUpload(e){

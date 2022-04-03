@@ -34,7 +34,7 @@ export class RequestService {
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/stadium/?id='+id, {})
   }
 
-  //Partido 
+  //Partido
   getSoccer_Game(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
   }
@@ -95,6 +95,11 @@ export class RequestService {
 
   getUser(){
     return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('id_usuario'))
+  }
+
+  editUser( user ){
+    console.log(user);
+    return this.http.post(  this.url_server + '/esb/usuario/update' , {user})
   }
 
   registrerUser(

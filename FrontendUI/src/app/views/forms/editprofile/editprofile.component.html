@@ -52,7 +52,16 @@
           </c-input-group>
 
           <div class="d-grid">
-            <button cButton color="success">Update</button>
+            <button cButton color="success"
+                    (click)="editUsuer(
+                    name.value,
+                    lastaname.value,
+                    pass.value,
+                    pass2.value,
+                    phone.value,
+                    genero.value,
+                    birthdate.value,
+                    photo.value)" >Update</button>
           </div>
           <img  class="rounded mx-auto d-block"/>
         </form>
