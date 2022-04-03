@@ -2,24 +2,77 @@
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header ngPreserveWhitespaces>
-        <strong>Layout</strong> <small>Form grid</small>
+        <div>
+          <strong>Usuario</strong> <small>Editar</small>
+          <img [src]="user.photo" class="rounded mx-auto d-block"/>
+        </div>
       </c-card-header>
       <c-card-body>
-        <p class="text-medium-emphasis small">
-          More complex forms can be built using our grid classes. Use these for form layouts
-          that require multiple columns, varied widths, and additional alignment options.
-        </p>
-        <app-docs-example href="forms/layout#form-grid">
-          <c-row>
-            <c-col xs>
-              <input aria-label="First name" cFormControl placeholder="First name" />
-            </c-col>
-            <c-col xs>
-              <input aria-label="Last name" cFormControl placeholder="Last name" />
-            </c-col>
-          </c-row>
-        </app-docs-example>
+
+        <form cForm>
+          <c-input-group class="mb-3">
+              <input autoComplete="name" #name cFormControl placeholder="name" [value]="user.name" />
+              <span class="input-group-text">Name</span>
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <input autoComplete="last_name" #lastaname cFormControl placeholder="last name" [value]="user.lastname" />
+            <span class="input-group-text">Last Name</span>
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <input autoComplete="new-password" #pass cFormControl placeholder="Password" type="password" [value]="user.password" />
+            <span class="input-group-text">Password</span>
+          </c-input-group>
+          <c-input-group class="mb-4">
+            <input autoComplete="new-password" #pass2 cFormControl placeholder="Repeat password" type="password"  [value]="user.password" />
+            <span class="input-group-text">Repeat Password</span>
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <input autoComplete="phone" #phone type="number" cFormControl placeholder="phone" [value]="user.telephone" />
+            <span class="input-group-text">Phone</span>
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <select cSelect>
+              <option #genero selected="selected" [value]="user.genre">M</option>
+              <option #genero value="F">F</option>
+            </select>
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <input autoComplete="birth_date" #birthdate type="date" [value]="formatDate(user.birthday)" cFormControl placeholder="birth date" />
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <span class="input-group-text">
+            <div class="avatar">
+                <img class="avatar-img" [src]="photo.value" alt="image"/>
+            </div>
+            </span>
+            <input disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
+          </c-input-group>
+
+          <div class="d-grid">
+            <button cButton color="success">Update</button>
+          </div>
+          <img  class="rounded mx-auto d-block"/>
+        </form>
+
       </c-card-body>
     </c-card>
   </c-col>
 </c-row>
+
+
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Mensaje</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>{{mensaje}}</c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>

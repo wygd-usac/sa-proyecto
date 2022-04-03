@@ -35,10 +35,15 @@
                 <input autoComplete="birth_date" #birthdate type="date" cFormControl placeholder="birth date" />
               </c-input-group>
               <c-input-group class="mb-3">
-                <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
+                <span class="input-group-text">
+                <div class="avatar">
+                  <img class="avatar-img" [src]="photo.value" alt="image"/>
+                </div>
+                </span>
+                <input cFormControl disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
               </c-input-group>
               <c-input-group class="mb-3">
-                <input cFormControl disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
+                <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
               </c-input-group>
               <c-input-group class="mb-3">
                 <input autoComplete="address" #address cFormControl placeholder="address" />

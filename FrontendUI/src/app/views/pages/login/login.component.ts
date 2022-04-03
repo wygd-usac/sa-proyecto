@@ -40,7 +40,7 @@ export class LoginComponent {
             localStorage.setItem("email", this.user.email);
             localStorage.setItem("token", this.user.token);
             localStorage.setItem("photo", this.user.photo);
-            localStorage.setItem("idu", this.user.id);
+            localStorage.setItem("id_usuario", this.user.id_user);
             this.router.navigate(['/administracion']);
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({
