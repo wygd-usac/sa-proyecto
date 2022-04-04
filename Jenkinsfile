@@ -141,20 +141,20 @@ pipeline {
           }
         }
 
-    // stage('Build Frontend Test') {
-    //   when {
-    //     branch 'develop'
-    //   }
-    //   steps {
-    //     sh 'node -v'
-    //     dir(path: 'FrontendUI') {
-    //       sh 'pwd'
-    //       sh 'npm install'
-    //       sh 'ng build --configuration=testing'
-    //       sh 'ls -a'
-    //     }
-    //   }
-    // }
+    stage('Build Frontend Test') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'node -v'
+        dir(path: 'FrontendUI') {
+          sh 'pwd'
+          sh 'npm install'
+          sh 'ng build --configuration=testing'
+          sh 'ls -a'
+        }
+      }
+    }
 
     stage('Build Frontend Production') {
       when {
@@ -171,15 +171,15 @@ pipeline {
 
       }
     }
-    // stage('Deploy-frontend-test') {
-    //   when {
-    //     branch 'develop'
-    //   }
-    //   steps {
-    //     sh 'ls FrontendUI -a'
-    //     sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend-test.yaml'
-    //   }
-    // }
+    stage('Deploy-frontend-test') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        sh 'ls FrontendUI -a'
+        sh 'ansible-playbook -i Ansible/inventory.test Ansible/playbook-frontend-test.yaml'
+      }
+    }
     stage('Deploy-Ansible-test') {
       when {
         branch 'develop'
