@@ -15,10 +15,13 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-
+    if(localStorage.getItem("rol") !== null){
+      this.router.navigate(['/forms/editprofile'])
+    }
   }
 
   public visible = false;
+
   public mensaje = '';
 
   toggleLiveDemo() {
@@ -28,6 +31,7 @@ export class LoginComponent {
   handleLiveDemoChange(event: any) {
     this.visible = event;
   }
+
 
   user : any;
   iniciar(email: string, password: string) {
@@ -42,6 +46,7 @@ export class LoginComponent {
             localStorage.setItem("photo", this.user.photo);
             localStorage.setItem("full_name", this.user.name+' '+this.user.lastname);
             localStorage.setItem("idu", this.user.id_user);
+            localStorage.setItem("id_user", this.user.id_user);
             this.router.navigate(['/administracion']);
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({

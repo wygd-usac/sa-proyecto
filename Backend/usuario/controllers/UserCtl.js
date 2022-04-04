@@ -147,7 +147,7 @@ async function UpdateUser(req, res, next){
 async function deleteUser(req, res, next){
     try {
         const id_user = req.body.id_user;
-        let resultado = await UserModal.updateStateJugador(id_user, state);
+        let resultado = await UserModal.deleteUser(id_user);
         if(resultado){
             res.status(200).json({msg:"elimando correctamente"});
         }else{
