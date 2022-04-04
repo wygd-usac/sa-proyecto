@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RequestService } from '../../../../services/request.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   templateUrl: './button-groups.component.html'
@@ -10,11 +11,76 @@ import Swal from 'sweetalert2';
 export class ButtonGroupsComponent {
 
   constructor(
-    private router: Router, private servicio: RequestService
+    private router: Router, private servicio: RequestService,
+    private fb: FormBuilder
   ) { }
+  // @ts-ignore
+  select: FormGroup;
+  listTeams:any;
+  id_team = 0;
+  listNewsByTeam:any;
+  listNews:any;
 
   ngOnInit(): void {
+    const rol = localStorage.getItem("rol");
+    // @ts-ignore
+    if (rol != 1) {
+      this.router.navigate(['/404']);
+    }
     this.getStadiums();
+    this.select = this.fb.group({
+      selectstand: [null],
+      selectteam: [null],
+      selectcountry: [null],
+      selectgenre:[null]
+    });
+    this.getSelects();
+    this.getNews()
+  }
+
+  getNews(){
+    try {
+      this.servicio.getNews().subscribe(
+        (res: any) => {
+          this.listNews = res.data;
+          if (this.listNews.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los equipos')}
+  }
+
+  getSelects(){
+    try {
+      this.servicio.getTeams().subscribe(
+        (res: any) => {
+          this.listTeams = res.data;
+          if (this.listTeams.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los equipos')}
+  }
+  buscar(){
+    this.id_team = this.select.value.selectteam;
+    try {
+      this.servicio.getNewsByTeam(this.id_team).subscribe(
+        (res: any) => {
+          this.listNewsByTeam = res.data;
+          if (this.listNewsByTeam.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los equipos')}
   }
   stadium: any;
 
@@ -87,6 +153,6 @@ export class ButtonGroupsComponent {
       }
     });
   }
-  
+
 
 }

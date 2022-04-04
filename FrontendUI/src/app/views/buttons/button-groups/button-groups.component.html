@@ -2,42 +2,75 @@
   <c-card class="mb-4">
     <c-card-header>
       <strong>
-        Estadios
+        Reporte Empleados con Mas y Menos Noticias por Equipo
       </strong>
     </c-card-header>
     <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+      <label>Team</label>
+      <c-input-group class="m-md-auto col-1">
+        <select cSelect formControlName="selectteam">
+          <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
+                  value="{{team.id_team}}" >
+            {{team.name}}
+          </option>
+        </select>
+      </c-input-group>
+      <br>
+      <div class="d-grid align-content-center">
+        <button cButton color="success" type="submit">Search </button>
+      </div>
+      <br>
       <table cTable [responsive]="true" >
         <thead cTableColor="dark">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
-          <th scope="col">Fundation_Date</th>
-          <th scope="col">Photo</th>
-          <th scope="col">Capacity</th>
-          <th scope="col">State</th>
-          <th scope="col">Address</th>
-          <th scope="col">Country</th>
-          <th scope="col">Delete</th>
+          <th scope="col">Lasname</th>
+          <th scope="col">News</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let x of stadium; index as i">
+        <tr *ngFor="let x of listNewsByTeam; index as i">
           <th scope="row">{{i + 1}}</th>
           <td>{{x.name}}</td>
-          <td>{{x.fundation_date}}</td>
-          <td>{{x.photo}}</td>
-          <td>{{x.capacity}}</td>
-          <td>{{x.state}}</td>
-          <td>{{x.address}}</td>
-          <td>{{x.country}}</td>
-
-          <td (click)="deleteStadium(x.id_Estadio,x.name)">
-            <svg cIcon name="cil-trash" size="xl"></svg>
-          </td>
+          <td>{{x.lastname}}</td>
+          <td>{{x.news}}</td>
         </tr>
-
         </tbody>
       </table>
+      </form>
+    </c-card-body>
+  </c-card>
+
+
+  <c-card class="mb-5">
+    <c-card-header>
+      <strong>
+        Reporte de Usuarios con Mas Noticias
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <form cForm [formGroup]="select" (ngSubmit)="getNews()">
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">News</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let x of listNews; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{x.name}}</td>
+            <td>{{x.lastname}}</td>
+            <td>{{x.news}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
     </c-card-body>
   </c-card>
 

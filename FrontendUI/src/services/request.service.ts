@@ -54,6 +54,14 @@ export class RequestService {
     return this.http.get(this.url_server + 'esb/reporte/memberships', {});
   }
 
+  getNewsByTeam(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/news/team/?equipo='+id, {});
+  }
+
+  getNews():any{
+    return this.http.get(this.url_server + 'esb/reporte/news', {});
+  }
+
   //Estadios
   getStadiums(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/stadium', {});

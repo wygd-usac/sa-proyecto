@@ -34,6 +34,11 @@ export class ButtonsComponent {
   listUserByAge:any;
 
   ngOnInit(): void {
+    const rol = localStorage.getItem("rol");
+    // @ts-ignore
+    if (rol != 1) {
+      this.router.navigate(['/404']);
+    }
     this.getSelects();
     this.select = this.fb.group({
       selectstand: [null],
