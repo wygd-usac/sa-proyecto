@@ -10,7 +10,9 @@ import { ChecksRadiosComponent } from './checks-radios/checks-radios.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ValidationComponent } from './validation/validation.component';
 import {EditprofileComponent} from "./editprofile/editprofile.component";
-
+import { ReportesclienteComponent } from './reportescliente/reportescliente.component';
+import { ClienteteamComponent } from './clienteteam/clienteteam.component';
+import { PersonageComponent } from './personage/personage.component';
 const routes: Routes = [
   {
     path: '',
@@ -83,6 +85,27 @@ const routes: Routes = [
         component: EditprofileComponent,
         data: {
           title: 'Edit profile'
+        }
+      },
+      {
+        path: 'reportescliente',
+        component: ReportesclienteComponent,
+        data: {
+          title: 'Reporte Cliente'
+        }
+      },
+      {
+        path: 'clienteteam',
+        component: ClienteteamComponent,
+        data: {
+          title: 'Reporte Cliente Teams'
+        }
+      },
+      {
+        path: 'personage',
+        component: PersonageComponent,
+        data: {
+          title: 'Reporte Cliente Persons age'
         }
       }
     ]

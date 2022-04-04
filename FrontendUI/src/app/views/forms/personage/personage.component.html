@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <select id="menormayor" class="form-control" [(ngModel)]="tiporeporte">
+                <option *ngFor="let option of options; index as i" ngValue="{{option.id}}">
+                {{option.description}}
+                </option>
+            </select>
+        </div>
+        <div class="col-4">
+            <c-input-group class="mb-3">
+                <span cInputGroupText id="inputGroup-sizing-default">Edad</span>
+                <input aria-describedby="inputGroup-sizing-default"
+                       aria-label="Sizing example input"
+                       cFormControl
+                       [(ngModel)]="age"
+                />
+              </c-input-group>
+        </div>
+        <div class="col-4">
+            <button cButton color="primary" (click)="buscarPersonas()" >Mostrar</button>
+        </div>
+        
+    </div>
+    <div class="row">
+        
+            <div class="fade-in">
+                <c-card class="mb-4">
+                  <c-card-header>
+                    <strong>
+                      Personas
+                    </strong>
+                  </c-card-header>
+                  <c-card-body>
+                    <table cTable [responsive]="true">
+                      <thead cTableColor="dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Id</th>
+                        <!-- <th scope="col">Name</th> -->
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Equipo</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          
+
+                        <tr *ngFor="let person of persons; index as i">
+                            <th scope="row">{{i + 1}}</th>
+                            <td>
+                            <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
+                            <td>{{person.id_person}}</td>
+                            <td>{{person.name}}</td>
+                            <td>{{person.lastname}}</td>
+                            <td>{{person.age}}</td>
+                            <td>{{person.type}}</td>
+                            <!-- <td (click)="editPerson(person.id_person)">
+                              <svg cIcon name="cil-pencil" size="xl" >
+                  
+                              </svg>
+                            </td> -->
+                            <td >
+                                <button [cModalToggle]="scrollableLongContentModal.id" class="btn btn-sm btn-primary" (click)="verEquiposPersona(person.id_person)"> Equipos</button>
+                              </td>
+                          </tr>
+
+                      
+              
+                      </tbody>
+                    </table>
+                  </c-card-body>
+                </c-card>
+              
+              </div>
+        
+    </div>
+</div>
+
+
+<c-modal #scrollableLongContentModal id="scrollableLongContentModal" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+    <button [cModalToggle]="scrollableLongContentModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="longContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="scrollableLongContentModal.id" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Save changes</button>
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #longContent>
+    <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Equipo</th> 
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipop of equipos; index as i">
+                <th scope="row">{{i + 1}}</th>
+                
+                <td>{{equipop.name_person}}</td>
+                <td>{{equipop.name_team}}</td>
+                
+              </tr>
+
+        </tbody>
+      </table>
+</ng-template>

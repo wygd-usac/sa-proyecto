@@ -56,7 +56,7 @@ router.post('/reset',validate_session,async (req,res) => {
     const result =  dataOp.getResponse(200,"Se ha enviado un correo para reestablecer la clave.");
     res.send(JSON.stringify(result));
 });
-
+//http://localhost:4200/#/forms/clienteteam
 router.post('/follow',validate_session,async (req,res) => {
     const {id_client,id_team} = req.body;
     if(id_client == undefined || id_team == undefined){
@@ -68,7 +68,7 @@ router.post('/follow',validate_session,async (req,res) => {
     console.log(result);
     res.send(JSON.stringify(result));
 });
-
+//http://localhost:4200/#/forms/clienteteam
 router.get('/notifications',validate_session, async (req,res) => {
     const {id} = req.query;
     if(id == undefined){
@@ -90,19 +90,20 @@ router.post('/quiniela',validate_session,async (req,res) => {
 });
 
 //------------------------------delete team /esb/team/delete/:id
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/person/',validate_session,async (req,res)=>{
     const {id_team} = req.query;
     if(id_team == undefined){
-        res.send(dataOp.getResponse(400,"Error en el id del equipo."));
+        res.status(400).send(dataOp.getResponse(400,"Error en el id del equipo."));
     }
     console.log(id_team);
     const result = await dataOp.getTeamPersons(id_team);
-    res.send(result);
+    res.status(200).send(result);
 });
 
 
 
-
+//http://localhost:4200/#/forms/personage
 router.get('/reports/person/higher/',validate_session,async (req,res) => {
     const {edad} = req.query;
     if(edad == undefined){
@@ -115,7 +116,7 @@ router.get('/reports/person/higher/',validate_session,async (req,res) => {
 });
 
 
-
+//http://localhost:4200/#/forms/personage
 router.get('/reports/person/lower/',validate_session,async (req,res) => {
     const {edad} = req.query;
     if(edad == undefined){
@@ -128,7 +129,7 @@ router.get('/reports/person/lower/',validate_session,async (req,res) => {
 });
 
 
-
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/competition/team/',validate_session,async (req,res) => {
     const {competicion} = req.query;
     if(competicion == undefined){
@@ -141,7 +142,7 @@ router.get('/reports/competition/team/',validate_session,async (req,res) => {
 });
 
 
-
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/country/team/',validate_session,async (req,res) => {
     const {pais} = req.query;
     if(pais == undefined){
@@ -155,6 +156,7 @@ router.get('/reports/country/team/',validate_session,async (req,res) => {
 
 
 //## Estadios en X país
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/country/stadium/',validate_session,async (req,res) => {
     const {pais} = req.query;
     if(pais == undefined){
@@ -167,6 +169,7 @@ router.get('/reports/country/stadium/',validate_session,async (req,res) => {
 });
 
 //## Estadios con capacidad menor o igual a X
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/stadium/capacity/',validate_session,async (req,res) => {
     const {capacidad} = req.query;
     if(capacidad == undefined){
@@ -180,6 +183,7 @@ router.get('/reports/stadium/capacity/',validate_session,async (req,res) => {
 
 
 //## Equipos segun antiguedad
+//http://localhost:4200/#/forms/clienteteam
 router.get('/reports/team/age/',validate_session,async (req,res) => {
     const {edad} = req.query;
     if(edad == undefined){
@@ -192,7 +196,7 @@ router.get('/reports/team/age/',validate_session,async (req,res) => {
 });
 
 
-
+//http://localhost:4200/#/forms/personage
 //## Histórico de partidos de X equipo
 router.get('/reports/team/game/',validate_session,async (req,res) => {
     const {equipo} = req.query;
@@ -205,6 +209,7 @@ router.get('/reports/team/game/',validate_session,async (req,res) => {
     res.send(result);
 });
 
+//http://localhost:4200/#/forms/personage
 //## Equipos en los que ha estado o dirigido X técnico o jugador
 router.get('/reports/team/person/',validate_session,async (req,res) => {
     const {persona} = req.query;
@@ -217,7 +222,7 @@ router.get('/reports/team/person/',validate_session,async (req,res) => {
     res.send(result);
 });
 
-
+//http://localhost:4200/#/forms/clienteteam
 //## Partidos donde hubo al menos X goles
 router.get('/reports/game/goal/',validate_session,async (req,res) => {
     const {goals} = req.query;
@@ -254,6 +259,7 @@ router.get('/reports/team/competitions',validate_session,async (req,res) => {
     res.send(result);
 });
 
+//http://localhost:4200/#/forms/clienteteam
 //## Listado de partidos en X año
 router.get('/reports/games/year',validate_session,async (req,res) => {
     const {anio} = req.query;
@@ -267,7 +273,7 @@ router.get('/reports/games/year',validate_session,async (req,res) => {
 });
 
 
-
+//http://localhost:4200/#/forms/clienteteam
 //## Listado de partidos entre X equipo contra Y equipo
 router.get('/reports/games/teams',validate_session,async (req,res) => {
     const {local,visitante} = req.query;

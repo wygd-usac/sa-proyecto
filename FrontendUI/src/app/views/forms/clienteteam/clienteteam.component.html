@@ -1,0 +1,540 @@
+
+<c-card class="mb-2">
+  <c-card-body>
+
+
+
+<h1>Reporte: Jugadores/Entrenador que pertenecen a un equipo</h1>
+    <div class="row mb-3">
+        <div class="col-1">
+            <label class="font-weight-bold" for="#equipos">Team</label>
+        </div>
+        <div class="col-4">
+            <select id="equipos" class="form-control" [(ngModel)]="equipoSeleccionado">
+                <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}">
+                {{team.name}} - {{team.id_team}}
+                </option>
+            </select>
+        </div>
+        <div class="col-7">
+          
+            <button [cModalToggle]="modalPersonas.id" class="btn btn-primary" (click)="verPersonas()">Ver personas</button>
+         
+          
+            <button class="btn btn-secondary" (click)="verNotificaciones()" [cModalToggle]="modalNotificaciones.id">Ver Notificaciones</button>
+          
+          
+            <button class="btn btn-light" (click)="follow()">Seguir</button>  
+            
+        </div>
+    </div>
+  </c-card-body>
+</c-card>
+
+
+    <c-modal #modalPersonas id="modalPersonas" scrollable size="lg">
+      <c-modal-header>
+        <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+        <button [cModalToggle]="modalPersonas.id" cButtonClose></button>
+      </c-modal-header>
+      <c-modal-body>
+        <ng-container *ngTemplateOutlet="personasContent"></ng-container>
+      </c-modal-body>
+      <c-modal-footer>
+        <button [cModalToggle]="modalPersonas.id" cButton color="secondary">
+          Close
+        </button>
+
+      </c-modal-footer>
+    </c-modal>
+
+  <ng-template #personasContent>
+    <table cTable [responsive]="true">
+      <thead cTableColor="dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of teamPersons; index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td>
+        <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
+        <td>{{person.id_person}}</td>
+        <td>{{person.name}}</td>
+        <td>{{person.lastname}}</td>
+        <td>{{person.type}}</td>
+        <!-- <td (click)="editPerson(person.id_person)">
+          <svg cIcon name="cil-pencil" size="xl" >
+
+          </svg>
+        </td>
+        <td (click)="deletePerson(person.id_person,person.name,person.lastname)">
+          <svg cIcon name="cil-trash" size="xl"></svg>
+        </td> -->
+      </tr>
+
+      </tbody>
+    </table>
+  </ng-template>
+
+
+
+
+
+<c-modal #modalNotificaciones id="modalNotificaciones" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+    <button [cModalToggle]="modalNotificaciones.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="notificaciones"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalNotificaciones.id" cButton color="secondary">
+      Close
+    </button>
+  
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #notificaciones>
+    <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Equipo</th>
+          <th scope="col">Id Noticia</th>
+          <th scope="col">Mensaje</th> 
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let notification of notifications; index as i">
+                <th scope="row">{{i + 1}}</th>
+                
+                <td>{{notification.name}}</td>
+                <td>{{notification.id_new}}</td>
+                <td>Contenido</td>
+              </tr>
+
+        </tbody>
+      </table>
+</ng-template>
+
+
+<c-card class="mb-2">
+  <c-card-body>
+<h1>Reporte: Equipos de una competicion</h1>
+  <div>
+    <c-input-group class="mb-3">
+        <span cInputGroupText id="inputGroup-sizing-default">Competición</span>
+        <input aria-describedby="inputGroup-sizing-default"
+               aria-label="Sizing example input"
+               cFormControl
+               [(ngModel)]="competicion"
+        />
+      </c-input-group>
+</div>
+<div class="col-12">
+    <button cButton [cModalToggle]="modalEquiposComp.id" color="primary" (click)="buscarEquipos()" >Mostrar Equipos Competición</button>
+</div>
+</c-card-body>
+</c-card>
+
+
+
+<c-card class="mb-2">
+<c-card-body>
+<h1>Reporte: Equipos de un pais</h1>
+<div  class="row">
+  
+    <div>
+      <c-input-group class="mb-3">
+          <span cInputGroupText id="inputGroup-sizing-default">Pais</span>
+          <input aria-describedby="inputGroup-sizing-default"
+                 aria-label="Sizing example input"
+                 cFormControl
+                 [(ngModel)]="pais"
+          />
+        </c-input-group>
+  </div>
+  <div class="col-12">
+      <button cButton [cModalToggle]="modalEquiposPais.id" color="primary" (click)="buscarEquiposPais()" >Mostrar Equipos Pais</button>
+      <button cButton [cModalToggle]="modalEstadiosPais.id" color="primary" (click)="buscarEstadiosPais()" >Mostrar Estadios Pais</button>
+  </div>
+</div>
+</c-card-body>
+</c-card>
+<!-- modal equipos competición-->
+
+<c-modal #modalEquiposComp id="modalEquiposComp" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos de una competición</h5>
+    <button [cModalToggle]="modalEquiposComp.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="equiposContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalEquiposComp.id" cButton color="secondary">
+      Close
+    </button>
+    
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #equiposContent>
+    <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Competición</th>
+          <th scope="col">Equipo</th> 
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipoC of equiposC; index as i">
+                <th scope="row">{{i + 1}}</th>
+                
+                <td>{{equipoC.name_competicion}}</td>
+                <td>{{equipoC.name_team}}</td>
+                
+              </tr>
+
+        </tbody>
+      </table>
+</ng-template>
+
+<!-- Modal equipos pais-->
+<c-modal #modalEquiposPais id="modalEquiposPais" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos de un pais</h5>
+    <button [cModalToggle]="modalEquiposPais.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="equiposPaisContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalEquiposPais.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #equiposPaisContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Pais</th>
+      <th scope="col">Equipo</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let equipoPais of equiposPais; index as i">
+            <th scope="row">{{i + 1}}</th>
+            
+            <td>{{equipoPais.name_country}}</td>
+            <td>{{equipoPais.name_team}}</td>
+            
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+<!-- Modal estadios pais-->
+<c-modal #modalEstadiosPais id="modalEstadiosPais" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalEstadiosPais.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="estadiosPaisContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalEstadiosPais.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #estadiosPaisContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Pais</th>
+      <th scope="col">Estadio</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let estadioPais of estadiosPais; index as i">
+            <th scope="row">{{i + 1}}</th>
+            
+            <td>{{estadioPais.name_country}}</td>
+            <td>{{estadioPais.name_stadium}}</td>
+            
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+
+
+<c-card class="mb-2">
+<c-card-body>
+<h1>Reporte: Estadios con capacidad menor o igual</h1>
+<div  class="row">
+  
+    <div>
+      <c-input-group class="mb-3">
+          <span cInputGroupText id="inputGroup-sizing-default">Capacidad/Antigüedad/Goles/Año</span>
+          <input aria-describedby="inputGroup-sizing-default"
+                 aria-label="Sizing example input"
+                 cFormControl
+                 [(ngModel)]="capacidad"
+          />
+        </c-input-group>
+  </div>
+  <div class="col-12">
+      <button cButton [cModalToggle]="modalEstadiosCapacidad.id" color="primary" (click)="buscarEstadiosCapacidad()" >Estadios por capacidad</button>
+      <button cButton [cModalToggle]="modalEquiposAntiguedad.id" color="primary" (click)="buscarEquiposAntiguedad()" >Equipos por antigüedad</button>
+      <button cButton [cModalToggle]="modalPartidosGoles.id" color="primary" (click)="buscarPartidosGoles()" >Partidos con almenos X goles</button>
+      <button cButton [cModalToggle]="modalPartidosAnios.id" color="primary" (click)="buscarPartidosAnios()" >Partidos del año</button>
+    </div>
+</div>
+</c-card-body>
+</c-card>
+<!-- Modal estadios con capacidad menor o igual-->
+<c-modal #modalEstadiosCapacidad id="modalEstadiosCapacidad" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalEstadiosCapacidad.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="estadiosCapacidadContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalEstadiosCapacidad.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #estadiosCapacidadContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Estadio</th>
+      <th scope="col">Capacidad</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let estadioCapacidad of estadiosCapacidad; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{estadioCapacidad.name_stadium}}</td>
+            <td>{{estadioCapacidad.capacidad}}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+
+<!-- Modal Equipos con antiguedad-->
+<c-modal #modalEquiposAntiguedad id="modalEquiposAntiguedad" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalEquiposAntiguedad.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="equiposAntiguedadContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalEquiposAntiguedad.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #equiposAntiguedadContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Equipo</th>
+      <th scope="col">Antiguedad</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let equipoAntiguedad of equiposAntiguedad; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{equipoAntiguedad.name_team}}</td>
+            <td>{{equipoAntiguedad.age}}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+
+<!-- Modal Partidos goles-->
+<c-modal #modalPartidosGoles id="modalPartidosGoles" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalPartidosGoles.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="partidosGolesContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalPartidosGoles.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #partidosGolesContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Partido</th>
+      <th scope="col">Goles Totales</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let partidoGoles of partidosGoles; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{partidoGoles.name_game}}</td>
+            <td>{{partidoGoles.goals}}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+<!-- Modal Partidos Del anio-->
+<c-modal #modalPartidosAnios id="modalPartidosAnios" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalPartidosAnios.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="partidosAniosContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalPartidosAnios.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #partidosAniosContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Partido</th>
+      <th scope="col">Año</th> 
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let partidoAnio of partidosAnio; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{partidoAnio.name_game}}</td>
+            <td>{{partidoAnio.year}}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+
+
+<c-card class="mb-2">
+<c-card-body>
+<h1>Reporte: Partidos en X e Y equipos</h1>
+    <div class="row mb-3">
+        <div class="col-1">
+            <label class="font-weight-bold" for="#equipos">Team</label>
+        </div>
+        <div class="col-4">
+            <select id="equipoX" class="form-control" [(ngModel)]="equipoX">
+                <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}">
+                {{team.name}} - {{team.id_team}}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-4">
+          <select id="equipoY" class="form-control" [(ngModel)]="equipoY">
+              <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}">
+              {{team.name}} - {{team.id_team}}
+              </option>
+          </select>
+      </div>
+        <div class="col-7">
+          
+            <button [cModalToggle]="modalPartidoXY.id" class="btn btn-primary" (click)="verPartidosXY()">Ver partidos</button>
+            
+        </div>
+    </div>
+  </c-card-body>
+</c-card>
+    <!-- Modal Partidos Del anio-->
+<c-modal #modalPartidoXY id="modalPartidoXY" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Estadios de un pais</h5>
+    <button [cModalToggle]="modalPartidoXY.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="partidoXYContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="modalPartidoXY.id" cButton color="secondary">
+      Close
+    </button>
+
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #partidoXYContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Partido</th>
+      <th scope="col">Año</th>
+      <th scope="col">Local</th>
+      <th scope="col">Visitante</th>
+      <th scope="col">Resultado</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let partidoAnio of partidosAnio; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{partidoAnio.name_game}}</td>
+            <td>{{partidoAnio.date_game}}</td>
+            <td>{{partidoAnio.team_local}}</td>
+            <td>{{partidoAnio.team_visit}}</td>
+            <td>{{partidoAnio.result}}</td>
+          </tr>
+
+    </tbody>
+  </table>
+</ng-template>
+

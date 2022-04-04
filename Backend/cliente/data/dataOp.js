@@ -77,7 +77,7 @@ async function setQuinielaResult(id_game,id_client,result_1,result_2){
 
 async function getTeamPersons(id_team){
     const query = `SELECT p.id_person, p.name, p.lastname, 
-    p.photo, p.status as 'type', p.id_team, e.name 
+    p.photo, p.status as 'type', p.id_team, e.name as 'team_name'
     FROM Person p Join Equipo e On e.id_team = p.id_team 
     WHERE p.id_team=${id_team};`;
 
@@ -260,7 +260,8 @@ async function getTeamHistory(id_team){
 }
 
 async function getHistoryPTeams(id_person){
-    const query = `Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
+    const query = `Select DISTINCT *
+    From (Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
     t_o.team_origin as 'id_team', e.name as'name_team'
     From Person p
     Join Transferencias t_o
@@ -276,7 +277,14 @@ async function getHistoryPTeams(id_person){
     On p.id_person = t_d.Person_id
     Join Equipo e
     On e.id_team = t_d.team_destination  
-    Where p.id_person = ${id_person};`;
+    Where p.id_person = ${id_person}
+    UNION ALL 
+    Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
+    e.id_team as 'id_team', e.name as'name_team'
+    From Person p
+    Join Equipo e
+    On e.id_team = p.id_team  
+    Where p.id_person = ${id_person}) r;`;
 
     try{
         const result = await executeQ(query); 
