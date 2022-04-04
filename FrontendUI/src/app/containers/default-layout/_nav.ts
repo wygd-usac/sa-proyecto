@@ -66,28 +66,65 @@ export function nivel(){
         }
       },
       {
-        title: true,
-        name: 'Estadio'
-      },
+        name: 'Estadio',
+        children: [
           {
             name: 'Crear',
-            url: '/buttons/buttons',
+            url: '/empleado/crear-estadios',
             iconComponent: { name: 'cil-pencil' }
           },
           {
             name: 'Ver',
-            url: '/buttons/button-groups',
+            url: '/empleado/estadios',
             iconComponent: { name: 'cil-list' }
           },
-      {
-        title: true,
-        name: 'Partidos'
+        ]
       },
       {
-        name: 'Ver',
-        url: '/buttons/dropdowns',
-        iconComponent: { name: 'cil-pencil' }
+        name: 'Partidos',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/partidos',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-partidos',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
       },
+      {
+        name: 'Equipos',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/equipos',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-equipos',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
+      },
+      {
+        name: 'Competencias',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/competencia',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-competencia',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
+      }
     ];
   }
   // Usuario normal
