@@ -4,27 +4,25 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-toasters',
-  templateUrl: './toasters.component.html',
-  styleUrls: ['./toasters.component.scss']
+  templateUrl: './competencia.component.html'
 })
+export class CompetenciaComponent{
 
-export class ToastersComponent{
   constructor(
     private router: Router, private servicio: RequestService
   ) { }
 
   ngOnInit(): void {
-    this.getSoccerGame();
+    this.getCompetition();
   }
-  soccer_game: any;
+  competition: any;
 
-  getSoccerGame() {
+  getCompetition() {
     try {
-      this.servicio.getSoccer_Game().subscribe(
+      this.servicio.getCompetition().subscribe(
         (res: any) => {
-          this.soccer_game = res.data;
-          if (this.soccer_game.length > 0) {
+          this.competition = res.data;
+          if (this.competition.length > 0) {
           }
         },
         (err) => {
@@ -41,7 +39,7 @@ export class ToastersComponent{
     }
   }
 
-  deleteSoccer_Game(id_partido: number) {
+  deleteCompetition(id_competencia: number, name: string) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -53,7 +51,7 @@ export class ToastersComponent{
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          this.servicio.deleteSoccer_Game(id_partido).subscribe(
+          this.servicio.deleteCompetition(id_competencia).subscribe(
             (res: any) => {
               const Toast = Swal.mixin({
                 toast: true,
@@ -69,7 +67,7 @@ export class ToastersComponent{
 
               Toast.fire({
                 icon: 'success',
-                title: 'Soccer Game deleted successfully ' + id_partido,
+                title: 'Competition deleted successfully ' + name,
               });
               window.location.reload();
             },
