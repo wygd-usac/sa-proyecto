@@ -2,8 +2,8 @@ import { INavData } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 export function nivel(){
 
-  var x =localStorage.getItem("rol");
-  console.log(x);
+  const x = localStorage.getItem("rol");
+  //console.log(x);
   //console.log(x == "1");
   let sesion : INavData[] = [];
   // Usuario Administrador
@@ -38,11 +38,7 @@ export function nivel(){
         iconComponent: {name: 'cil-cursor'}
       },
           {
-            name: 'Buttons',
-            url: '/reportes/usuario'
-          },
-          {
-            name: 'Button groups',
+            name: 'Empleado',
             url: '/reportes/empleado'
           },
           {

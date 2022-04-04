@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { Router } from '@angular/router';
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 interface IUser {
@@ -22,7 +22,7 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData) {
+  constructor(private chartsData: DashboardChartsData,private router: Router) {
   }
 
   name='';
@@ -30,6 +30,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.name=localStorage.getItem('full_name');
+    // @ts-ignore
+    const rol = localStorage.getItem("rol");
+    // @ts-ignore
+    if (rol != 1) {
+      this.router.navigate(['/404']);
+    }
   }
 
 
