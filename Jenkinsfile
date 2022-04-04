@@ -191,15 +191,15 @@ pipeline {
     }
 
 
-    // stage('Deploy-frontend-production') {
-    //   when {
-    //     branch 'main'
-    //   }
-    //   steps {
-    //     sh 'ls FrontendUI -a'
-    //     sh 'ansible-playbook -i Ansible/inventory.production Ansible/playbook-frontend-production.yaml'
-    //   }
-    // }
+    stage('Deploy-frontend-production') {
+      when {
+        branch 'main'
+      }
+      steps {
+        sh 'ls FrontendUI -a'
+        sh 'ansible-playbook -i Ansible/inventory.production Ansible/playbook-frontend-production.yaml'
+      }
+    }
     stage('Deploy-Ansible-production') {
       when {
         branch 'main'
