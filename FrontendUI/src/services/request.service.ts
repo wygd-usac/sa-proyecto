@@ -84,4 +84,64 @@ export class RequestService {
     })
   }
 
+  getCountries():any{
+    return this.http.get(this.url_server_admin + 'esb/client/countries', {})
+  }
+
+  getTeamPersons(_id_team:number):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+  }
+
+  getPersonsLower(_age:number):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/lower/?edad='+_age, {})
+  }
+
+  getPersonsHigher(_age:number):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/higher/?edad='+_age, {})
+  }
+
+  getTeamsHistoryPerson(_id_person:number):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/person/?persona='+_id_person, {})
+  }
+
+  getTeamNotifications(_id_team:number):any{
+    return this.http.get(this.url_server_admin + 'esb/client/notifications?id='+_id_team, {})
+  }
+
+  setFollow(_id_team:number,_id_client:number):any{
+    return this.http.post(this.url_server_admin + 'esb/client/follow',
+      {id_client:_id_client,id_team:_id_team})
+  }
+
+  getEquiposCompetition(_id_competition):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/competition/team/?id='+_id_competition, {})
+  }
+
+  getEquiposPais(_id_pais):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/country/team/?pais='+_id_pais, {})
+  }
+
+  getEstadiosPais(_id_pais):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/country/stadium/?pais='+_id_pais, {})
+  }
+
+  getEstadiosCapacidad(_capacidad):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/stadium/capacity/?capacidad='+_capacidad, {})
+  }
+
+  getEquiposAntiguedad(_age):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/age/?edad='+_age, {})
+  }
+
+  getPartidosGoles(_goles):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/game/goal/?goals='+_goles, {})
+  }
+
+  getPartidosAnios(_anio):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/games/year?anio='+_anio, {})
+  }
+
+  getPartidosXY(_ex,_ey):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/games/teams?local='+_ex+'&visitante='+_ey, {})
+  }
 }
