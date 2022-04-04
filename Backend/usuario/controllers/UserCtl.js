@@ -147,7 +147,7 @@ async function UpdateUser(req, res, next){
 async function deleteUser(req, res, next){
     try {
         const id_user = req.body.id_user;
-        let resultado = await UserModal.updateStateJugador(id_user, state);
+        let resultado = await UserModal.deleteUser(id_user);
         if(resultado){
             res.status(200).json({msg:"elimando correctamente"});
         }else{
@@ -238,7 +238,7 @@ function formatDate(date) {
     if (day.length < 2)
         day = '0' + day;
 
-    return [month, day, year].join('/');
+    return [year, month, day].join('-');
 }
 
 async function enviarCorreo(correo, texto){

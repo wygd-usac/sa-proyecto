@@ -1,71 +1,91 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
-
-import { ToasterComponent, ToasterPlacement } from '@coreui/angular';
-import { AppToastComponent } from './toast-simple/toast.component';
-
-export enum Colors {
-  '' = '',
-  primary = 'primary',
-  secondary = 'secondary',
-  success = 'success',
-  info = 'info',
-  warning = 'warning',
-  danger = 'danger',
-  dark = 'dark',
-  light = 'light',
-}
+import { Component } from '@angular/core';
+import { RequestService } from '../../../../services/request.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-toasters',
   templateUrl: './toasters.component.html',
   styleUrls: ['./toasters.component.scss']
 })
-export class ToastersComponent implements OnInit {
 
-  positions = Object.values(ToasterPlacement);
-  position = ToasterPlacement.TopEnd;
-  positionStatic = ToasterPlacement.Static;
-  colors = Object.keys(Colors);
-  autohide = true;
-  delay = 5000;
-  fade = true;
-
-  formChanges!: Observable<any>;
-
-  toasterForm = new FormGroup({
-    autohide: new FormControl(this.autohide),
-    delay: new FormControl({value: this.delay, disabled: !this.autohide}),
-    position: new FormControl(this.position),
-    fade: new FormControl({value: true, disabled: false}),
-    closeButton: new FormControl(true),
-    color: new FormControl('')
-  });
-
-  @ViewChildren(ToasterComponent) viewChildren!: QueryList<ToasterComponent>;
+export class ToastersComponent{
+  constructor(
+    private router: Router, private servicio: RequestService
+  ) { }
 
   ngOnInit(): void {
-    this.formChanges = this.toasterForm.valueChanges.pipe(filter(e => e.autohide !== this.autohide));
-    this.formChanges.subscribe(e => {
-      this.autohide = e.autohide;
-      this.position = e.position;
-      this.fade = e.fade;
-      const control = this.toasterForm?.get('delay');
-      this.autohide ? control?.enable() : control?.disable();
-      this.delay = control?.enabled ? e.timeout : this.delay;
-    });
+    this.getSoccerGame();
+  }
+  soccer_game: any;
+
+  getSoccerGame() {
+    try {
+      this.servicio.getSoccer_Game().subscribe(
+        (res: any) => {
+          this.soccer_game = res.data;
+          if (this.soccer_game.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Cool',
+      });
+    }
   }
 
-  addToast() {
-    const formValues = this.toasterForm.value;
-    const toasterPosition = this.viewChildren.filter(item => item.placement === this.toasterForm.value.position);
-    toasterPosition.forEach((item) => {
-      const title = `Toast ${formValues.color} ${formValues.position}`;
-      const {...props} = {...formValues, title};
-      const componentRef = item.addToast(AppToastComponent, props, {});
-      componentRef.instance['closeButton'] = props.closeButton;
+  deleteSoccer_Game(id_partido: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1d9045',
+      cancelButtonColor: '#a42828',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          this.servicio.deleteSoccer_Game(id_partido).subscribe(
+            (res: any) => {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+              });
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Soccer Game deleted successfully ' + id_partido,
+              });
+              window.location.reload();
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        } catch (e) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool',
+          });
+        }
+      }
     });
   }
 }

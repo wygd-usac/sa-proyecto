@@ -17,6 +17,7 @@ export class RequestService {
   url_server: any;
   url_server_admin: any;
 
+
   constructor(private http: HttpClient) {
     //this.url_server = 'http://34.132.139.69:5000/';
     //this.url_server_admin = 'http://34.132.139.69:5002/';
@@ -24,6 +25,87 @@ export class RequestService {
     this.url_server = environment.base_url;
     this.url_server_admin = environment.base_url;
   }
+
+
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    // @ts-ignore
+    'Authorization': localStorage.getItem("token") });
+  options = { headers: this.headers };
+
+  //Reportes
+  getSubsByTeam(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/suscribe/?id='+id, {});
+  }
+
+  getUserByCountry(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/country/?id='+id, {});
+  }
+
+  getUserMembership():any{
+    return this.http.get(this.url_server + 'esb/reporte/membership', {});
+  }
+
+  getUserExpenses():any{
+    return this.http.get(this.url_server + 'esb/reporte/expenses', {});
+  }
+
+  getUserByGenre(id:string):any{
+    return this.http.get(this.url_server + 'esb/reporte/genre/?genero='+id, {});
+  }
+
+  getUserByAge(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/age/?edad='+id, {});
+  }
+
+  getUserMembershipTop():any{
+    return this.http.get(this.url_server + 'esb/reporte/memberships', {});
+  }
+
+  getNewsByTeam(id:number):any{
+    return this.http.get(this.url_server + 'esb/reporte/news/team/?equipo='+id, {});
+  }
+
+  getNews():any{
+    return this.http.get(this.url_server + 'esb/reporte/news', {});
+  }
+
+  //Estadios
+  getStadiums(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/stadium', {});
+  }
+
+  deleteStadium(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/stadium/?id='+id, {})
+  }
+
+  //Partido
+  getSoccer_Game(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
+  }
+
+  deleteSoccer_Game(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/soccer-game/?id='+id, {})
+  }
+
+  //Equipo
+  getTeam(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/team', {})
+  }
+
+  deleteTeam(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/team/?id='+id, {})
+  }
+
+  //Competencia
+  getCompetition(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/competition', {})
+  }
+
+  deleteCompetition(id:number):any{
+    return this.http.delete(this.url_server + 'esb/servicio_administrativo/competition/?id='+id, {})
+  }
+
 
   getCountrys(): any{
     return this.http.get(this.url_server_admin + 'esb/administracion/country/', {})
@@ -54,6 +136,23 @@ export class RequestService {
 
   loginUser( _email: any, _password: any ): any{
     return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
+  }
+
+  getUser(){
+    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idu'))
+  }
+
+  editUser( user ){
+    console.log(user);
+    return this.http.post(  this.url_server + 'esb/usuario/update' , {
+      id_user: user.id_user,
+      name: user.name,
+      last_name: user.last_name,
+      password: user.password,
+      phone: user.phone,
+      gender: user.gender,
+      birth_date: user.birth_date,
+      photo : user.photo}, this.options)
   }
 
   registrerUser(
@@ -144,4 +243,10 @@ export class RequestService {
   getPartidosXY(_ex,_ey):any{
     return this.http.get(this.url_server_admin + 'esb/client/reports/games/teams?local='+_ex+'&visitante='+_ey, {})
   }
+  deleteUser(){
+    return this.http.post( this.url_server + 'esb/usuario/delete',
+      // @ts-ignore
+      { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
+  }
+
 }

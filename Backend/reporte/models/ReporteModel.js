@@ -41,8 +41,9 @@ Reporte.suscribeByTeam = (id, result) => {
 Reporte.findmembership = (id, result) => {
   conexion.query(
     `select id_user, name, lastname,
-        IF(membership > 0, true, false) as membership
-    from Usuario`,
+        IF(membership > 0, 'true', 'false') as membership
+    from Usuario
+    order by name,lastname`,
     id,
     (err, res) => {
       if (err) {
@@ -68,7 +69,8 @@ Reporte.findmembership = (id, result) => {
 Reporte.findmemberships = (id, result) => {
   conexion.query(
     `select id_user, name, lastname, membership from Usuario u
-    order by u.membership desc`,
+      where membership>0
+      order by u.membership desc,name,lastname`,
     id,
     (err, res) => {
       if (err) {
@@ -93,7 +95,8 @@ Reporte.findmemberships = (id, result) => {
 
 Reporte.findexpenses = (id, result) => {
   conexion.query(
-    `select id_user, name, lastname, membership from Usuario u
+    `select id_user, name, lastname, (membership*10) as membership from Usuario u
+    where membership>0
     order by u.membership desc`,
     id,
     (err, res) => {
@@ -176,8 +179,9 @@ Reporte.findgenre = (id, result) => {
 
 Reporte.findage = (id, result) => {
   conexion.query(
-    `select id_user, name, lastname, age from Usuario
-        where age= ?`,
+    `select id_user,name,lastname,TIMESTAMPDIFF(YEAR, birthday, CURDATE()) AS age
+      from Usuario
+      where TIMESTAMPDIFF(YEAR, birthday, CURDATE())=?`,
     id,
     (err, res) => {
       if (err) {

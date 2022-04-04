@@ -11,6 +11,8 @@ import {
   ModalModule,
   PopoverModule,
   ProgressModule,
+  TableModule,
+  AvatarModule,
   SharedModule,
   ToastModule,
   TooltipModule,
@@ -29,6 +31,10 @@ import { ModalsComponent } from './modals/modals.component';
 import { ToastersComponent } from './toasters/toasters.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppToastComponent } from './toasters/toast-simple/toast.component';
+import { EquipoComponent } from './equipo/equipo.component';
+import { CrearEquipoComponent } from './crear-equipo/crear-equipo.component';
+import { CompetenciaComponent } from './competencia/competencia.component';
+import { CrearCompetenciaComponent } from './crear-competencia/crear-competencia.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,10 @@ import { AppToastComponent } from './toasters/toast-simple/toast.component';
     // ToastsComponent,
     ToastersComponent,
     AppToastComponent,
+    EquipoComponent,
+    CrearEquipoComponent,
+    CompetenciaComponent,
+    CrearCompetenciaComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +67,9 @@ import { AppToastComponent } from './toasters/toast-simple/toast.component';
     TooltipModule,
     PopoverModule,
     ProgressModule,
-    IconModule
+    IconModule,
+    TableModule,
+    AvatarModule,
   ],
 })
 export class NotificationsModule {

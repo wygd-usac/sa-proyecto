@@ -1,0 +1,39 @@
+<div class="fade-in">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>
+          Equipos
+        </strong>
+      </c-card-header>
+      <c-card-body>
+        <table cTable [responsive]="true" >
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Name</th>
+            <th scope="col">Fundation_Date</th>
+            <th scope="col">Country</th>
+            <th scope="col">Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let x of team; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>
+                <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{x.photo}}"> </c-avatar></td>
+            <td>{{x.name}}</td>
+            <td>{{x.fundation_date}}</td>
+            <td>{{x.country}}</td>
+  
+            <td (click)="deleteTeam(x.id_team,x.name)">
+              <svg cIcon name="cil-trash" size="xl"></svg>
+            </td>
+          </tr>
+  
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  
+  </div>
