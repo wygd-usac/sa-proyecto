@@ -17,6 +17,7 @@ export class RequestService {
   url_server: any;
   url_server_admin: any;
 
+
   constructor(private http: HttpClient) {
     //this.url_server = 'http://34.132.139.69:5000/';
     //this.url_server_admin = 'http://34.132.139.69:5002/';
@@ -24,6 +25,13 @@ export class RequestService {
     this.url_server = environment.base_url;
     this.url_server_admin = environment.base_url;
   }
+
+
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    // @ts-ignore
+    'Authorization': localStorage.getItem("token") });
+  options = { headers: this.headers };
 
   //Reportes
   getSubsByTeam(id:number):any{
@@ -134,8 +142,6 @@ export class RequestService {
     return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idu'))
   }
 
-
-
   editUser( user ){
     console.log(user);
     return this.http.post(  this.url_server + 'esb/usuario/update' , {
@@ -146,7 +152,7 @@ export class RequestService {
       phone: user.phone,
       gender: user.gender,
       birth_date: user.birth_date,
-      photo : user.photo})
+      photo : user.photo}, this.options)
   }
 
   registrerUser(
@@ -180,7 +186,7 @@ export class RequestService {
   deleteUser(){
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
-      { id_user : parseInt(localStorage.getItem('idu')) } )
+      { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
   }
 
 }
