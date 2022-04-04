@@ -21,15 +21,52 @@ export class EditprofileComponent implements OnInit {
   }
 
   public visible = false;
+  public visible2 = false;
   public mensaje = '';
 
   toggleLiveDemo() {
     this.visible = !this.visible;
     this.router.navigate(['/forms/editprofile']);
+    this.ngOnInit();
   }
 
   handleLiveDemoChange(event: any) {
     this.visible = event;
+  }
+
+  toggleLiveDemoBorrar() {
+    try {
+      // @ts-ignore
+      // @ts-ignore
+      this.servicio.deleteUser().subscribe((res: any) => {
+          if (res.msg ) {
+            this.mensaje = res.msg;
+            localStorage.clear();
+            this.router.navigate(['/login']);
+            //this.urlImage = res[0].photo;
+          } else {
+            this.mensaje = 'Ocurrio un error';
+            this.toggleLiveDemo();
+          }
+        }
+        ,
+        err => {
+          this.mensaje = 'ocurrio un error, asegurese estar loageado';
+          this.toggleLiveDemo()
+        }
+      );
+    } catch (e) {
+      this.mensaje = 'ocurrio un error';
+      this.toggleLiveDemo()
+    }
+  }
+
+  toggleLiveDemoNoBorar() {
+    this.visible2 = !this.visible2;
+  }
+
+  handleLiveDemoChange2(event: any) {
+    this.visible2 = event;
   }
 
   // @ts-ignore
@@ -73,7 +110,7 @@ export class EditprofileComponent implements OnInit {
     }
     this.servicio.editUser( {
       // @ts-ignore
-      id_user: parseInt(localStorage.getItem('id_usuario')),
+      id_user: parseInt(localStorage.getItem('idu')),
       name: name,
       last_name: last_name,
       password: password,
@@ -107,18 +144,8 @@ export class EditprofileComponent implements OnInit {
   }
 
   formatDate(date) {
-    var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
-
-    return [year, month, day].join('-');
+    date = date.replace('T00:00:00.000Z','');
+    return date;
   }
-
 
 }

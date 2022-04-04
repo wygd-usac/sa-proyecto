@@ -4,7 +4,7 @@
       <c-card-header ngPreserveWhitespaces>
         <div>
           <strong>Usuario</strong> <small>Editar</small>
-          <img [src]="user.photo" class="rounded mx-auto d-block"/>
+          <img [src]="user.photo" width="25%" height="25%" class="rounded mx-auto d-block" />
         </div>
       </c-card-header>
       <c-card-body>
@@ -31,9 +31,9 @@
             <span class="input-group-text">Phone</span>
           </c-input-group>
           <c-input-group class="mb-3">
-            <select cSelect>
-              <option #genero selected="selected" [value]="user.genre">M</option>
-              <option #genero value="F">F</option>
+            <select #genero [value]="user.genre" cSelect>
+              <option value="M">M</option>
+              <option value="F">F</option>
             </select>
           </c-input-group>
           <c-input-group class="mb-3">
@@ -63,14 +63,17 @@
                     birthdate.value,
                     photo.value)" >Update</button>
           </div>
-          <img  class="rounded mx-auto d-block"/>
+
+          <c-input-group class="mb-3">
+            <button cButton color="danger" (click)="toggleLiveDemoNoBorar()">Darme de baja</button>
+          </c-input-group>
+
         </form>
 
       </c-card-body>
     </c-card>
   </c-col>
 </c-row>
-
 
 
 <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
@@ -81,7 +84,20 @@
   <c-modal-body>{{mensaje}}</c-modal-body>
   <c-modal-footer>
     <button (click)="toggleLiveDemo()" cButton color="secondary">
-      Close
+      .Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="liveDemoModal2" [visible]="visible2" (visibleChange)="handleLiveDemoChange2($event)">
+  <c-modal-header>
+    <h5 cModalTitle>¿Seguro quieres elimanarte?</h5>
+    <button (click)="toggleLiveDemoNoBorar()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Seguro quieres elimanarte</c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemoBorrar()" cButton color="secondary">
+      Si
     </button>
   </c-modal-footer>
 </c-modal>

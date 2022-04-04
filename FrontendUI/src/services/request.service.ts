@@ -94,12 +94,22 @@ export class RequestService {
   }
 
   getUser(){
-    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('id_usuario'))
+    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idu'))
   }
+
+
 
   editUser( user ){
     console.log(user);
-    return this.http.post(  this.url_server + '/esb/usuario/update' , {user})
+    return this.http.post(  this.url_server + 'esb/usuario/update' , {
+      id_user: user.id_user,
+      name: user.name,
+      last_name: user.last_name,
+      password: user.password,
+      phone: user.phone,
+      gender: user.gender,
+      birth_date: user.birth_date,
+      photo : user.photo})
   }
 
   registrerUser(
@@ -128,6 +138,12 @@ export class RequestService {
       id_Country: _id_Country,
       type: _type
     })
+  }
+
+  deleteUser(){
+    return this.http.post( this.url_server + 'esb/usuario/delete',
+      // @ts-ignore
+      { id_user : parseInt(localStorage.getItem('idu')) } )
   }
 
 }
