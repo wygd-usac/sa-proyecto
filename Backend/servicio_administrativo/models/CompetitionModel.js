@@ -48,7 +48,7 @@ Competition.getAll = (id, result) => {
     let query = ` select id_competencia,name, 
     champion_team, (Select name from Equipo where champion_team= id_team ) as winner
     , type,year, 
-    id_Country, (select country FROM Country where id_Country = id_Country limit 1) as Country From Competencia`;
+    id_Country, (select country FROM Country  c where c.id_Country = cc.id_Country ) as Country From Competencia cc`;
 
     if(id == ''){
       conexion.query(query, (err, res) => {

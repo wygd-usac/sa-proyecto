@@ -64,7 +64,7 @@ Stadium.remove = (id, result) => {
 Stadium.getAll = (id, result) => {
   //let query = "SELECT * FROM Estadio";
   let query = ` SELECT id_Estadio,name, date_format(fundation_date,'%d/%m/%Y') as fundation_date,photo,capacity,state,address, id_Country, 
-  (select country FROM Country where id_Country = id_Country limit 1) as country FROM Estadio`;
+  (select country FROM Country c where c.id_Country = e.id_Country limit 1) as country FROM Estadio e`;
 
   if(id == ''){
     conexion.query(query, (err, res) => {
