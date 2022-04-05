@@ -306,81 +306,81 @@ export class RequestService {
   }
 
   getCountries():any{
-    return this.http.get(this.url_server_admin + 'esb/client/countries', {})
+    return this.http.get(this.url_server_admin + 'esb/client/countries', this.options)
   }
 
   getTeamPersons(_id_team:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, this.options)
   }
 
   getPersonsLower(_age:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/lower/?edad='+_age, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/lower/?edad='+_age, this.options)
   }
 
   getPersonsHigher(_age:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/higher/?edad='+_age, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/higher/?edad='+_age, this.options)
   }
 
   getTeamsHistoryPerson(_id_person:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/team/person/?persona='+_id_person, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/person/?persona='+_id_person, this.options)
   }
 
   getTeamNotifications(_id_team:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/notifications?id='+_id_team, {})
+    return this.http.get(this.url_server_admin + 'esb/client/notifications?id='+_id_team, this.options)
   }
 
   setFollow(_id_team:number,_id_client:number):any{
     return this.http.post(this.url_server_admin + 'esb/client/follow',
-      {id_client:_id_client,id_team:_id_team})
+      {id_client:_id_client,id_team:_id_team}, this.options)
   }
 
   getEquiposCompetition(_id_competition):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/competition/team/?id='+_id_competition, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/competition/team/?id='+_id_competition, this.options)
   }
 
   getEquiposPais(_id_pais):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/country/team/?pais='+_id_pais, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/country/team/?pais='+_id_pais, this.options)
   }
 
   getEstadiosPais(_id_pais):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/country/stadium/?pais='+_id_pais, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/country/stadium/?pais='+_id_pais, this.options)
   }
 
   getEstadiosCapacidad(_capacidad):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/stadium/capacity/?capacidad='+_capacidad, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/stadium/capacity/?capacidad='+_capacidad, this.options)
   }
 
   getEquiposAntiguedad(_age):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/team/age/?edad='+_age, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/age/?edad='+_age, this.options)
   }
 
   getPartidosGoles(_goles):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/game/goal/?goals='+_goles, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/game/goal/?goals='+_goles, this.options)
   }
 
   getPartidosAnios(_anio):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/games/year?anio='+_anio, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/games/year?anio='+_anio, this.options)
   }
 
   getPartidosXY(_ex,_ey):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/games/teams?local='+_ex+'&visitante='+_ey, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/games/teams?local='+_ex+'&visitante='+_ey, this.options)
   }
 
   setQuiniela(c,q,r1,r2):any{
     return this.http.post(this.url_server_admin + 'esb/client/quiniela',
-    {id_client:c,id_game:q,result_1:r1,result_2:r2})
+    {id_client:c,id_game:q,result_1:r1,result_2:r2}, this.options)
   }
 
   getIncidenciasCompeticion(competicion,anio):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/competition/incidents/?competicion='+competicion+'&anio='+anio, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/competition/incidents/?competicion='+competicion+'&anio='+anio, this.options)
   }
 
   getVictorias(equipo):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/team/competitions?equipo='+equipo, {})
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/competitions?equipo='+equipo, this.options)
   }
 
   setPremium(user):any{
-    return this.http.patch(this.url_server_admin + 'esb/client/membership', {id_client:user})
+    return this.http.patch(this.url_server_admin + 'esb/client/membership', {id_client:user}, this.options)
   }
 
   deleteUser(){
