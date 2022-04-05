@@ -34,6 +34,10 @@ router.put("/soccer-game",validate_session, soccerGameCtl.update);
 router.get("/soccer-game",validate_session,soccerGameCtl.findAll);
 router.delete("/soccer-game/",validate_session, soccerGameCtl.delete);
 
+//Lista
+router.get("/estadio", soccerGameCtl.getStadiums);
+router.get("/competencia", soccerGameCtl.getCompetitions);
+
 //Transferencia
 router.get("/transfer-log-coach", transferenciaCtl.getTransefernces);
 

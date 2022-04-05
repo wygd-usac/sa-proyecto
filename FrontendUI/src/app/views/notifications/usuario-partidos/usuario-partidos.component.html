@@ -1,0 +1,47 @@
+<div class="fade-in">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>
+          Partidos
+        </strong>
+      </c-card-header>
+      <c-card-body>
+        <table cTable [responsive]="true" >
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Attendees</th>
+            <th scope="col">State</th>
+            <th scope="col">Incidents</th>
+            <th scope="col">Team Local</th>
+            <th scope="col">Team Visiting</th>
+            <th scope="col" COLSPAN=2 >Result</th>
+            <th scope="col">Stadium</th>
+            <th scope="col">Winner</th>
+            <th scope="col">Competencia</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let x of soccer_game; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{x.game_date}}</td>
+            <td>{{x.attendees}}</td>
+            <td>{{x.state}}</td>
+            <td>{{x.incidents}}</td>
+            <td>{{x.team_local}}</td>
+            <td>{{x.team_visiting}}</td>
+            <td>{{x.result_local}}</td><td>{{x.result_visiting}}</td>
+            <td>{{x.id_stadium}}</td>
+            <td>{{x.Winner}}</td>
+            <td>{{x.Competencia}}</td>
+  
+          </tr>
+  
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  
+  </div>
+  

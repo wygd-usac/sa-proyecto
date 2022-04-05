@@ -7,7 +7,6 @@ import { ChartSample, WidgetsDropdownComponent } from './widgets-dropdown/widget
 const routes: Routes = [
   {
     path: '',
-    component: WidgetsComponent,
     data: {
       title: 'Usuario'
     },
@@ -17,15 +16,15 @@ const routes: Routes = [
         redirectTo: 'crear',
       },
       {
-        path: 'crear',
-        component: WidgetsComponent,
+        path: 'ver',
+        component: WidgetsBrandComponent,
         data: {
           title: 'Crear Usuario',
         },
       },
       {
-        path: 'ver',
-        component: WidgetsBrandComponent,
+        path: 'crear',
+        component: WidgetsComponent,
         data: {
           title: 'Ver Usuario',
         },

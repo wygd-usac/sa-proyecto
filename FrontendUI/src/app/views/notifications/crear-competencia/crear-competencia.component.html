@@ -1,1 +1,51 @@
-<p>crear-competencia works!</p>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col lg="7" md="9" xl="6">
+          <c-card class="mx-4">
+            <c-card-body class="p-4">
+              <form cForm [formGroup]="select" (ngSubmit)="registrar(name.value,type.value,year.value)">
+                <h1>Crear Competition</h1>
+  <!--              <p class="text-medium-emphasis">Create your account</p>-->
+                <label>Name</label>
+                <c-input-group class="mb-3">
+                  <input autoComplete="name" #name cFormControl placeholder="name" />
+                </c-input-group>
+                <label>Type</label>
+                <c-input-group class="mb-3">
+                  <input autoComplete="type" #type cFormControl placeholder="type" />
+                </c-input-group>
+                <label>Year</label>
+                <c-input-group class="mb-3">
+                  <input autoComplete="year" #year cFormControl placeholder="year" />
+                </c-input-group>
+                <label>Winner</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectteam">
+                    <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
+                            value="{{team.id_team}}" >
+                      {{team.name}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <label>Country</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectcountry">
+                    <option *ngFor="let country of listCountrys; index as i"
+                            ngValue="{{country.id_Country}}" value="{{country.id_Country}}">
+                      {{country.country}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <div class="d-grid">
+                  <button cButton color="success" type="submit">Create Competition
+                  </button>
+                </div>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
+  

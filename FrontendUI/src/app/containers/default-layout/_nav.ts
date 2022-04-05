@@ -57,18 +57,18 @@ export function nivel(){
       {
         name: 'Crear',
         url: '/administracion/usuario/crear',
-        iconComponent: {name: 'cil-pencil'}
+        iconComponent: {name: 'cil-list'}
       },
       {
         name: 'Ver',
-        url: '//administracion/usuario/ver',
-        iconComponent: {name: 'cil-list'}
+        url: '/administracion/usuario/ver',
+        iconComponent: {name: 'cil-pencil'}
       }
 
 
     ];
   }
-  // usuario cliente
+  // usuario empleado
   else if( x== "2"){
     sesion = [
       {
@@ -172,6 +172,17 @@ export function nivel(){
           },
         ]
       },
+      {
+        name: 'Partidos',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Ver',
+            url: '/empleado/user-partidos',
+            iconComponent: { name: 'cil-settings'}
+          }
+        ]
+      }
     ];
   }
   else {

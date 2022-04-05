@@ -17,7 +17,6 @@ export class RequestService {
   url_server: any;
   url_server_admin: any;
 
-
   constructor(private http: HttpClient) {
     //this.url_server = 'http://34.132.139.69:5000/';
     //this.url_server_admin = 'http://34.132.139.69:5002/';
@@ -112,6 +111,26 @@ export class RequestService {
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/stadium/?id='+id, {})
   }
 
+  addStadium(
+    _name: any,
+    _fundation_date: any,
+    _photo: any,
+    _capacity: any,
+    _state: any,
+    _address: any,
+    _id_country: any
+  ){
+    return this.http.post(this.url_server + 'esb/servicio_administrativo/stadium', {
+      name: _name,
+      fundation_date : _fundation_date,
+      photo: _photo,
+      capacity: _capacity,
+      state: _state,
+      address: _address,
+      id_country:_id_country
+    })
+  }
+
   //Partido
   getSoccer_Game(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
@@ -119,6 +138,34 @@ export class RequestService {
 
   deleteSoccer_Game(id:number):any{
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/soccer-game/?id='+id, {})
+  }
+
+  addSoccerGame(
+    _game_date:any,
+    _attendees:any,
+    _result_local: any,
+    _result_visiting:any,
+    _state:any,
+    _id_stadium:any,
+    _id_team_local:any,
+    _id_team_visiting:any,
+    _incidents:any,
+    _id_winner:any,
+    _id_competicion:any
+  ){
+    return this.http.post(this.url_server + 'esb/servicio_administrativo/soccer-game', {
+      game_date: _game_date,
+      attendees: _attendees,
+      result_local: _result_local,
+      result_visiting: _result_visiting,
+      state: _state,
+      id_stadium: _id_stadium,
+      id_team_local: _id_team_local,
+      id_team_visiting: _id_team_visiting,
+      incidents: _incidents,
+      id_winner: _id_winner,
+      id_competicion: _id_competicion
+    })
   }
 
   //Equipo
@@ -130,6 +177,28 @@ export class RequestService {
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/team/?id='+id, {})
   }
 
+  addTeam(
+    _name: any,
+    _fundation_date: any,
+    _id_country: any,
+    _photo: any
+  ){
+    return this.http.post(this.url_server + 'esb/servicio_administrativo/team', {
+      name: _name,
+      fundation_date : _fundation_date,
+      id_country:_id_country,
+      photo: _photo
+    })
+  }
+
+  getListStadiums(): any{
+    return this.http.get(this.url_server_admin + 'esb/servicio_administrativo/estadio', {})
+  }
+
+  getListCompetition(): any{
+    return this.http.get(this.url_server_admin + 'esb/servicio_administrativo/competencia', {})
+  }
+
   //Competencia
   getCompetition(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/competition', {})
@@ -137,6 +206,22 @@ export class RequestService {
 
   deleteCompetition(id:number):any{
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/competition/?id='+id, {})
+  }
+
+  addCompetition(
+    _name: any,
+    _champion_team: any,
+    _type: any,
+    _year: any,
+    _country:any
+  ){
+    return this.http.post(this.url_server + 'esb/servicio_administrativo/competition', {
+      name: _name,
+      champion_team: _champion_team,
+      type: _type,
+      year: _year,
+      county: _country
+    })
   }
 
 
@@ -173,6 +258,10 @@ export class RequestService {
 
   getUser(){
     return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idu'))
+  }
+
+  getUsers(){
+    return this.http.get( this.url_server + 'esb/administracion/users', {})
   }
 
   editUser( user ){
@@ -293,10 +382,15 @@ export class RequestService {
   setPremium(user):any{
     return this.http.patch(this.url_server_admin + 'esb/client/membership', {id_client:user}, this.options)
   }
+
   deleteUser(){
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
       { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
+  }
+
+  restablecer( email ){
+    return this.http.post( this.url_server + 'esb/usuario/restablecer', { email: email } );
   }
 
 }
