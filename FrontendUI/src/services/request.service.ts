@@ -187,7 +187,7 @@ export class RequestService {
       county: _country
     })
   }
-  
+
 
   getCountrys(): any{
     return this.http.get(this.url_server_admin + 'esb/administracion/country/', {})
@@ -342,14 +342,15 @@ export class RequestService {
   setPremium(user):any{
     return this.http.patch(this.url_server_admin + 'esb/client/membership', {id_client:user})
   }
+
   deleteUser(){
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
       { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
   }
 
-  send(){
-
+  restablecer( email ){
+    return this.http.post( this.url_server + 'esb/usuario/restablecer', { email: email } );
   }
 
 }

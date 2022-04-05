@@ -15,7 +15,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem("rol") !== null){
+    if (localStorage.getItem("rol") !== null) {
       this.router.navigate(['/forms/editprofile'])
     }
   }
@@ -32,7 +32,32 @@ export class LoginComponent {
     this.visible = event;
   }
 
-  user : any;
+  user: any;
+
+
+  restore(email: string) {
+    try {
+      this.servicio.restablecer(email).subscribe((res: any) => {
+          if (res.msg !== null && res.msg !== undefined ) {
+            this.mensaje = res.msg
+            this.toggleLiveDemo();
+          } else {
+            this.mensaje = 'Ocurrio un error';
+            this.toggleLiveDemo();
+          }
+        }
+        ,
+        err => {
+          this.mensaje = 'error restableciendo';
+          this.toggleLiveDemo()
+        }
+      );
+    } catch (e) {
+      this.mensaje = 'ocurrio un error';
+      this.toggleLiveDemo()
+    }
+  }
+
 
   iniciar(email: string, password: string) {
     try {
