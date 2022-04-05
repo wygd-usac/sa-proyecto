@@ -39,7 +39,7 @@ async function followTeam(id_client,id_team){
 }
 
 async function getNotifications(id_team){
-    const query = `Select e.id_team , e.name , n.id_new  from Equipo e 
+    const query = `Select e.id_team , e.name , n.id_new, n.news as 'content'  from Equipo e 
     Join Noticia n 
     On e.id_team  = n.Equipo_id_team
     Where e.id_team = ${id_team};`;
@@ -66,12 +66,15 @@ async function setQuinielaResult(id_game,id_client,result_1,result_2){
 
     try{
         const result = await executeQ(query); 
+        console.log(result);
         if(result.affectedRows == 1){
             return {status:200,msj:"Estado de la quiniela actualizada.",data:[]};
+        }else if(result.affectedRows == 0){
+            return {status:400,msj:"Error al guardar la quiniela. No fue posible validar todos los datos.",data:[]};
         }
     }catch(error){
         console.log(error);
-        return {status:400,msj:"Error al seguir al equipo.",data:[]};
+        return {status:400,msj:"Error al guardar la quiniela.",data:[]};
     }
 }
 

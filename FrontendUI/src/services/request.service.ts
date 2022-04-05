@@ -276,6 +276,23 @@ export class RequestService {
   getPartidosXY(_ex,_ey):any{
     return this.http.get(this.url_server_admin + 'esb/client/reports/games/teams?local='+_ex+'&visitante='+_ey, {})
   }
+
+  setQuiniela(c,q,r1,r2):any{
+    return this.http.post(this.url_server_admin + 'esb/client/quiniela',
+    {id_client:c,id_game:q,result_1:r1,result_2:r2})
+  }
+
+  getIncidenciasCompeticion(competicion,anio):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/person/competition/incidents/?competicion='+competicion+'&anio='+anio, {})
+  }
+
+  getVictorias(equipo):any{
+    return this.http.get(this.url_server_admin + 'esb/client/reports/team/competitions?equipo='+equipo, {})
+  }
+
+  setPremium(user):any{
+    return this.http.patch(this.url_server_admin + 'esb/client/membership', {id_client:user})
+  }
   deleteUser(){
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
