@@ -73,7 +73,10 @@ export class LoginComponent {
             localStorage.setItem("idu", this.user.id_user);
             localStorage.setItem("id_user", this.user.id_user);
             this.servicio.insertLog('Login');
-            this.router.navigate(['/administracion']);
+            if (this.user.id_rol==1){
+              this.router.navigate(['administracion']);
+            }
+            this.router.navigate(['forms/edituser']);
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({
               toast: true,
