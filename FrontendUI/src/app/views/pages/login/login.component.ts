@@ -76,7 +76,7 @@ export class LoginComponent {
             if (this.user.id_rol==1){
               this.router.navigate(['administracion']);
             }
-            this.router.navigate(['forms/edituser']);
+            this.router.navigate(['forms/editprofile']);
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({
               toast: true,
