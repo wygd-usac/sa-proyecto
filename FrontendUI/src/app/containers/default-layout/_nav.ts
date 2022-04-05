@@ -13,6 +13,10 @@ export function nivel(){
         name: 'Adiministaracion',
         url: '/administracion',
         iconComponent: { name: 'cil-puzzle' }
+      },{
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
       },
       {
         title: true,
@@ -34,17 +38,32 @@ export function nivel(){
       },
       {
         name: 'Usuarios',
-        url: '/reportes/usuario',
+        url: '/administracion/reportes/usuario',
         iconComponent: {name: 'cil-cursor'}
       },
           {
             name: 'Empleado',
-            url: '/reportes/empleado'
+            url: '/administracion/reportes/empleado'
           },
           {
             name: 'Dropdowns',
             url: '/buttons/dropdowns'
           },
+
+      {
+        name: 'Usuarios',
+        title: true
+      },
+      {
+        name: 'Crear',
+        url: '/administracion/usuario/crear',
+        iconComponent: {name: 'cil-pencil'}
+      },
+      {
+        name: 'Ver',
+        url: '//administracion/usuario/ver',
+        iconComponent: {name: 'cil-list'}
+      }
 
 
     ];
@@ -133,6 +152,22 @@ export function nivel(){
           {
             name: 'Setting',
             url: '/forms/editprofile',
+            iconComponent: { name: 'cil-settings'}
+          },
+        ]
+      },
+      {
+        name: 'Reportes',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Cliente - Equipos',
+            url: '/forms/clienteteam',
+            iconComponent: { name: 'cil-settings'}
+          },
+          {
+            name: 'Cliente - Edad',
+            url: '/forms/personage',
             iconComponent: { name: 'cil-settings'}
           },
         ]
