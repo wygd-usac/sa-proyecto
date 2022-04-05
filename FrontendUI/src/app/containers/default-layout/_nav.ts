@@ -16,7 +16,7 @@ export function nivel(){
       },{
         name: 'Home',
         url: '/home',
-        iconComponent: { name: 'cil-house' }
+        iconComponent: { name: 'cilHome' }
       },
       {
         title: true,
