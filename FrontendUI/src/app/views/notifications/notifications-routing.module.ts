@@ -9,6 +9,7 @@ import {EquipoComponent} from './equipo/equipo.component';
 import {CrearEquipoComponent} from './crear-equipo/crear-equipo.component';
 import {CompetenciaComponent} from './competencia/competencia.component';
 import {CrearCompetenciaComponent} from './crear-competencia/crear-competencia.component';
+import { UsuarioPartidosComponent } from './usuario-partidos/usuario-partidos.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,13 @@ const routes: Routes = [
         component: CompetenciaComponent,
         data: {
           title: 'Competencia'
+        }
+      },
+        {
+          path: 'user-partidos',
+          component: UsuarioPartidosComponent,
+          data: {
+            title: 'User-partidos'
         }
       }
     ]

@@ -18,6 +18,7 @@ router.post("/login", userCtl.loginUser);
 router.post("/delete", validate_session, userCtl.deleteUser);
 router.get("/get", userCtl.getUser);
 router.get("/confirm", userCtl.confirmUser);
+router.post("/restablecer", userCtl.restablecer);
 router.post("/")
 
 module.exports = router;
