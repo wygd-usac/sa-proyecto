@@ -135,6 +135,33 @@ exports.delete = (req, res) => {
   });
 };
 
+exports.deleteUser = (req, res) => {
+  const id = req.query.id;
+  console.log("id ", id);
+  Persona.removeUser(id, (err, data) => {
+    if (err) {
+      if (err.kind === "Usuario no encontrado") {
+        res.status(404).send({
+          status: 500,
+          message: "Error al eliminar el Usuario",
+          data: [],
+        });
+      } else {
+        res.status(500).send({
+          status: 500,
+          message: "Error al eliminar el Usuario",
+          data: [],
+        });
+      }
+    } else
+      res.send({
+        status: 200,
+        message: "Usuario o DT eliminado con éxito",
+        data: [data],
+      });
+  });
+};
+
 exports.findAll = (req, res) => {
   var id = req.query.id || "";
 

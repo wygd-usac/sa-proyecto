@@ -136,6 +136,23 @@ Persona.remove = (id, result) => {
   });
 };
 
+Persona.removeUser = (id, result) => {
+  conexion.query("DELETE FROM Usuario WHERE id_user = ? ", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      result({ kind: "usuario no encontrado" }, null);
+      return;
+    }
+    console.log("Se ha eliminado el usuario especificado: ", id);
+    result(null, res);
+  });
+};
+
 Persona.getStands = (id, result) => {
   let query = `select id_stand, stand from Posicion`;
 

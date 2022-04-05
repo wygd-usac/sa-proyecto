@@ -13,7 +13,8 @@ export function nivel(){
         name: 'Adiministaracion',
         url: '/administracion',
         iconComponent: { name: 'cil-puzzle' }
-      },{
+      },
+      {
         name: 'Home',
         url: '/home',
         iconComponent: { name: 'cilHome' }
@@ -79,6 +80,11 @@ export function nivel(){
           color: 'info',
           text: 'Bienvenido'
         }
+      },
+      {
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
       },
       {
         name: 'Estadio',
@@ -157,6 +163,11 @@ export function nivel(){
         ]
       },
       {
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
+      },
+      {
         name: 'Reportes',
         iconComponent: { name: 'cil-user' },
         children: [
@@ -204,7 +215,7 @@ export function nivel(){
           },
           {
             name: 'Home',
-            url: '/',
+            url: '/home',
             iconComponent: { name: 'cil-home' }
           }
         ]

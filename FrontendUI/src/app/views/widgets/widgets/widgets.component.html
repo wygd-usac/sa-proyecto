@@ -6,33 +6,49 @@
           <c-card-body class="p-4">
             <form cForm>
               <h1>Create User</h1>
+              <label>Name</label>
               <c-input-group class="mb-3">
                 <input autoComplete="name" #name cFormControl placeholder="name" />
               </c-input-group>
+              <label>Lastname</label>
               <c-input-group class="mb-3">
                 <input autoComplete="last_name" #lastaname cFormControl placeholder="last name" />
               </c-input-group>
+              <label>Password</label>
               <c-input-group class="mb-3">
                 <input autoComplete="new-password" #pass cFormControl placeholder="Password" type="password" />
               </c-input-group>
+              <label>Confirm Password</label>
               <c-input-group class="mb-4">
                 <input autoComplete="new-password" #pass2 cFormControl placeholder="Repeat password" type="password" />
               </c-input-group>
+              <label>E-mail</label>
               <c-input-group class="mb-3">
                 <input autoComplete="email" #email type="email" cFormControl placeholder="email" />
               </c-input-group>
+              <label>Phone</label>
               <c-input-group class="mb-3">
                 <input autoComplete="phone" #phone type="number" cFormControl placeholder="phone" />
               </c-input-group>
+              <label>Type</label>
               <c-input-group class="mb-3">
                 <select cSelect>
-                  <option #genero selected="selected" value="M">M</option>
-                  <option #genero value="F">F</option>
+                  <option #type selected="selected" value="2">Empleado</option>
+                  <option #type value="1">Administrador</option>
                 </select>
               </c-input-group>
+              <label>Genre</label>
+              <c-input-group class="mb-3">
+                <select cSelect>
+                  <option #genero selected="selected" value="M">Masculino</option>
+                  <option #genero value="F">Femenino</option>
+                </select>
+              </c-input-group>
+              <label>Birthdate</label>
               <c-input-group class="mb-3">
                 <input autoComplete="birth_date" #birthdate type="date" cFormControl placeholder="birth date" />
               </c-input-group>
+              <label>Photo</label>
               <c-input-group class="mb-3">
                 <span class="input-group-text">
                 <div class="avatar">
@@ -44,11 +60,15 @@
               <c-input-group class="mb-3">
                 <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
               </c-input-group>
+              <label>Address</label>
               <c-input-group class="mb-3">
                 <input autoComplete="address" #address cFormControl placeholder="address" />
               </c-input-group>
               <div class="d-grid">
-                <button cButton color="success" (click)="registrar(name.value,lastaname.value,pass.value,pass2.value,email.value,phone.value,photo.value,genero.value,birthdate.value,address.value)">Create Account</button>
+                <button cButton color="success" (click)="registrar(name.value,lastaname.value,pass.value,pass2.value,
+                                                                  email.value,phone.value,photo.value,genero.value,
+                                                                  birthdate.value,address.value,type.value)">
+                  Create Account</button>
               </div>
             </form>
           </c-card-body>
