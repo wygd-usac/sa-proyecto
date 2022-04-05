@@ -17,14 +17,14 @@ const routes: Routes = [
         redirectTo: 'crear',
       },
       {
-        path: 'creara',
+        path: 'crear',
         component: WidgetsComponent,
         data: {
           title: 'Crear Usuario',
         },
       },
       {
-        path: 'v',
+        path: 'ver',
         component: WidgetsBrandComponent,
         data: {
           title: 'Ver Usuario',

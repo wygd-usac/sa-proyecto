@@ -13,6 +13,10 @@ export function nivel(){
         name: 'Adiministaracion',
         url: '/administracion',
         iconComponent: { name: 'cil-puzzle' }
+      },{
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cil-house' }
       },
       {
         title: true,
@@ -52,12 +56,12 @@ export function nivel(){
       },
       {
         name: 'Crear',
-        url: '/administracion/usuario/creara',
+        url: '/administracion/usuario/crear',
         iconComponent: {name: 'cil-pencil'}
       },
       {
         name: 'Ver',
-        url: '/administracion/usuario/v',
+        url: '//administracion/usuario/ver',
         iconComponent: {name: 'cil-list'}
       }
 

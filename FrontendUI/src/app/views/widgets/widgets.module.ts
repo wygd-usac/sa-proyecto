@@ -2,19 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
+  AvatarModule,
   ButtonModule,
   CardModule,
   DropdownModule, FormModule,
   GridModule,
   ProgressModule,
-  SharedModule,
+  SharedModule, TableModule,
   WidgetModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
-
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
-
 import { WidgetsRoutingModule } from './widgets-routing.module';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { WidgetsBrandComponent } from './widgets-brand/widgets-brand.component';
@@ -42,11 +41,14 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
     DocsComponentsModule,
     ProgressModule,
     ChartjsModule,
-    FormModule
+    FormModule,
+    AvatarModule,
+    TableModule
   ],
   exports: [
     WidgetsBrandComponent,
-    WidgetsDropdownComponent
+    WidgetsDropdownComponent,
+    WidgetsComponent,
   ]
 })
 export class WidgetsModule {

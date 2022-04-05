@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 })
 export class WidgetsComponent {
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     private servicio: RequestService, private storage: AngularFireStorage,private router: Router
   ) {}
 
