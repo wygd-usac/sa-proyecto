@@ -19,6 +19,7 @@ import { WidgetsComponent } from './widgets/widgets.component';
 import { WidgetsBrandComponent } from './widgets-brand/widgets-brand.component';
 import { ChartSample, WidgetsDropdownComponent } from './widgets-dropdown/widgets-dropdown.component';
 import { WidgetsEComponent } from './widgets-e/widgets-e.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,23 +29,24 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
     ChartSample,
     WidgetsEComponent
   ],
-  imports: [
-    CommonModule,
-    WidgetsRoutingModule,
-    GridModule,
-    WidgetModule,
-    IconModule,
-    DropdownModule,
-    SharedModule,
-    ButtonModule,
-    CardModule,
-    DocsComponentsModule,
-    ProgressModule,
-    ChartjsModule,
-    FormModule,
-    AvatarModule,
-    TableModule
-  ],
+    imports: [
+        CommonModule,
+        WidgetsRoutingModule,
+        GridModule,
+        WidgetModule,
+        IconModule,
+        DropdownModule,
+        SharedModule,
+        ButtonModule,
+        CardModule,
+        DocsComponentsModule,
+        ProgressModule,
+        ChartjsModule,
+        FormModule,
+        AvatarModule,
+        TableModule,
+        ReactiveFormsModule
+    ],
   exports: [
     WidgetsBrandComponent,
     WidgetsDropdownComponent,

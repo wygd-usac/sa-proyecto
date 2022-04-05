@@ -4,7 +4,9 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
-            <form cForm>
+            <form cForm [formGroup]="select" (ngSubmit)="registrar(name.value,lastaname.value,pass.value,pass2.value,
+                                                                  email.value,phone.value,photo.value,genero.value,
+                                                                  birthdate.value,address.value,type.value)">
               <h1>Create User</h1>
               <label>Name</label>
               <c-input-group class="mb-3">
@@ -32,19 +34,27 @@
               </c-input-group>
               <label>Type</label>
               <c-input-group class="mb-3">
-                <select cSelect>
-                  <option #type selected="selected" value="2">Empleado</option>
-                  <option #type value="1">Administrador</option>
+                <select cSelect formControlName="selecttype">
+                  <option #type ngValue="2">Empleado</option>
+                  <option #type ngValue="1">Administrador</option>
                 </select>
               </c-input-group>
               <label>Genre</label>
               <c-input-group class="mb-3">
-                <select cSelect>
-                  <option #genero selected="selected" value="M">Masculino</option>
-                  <option #genero value="F">Femenino</option>
+                <select cSelect formControlName="selectgender">
+                  <option #genero  ngValue="M">Masculino</option>
+                  <option #genero ngValue="F">Femenino</option>
                 </select>
               </c-input-group>
-              <label>Birthdate</label>
+              <label>Country</label>
+              <c-input-group class="mb-3">
+                <select cSelect formControlName="selectcountry">
+                  <option *ngFor="let country of listCountrys; index as i"
+                          ngValue="{{country.id_Country}}" value="{{country.id_Country}}">
+                    {{country.country}}
+                  </option>
+                </select>
+              </c-input-group>
               <c-input-group class="mb-3">
                 <input autoComplete="birth_date" #birthdate type="date" cFormControl placeholder="birth date" />
               </c-input-group>
@@ -65,9 +75,7 @@
                 <input autoComplete="address" #address cFormControl placeholder="address" />
               </c-input-group>
               <div class="d-grid">
-                <button cButton color="success" (click)="registrar(name.value,lastaname.value,pass.value,pass2.value,
-                                                                  email.value,phone.value,photo.value,genero.value,
-                                                                  birthdate.value,address.value,type.value)">
+                <button cButton color="success" type="submit" >
                   Create Account</button>
               </div>
             </form>

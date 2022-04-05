@@ -40,7 +40,7 @@ export class WidgetsBrandComponent  {
     } catch (e) {
 
     }
-    console.log(this.user);
+    //console.log(this.user);
   }
 
 
@@ -61,24 +61,34 @@ export class WidgetsBrandComponent  {
         try {
           this.servicio.deleteUserAdmin(id_person).subscribe(
             (res: any) => {
-              console.log(res);
-              const Toast = Swal.mixin({
-                position: 'center',
-                toast: true,
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer);
-                  toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-              });
-              this.servicio.insertLog('Delete Person: '+ name + ' ' + lastname);
-              Toast.fire({
-                icon: 'success',
-                title: 'Person deleted successfully ' + name + ' ' + lastname,
-              });
-              //window.location.reload();
+              //console.log(res);
+              if (res.status==200){
+                const Toast = Swal.mixin({
+                  position: 'center',
+                  toast: true,
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                  },
+                });
+                this.servicio.insertLog('Delete Person: '+ name + ' ' + lastname);
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Person deleted successfully ' + name + ' ' + lastname,
+                });
+                window.location.reload();
+              }else{
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Something is wrong!',
+                  icon: 'error',
+                  confirmButtonText: 'Cool',
+                });
+              }
+
             },
             (err) => {
               console.log(err);
