@@ -55,17 +55,18 @@ export class WidgetsComponent {
     _photo: string,
     _gender: string,
     _birth_date: string,
-    _address: string
+    _address: string,
+    type:string
   ) {
     try {
       if(_password !== _password2){
-
         return;
       }
       if(!this.ValidateEmail(_email)){
-
         return;
       }
+      let rol=Number(type)
+      console.log(rol)
       this.servicio.registrerUser(
         _name,
         _last_name,
@@ -77,7 +78,7 @@ export class WidgetsComponent {
         _birth_date,
         _address,
         2,
-        2
+        rol
       ).subscribe((res: any) => {
           if (res.status == 200) {
             const Toast = Swal.mixin({
@@ -98,6 +99,7 @@ export class WidgetsComponent {
             });
             this.router.navigate(['/administracion/persona/ver']);
           } else {
+            console.log(res)
             Swal.fire({
               icon: 'error',
               title: 'Something went wrong ',

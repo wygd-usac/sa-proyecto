@@ -264,6 +264,10 @@ export class RequestService {
     return this.http.get( this.url_server + 'esb/administracion/users', {})
   }
 
+  deleteUserAdmin(id_user:number){
+    return this.http.delete( this.url_server + 'esb/administracion/users/delete?id='+id_user,{  } )
+  }
+
   editUser( user ){
     console.log(user);
     return this.http.post(  this.url_server + 'esb/usuario/update' , {

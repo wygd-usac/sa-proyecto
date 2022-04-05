@@ -59,11 +59,12 @@ export class WidgetsBrandComponent  {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          this.servicio.deletePerson(id_person).subscribe(
+          this.servicio.deleteUserAdmin(id_person).subscribe(
             (res: any) => {
+              console.log(res);
               const Toast = Swal.mixin({
-                toast: true,
                 position: 'center',
+                toast: true,
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
@@ -77,7 +78,7 @@ export class WidgetsBrandComponent  {
                 icon: 'success',
                 title: 'Person deleted successfully ' + name + ' ' + lastname,
               });
-              window.location.reload();
+              //window.location.reload();
             },
             (err) => {
               console.log(err);
