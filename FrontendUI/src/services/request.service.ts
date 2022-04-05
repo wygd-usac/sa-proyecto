@@ -225,7 +225,7 @@ export class RequestService {
   }
 
   getUsers(){
-    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idus'), {})
+    return this.http.get( this.url_server + 'esb/administracion/users', {})
   }
 
   editUser( user ){

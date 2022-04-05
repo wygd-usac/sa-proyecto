@@ -210,3 +210,22 @@ exports.getTeams = (req, res) => {
       });
   });
 };
+
+exports.getUsers = (req, res) => {
+  var id = req.query.id || "";
+
+  Persona.getUsers(id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        status: 500,
+        message: "Error al obtener Users",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Información de Users",
+        data: data,
+      });
+  });
+};
