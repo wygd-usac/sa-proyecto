@@ -257,12 +257,12 @@ router.get('/reports/person/competition/incidents/',validate_session,async (req,
 router.get('/reports/team/competitions',validate_session,async (req,res) => {
     const {equipo} = req.query;
     if(equipo == undefined){
-        res.send(dataOp.getResponse(400,"Error al retornar el reporte",[]));
+        res.status(400).send(dataOp.getResponse(400,"Error al retornar el reporte",[]));
     }
     console.log(req.query);
 
     const result = await dataOp.getTotalCompetitionsWinning(equipo);
-    res.send(result);
+    res.status(200).send(result);
 });
 
 //http://localhost:4200/#/forms/clienteteam

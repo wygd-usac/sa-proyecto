@@ -84,7 +84,7 @@ export class PersonageComponent implements OnInit {
     this.servicio.setQuiniela(user,this.id_quiniela,this.result_1,this.result_2).subscribe(
       (res: any) => {
         console.log(res);
-        Swal.fire('Quiniela almacenada',res.msj,'success');
+        Swal.fire('Quiniela almacenada',res.msj,'info');
       },
       (err) => {
         console.log(err);
