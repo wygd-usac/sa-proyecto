@@ -14,8 +14,36 @@ export class WidgetsBrandComponent  {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,private router: Router, private servicio: RequestService
   ) {}
-
   user:any;
+  ngOnInit(): void {
+    const rol = localStorage.getItem("rol");
+    // @ts-ignore
+    if (rol != 1) {
+      this.router.navigate(['/404']);
+    }
+    this.getPersonAll();
+  }
+
+  getPersonAll() {
+    try {
+      this.servicio.getUsers().subscribe(
+        (res: any) => {
+          this.user = res.data;
+          if (this.user.length > 0) {
+            //console.log(this.user);
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {
+
+    }
+    console.log(this.user);
+  }
+
+
 
   editPerson(id: number) {}
 

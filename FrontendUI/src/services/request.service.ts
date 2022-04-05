@@ -175,6 +175,10 @@ export class RequestService {
     return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idu'))
   }
 
+  getUsers(){
+    return this.http.get( this.url_server + 'esb/usuario/get?id='+localStorage.getItem('idus'), {})
+  }
+
   editUser( user ){
     console.log(user);
     return this.http.post(  this.url_server + 'esb/usuario/update' , {

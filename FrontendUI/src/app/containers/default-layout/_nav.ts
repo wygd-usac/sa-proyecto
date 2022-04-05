@@ -57,12 +57,12 @@ export function nivel(){
       {
         name: 'Crear',
         url: '/administracion/usuario/crear',
-        iconComponent: {name: 'cil-pencil'}
+        iconComponent: {name: 'cil-list'}
       },
       {
         name: 'Ver',
-        url: '//administracion/usuario/ver',
-        iconComponent: {name: 'cil-list'}
+        url: '/administracion/usuario/ver',
+        iconComponent: {name: 'cil-pencil'}
       }
 
 
