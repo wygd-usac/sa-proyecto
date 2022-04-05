@@ -213,7 +213,8 @@ Persona.getUsers = (id, result) => {
                 from Usuario U
               join Country C on U.id_Country = C.id_Country
               join Rol r on U.id_rol = r.id_rol
-              where U.id_rol!=3`;
+              where U.id_rol!=3
+              order by U.name,U.lastname`;
 
   if (id == "") {
     conexion.query(query, (err, res) => {

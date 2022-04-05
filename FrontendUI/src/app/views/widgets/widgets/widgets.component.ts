@@ -143,7 +143,7 @@ export class WidgetsComponent {
               icon: 'success',
               title: 'Person created successfully ' + _name + ' ' + _last_name,
             });
-            this.router.navigate(['/administracion/persona/ver']);
+            this.router.navigate(['/administracion/usuario/ver']);
           } else {
             console.log(res)
             Swal.fire({
