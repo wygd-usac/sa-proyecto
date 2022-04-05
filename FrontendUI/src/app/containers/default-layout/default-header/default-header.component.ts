@@ -1,6 +1,6 @@
 import {Component, HostListener, Input} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import {RequestService} from '../../../../services/request.service'
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import {nivel} from "../_nav";
 import {Router} from "@angular/router";
@@ -21,11 +21,12 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public name =''
   public estado = "success"
 
-  constructor(private classToggler: ClassToggleService, private router: Router,) {
+  constructor(private classToggler: ClassToggleService, private router: Router, private servicio: RequestService) {
     super();
   }
 
   clearLocal(){
+    this.servicio.insertLog('Logout');
     localStorage.clear();
     this.router.navigate(['/login']);
   }

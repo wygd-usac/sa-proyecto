@@ -8,11 +8,11 @@ const Bitacora = function (bitacora) {
 };
 
 Bitacora.getAll = (id, result) => {
-  let query = `select  u.id_user, u.name, u.lastname, B.accion, date_format(B.fecha,'%d/%m/%Y %T') as date,
-                IF(B.is_error = 1, 'true', 'false') as is_error
+  let query = `select  u.id_user, u.name, u.lastname, B.accion,
+                    date_format(CONVERT_TZ(B.fecha,'+00:00','-06:00'),'%d/%m/%Y %T') as date,
+                    IF(B.is_error = 1, 'true', 'false') as is_error
                 from Usuario u
-                join Bitacora B on u.id_user = B.id_administrador
-                order by u.name desc, u.lastname desc`;
+                join Bitacora B on u.id_user = B.id_administrador`;
 
   if (id == "") {
     conexion.query(query, (err, res) => {

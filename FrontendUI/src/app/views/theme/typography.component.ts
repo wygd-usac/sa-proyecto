@@ -47,7 +47,7 @@ export class TypographyComponent {
                   toast.addEventListener('mouseleave', Swal.resumeTimer);
                 },
               });
-
+              this.servicio.insertLog('Delete user: '+ name + ' ' + lastname);
               Toast.fire({
                 icon: 'success',
                 title: 'Person deleted successfully ' + name + ' ' + lastname,
