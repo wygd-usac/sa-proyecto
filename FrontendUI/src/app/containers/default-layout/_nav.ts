@@ -68,7 +68,7 @@ export function nivel(){
 
     ];
   }
-  // usuario cliente
+  // usuario empleado
   else if( x== "2"){
     sesion = [
       {

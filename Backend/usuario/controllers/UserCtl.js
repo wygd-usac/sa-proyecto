@@ -189,7 +189,6 @@ async function getUser(req, res, next){
     }
 }
 
-
 async function loginUser(req, res, next){
     try {
         let email = req.body.email;
@@ -220,6 +219,22 @@ async function loginUser(req, res, next){
         }
     }catch(error){
         res.status(400).json({msg:"error al obtener login"})
+    }
+}
+
+async function restablecer(req, res, next){
+    try {
+    let email = req.body.email;
+    let helper = await UserModal.getUserForEmail(email);
+    if(helper[0].id_status !==undefined && helper[0].id_status !== null){
+        enviarCorreo(email, "hola, de parte de Soccer Stats: puedes usar este codigo como password alterna temporal : "+
+            helper[0].id_status);
+        res.status(200).json({msg:"Revisa tu correo"});
+    }else {
+        res.status(400).json({msg:"error al enviar correo de restableciemiento, seguro estas registrado?"});
+    }
+    }catch(error){
+        res.status(400).json({msg:"error al enviar correo de restableciemiento, seguro estas registrado?"});
     }
 }
 
@@ -265,10 +280,10 @@ async function enviarCorreo(correo, texto){
     });
 }
 
-
 module.exports.InsertUser = InsertUser;
 module.exports.UpdateUser = UpdateUser;
 module.exports.loginUser = loginUser;
 module.exports.deleteUser = deleteUser;
 module.exports.getUser = getUser;
 module.exports.confirmUser = confirmUser;
+module.exports.restablecer = restablecer;
