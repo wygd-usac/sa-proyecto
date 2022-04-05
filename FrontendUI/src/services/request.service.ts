@@ -17,7 +17,6 @@ export class RequestService {
   url_server: any;
   url_server_admin: any;
 
-
   constructor(private http: HttpClient) {
     //this.url_server = 'http://34.132.139.69:5000/';
     //this.url_server_admin = 'http://34.132.139.69:5002/';
@@ -347,6 +346,10 @@ export class RequestService {
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
       { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
+  }
+
+  send(){
+
   }
 
 }
