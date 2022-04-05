@@ -196,8 +196,9 @@ export class ClienteteamComponent implements OnInit {
   verPartidosXY(){
     this.servicio.getPartidosXY(this.equipoX,this.equipoY).subscribe(
       (res: any) => {
+        console.log(res);
         this.partidosXY = res.data;
-        console.log(this.partidosAnio);
+        console.log(this.partidosXY);
       },
       (err) => {
         console.log(err);
