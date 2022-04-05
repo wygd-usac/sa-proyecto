@@ -1,6 +1,7 @@
 const Router = require("express");
 const router = Router();
 const PersonaCtl = require("../controllers/PersonaCtl");
+const BitacoraCtl = require("../controllers/BitacoraCtl");
 
 router.get("/", (req, res) => {
   res.send(
@@ -19,5 +20,9 @@ router.delete("/persona/", PersonaCtl.delete);
 router.get("/country", PersonaCtl.getCountrys);
 router.get("/team", PersonaCtl.getTeams);
 router.get("/stand", PersonaCtl.getStands);
+
+//Bitacora
+router.post("/reporte/log", BitacoraCtl.create);
+router.get("/reporte/log", BitacoraCtl.findAll);
 
 module.exports = router;

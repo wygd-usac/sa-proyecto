@@ -26,6 +26,39 @@ export class RequestService {
     this.url_server_admin = environment.base_url;
   }
 
+  //Bitacora
+  getLog():any{
+    return this.http.get(this.url_server + 'esb/administracion/reporte/log', {});
+  }
+
+  newLog(id_administrador:number,accion:string,is_error:number):any{
+    return this.http.post(this.url_server_admin + 'esb/administracion/reporte/log/',
+      {id_administrador:id_administrador,accion:accion,is_error:is_error})
+  }
+
+  insertLog(accion:string){
+    let error:number=0;
+    if (accion=='')error=1;
+    const rol = localStorage.getItem("rol");
+    const id_user = localStorage.getItem("id_user");
+    // @ts-ignore
+    if (rol==1){
+      try {
+        // @ts-ignore
+        this.newLog(id_user,accion,error).subscribe((res: any) => {
+            if (res.status == 200) {
+              //console.log('Log');
+            } else {
+            }
+          }
+          ,
+          err => {
+          }
+        );
+      } catch (e) {
+      }
+    }
+  }
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',

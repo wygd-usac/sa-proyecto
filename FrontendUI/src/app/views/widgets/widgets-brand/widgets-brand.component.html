@@ -1,22 +1,50 @@
-<c-row>
-  <c-col *ngFor="let widget of brandData; index as i" sm="6" xl="3">
-    <c-widget-stat-d
-      [color]="widget.color ?? ''"
-      [style]="widget.capBg ?? null"
-      [values]="widget.values"
-      class="mb-4"
-    >
-      <svg [name]="widget.icon" cIcon class="my-4 text-white" height="52"></svg>
-      <ng-container *ngIf="withCharts">
-        <c-chart
-          #chart="cChart"
-          [data]="widget.data"
-          [options]="chartOptions"
-          class="position-absolute w-100 h-100"
-          type="line"
-        >{{ chart.id }}</c-chart
-        >
-      </ng-container>
-    </c-widget-stat-d>
-  </c-col>
-</c-row>
+<div class="fade-in">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>
+        Personas
+      </strong>
+    </c-card-header>
+    <c-card-body>
+      <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Name</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Status</th>
+          <th scope="col">Stand</th>
+          <th scope="col">Team</th>
+          <th scope="col">Nationality</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let person of user; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>
+            <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
+          <td>{{person.name}}</td>
+          <td>{{person.lastname}}</td>
+          <td>{{person.birthday}}</td>
+          <td>{{person.status}}</td>
+          <td>{{person.stand}}</td>
+          <td>{{person.team}}</td>
+          <td>{{person.nationality}}</td>
+          <td (click)="editPerson(person.id_person)">
+            <svg cIcon name="cil-pencil" size="xl" >
+            </svg>
+          </td>
+          <td (click)="deletePerson(person.id_person,person.name,person.lastname)">
+            <svg cIcon name="cil-trash" size="xl"></svg>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </c-card-body>
+  </c-card>
+
+</div>

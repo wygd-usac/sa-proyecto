@@ -32,8 +32,8 @@ export class LoginComponent {
     this.visible = event;
   }
 
-
   user : any;
+
   iniciar(email: string, password: string) {
     try {
       this.servicio.loginUser(email, password).subscribe((res: any) => {
@@ -47,6 +47,7 @@ export class LoginComponent {
             localStorage.setItem("full_name", this.user.name+' '+this.user.lastname);
             localStorage.setItem("idu", this.user.id_user);
             localStorage.setItem("id_user", this.user.id_user);
+            this.servicio.insertLog('Login');
             this.router.navigate(['/administracion']);
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({

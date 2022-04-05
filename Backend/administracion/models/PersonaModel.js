@@ -13,7 +13,7 @@ const Persona = function (persona) {
 };
 
 Persona.create = (newPersona, result) => {
-  console.log("crear");
+  //console.log("crear");
   conexion.query("INSERT INTO Person SET ?", newPersona, (err, res) => {
     if (err) {
       console.log("error:", err);

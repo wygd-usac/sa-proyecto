@@ -20,6 +20,7 @@ export class ButtonGroupsComponent {
   id_team = 0;
   listNewsByTeam:any;
   listNews:any;
+  listLog:any;
 
   ngOnInit(): void {
     const rol = localStorage.getItem("rol");
@@ -36,6 +37,7 @@ export class ButtonGroupsComponent {
     });
     this.getSelects();
     this.getNews()
+    this.getBitacora()
   }
 
   getNews(){
@@ -51,6 +53,21 @@ export class ButtonGroupsComponent {
         }
       );
     } catch (e) {console.info('Error al cargar los equipos')}
+  }
+
+  getBitacora(){
+    try {
+      this.servicio.getLog().subscribe(
+        (res: any) => {
+          this.listLog = res.data;
+          if (this.listLog > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los datos')}
   }
 
   getSelects(){

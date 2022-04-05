@@ -30,13 +30,6 @@ const routes: Routes = [
           title: 'Empleados'
         }
       },
-      {
-        path: 'dropdowns',
-        component: DropdownsComponent,
-        data: {
-          title: 'partido'
-        }
-      },
     ]
   }
 ];
