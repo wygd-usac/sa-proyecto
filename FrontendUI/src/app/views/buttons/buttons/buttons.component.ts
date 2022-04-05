@@ -76,10 +76,12 @@ export class ButtonsComponent {
   }
 
   getUserMembership(){
+    //console.log('membresias')
     try {
       this.servicio.getUserMembership().subscribe(
         (res: any) => {
           this.listUserMembership = res.data;
+          //console.log(res)
           if (this.listUserMembership.length > 0) {
           }
         },

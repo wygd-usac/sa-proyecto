@@ -209,7 +209,7 @@ Reporte.findnews = (id, result) => {
     `select u.id_user, u.name, u.lastname, count(n.id_new) as news from Usuario u
       join Equipos_Seguidos es on u.id_user = es.id_usuario
       join Noticia n on es.id_team = n.Equipo_id_team
-      where u.id_rol=2 
+      where u.id_rol=2 and n.empleado=u.id_user
       group by u.id_user, u.name, u.lastname`,
     id,
     (err, res) => {
@@ -239,7 +239,7 @@ Reporte.findnewsByTeam = (id, result) => {
       join Equipos_Seguidos es on u.id_user = es.id_usuario
       join Noticia n on es.id_team = n.Equipo_id_team
       join Equipo E on es.id_team = E.id_team
-      where where u.id_rol=2 and E.id_team = ?
+      where where u.id_rol=2 and n.empleado=u.id_user and E.id_team = ?
       group by u.id_user, u.name, u.lastname, E.name`,
     id,
     (err, res) => {
