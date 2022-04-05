@@ -26,6 +26,16 @@ export class RequestService {
     this.url_server_admin = environment.base_url;
   }
 
+  //Bitacora
+  getLog():any{
+    return this.http.get(this.url_server + 'esb/administracion/reporte/log', {});
+  }
+
+  newLog(id_administrador:number,accion:string,is_error:number):any{
+    return this.http.post(this.url_server_admin + 'esb/administracion/reporte/log/',
+      {id_administrador:id_administrador,accion:accion,is_error:is_error})
+  }
+
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
