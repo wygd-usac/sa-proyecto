@@ -74,7 +74,8 @@ export class ClienteteamComponent implements OnInit {
   }
 
   follow(){
-    this.servicio.setFollow(this.equipoSeleccionado,1).subscribe(
+    let user = Number(localStorage.getItem('idu')) || 1;
+    this.servicio.setFollow(this.equipoSeleccionado,user).subscribe(
       (res: any) => {
         console.log(res.msj);
         Swal.fire(

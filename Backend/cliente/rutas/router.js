@@ -12,7 +12,7 @@ const {validate_session,validate_premium,alive} = require('../middleware/validat
 //-----------------------------------------------------
 
 
-router.get('/',validate_session,validate_premium, (req, res) => {
+router.get('/',validate_session, (req, res) => {
     //console.log(req.body.data);
     const jwt_result = alive();
     console.log(jwt_result);
@@ -20,6 +20,7 @@ router.get('/',validate_session,validate_premium, (req, res) => {
     res.send("Modulo de Cliente prueba modificado" + jwt_result);
 });
 
+//pesonage
 router.patch('/membership',validate_session,async (req,res) => {
     const {id_client} = req.body;
     if(id_client == undefined){
@@ -66,7 +67,10 @@ router.post('/follow',validate_session,async (req,res) => {
     console.log(id_team);
     const result = await dataOp.followTeam(id_client,id_team);
     console.log(result);
-    res.send(JSON.stringify(result));
+    if(result.status != 400)
+        res.status(200).send(JSON.stringify(result));
+    else
+    res.status(400).send(dataOp.getResponse(400,"Error al seguir un equipo."));
 });
 //http://localhost:4200/#/forms/clienteteam
 router.get('/notifications',validate_session, async (req,res) => {
@@ -80,6 +84,7 @@ router.get('/notifications',validate_session, async (req,res) => {
     res.send(result);
 });
 
+//http://localhost:4200/#/forms/personage
 router.post('/quiniela',validate_session,async (req,res) => {
     const {id_client,id_game,result_1,result_2} = req.body;
     if(id_client == undefined || id_game == undefined || result_1 == undefined || result_2 == undefined){
@@ -234,6 +239,7 @@ router.get('/reports/game/goal/',validate_session,async (req,res) => {
     res.send(result);
 });
 
+//http://localhost:4200/#/forms/personage
 //## Jugadores con más X incidencias en Y competición, (de Z año)
 router.get('/reports/person/competition/incidents/',validate_session,async (req,res) => {
     const {competicion,anio} = req.query;
@@ -246,7 +252,7 @@ router.get('/reports/person/competition/incidents/',validate_session,async (req,
     res.send(result);
 });
 
-
+//http://localhost:4200/#/forms/personage
 //## Cantidad de X competiciones que ha ganado Y equipo
 router.get('/reports/team/competitions',validate_session,async (req,res) => {
     const {equipo} = req.query;
