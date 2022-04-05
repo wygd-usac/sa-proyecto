@@ -8,7 +8,7 @@ const Bitacora = function (bitacora) {
 };
 
 Bitacora.getAll = (id, result) => {
-  let query = `select  u.id_user, u.name, u.lastname, B.acccion, date_format(B.fecha,'%d/%m/%Y %T') as date,
+  let query = `select  u.id_user, u.name, u.lastname, B.accion, date_format(B.fecha,'%d/%m/%Y %T') as date,
                 IF(B.is_error = 1, 'true', 'false') as is_error
                 from Usuario u
                 join Bitacora B on u.id_user = B.id_administrador
