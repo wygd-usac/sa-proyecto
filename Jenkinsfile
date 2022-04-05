@@ -4,7 +4,7 @@ pipeline {
     stage('Pull-Repository') {
       steps {
         echo 'Repository was pulled.'
-        //sh 'docker rmi $(docker images -q)'
+        sh 'docker rmi $(docker images -q)'
       }
     }
 
