@@ -20,6 +20,7 @@ router.delete("/persona/", PersonaCtl.delete);
 router.get("/country", PersonaCtl.getCountrys);
 router.get("/team", PersonaCtl.getTeams);
 router.get("/stand", PersonaCtl.getStands);
+router.get("/users", PersonaCtl.getUsers);
 
 //Bitacora
 router.post("/reporte/log", BitacoraCtl.create);

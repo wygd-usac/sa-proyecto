@@ -187,4 +187,29 @@ Persona.getTeams = (id, result) => {
   }
 };
 
+Persona.getUsers = (id, result) => {
+  let query = `select U.id_user,U.name,U.lastname,U.email,U.telephone,U.photo,
+                IF(U.genre='M','Masculino','Femenino') as genre,
+                date_format(U.birthday,'%d/%m/%Y') as birthday,
+                date_format(U.created,'%d/%m/%Y') as signup,
+                U.address,C.country, r.rol as type
+                from Usuario U
+              join Country C on U.id_Country = C.id_Country
+              join Rol r on U.id_rol = r.id_rol
+              where U.id_rol!=3`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Users: ", res);
+      result(null, res);
+    });
+  }
+};
+
 module.exports = Persona;
