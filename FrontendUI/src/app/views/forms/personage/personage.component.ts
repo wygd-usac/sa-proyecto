@@ -13,7 +13,7 @@ export class PersonageComponent implements OnInit {
   tiporeporte!:string;
   age!:number;
   persons:any;
-  private isPremium = false;
+  isPremium = false;
   options = [
     {id:1,description:"Menor que"},
     {id:2,description:"Mayor que"}
