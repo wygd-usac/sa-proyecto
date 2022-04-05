@@ -519,13 +519,19 @@
       <th scope="col">#</th>
       <th scope="col">Partido</th>
       <th scope="col">Año</th>
+      <th scope="col">Local</th>
+      <th scope="col">Visitante</th>
+      <th scope="col">Resultado</th>
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let partidoXY of partidosXY; index as i">
             <th scope="row">{{i + 1}}</th>
             <td>{{partidoXY.name_game}}</td>
-            <td>{{partidoXY.year}}</td>
+            <td>{{partidoXY.date_game}}</td>
+            <td>{{partidoXY.team_local}}</td>
+            <td>{{partidoXY.team_visit}}</td>
+            <td>{{partidoXY.result}}</td>
           </tr>
 
     </tbody>
