@@ -36,7 +36,7 @@ const routes: Routes = [
           import('./views/base/base.module').then((m) => m.BaseModule)
       },
       {
-        path: 'reportes',
+        path: 'administracion/reportes',
         loadChildren: () =>
           import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)
       },
@@ -61,7 +61,7 @@ const routes: Routes = [
           import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
       },
       {
-        path: 'widgets',
+        path: 'administracion/usuario',
         loadChildren: () =>
           import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
       },

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   ButtonModule,
   CardModule,
-  DropdownModule,
+  DropdownModule, FormModule,
   GridModule,
   ProgressModule,
   SharedModule,
@@ -41,7 +41,8 @@ import { WidgetsEComponent } from './widgets-e/widgets-e.component';
     CardModule,
     DocsComponentsModule,
     ProgressModule,
-    ChartjsModule
+    ChartjsModule,
+    FormModule
   ],
   exports: [
     WidgetsBrandComponent,

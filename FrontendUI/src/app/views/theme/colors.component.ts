@@ -169,7 +169,7 @@ export class ColorsComponent {
                     toast.addEventListener('mouseleave', Swal.resumeTimer);
                   },
                 });
-                this.servicio.insertLog('Create user: '+ name + ' ' + lastname);
+                this.servicio.insertLog('Create Person: '+ name + ' ' + lastname);
                 Toast.fire({
                   icon: 'success',
                   title: 'Person created successfully ' + name + ' ' + lastname,
