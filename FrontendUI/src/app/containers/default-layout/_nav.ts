@@ -145,6 +145,16 @@ export function nivel(){
                 iconComponent: { name: 'cil-pencil' }
               },
             ]
+      },
+      {
+        name: 'Transferencias',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/transferencias',
+                iconComponent: { name: 'cil-list' }
+              },
+            ]
       }
     ];
   }

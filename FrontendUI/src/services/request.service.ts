@@ -136,6 +136,10 @@ export class RequestService {
     return this.http.get(this.url_server + 'esb/servicio_administrativo/soccer-game', {})
   }
 
+  getTransfer(): any{
+    return this.http.get(this.url_server + 'esb/servicio_administrativo/transfer-log', {})
+  }
+
   deleteSoccer_Game(id:number):any{
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/soccer-game/?id='+id, {})
   }

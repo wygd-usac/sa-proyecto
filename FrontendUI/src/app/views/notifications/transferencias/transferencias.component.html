@@ -1,0 +1,34 @@
+<div class="fade-in">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>
+          Transferencias
+        </strong>
+      </c-card-header>
+      <c-card-body>
+        <table cTable [responsive]="true" >
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Person</th>
+            <th scope="col">Origin Team</th>
+            <th scope="col">Destination Team</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let x of transfer; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{x.first_date}}</td>
+            <td>{{x.Person}}</td>
+            <td>{{x.team_origin}}</td>
+            <td>{{x.team_destination}}</td>
+
+          </tr>
+  
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  
+  </div>
