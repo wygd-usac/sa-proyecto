@@ -137,6 +137,22 @@ export function nivel(){
           },
         ]
       },
+      {
+        name: 'Reportes',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Cliente - Equipos',
+            url: '/forms/clienteteam',
+            iconComponent: { name: 'cil-settings'}
+          },
+          {
+            name: 'Cliente - Edad',
+            url: '/forms/personage',
+            iconComponent: { name: 'cil-settings'}
+          },
+        ]
+      },
     ];
   }
   else {
