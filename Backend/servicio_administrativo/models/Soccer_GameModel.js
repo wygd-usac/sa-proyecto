@@ -102,6 +102,41 @@ Soccer_Game.remove = (id, result) => {
 };
 
 
+
+Soccer_Game.getStadiums = (id, result) => {
+  let query = `select id_Estadio, name from Estadio`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Stadiums: ", res);
+      result(null, res);
+    });
+  }
+};
+
+Soccer_Game.getCompetitions = (id, result) => {
+  let query = `select id_competencia, name from Competencia`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Competitions: ", res);
+      result(null, res);
+    });
+  }
+};
+
 module.exports = Soccer_Game;
 
 

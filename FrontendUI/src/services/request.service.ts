@@ -140,6 +140,34 @@ export class RequestService {
     return this.http.delete(this.url_server + 'esb/servicio_administrativo/soccer-game/?id='+id, {})
   }
 
+  addSoccerGame(
+    _game_date:any,
+    _attendees:any,
+    _result_local: any,
+    _result_visiting:any,
+    _state:any,
+    _id_stadium:any,
+    _id_team_local:any,
+    _id_team_visiting:any,
+    _incidents:any,
+    _id_winner:any,
+    _id_competicion:any
+  ){
+    return this.http.post(this.url_server + 'esb/servicio_administrativo/soccer-game', {
+      game_date: _game_date,
+      attendees: _attendees,
+      result_local: _result_local,
+      result_visiting: _result_visiting,
+      state: _state,
+      id_stadium: _id_stadium,
+      id_team_local: _id_team_local,
+      id_team_visiting: _id_team_visiting,
+      incidents: _incidents,
+      id_winner: _id_winner,
+      id_competicion: _id_competicion
+    })
+  }
+
   //Equipo
   getTeam(): any{
     return this.http.get(this.url_server + 'esb/servicio_administrativo/team', {})
@@ -161,6 +189,14 @@ export class RequestService {
       id_country:_id_country,
       photo: _photo
     })
+  }
+
+  getListStadiums(): any{
+    return this.http.get(this.url_server_admin + 'esb/servicio_administrativo/estadio', {})
+  }
+
+  getListCompetition(): any{
+    return this.http.get(this.url_server_admin + 'esb/servicio_administrativo/competencia', {})
   }
 
   //Competencia

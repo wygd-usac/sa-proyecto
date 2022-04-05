@@ -1,0 +1,97 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col lg="7" md="9" xl="6">
+          <c-card class="mx-4">
+            <c-card-body class="p-4">
+              <form cForm [formGroup]="select" (ngSubmit)="registrar(date.value,attendees.value,local_r.value,visiting_r.value,status.value,incidents.value)">
+                <h1>Crear Partido</h1>
+  <!--              <p class="text-medium-emphasis">Create your account</p>-->
+                <label>Date</label>
+                <c-input-group class="mb-3">
+                    <input autoComplete="date" #date type="date" cFormControl placeholder="date" />
+                </c-input-group>
+              <label>Attendees</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="attendees" #attendees type="number" cFormControl placeholder="attendees" />
+              </c-input-group>
+              <label>Local Result</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="local_r" #local_r type="number" cFormControl placeholder="local" />
+              </c-input-group>
+              <label>Visiting Result</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="visiting_r" #visiting_r type="number" cFormControl placeholder="visiting" />
+              </c-input-group>
+              <label>State</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectstatus">
+                    <option #status selected="selected" value="Sin iniciar">Sin iniciar</option>
+                    <option #status value="en curso">en curso</option>
+                    <option #status value="finalizado">finalizado</option>
+                    <option #status value="suspendido">suspendido</option>
+                  </select>
+                </c-input-group>
+                <label>Stadium</label>
+                <c-input-group class="mb-4">
+                  <select cSelect formControlName="selectstadium" >
+                    <option *ngFor="let stand of listStadiums"
+                            value="{{stand.id_stadium}}" ngValue="{{stand.id_Estadio}}">
+                      {{stand.name}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <label> Local Team</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectteam">
+                    <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
+                            value="{{team.id_team}}" >
+                      {{team.name}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <label> Local Visiting</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectteam2">
+                    <option *ngFor="let team of listTeams2; index as i" ngValue="{{team.id_team}}"
+                            value="{{team.id_team}}" >
+                      {{team.name}}
+                    </option>
+                  </select>
+                </c-input-group>
+                <label>Incidents</label>
+              <c-input-group class="mb-3">
+                <input autoComplete="incidents" #incidents type="number" cFormControl placeholder="incidents" />
+              </c-input-group>
+              <label> Winner</label>
+              <c-input-group class="mb-3">
+                <select cSelect formControlName="selectteam3">
+                  <option *ngFor="let team of listTeams3; index as i" ngValue="{{team.id_team}}"
+                          value="{{team.id_team}}" >
+                    {{team.name}}
+                  </option>
+                </select>
+              </c-input-group>
+              <label> Competicion</label>
+              <c-input-group class="mb-3">
+                <select cSelect formControlName="selectcompetition">
+                  <option *ngFor="let team of listCompetitions; index as i" ngValue="{{team.id_competition}}"
+                          value="{{team.id_competition}}" >
+                    {{team.name}}
+                  </option>
+                </select>
+              </c-input-group>
+
+
+                <div class="d-grid">
+                  <button cButton color="success" type="submit">Crear Partido
+                  </button>
+                </div>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
+  

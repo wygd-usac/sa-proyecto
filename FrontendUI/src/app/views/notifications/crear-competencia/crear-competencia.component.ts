@@ -97,7 +97,9 @@ export class CrearCompetenciaComponent {
       'country: ',
       this.id_country,
       ' team: ',
-      this.id_team
+      this.id_team,
+      _name,_year,_type
+
     );
 
     if (
@@ -128,10 +130,10 @@ export class CrearCompetenciaComponent {
                     toast.addEventListener('mouseleave', Swal.resumeTimer);
                   },
                 });
-                this.servicio.insertLog('Create Competition: '+ name + ' ');
+                this.servicio.insertLog('Create Competition: '+ _name + ' ');
                 Toast.fire({
                   icon: 'success',
-                  title: 'Competition created successfully ' + name + ' ' ,
+                  title: 'Competition created successfully ' + _name + ' ' ,
                 });
                 this.router.navigate(['/empleado/competencia']);
               } else {
