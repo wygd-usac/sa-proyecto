@@ -172,6 +172,17 @@ export function nivel(){
           },
         ]
       },
+      {
+        name: 'Partidos',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Ver',
+            url: '/empleado/user-partidos',
+            iconComponent: { name: 'cil-settings'}
+          }
+        ]
+      }
     ];
   }
   else {

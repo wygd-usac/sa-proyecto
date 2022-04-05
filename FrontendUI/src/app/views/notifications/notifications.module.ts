@@ -35,6 +35,7 @@ import { EquipoComponent } from './equipo/equipo.component';
 import { CrearEquipoComponent } from './crear-equipo/crear-equipo.component';
 import { CompetenciaComponent } from './competencia/competencia.component';
 import { CrearCompetenciaComponent } from './crear-competencia/crear-competencia.component';
+import { UsuarioPartidosComponent } from './usuario-partidos/usuario-partidos.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CrearCompetenciaComponent } from './crear-competencia/crear-competencia
     CrearEquipoComponent,
     CompetenciaComponent,
     CrearCompetenciaComponent,
+    UsuarioPartidosComponent,
   ],
   imports: [
     CommonModule,
