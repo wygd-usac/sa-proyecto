@@ -1,5 +1,5 @@
 # sa-proyecto
-Proyecto software avanzado, Soccer Stats
+Proyecto software avanzado, Soccer Stats.
 
 <center>
 

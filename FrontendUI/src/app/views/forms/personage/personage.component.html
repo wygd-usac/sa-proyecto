@@ -1,0 +1,288 @@
+
+  <c-card class="mb-2">
+    <c-card-body>
+     
+        <h3> Edad</h3>
+      
+    <div class="row">
+        <div class="col-4">
+            <select id="menormayor" class="form-control" [(ngModel)]="tiporeporte">
+                <option *ngFor="let option of options; index as i" ngValue="{{option.id}}">
+                {{option.description}}
+                </option>
+            </select>
+        </div>
+        <div class="col-4">
+            <c-input-group class="mb-3">
+                <span cInputGroupText id="inputGroup-sizing-default">Edad</span>
+                <input aria-describedby="inputGroup-sizing-default"
+                       aria-label="Sizing example input"
+                       cFormControl
+                       [(ngModel)]="age"
+                />
+              </c-input-group>
+        </div>
+        <div class="col-4">
+            <button [cModalToggle]="personasAge.id" cButton color="primary" (click)="buscarPersonas()" >Mostrar</button>
+        </div>
+        
+    </div>
+  </c-card-body>
+</c-card>
+
+<c-card class="mb-2">
+  <c-card-body>
+   
+      <h3> Quiniela</h3>
+    
+  <div class="row">
+      <div class="col-12">
+          <c-input-group class="mb-3">
+              <span cInputGroupText id="inputGroup-sizing-default">Quiniela</span>
+              <input aria-describedby="inputGroup-sizing-default"
+                     aria-label="Sizing example input"
+                     cFormControl
+                     [(ngModel)]="id_quiniela"
+              />
+          </c-input-group>
+          <c-input-group class="mb-3">
+            <span cInputGroupText id="inputGroup-sizing-default">Resultado 1</span>
+            <input aria-describedby="inputGroup-sizing-default"
+                   aria-label="Sizing example input"
+                   cFormControl
+                   [(ngModel)]="result_1"
+            />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <span cInputGroupText id="inputGroup-sizing-default">Resultado 2</span>
+          <input aria-describedby="inputGroup-sizing-default"
+                 aria-label="Sizing example input"
+                 cFormControl
+                 [(ngModel)]="result_2"
+          />
+      </c-input-group>
+      </div>
+      <div class="col-4">
+          <button cButton color="primary" (click)="guardarQuiniela()" >Guardar</button>
+      </div>
+      
+  </div>
+</c-card-body>
+</c-card>
+
+<c-card class="mb-2">
+  <c-card-body>
+   
+      <h3> Competiciones ganadas por un equipo</h3>
+    
+  <div class="row">
+      <div class="col-12">
+          <c-input-group class="mb-3">
+              <span cInputGroupText id="inputGroup-sizing-default">Equipo</span>
+              <input aria-describedby="inputGroup-sizing-default"
+                     aria-label="Sizing example input"
+                     cFormControl
+                     [(ngModel)]="equipo"
+              />
+          </c-input-group>
+
+      </div>
+      <div class="col-4">
+          <button cButton color="primary" (click)="buscarWinnings()" >Buscar</button>
+      </div>
+      
+  </div>
+</c-card-body>
+</c-card>
+
+
+<!--menu incidencias-->
+<c-card class="mb-2">
+  <c-card-body>
+   
+      <h3> X incidencias en Y competición de Z año</h3>
+    
+  <div class="row">
+      <div class="col-12">
+          <c-input-group class="mb-3">
+            <span cInputGroupText id="inputGroup-sizing-default">Competición</span>
+            <input aria-describedby="inputGroup-sizing-default"
+                   aria-label="Sizing example input"
+                   cFormControl
+                   [(ngModel)]="competicion_id"
+            />
+        </c-input-group>
+        <c-input-group class="mb-3">
+          <span cInputGroupText id="inputGroup-sizing-default">Año</span>
+          <input aria-describedby="inputGroup-sizing-default"
+                 aria-label="Sizing example input"
+                 cFormControl
+                 [(ngModel)]="anio"
+          />
+      </c-input-group>
+      </div>
+      <div class="col-4">
+          <button [cModalToggle]="personasIncidencias.id" cButton color="primary" (click)="getJugadoresIncidencias()" >Ver Incidencias</button>
+      </div>
+      
+  </div>
+</c-card-body>
+</c-card>
+
+<!-- menu de incidencias -->
+
+<!--menu incidencias-->
+<c-card class="mb-2">
+  <c-card-body>
+   
+      <h3> Premium</h3>
+    
+  <div class="row">
+      <div *ngIf="isPremium" class="col-4">
+          <button cButton color="success" (click)="serPremium()" >Obtener prueba gratuita de servicios Premium!!</button>
+      </div>
+
+      <div *ngIf="isPremium" class="col-4">
+        <h5>Usted cuenta con una prueba gratuita de premium.</h5>
+    </div>
+      
+  </div>
+</c-card-body>
+</c-card>
+
+<c-modal #personasAge id="personasAge" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+    <button [cModalToggle]="personasAge.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="personasAgeContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="personasAge.id" cButton color="secondary">
+      Close
+    </button>
+    
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #personasAgeContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Id</th>
+      <!-- <th scope="col">Name</th> -->
+      <th scope="col">Lastname</th>
+      <th scope="col">Equipo</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+
+      <tr *ngFor="let person of persons; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>
+          <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
+          <td>{{person.id_person}}</td>
+          <td>{{person.name}}</td>
+          <td>{{person.lastname}}</td>
+          <td>{{person.age}}</td>
+          <td>{{person.type}}</td>
+          <!-- <td (click)="editPerson(person.id_person)">
+            <svg cIcon name="cil-pencil" size="xl" >
+
+            </svg>
+          </td> -->
+          <td >
+              <button [cModalToggle]="scrollableLongContentModal.id" class="btn btn-sm btn-primary" (click)="verEquiposPersona(person.id_person)"> Equipos</button>
+            </td>
+        </tr>
+
+    
+
+    </tbody>
+  </table>
+</ng-template>
+
+
+<c-modal #scrollableLongContentModal id="scrollableLongContentModal" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+    <button [cModalToggle]="scrollableLongContentModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="longContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="scrollableLongContentModal.id" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #longContent>
+    <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Equipo</th> 
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipop of equipos; index as i">
+                <th scope="row">{{i + 1}}</th>
+                
+                <td>{{equipop.name_person}}</td>
+                <td>{{equipop.name_team}}</td>
+                
+              </tr>
+
+        </tbody>
+      </table>
+</ng-template>
+
+<c-modal #personasIncidencias id="personasIncidencias" scrollable size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Incidencias en competición</h5>
+    <button [cModalToggle]="personasIncidencias.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <ng-container *ngTemplateOutlet="personasIncidenciasContent"></ng-container>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="personasIncidencias.id" cButton color="secondary">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<ng-template #personasIncidenciasContent>
+    <table cTable [responsive]="true">
+        <thead cTableColor="dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Competición</th>
+          <th scope="col">Año</th>
+          <th scope="col">Jugador</th>
+          <th scope="col">Incidencias</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let personI of personsI; index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{personI.name_competition}}</td>
+                <td>{{personI.year}}</td>
+                <td>{{personI.name}}</td>
+                <td>{{personI.total_incidents}}</td>
+              </tr>
+
+        </tbody>
+      </table>
+</ng-template>

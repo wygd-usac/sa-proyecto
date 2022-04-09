@@ -10,16 +10,22 @@ import {
   ButtonModule,
   FormModule,
   ModalModule,
-  PlaceholderModule
+  PlaceholderModule,
+  AvatarModule,
 } from '@coreui/angular';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-import { cilListNumbered, cilPaperPlane, brandSet,cilUserPlus } from '@coreui/icons';
+import {
+  cilListNumbered,
+  cilPaperPlane,
+  brandSet,
+  cilUserPlus,
+} from '@coreui/icons';
 import { ColorsComponent, ThemeColorComponent } from './colors.component';
 import { TypographyComponent } from './typography.component';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -36,13 +42,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     FormModule,
     ModalModule,
     PlaceholderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule,
   ],
-  declarations: [
-    ColorsComponent,
-    ThemeColorComponent,
-    TypographyComponent,
-  ]
+  declarations: [ColorsComponent, ThemeColorComponent, TypographyComponent],
 })
-export class ThemeModule {
-}
+export class ThemeModule {}

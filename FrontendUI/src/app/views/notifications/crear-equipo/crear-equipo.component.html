@@ -1,0 +1,46 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col lg="7" md="9" xl="6">
+          <c-card class="mx-4">
+            <c-card-body class="p-4">
+              <form cForm [formGroup]="select" (ngSubmit)="registrar(name.value,fundation_date.value,photo.value)">
+                <h1>Crear Equipo</h1>
+  <!--              <p class="text-medium-emphasis">Create your account</p>-->
+                <label>Name</label>
+                <c-input-group class="mb-3">
+                  <input autoComplete="name" #name cFormControl placeholder="name" />
+                </c-input-group>
+                <label>Fundation Date</label>
+                <c-input-group class="mb-3">
+                  <input autoComplete="fundation date" #fundation_date type="date" cFormControl placeholder="fundation_date" />
+                </c-input-group>
+                <label>Photo</label>
+                <c-input-group class="mb-3">
+                  <input type="file"  placeholder="foto" accept=".png, .jpg" (change)="onUpload($event)">
+                </c-input-group>
+                <c-input-group class="mb-3">
+                  <input cFormControl disabled type="text" #photo [value]="urlImage | async"  cFormControl placeholder="photo" />
+                </c-input-group>
+                <label>Country</label>
+                <c-input-group class="mb-3">
+                  <select cSelect formControlName="selectcountry">
+                    <option *ngFor="let country of listCountrys; index as i"
+                            ngValue="{{country.id_Country}}" value="{{country.id_Country}}">
+                      {{country.country}}
+                    </option>
+                  </select>
+                </c-input-group>
+                
+                <div class="d-grid">
+                  <button cButton color="success" type="submit">Create Team
+                  </button>
+                </div>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
+  

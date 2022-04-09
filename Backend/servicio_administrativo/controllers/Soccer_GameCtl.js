@@ -19,8 +19,8 @@ exports.create = (req, res) => {
         id_team_local: req.body.id_team_local,
         id_team_visiting: req.body.id_team_visiting,
         incidents: req.body.incidents || 0 ,
-        id_winner: req.id_winner || 0, 
-        id_competicion: req.id_competicion || 0
+        id_winner: req.body.id_winner || 0, 
+        id_competicion: req.body.id_competicion || 0
     });
   
     Soccer_Game.create(soccer_game, (err, data) => {
@@ -132,4 +132,40 @@ exports.findAll = (req, res) => {
     });
   };
 
+  exports.getStadiums = (req, res) => {
+    var id = req.query.id || "";
+  
+    Soccer_Game.getStadiums(id, (err, data) => {
+      if (err)
+        res.status(500).send({
+          status: 500,
+          message: "Error al obtener Stadiums",
+          data: [],
+        });
+      else
+        res.send({
+          status: 200,
+          message: "Información de Stadiums",
+          data: data,
+        });
+    });
+  };
 
+  exports.getCompetitions = (req, res) => {
+    var id = req.query.id || "";
+  
+    Soccer_Game .getCompetitions(id, (err, data) => {
+      if (err)
+        res.status(500).send({
+          status: 500,
+          message: "Error al obtener competencias",
+          data: [],
+        });
+      else
+        res.send({
+          status: 200,
+          message: "Información de competencias",
+          data: data,
+        });
+    });
+  };

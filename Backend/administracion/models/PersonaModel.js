@@ -13,7 +13,7 @@ const Persona = function (persona) {
 };
 
 Persona.create = (newPersona, result) => {
-  console.log("crear");
+  //console.log("crear");
   conexion.query("INSERT INTO Person SET ?", newPersona, (err, res) => {
     if (err) {
       console.log("error:", err);
@@ -136,6 +136,23 @@ Persona.remove = (id, result) => {
   });
 };
 
+Persona.removeUser = (id, result) => {
+  conexion.query("DELETE FROM Usuario WHERE id_user = ? ", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      result({ kind: "usuario no encontrado" }, null);
+      return;
+    }
+    console.log("Se ha eliminado el usuario especificado: ", id);
+    result(null, res);
+  });
+};
+
 Persona.getStands = (id, result) => {
   let query = `select id_stand, stand from Posicion`;
 
@@ -182,6 +199,32 @@ Persona.getTeams = (id, result) => {
       }
 
       console.log("Teams: ", res);
+      result(null, res);
+    });
+  }
+};
+
+Persona.getUsers = (id, result) => {
+  let query = `select U.id_user,U.name,U.lastname,U.email,U.telephone,U.photo,
+                IF(U.genre='M','Masculino','Femenino') as genre,
+                date_format(U.birthday,'%d/%m/%Y') as birthday,
+                date_format(U.created,'%d/%m/%Y') as signup,
+                U.address,C.country, r.rol as type
+                from Usuario U
+              join Country C on U.id_Country = C.id_Country
+              join Rol r on U.id_rol = r.id_rol
+              where U.id_rol!=3
+              order by U.name,U.lastname`;
+
+  if (id == "") {
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Users: ", res);
       result(null, res);
     });
   }

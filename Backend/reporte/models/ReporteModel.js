@@ -41,8 +41,9 @@ Reporte.suscribeByTeam = (id, result) => {
 Reporte.findmembership = (id, result) => {
   conexion.query(
     `select id_user, name, lastname,
-        IF(membership > 0, true, false) as membership
-    from Usuario`,
+        IF(membership > 0, 'true', 'false') as membership
+    from Usuario
+    order by name,lastname`,
     id,
     (err, res) => {
       if (err) {
@@ -68,7 +69,8 @@ Reporte.findmembership = (id, result) => {
 Reporte.findmemberships = (id, result) => {
   conexion.query(
     `select id_user, name, lastname, membership from Usuario u
-    order by u.membership desc`,
+      where membership>0
+      order by u.membership desc,name,lastname`,
     id,
     (err, res) => {
       if (err) {
@@ -93,7 +95,8 @@ Reporte.findmemberships = (id, result) => {
 
 Reporte.findexpenses = (id, result) => {
   conexion.query(
-    `select id_user, name, lastname, membership from Usuario u
+    `select id_user, name, lastname, (membership*10) as membership from Usuario u
+    where membership>0
     order by u.membership desc`,
     id,
     (err, res) => {
@@ -176,8 +179,9 @@ Reporte.findgenre = (id, result) => {
 
 Reporte.findage = (id, result) => {
   conexion.query(
-    `select id_user, name, lastname, age from Usuario
-        where age= ?`,
+    `select id_user,name,lastname,TIMESTAMPDIFF(YEAR, birthday, CURDATE()) AS age
+      from Usuario
+      where TIMESTAMPDIFF(YEAR, birthday, CURDATE())=?`,
     id,
     (err, res) => {
       if (err) {
@@ -203,9 +207,9 @@ Reporte.findage = (id, result) => {
 Reporte.findnews = (id, result) => {
   conexion.query(
     `select u.id_user, u.name, u.lastname, count(n.id_new) as news from Usuario u
-      join Equipos_Seguidos es on u.id_user = es.id_usuario
-      join Noticia n on es.id_team = n.Equipo_id_team
-      group by u.id_user, u.name, u.lastname`,
+        join Noticia n on n.empleado=u.id_user
+        where u.id_rol=2
+        group by u.id_user, u.name, u.lastname`,
     id,
     (err, res) => {
       if (err) {
@@ -231,10 +235,9 @@ Reporte.findnews = (id, result) => {
 Reporte.findnewsByTeam = (id, result) => {
   conexion.query(
     `select u.id_user, u.name, u.lastname, count(n.id_new) as news, E.name as team from Usuario u
-      join Equipos_Seguidos es on u.id_user = es.id_usuario
-      join Noticia n on es.id_team = n.Equipo_id_team
-      join Equipo E on es.id_team = E.id_team
-      where E.id_team = ?
+        join Noticia n on u.id_user = n.empleado
+        join Equipo E on n.Equipo_id_team = E.id_team
+      where where u.id_rol=2 and n.empleado=u.id_user and E.id_team = ?
       group by u.id_user, u.name, u.lastname, E.name`,
     id,
     (err, res) => {

@@ -3,6 +3,7 @@
 
 
 const validate_session = function(req, res, next){
+  console.log(req.headers);
   const token = req.headers['authorization'];
   const jwt_service = 'jwt';
   const production = false;

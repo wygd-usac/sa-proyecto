@@ -9,32 +9,25 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Buttons'
+      title: 'Reportes'
     },
     children: [
       {
         path: '',
-        redirectTo: 'buttons'
+        redirectTo: 'usuario'
       },
       {
-        path: 'buttons',
+        path: 'usuario',
         component: ButtonsComponent,
         data: {
-          title: 'Buttons'
+          title: 'Usuarios'
         }
       },
       {
-        path: 'button-groups',
+        path: 'empleado',
         component: ButtonGroupsComponent,
         data: {
-          title: 'Button groups'
-        }
-      },
-      {
-        path: 'dropdowns',
-        component: DropdownsComponent,
-        data: {
-          title: 'Dropdowns'
+          title: 'Empleados'
         }
       },
     ]

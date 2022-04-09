@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     id_team: req.body.id_team,
     photo: req.body.photo,
   });
-  console.log(persona);
+  //console.log(persona);
   Persona.create(persona, (err, data) => {
     if (err)
       res.status(500).send({
@@ -135,6 +135,33 @@ exports.delete = (req, res) => {
   });
 };
 
+exports.deleteUser = (req, res) => {
+  const id = req.query.id;
+  console.log("id ", id);
+  Persona.removeUser(id, (err, data) => {
+    if (err) {
+      if (err.kind === "Usuario no encontrado") {
+        res.status(404).send({
+          status: 500,
+          message: "Error al eliminar el Usuario",
+          data: [],
+        });
+      } else {
+        res.status(500).send({
+          status: 500,
+          message: "Error al eliminar el Usuario",
+          data: [],
+        });
+      }
+    } else
+      res.send({
+        status: 200,
+        message: "Usuario o DT eliminado con éxito",
+        data: [data],
+      });
+  });
+};
+
 exports.findAll = (req, res) => {
   var id = req.query.id || "";
 
@@ -206,6 +233,25 @@ exports.getTeams = (req, res) => {
       res.send({
         status: 200,
         message: "Información de Teams",
+        data: data,
+      });
+  });
+};
+
+exports.getUsers = (req, res) => {
+  var id = req.query.id || "";
+
+  Persona.getUsers(id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        status: 500,
+        message: "Error al obtener Users",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Información de Users",
         data: data,
       });
   });

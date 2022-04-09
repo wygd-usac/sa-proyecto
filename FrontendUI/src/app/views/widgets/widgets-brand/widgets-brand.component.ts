@@ -1,4 +1,7 @@
 import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import {Router} from "@angular/router";
+import Swal from "sweetalert2";
+import {RequestService} from "../../../../services/request.service";
 
 @Component({
   selector: 'app-widgets-brand',
@@ -6,96 +9,101 @@ import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component
   styleUrls: ['./widgets-brand.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WidgetsBrandComponent implements AfterContentInit {
+export class WidgetsBrandComponent  {
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,private router: Router, private servicio: RequestService
   ) {}
-
-  @Input() withCharts?: boolean;
-  // @ts-ignore
-  chartOptions = {
-    elements: {
-      line: {
-        tension: 0.4
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-        hoverBorderWidth: 3
-      }
-    },
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        display: false
-      }
+  user:any;
+  ngOnInit(): void {
+    const rol = localStorage.getItem("rol");
+    // @ts-ignore
+    if (rol != 1) {
+      this.router.navigate(['/404']);
     }
-  };
-  labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  datasets = {
-    borderWidth: 2,
-    fill: true
-  };
-  colors = {
-    backgroundColor: 'rgba(255,255,255,.1)',
-    borderColor: 'rgba(255,255,255,.55)',
-    pointHoverBackgroundColor: '#fff'
-  };
-  brandData = [
-    {
-      icon: 'cibFacebook',
-      values: [{ title: 'friends', value: '89K' }, { title: 'feeds', value: '459' }],
-      capBg: { '--cui-card-cap-bg': '#3b5998' },
-      labels: [...this.labels],
-      data: {
-        labels: [...this.labels],
-        datasets: [{ ...this.datasets, data: [65, 59, 84, 84, 51, 55, 40], label: 'Facebook', ...this.colors }]
-      }
-    },
-    {
-      icon: 'cibTwitter',
-      values: [{ title: 'followers', value: '973k' }, { title: 'tweets', value: '1.792' }],
-      capBg: { '--cui-card-cap-bg': '#00aced' },
-      data: {
-        labels: [...this.labels],
-        datasets: [{ ...this.datasets, data: [1, 13, 9, 17, 34, 41, 38], label: 'Twitter', ...this.colors }]
-      }
-    },
-    {
-      icon: 'cib-linkedin',
-      values: [{ title: 'contacts', value: '500' }, { title: 'feeds', value: '1.292' }],
-      capBg: { '--cui-card-cap-bg': '#4875b4' },
-      data: {
-        labels: [...this.labels],
-        datasets: [{ ...this.datasets, data: [78, 81, 80, 45, 34, 12, 40], label: 'LinkedIn', ...this.colors }]
-      }
-    },
-    {
-      icon: 'cilCalendar',
-      values: [{ title: 'events', value: '12+' }, { title: 'meetings', value: '4' }],
-      color: 'warning',
-      data: {
-        labels: [...this.labels],
-        datasets: [{ ...this.datasets, data: [35, 23, 56, 22, 97, 23, 64], label: 'Events', ...this.colors }]
-      }
-    }
-  ];
-
-  capStyle(value: string) {
-    return !!value ? { '--cui-card-cap-bg': value } : {};
+    this.getPersonAll();
   }
 
-  ngAfterContentInit(): void {
-    this.changeDetectorRef.detectChanges();
+  getPersonAll() {
+    try {
+      this.servicio.getUsers().subscribe(
+        (res: any) => {
+          this.user = res.data;
+          if (this.user.length > 0) {
+            //console.log(this.user);
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {
+
+    }
+    //console.log(this.user);
   }
+
+
+
+  editPerson(id: number) {}
+
+  deletePerson(id_person: number, name: string, lastname: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1d9045',
+      cancelButtonColor: '#a42828',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          this.servicio.deleteUserAdmin(id_person).subscribe(
+            (res: any) => {
+              //console.log(res);
+              if (res.status==200){
+                const Toast = Swal.mixin({
+                  position: 'center',
+                  toast: true,
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                  },
+                });
+                this.servicio.insertLog('Delete Person: '+ name + ' ' + lastname);
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Person deleted successfully ' + name + ' ' + lastname,
+                });
+                window.location.reload();
+              }else{
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Something is wrong!',
+                  icon: 'error',
+                  confirmButtonText: 'Cool',
+                });
+              }
+
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        } catch (e) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool',
+          });
+        }
+      }
+    });
+  }
+
 }

@@ -56,13 +56,16 @@
   <c-dropdown alignment="end" variant="nav-item">
 
     <div [hidden]="Logeado()">
+
       <button cButton type="button" color="" class="py-0">
+        <label> <b>{{name}}</b></label>
         <c-avatar
           cTextColor="primary"
           shape="rounded-1"
           size="md"
           src="{{profilepic}}"
           status="{{estado}}"
+          [textContent]="name"
         >
         </c-avatar>
       </button>
@@ -70,6 +73,7 @@
     </div>
 
     <div [hidden]="!Logeado()">
+
       <button
         cButton
         color="#dark"
@@ -78,6 +82,7 @@
         class="py-0"
         type="button"
       >
+        <label> <b>{{name}}</b></label>
         <c-avatar
           cTextColor="primary"
           shape="rounded-1"
@@ -168,7 +173,7 @@
         <li>
           <a routerLink="./" cDropdownItem (click)="clearLocal()">
             <svg cIcon class="me-2" name="cilLockLocked"></svg>
-            Log Out Account
+            Logout Account
           </a>
         </li>
         <li></li>

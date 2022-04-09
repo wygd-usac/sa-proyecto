@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   cliente:
-    image: wygd/ms-cliente-test:latest
+    image: wygd/ms-cliente2-test:latest
     ports:
       - "5010:5000"
     networks:

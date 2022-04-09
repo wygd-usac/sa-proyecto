@@ -22,16 +22,19 @@ pipeline {
       steps {
         dir(path: 'Backend/servicio_administrativo') {
           sh 'npm install'
-          sh 'npm test'
+          //sh 'npm test'
         }
 
       }
     }
 
     stage('ImageBuild-MicroServicio Testing') {
+      when {
+        branch 'develop'
+      }
       steps {
         echo 'Se ejecutara el deploy en producción.'
-        sh 'docker build --no-cache --rm -t wygd/ms-cliente-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-cliente2-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
@@ -44,6 +47,9 @@ pipeline {
 
 
     stage('ImageBuild-MicroServicios Production') {
+      when {
+        branch 'main'
+      }
       steps {
         echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente-production:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
@@ -96,13 +102,16 @@ pipeline {
     // }
 
     stage('Push-Microservicio Servicio Testing') {
+      when {
+        branch 'develop'
+      }
       environment {
         DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
       }
       steps {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin-test:latest'
-        sh 'docker push wygd/ms-cliente-test:latest'
+        sh 'docker push wygd/ms-cliente2-test:latest'
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
@@ -113,6 +122,9 @@ pipeline {
     }
 
     stage('Push-Microservicio Servicio Production') {
+      when {
+        branch 'main'
+      }
           environment {
             DOCKERHUB_CREDENTIALS = credentials('wygd-docker-hub')
           }
@@ -131,14 +143,14 @@ pipeline {
 
     stage('Build Frontend Test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'node -v'
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build'
+          sh 'ng build --configuration=testing'
           sh 'ls -a'
         }
       }
@@ -153,7 +165,7 @@ pipeline {
         dir(path: 'FrontendUI') {
           sh 'pwd'
           sh 'npm install'
-          sh 'npm run build --prod'
+          sh 'ng build --configuration=production'
           sh 'ls -a'
         }
 
@@ -161,7 +173,7 @@ pipeline {
     }
     stage('Deploy-frontend-test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'ls FrontendUI -a'
@@ -170,7 +182,7 @@ pipeline {
     }
     stage('Deploy-Ansible-test') {
       when {
-        branch 'master'
+        branch 'develop'
       }
       steps {
         sh 'ls -a'

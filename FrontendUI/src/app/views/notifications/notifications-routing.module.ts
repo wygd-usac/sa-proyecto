@@ -5,46 +5,94 @@ import { BadgesComponent } from './badges/badges.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { ModalsComponent } from './modals/modals.component';
 import { ToastersComponent } from './toasters/toasters.component';
+import {EquipoComponent} from './equipo/equipo.component';
+import {CrearEquipoComponent} from './crear-equipo/crear-equipo.component';
+import {CompetenciaComponent} from './competencia/competencia.component';
+import {CrearCompetenciaComponent} from './crear-competencia/crear-competencia.component';
+import { UsuarioPartidosComponent } from './usuario-partidos/usuario-partidos.component';
+import {TransferenciasComponent} from './transferencias/transferencias.component';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Notifications'
+      title: 'Empleado'
     },
     children: [
       {
         path: '',
-        redirectTo: 'badges'
+        redirectTo: 'estadios'
       },
       {
-        path: 'alerts',
+        path: 'estadios',
         component: AlertsComponent,
         data: {
-          title: 'Alerts'
+          title: 'Estadios'
         }
       },
       {
-        path: 'badges',
+        path: 'crear-estadios',
         component: BadgesComponent,
         data: {
-          title: 'Badges'
+          title: 'Crear Estadios'
         }
       },
       {
-        path: 'modal',
+        path: 'crear-partidos',
         component: ModalsComponent,
         data: {
-          title: 'Modal'
+          title: 'Crear partidos'
         }
       },
       {
-        path: 'toasts',
+        path: 'partidos',
         component: ToastersComponent,
         data: {
-          title: 'Toasts'
+          title: 'Partidos'
         }
+      },
+      {
+        path: 'crear-equipos',
+        component: CrearEquipoComponent,
+        data: {
+          title: 'Crear equipos'
+        }
+      },
+      {
+        path: 'equipos',
+        component: EquipoComponent,
+        data: {
+          title: 'Equipos'
+        }
+      },
+      {
+        path: 'crear-competencia',
+        component: CrearCompetenciaComponent,
+        data: {
+          title: 'Crear competencia'
+        }
+      },
+      {
+        path: 'competencia',
+        component: CompetenciaComponent,
+        data: {
+          title: 'Competencia'
+        }
+      },
+        {
+          path: 'user-partidos',
+          component: UsuarioPartidosComponent,
+          data: {
+            title: 'User-partidos'
+        }
+      },
+      {
+        path: 'transferencias',
+        component: TransferenciasComponent,
+        data: {
+          title: 'Transferencias'
       }
+    }
     ]
   }
 ];

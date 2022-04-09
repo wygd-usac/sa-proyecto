@@ -61,9 +61,24 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/proxy.conf.json",
+                  "with": "src/proxy-production.conf.json"
                 }
               ],
               "outputHashing": "all"
+            },"testing": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                },
+                {
+                  "replace": "src/proxy.conf.json",
+                  "with": "src/proxy-test.conf.json"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -78,6 +93,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "coreui-free-angular-admin-template:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "coreui-free-angular-admin-template:build:production"

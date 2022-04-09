@@ -39,7 +39,7 @@ async function followTeam(id_client,id_team){
 }
 
 async function getNotifications(id_team){
-    const query = `Select e.id_team , e.name , n.id_new  from Equipo e 
+    const query = `Select e.id_team , e.name , n.id_new, n.news as 'content'  from Equipo e 
     Join Noticia n 
     On e.id_team  = n.Equipo_id_team
     Where e.id_team = ${id_team};`;
@@ -66,18 +66,21 @@ async function setQuinielaResult(id_game,id_client,result_1,result_2){
 
     try{
         const result = await executeQ(query); 
+        console.log(result);
         if(result.affectedRows == 1){
             return {status:200,msj:"Estado de la quiniela actualizada.",data:[]};
+        }else if(result.affectedRows == 0){
+            return {status:400,msj:"Error al guardar la quiniela. No fue posible validar todos los datos.",data:[]};
         }
     }catch(error){
         console.log(error);
-        return {status:400,msj:"Error al seguir al equipo.",data:[]};
+        return {status:400,msj:"Error al guardar la quiniela.",data:[]};
     }
 }
 
 async function getTeamPersons(id_team){
     const query = `SELECT p.id_person, p.name, p.lastname, 
-    p.photo, p.status as 'type', p.id_team, e.name 
+    p.photo, p.status as 'type', p.id_team, e.name as 'team_name'
     FROM Person p Join Equipo e On e.id_team = p.id_team 
     WHERE p.id_team=${id_team};`;
 
@@ -260,7 +263,8 @@ async function getTeamHistory(id_team){
 }
 
 async function getHistoryPTeams(id_person){
-    const query = `Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
+    const query = `Select DISTINCT *
+    From (Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
     t_o.team_origin as 'id_team', e.name as'name_team'
     From Person p
     Join Transferencias t_o
@@ -276,7 +280,14 @@ async function getHistoryPTeams(id_person){
     On p.id_person = t_d.Person_id
     Join Equipo e
     On e.id_team = t_d.team_destination  
-    Where p.id_person = ${id_person};`;
+    Where p.id_person = ${id_person}
+    UNION ALL 
+    Select p.id_person , CONCAT(p.name,' ',p.lastname) as 'name_person',
+    e.id_team as 'id_team', e.name as'name_team'
+    From Person p
+    Join Equipo e
+    On e.id_team = p.id_team  
+    Where p.id_person = ${id_person}) r;`;
 
     try{
         const result = await executeQ(query); 

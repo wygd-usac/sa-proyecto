@@ -2,16 +2,22 @@ import { INavData } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 export function nivel(){
 
-  var x =localStorage.getItem("rol");
-  console.log(x);
+  const x = localStorage.getItem("rol");
+  //console.log(x);
   //console.log(x == "1");
   let sesion : INavData[] = [];
+  // Usuario Administrador
   if( x == "1"){
     sesion = [
       {
         name: 'Adiministaracion',
         url: '/administracion',
         iconComponent: { name: 'cil-puzzle' }
+      },
+      {
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
       },
       {
         title: true,
@@ -32,458 +38,195 @@ export function nivel(){
         title: true
       },
       {
-        name: 'Base',
-        url: '/base',
-        iconComponent: { name: 'cil-puzzle' },
-        children: [
-          {
-            name: 'Accordion',
-            url: '/base/accordion'
-          },
-          {
-            name: 'Breadcrumbs',
-            url: '/base/breadcrumbs'
-          },
-          {
-            name: 'Cards',
-            url: '/base/cards'
-          },
-          {
-            name: 'Carousel',
-            url: '/base/carousel'
-          },
-          {
-            name: 'Collapse',
-            url: '/base/collapse'
-          },
-          {
-            name: 'List Group',
-            url: '/base/list-group'
-          },
-          {
-            name: 'Navs & Tabs',
-            url: '/base/navs'
-          },
-          {
-            name: 'Pagination',
-            url: '/base/pagination'
-          },
-          {
-            name: 'Placeholder',
-            url: '/base/placeholder'
-          },
-          {
-            name: 'Popovers',
-            url: '/base/popovers'
-          },
-          {
-            name: 'Progress',
-            url: '/base/progress'
-          },
-          {
-            name: 'Spinners',
-            url: '/base/spinners'
-          },
-          {
-            name: 'Tables',
-            url: '/base/tables'
-          },
-          {
-            name: 'Tabs',
-            url: '/base/tabs'
-          },
-          {
-            name: 'Tooltips',
-            url: '/base/tooltips'
-          }
-        ]
+        name: 'Usuarios',
+        url: '/administracion/reportes/usuario',
+        iconComponent: {name: 'cil-cursor'}
       },
-      {
-        name: 'Buttons',
-        url: '/buttons',
-        iconComponent: { name: 'cil-cursor' },
-        children: [
           {
-            name: 'Buttons',
-            url: '/buttons/buttons'
-          },
-          {
-            name: 'Button groups',
-            url: '/buttons/button-groups'
+            name: 'Empleado',
+            url: '/administracion/reportes/empleado'
           },
           {
             name: 'Dropdowns',
             url: '/buttons/dropdowns'
           },
-        ]
-      },
+
       {
-        name: 'Forms',
-        url: '/forms',
-        iconComponent: { name: 'cil-notes' },
-        children: [
-          {
-            name: 'Form Control',
-            url: '/forms/form-control'
-          },
-          {
-            name: 'Select',
-            url: '/forms/select'
-          },
-          {
-            name: 'Checks & Radios',
-            url: '/forms/checks-radios'
-          },
-          {
-            name: 'Range',
-            url: '/forms/range'
-          },
-          {
-            name: 'Input Group',
-            url: '/forms/input-group'
-          },
-          {
-            name: 'Floating Labels',
-            url: '/forms/floating-labels'
-          },
-          {
-            name: 'Layout',
-            url: '/forms/layout'
-          },
-          {
-            name: 'Validation',
-            url: '/forms/validation'
-          }
-        ]
-      },
-      {
-        name: 'Charts',
-        url: '/charts',
-        iconComponent: { name: 'cil-chart-pie' }
-      },
-      {
-        name: 'Icons',
-        iconComponent: { name: 'cil-star' },
-        url: '/icons',
-        children: [
-          {
-            name: 'CoreUI Free',
-            url: '/icons/coreui-icons',
-            badge: {
-              color: 'success',
-              text: 'FREE'
-            }
-          },
-          {
-            name: 'CoreUI Flags',
-            url: '/icons/flags'
-          },
-          {
-            name: 'CoreUI Brands',
-            url: '/icons/brands'
-          }
-        ]
-      },
-      {
-        name: 'Notifications',
-        url: '/notifications',
-        iconComponent: { name: 'cil-bell' },
-        children: [
-          {
-            name: 'Alerts',
-            url: '/notifications/alerts'
-          },
-          {
-            name: 'Badges',
-            url: '/notifications/badges'
-          },
-          {
-            name: 'Modal',
-            url: '/notifications/modal'
-          },
-          {
-            name: 'Toast',
-            url: '/notifications/toasts'
-          }
-        ]
-      },
-      {
-        name: 'Widgets',
-        url: '/widgets',
-        iconComponent: { name: 'cil-calculator' },
-        badge: {
-          color: 'info',
-          text: 'NEW'
-        }
-      },
-      {
-        title: true,
-        name: 'Extras'
-      },
-      {
-        name: 'Pages',
-        url: '/login',
-        iconComponent: { name: 'cil-star' },
-        children: [
-          {
-            name: 'Login',
-            url: '/login'
-          },
-          {
-            name: 'Register',
-            url: '/register'
-          },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
-          },
-          {
-            name: 'Home',
-            url: '/dashboard'
-          }
-        ]
-      },
-    ];
-  }
-  else if( x== "2"){
-    sesion = [
-      {
-        name: 'Dashboard',
-        url: '/dashboard',
-        iconComponent: { name: 'cil-speedometer' },
-        badge: {
-          color: 'info',
-          text: 'NEW'
-        }
-      },
-      {
-        title: true,
-        name: 'Theme'
-      },
-      {
-        name: 'Colors',
-        url: '/theme/colors',
-        iconComponent: { name: 'cil-drop' }
-      },
-      {
-        name: 'Typography',
-        url: '/theme/typography',
-        linkProps: { fragment: 'someAnchor' },
-        iconComponent: { name: 'cil-pencil' }
-      },
-      {
-        name: 'Components',
+        name: 'Usuarios',
         title: true
       },
       {
-        name: 'Base',
-        url: '/base',
-        iconComponent: { name: 'cil-puzzle' },
-        children: [
-          {
-            name: 'Accordion',
-            url: '/base/accordion'
-          },
-          {
-            name: 'Breadcrumbs',
-            url: '/base/breadcrumbs'
-          },
-          {
-            name: 'Cards',
-            url: '/base/cards'
-          },
-          {
-            name: 'Carousel',
-            url: '/base/carousel'
-          },
-          {
-            name: 'Collapse',
-            url: '/base/collapse'
-          },
-          {
-            name: 'List Group',
-            url: '/base/list-group'
-          },
-          {
-            name: 'Navs & Tabs',
-            url: '/base/navs'
-          },
-          {
-            name: 'Pagination',
-            url: '/base/pagination'
-          },
-          {
-            name: 'Placeholder',
-            url: '/base/placeholder'
-          },
-          {
-            name: 'Popovers',
-            url: '/base/popovers'
-          },
-          {
-            name: 'Progress',
-            url: '/base/progress'
-          },
-          {
-            name: 'Spinners',
-            url: '/base/spinners'
-          },
-          {
-            name: 'Tables',
-            url: '/base/tables'
-          },
-          {
-            name: 'Tabs',
-            url: '/base/tabs'
-          },
-          {
-            name: 'Tooltips',
-            url: '/base/tooltips'
-          }
-        ]
+        name: 'Crear',
+        url: '/administracion/usuario/crear',
+        iconComponent: {name: 'cil-list'}
       },
       {
-        name: 'Buttons',
-        url: '/buttons',
-        iconComponent: { name: 'cil-cursor' },
-        children: [
-          {
-            name: 'Buttons',
-            url: '/buttons/buttons'
-          },
-          {
-            name: 'Button groups',
-            url: '/buttons/button-groups'
-          },
-          {
-            name: 'Dropdowns',
-            url: '/buttons/dropdowns'
-          },
-        ]
-      },
+        name: 'Ver',
+        url: '/administracion/usuario/ver',
+        iconComponent: {name: 'cil-pencil'}
+      }
+
+
+    ];
+  }
+  // usuario empleado
+  else if( x== "2"){
+    sesion = [
       {
-        name: 'Charts',
-        url: '/charts',
-        iconComponent: { name: 'cil-chart-pie' }
-      },
-      {
-        name: 'Icons',
-        iconComponent: { name: 'cil-star' },
-        url: '/icons',
-        children: [
-          {
-            name: 'CoreUI Free',
-            url: '/icons/coreui-icons',
-            badge: {
-              color: 'success',
-              text: 'FREE'
-            }
-          },
-          {
-            name: 'CoreUI Flags',
-            url: '/icons/flags'
-          },
-          {
-            name: 'CoreUI Brands',
-            url: '/icons/brands'
-          }
-        ]
-      },
-      {
-        name: 'Notifications',
-        url: '/notifications',
-        iconComponent: { name: 'cil-bell' },
-        children: [
-          {
-            name: 'Alerts',
-            url: '/notifications/alerts'
-          },
-          {
-            name: 'Badges',
-            url: '/notifications/badges'
-          },
-          {
-            name: 'Modal',
-            url: '/notifications/modal'
-          },
-          {
-            name: 'Toast',
-            url: '/notifications/toasts'
-          }
-        ]
-      },
-      {
-        name: 'Widgets',
-        url: '/widgets',
-        iconComponent: { name: 'cil-calculator' },
+        name: 'Empleado',
+        url: '/dashboard',
+        iconComponent: { name: 'cil-user' },
         badge: {
           color: 'info',
-          text: 'NEW'
+          text: 'Bienvenido'
         }
       },
       {
-        title: true,
-        name: 'Extras'
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
       },
       {
-        name: 'Pages',
-        url: '/login',
-        iconComponent: { name: 'cil-star' },
+        name: 'Estadio',
         children: [
           {
-            name: 'Login',
-            url: '/login'
+            name: 'Crear',
+            url: '/empleado/crear-estadios',
+            iconComponent: { name: 'cil-pencil' }
           },
           {
-            name: 'Register',
-            url: '/register'
+            name: 'Ver',
+            url: '/empleado/estadios',
+            iconComponent: { name: 'cil-list' }
           },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
-          },
-          {
-            name: 'Home',
-            url: '/dashboard'
-          }
         ]
       },
+      {
+        name: 'Partidos',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/partidos',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-partidos',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
+      },
+      {
+        name: 'Equipos',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/equipos',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-equipos',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
+      },
+      {
+        name: 'Competencias',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/competencia',
+                iconComponent: { name: 'cil-list' }
+              },
+              {
+                name: 'Crear',
+                url: '/empleado/crear-competencia',
+                iconComponent: { name: 'cil-pencil' }
+              },
+            ]
+      },
+      {
+        name: 'Transferencias',
+        children: [
+              {
+                name: 'Ver',
+                url: '/empleado/transferencias',
+                iconComponent: { name: 'cil-list' }
+              },
+            ]
+      }
+    ];
+  }
+  // Usuario normal
+  else if ( x== "3"){
+    sesion = [
+      {
+        name: 'Profile',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Setting',
+            url: '/forms/editprofile',
+            iconComponent: { name: 'cil-settings'}
+          },
+        ]
+      },
+      {
+        name: 'Home',
+        url: '/home',
+        iconComponent: { name: 'cilHome' }
+      },
+      {
+        name: 'Reportes',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Cliente - Equipos',
+            url: '/forms/clienteteam',
+            iconComponent: { name: 'cil-settings'}
+          },
+          {
+            name: 'Cliente - Edad',
+            url: '/forms/personage',
+            iconComponent: { name: 'cil-settings'}
+          },
+        ]
+      },
+      {
+        name: 'Partidos',
+        iconComponent: { name: 'cil-user' },
+        children: [
+          {
+            name: 'Ver',
+            url: '/empleado/user-partidos',
+            iconComponent: { name: 'cil-settings'}
+          }
+        ]
+      }
     ];
   }
   else {
     sesion = [
       {
-        name: 'Pages',
+        name: 'Access',
         url: '/login',
         iconComponent: { name: 'cil-star' },
         children: [
           {
             name: 'Login',
-            url: '/login'
+            url: '/login',
+            iconComponent: { name: 'cil-lock-locked'}
           },
           {
             name: 'Register',
-            url: '/register'
-          },
-          {
-            name: 'Error 404',
-            url: '/404'
-          },
-          {
-            name: 'Error 500',
-            url: '/500'
+            url: '/register',
+            iconComponent: { name: 'cil-task' }
           },
           {
             name: 'Home',
-            url: '/dashboard'
+            url: '/home',
+            iconComponent: { name: 'cil-home' }
           }
         ]
       },
