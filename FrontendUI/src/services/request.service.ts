@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 import { environment } from 'src/environments/environment';
-const httpOptions : any    = {
-  headers: new HttpHeaders({
-    //'Content-Type':  'application/json',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET',
-    'Access-Control-Allow-Origin': '*'
-  })
-};
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +11,24 @@ const httpOptions : any    = {
 export class RequestService {
   url_server: any;
   url_server_admin: any;
+
+  hedears_whit_token = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET',
+    'Access-Control-Allow-Origin': '*',
+    // @ts-ignore
+    'Authorization': localStorage.getItem("token") });
+  optionsToken = { headers: this.hedears_whit_token };
+
+  hedears_all = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Origin': '*'
+    })
+    optionsAll = { headers: this.hedears_whit_token };
+
 
   constructor(private http: HttpClient) {
     //this.url_server = 'http://34.132.139.69:5000/';
@@ -58,12 +71,6 @@ export class RequestService {
       }
     }
   }
-
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    // @ts-ignore
-    'Authorization': localStorage.getItem("token") });
-  options = { headers: this.headers };
 
   //Reportes
   getSubsByTeam(id:number):any{
@@ -253,7 +260,7 @@ export class RequestService {
             status:string,id_team:number,photo:string,type:number):any{
     return this.http.post(this.url_server_admin + 'esb/administracion/persona/',
       {name:name,lastname:lastname,birthday:birthday,nationality:nationality,id_stand:id_stand,
-            status:status,id_team:id_team,photo:photo,type:type})
+        status:status,id_team:id_team,photo:photo,type:type})
   }
 
   loginUser( _email: any, _password: any ): any{
@@ -274,6 +281,7 @@ export class RequestService {
 
   editUser( user ){
     console.log(user);
+
     return this.http.post(  this.url_server + 'esb/usuario/update' , {
       id_user: user.id_user,
       name: user.name,
@@ -282,7 +290,8 @@ export class RequestService {
       phone: user.phone,
       gender: user.gender,
       birth_date: user.birth_date,
-      photo : user.photo}, this.options)
+      // @ts-ignore
+      photo : user.photo}, this.hedears_whit_token)
   }
 
   registrerUser(
@@ -298,6 +307,7 @@ export class RequestService {
     _id_Country: any,
     _type: any
   ){
+
     return this.http.post(this.url_server + 'esb/usuario/add/', {
       name: _name,
       last_name: _last_name,
@@ -310,7 +320,8 @@ export class RequestService {
       address: _address,
       id_Country: _id_Country,
       type: _type
-    })
+      // @ts-ignore
+    }, this.optionsAll)
   }
 
   getCountries():any{
@@ -376,7 +387,7 @@ export class RequestService {
 
   setQuiniela(c,q,r1,r2):any{
     return this.http.post(this.url_server_admin + 'esb/client/quiniela',
-    {id_client:c,id_game:q,result_1:r1,result_2:r2})
+      {id_client:c,id_game:q,result_1:r1,result_2:r2})
   }
 
   getIncidenciasCompeticion(competicion,anio):any{
@@ -394,11 +405,12 @@ export class RequestService {
   deleteUser(){
     return this.http.post( this.url_server + 'esb/usuario/delete',
       // @ts-ignore
-      { id_user : parseInt(localStorage.getItem('idu')) },  this.options )
+      { id_user : parseInt(localStorage.getItem('idu')) },  this.optionsToken )
   }
 
   restablecer( email ){
-    return this.http.post( this.url_server + 'esb/usuario/restablecer', { email: email } );
+    // @ts-ignore
+    return this.http.post( this.url_server + 'esb/usuario/restablecer', { email: email }, this.optionsAll);
   }
 
 }
