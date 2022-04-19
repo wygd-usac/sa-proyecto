@@ -6,9 +6,9 @@ const config: CapacitorConfig = {
   webDir: 'dist/coreui-free-angular-admin-template',
   bundledWebRuntime: false,
   "server": {
-	"androidScheme": "https",
+	"androidScheme": "http",
 	 "cleartext": true,
-	"url": "34.132.139.69:5000"
+	"url": "34.132.139.69:9090/"
 	},
   
 };
