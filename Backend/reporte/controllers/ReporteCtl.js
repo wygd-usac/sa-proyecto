@@ -5,15 +5,15 @@ exports.suscribe = (req, res) => {
 
   Reporte.suscribeByTeam(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
-        message: "Error al obtener el reporte",
+      res.status(400).send({
+        status: 400,
+        message: "Error al obtener usuarios suscritos al equipo ",
         data: [],
       });
     else
       res.send({
         status: 200,
-        message: "Información de reporte: Suscripciones por equipo",
+        message: "Usuarios suscritos al equipo x obtenidos con éxito.",
         data: data,
       });
   });
@@ -24,15 +24,16 @@ exports.membership = (req, res) => {
 
   Reporte.findmembership(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
-        message: "Error al obtener el reporte",
+      res.status(400).send({
+        status: 400,
+        message: "Error al obtener usuarios con o sin membresía.",
         data: [],
       });
     else
       res.send({
         status: 200,
-        message: "Información de reporte: Usuarios con o sin membresia",
+        message:
+          "Información de reporte: Usuarios con o sin membresía obtenidos con éxito.",
         data: data,
       });
   });
@@ -43,8 +44,8 @@ exports.memberships = (req, res) => {
 
   Reporte.findmemberships(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -62,8 +63,8 @@ exports.expenses = (req, res) => {
 
   Reporte.findexpenses(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -81,8 +82,8 @@ exports.country = (req, res) => {
 
   Reporte.findcountry(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -100,8 +101,8 @@ exports.genre = (req, res) => {
 
   Reporte.findgenre(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -119,8 +120,8 @@ exports.age = (req, res) => {
 
   Reporte.findage(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -138,8 +139,8 @@ exports.news = (req, res) => {
 
   Reporte.findnews(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });
@@ -157,8 +158,8 @@ exports.newsByTeam = (req, res) => {
 
   Reporte.findnewsByTeam(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener el reporte",
         data: [],
       });

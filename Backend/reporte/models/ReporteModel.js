@@ -14,11 +14,13 @@ const Reporte = function (reporte) {
 
 Reporte.suscribeByTeam = (id, result) => {
   conexion.query(
-    `select e.name as equipo, u.id_user, u.name, u.lastname
-        from Usuario u
-        join Equipos_Seguidos es on u.id_user = es.id_usuario
-        join Equipo e on es.id_team = e.id_team
-        where e.id_team= ?`,
+    `select e.name as equipo, u.id_user, u.name, u.lastname,
+        C.country as nationality,u.photo
+    from Usuario u
+    join Equipos_Seguidos es on u.id_user = es.id_usuario
+    join Equipo e on es.id_team = e.id_team
+    join Country C on C.id_Country = u.id_Country
+    where e.id_team= ?`,
     id,
     (err, res) => {
       if (err) {
@@ -40,9 +42,11 @@ Reporte.suscribeByTeam = (id, result) => {
 
 Reporte.findmembership = (id, result) => {
   conexion.query(
-    `select id_user, name, lastname,
-        IF(membership > 0, 'true', 'false') as membership
-    from Usuario
+    `select u.id_user, u.name, u.lastname,
+        IF(u.membership > 0, 'true', 'false') as membership,
+        C.country as nationality,u.photo
+    from Usuario u
+    join Country C on C.id_Country = u.id_Country
     order by name,lastname`,
     id,
     (err, res) => {

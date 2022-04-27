@@ -3,7 +3,7 @@ const Persona = require("../models/PersonaModel");
 exports.create = (req, res) => {
   if (!req.body) {
     res.status(400).send({
-      status: 500,
+      status: 400,
       message:
         "Error al crear jugador o DT, los campos no pueden estar en blanco",
       data: [],
@@ -21,10 +21,11 @@ exports.create = (req, res) => {
     id_team: req.body.id_team,
     photo: req.body.photo,
   });
+  //console.log(persona);
   Persona.create(persona, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al crear jugador o DT",
         data: [],
       });
@@ -40,7 +41,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
   if (!req.body) {
     res.status(400).send({
-      status: 500,
+      status: 400,
       message: "Error al actualizar jugador o DT",
       data: [],
     });
@@ -52,13 +53,13 @@ exports.update = (req, res) => {
     if (err) {
       if (err.kind === "el id especificado no existe") {
         res.status(404).send({
-          status: 500,
+          status: 400,
           message: "Error al actualizar jugador o DT",
           data: [],
         });
       } else {
-        res.status(500).send({
-          status: 500,
+        res.status(400).send({
+          status: 400,
           message: "Error al actualizar jugador o DT",
           data: [],
         });
@@ -75,7 +76,7 @@ exports.update = (req, res) => {
 exports.updateUser = (req, res) => {
   if (!req.body) {
     res.status(400).send({
-      status: 500,
+      status: 400,
       message: "Error al actualizar jugador o DT",
       data: [],
     });
@@ -87,13 +88,13 @@ exports.updateUser = (req, res) => {
     if (err) {
       if (err.kind === "el id especificado no existe") {
         res.status(404).send({
-          status: 500,
+          status: 400,
           message: "Error al actualizar jugador o DT",
           data: [],
         });
       } else {
-        res.status(500).send({
-          status: 500,
+        res.status(400).send({
+          status: 400,
           message: "Error al actualizar jugador o DT",
           data: [],
         });
@@ -114,13 +115,13 @@ exports.delete = (req, res) => {
     if (err) {
       if (err.kind === "Jugador o DT no encontrado") {
         res.status(404).send({
-          status: 500,
+          status: 400,
           message: "Error al eliminar el jugador o DT",
           data: [],
         });
       } else {
-        res.status(500).send({
-          status: 500,
+        res.status(400).send({
+          status: 400,
           message: "Error al eliminar el jugador o DT",
           data: [],
         });
@@ -141,13 +142,13 @@ exports.deleteUser = (req, res) => {
     if (err) {
       if (err.kind === "Usuario no encontrado") {
         res.status(404).send({
-          status: 500,
+          status: 400,
           message: "Error al eliminar el Usuario",
           data: [],
         });
       } else {
-        res.status(500).send({
-          status: 500,
+        res.status(400).send({
+          status: 400,
           message: "Error al eliminar el Usuario",
           data: [],
         });
@@ -166,8 +167,8 @@ exports.findAll = (req, res) => {
 
   Persona.getAll(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener jugador o DT",
         data: [],
       });
@@ -185,8 +186,8 @@ exports.getStands = (req, res) => {
 
   Persona.getStands(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener Stands",
         data: [],
       });
@@ -204,8 +205,8 @@ exports.getCountrys = (req, res) => {
 
   Persona.getCountrys(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener Countrys",
         data: [],
       });
@@ -223,8 +224,8 @@ exports.getTeams = (req, res) => {
 
   Persona.getTeams(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener Teams",
         data: [],
       });
@@ -242,8 +243,8 @@ exports.getUsers = (req, res) => {
 
   Persona.getUsers(id, (err, data) => {
     if (err)
-      res.status(500).send({
-        status: 500,
+      res.status(400).send({
+        status: 400,
         message: "Error al obtener Users",
         data: [],
       });
