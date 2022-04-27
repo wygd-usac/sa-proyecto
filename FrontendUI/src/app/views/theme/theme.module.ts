@@ -10,7 +10,7 @@ import {
   ButtonModule,
   FormModule,
   ModalModule,
-  PlaceholderModule
+  PlaceholderModule, AvatarModule
 } from '@coreui/angular';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { cilListNumbered, cilPaperPlane, brandSet,cilUserPlus } from '@coreui/icons';
@@ -36,7 +36,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     FormModule,
     ModalModule,
     PlaceholderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule
   ],
   declarations: [
     ColorsComponent,

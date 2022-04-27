@@ -16,7 +16,6 @@ export class ColorsComponent {
     private servicio: RequestService, private storage: AngularFireStorage, private fb:FormBuilder
   ) {
   }
-  //@ViewChildren("selectstand") selectstand: QueryList<ElementRef> | undefined;
 
   uploadPercent: Observable<number> | undefined;
   // @ts-ignore
@@ -110,7 +109,7 @@ export class ColorsComponent {
       try {
         this.servicio.newPerson(name,lastname,birthday,this.id_country,this.id_stand,status,this.id_team,photo,1
         ).subscribe((res: any) => {
-          console.log(res);
+          //console.log(res.status);
             if (res.status==200) {
               const Toast = Swal.mixin({
                 toast: true,
@@ -126,15 +125,24 @@ export class ColorsComponent {
 
               Toast.fire({
                 icon: 'success',
-                title: 'Person created successfully'
+                title: 'Person created successfully '+ name+' '+lastname
               })
+              this.router.navigate(['/administracion/persona/ver']);
             } else {
-
+              Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong ',
+                text: res.message
+              })
             }
           }
           ,
           err => {
-
+            Swal.fire({
+              icon: 'error',
+              title: 'Something went wrong ',
+              text: err
+            })
           }
         );
       } catch (e) {

@@ -16,6 +16,10 @@ export class TypographyComponent {
 
   user: any;
 
+  editPerson(id:number){
+
+  }
+
   deletePerson(id_person: number, name: string, lastname: string) {
     Swal.fire({
       title: 'Are you sure?',
@@ -29,11 +33,23 @@ export class TypographyComponent {
       if (result.isConfirmed) {
         try {
           this.servicio.deletePerson(id_person).subscribe((res: any) => {
-              Swal.fire(
-                'Deleted!',
-                'Se elimino el jugador o DT: ' + name + ' ' + lastname,
-                'success'
-              )
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Person deleted successfully '+name+' '+lastname
+              })
+              window.location.reload();
             }
             ,
             err => {
