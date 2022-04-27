@@ -21,7 +21,6 @@ exports.create = (req, res) => {
     id_team: req.body.id_team,
     photo: req.body.photo,
   });
-  //console.log(persona);
   Persona.create(persona, (err, data) => {
     if (err)
       res.status(500).send({
