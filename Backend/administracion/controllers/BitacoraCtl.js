@@ -50,3 +50,28 @@ exports.findAll = (req, res) => {
       });
   });
 };
+
+exports.findId = (req, res) => {
+
+  Bitacora.getId((err, data) => {
+    if (err)
+      res.status(400).send({
+        status: 400,
+        msg: "Error al obtener bitácora de los administradores.",
+        data: [],
+      });
+    else if (data == ""){
+      res.status(400).send({
+        status: 400,
+        msg: "Error al obtener bitácora de los administradores.",
+        data: [],
+      });
+    }
+    else
+      res.status(200).send({
+        status: 200,
+        msg: "Bitácora de los administradores obtenida con éxito.",
+        data: data,
+      });
+  });
+};
