@@ -53,4 +53,22 @@ Bitacora.create = (newBitacora, result) => {
   });
 };
 
+Bitacora.getId = (result) => {
+  let query = `select  u.id_user as id, u.name as user_name, u.lastname as user_lastname, B.accion as action,
+  date_format(CONVERT_TZ(B.fecha,'+00:00','-06:00'),'%d/%m/%Y %T') as date, u.photo as user_photo, u.id_rol as user_rol, 'bitacora admin' as 'description', 'Bitacora' as 'database_table'
+  from Usuario u
+  join Bitacora B on u.id_user = B.id_administrador`;
+
+    conexion.query(query, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      console.log("Bitacora: ", res);
+      result(null, res);
+    });
+};
+
 module.exports = Bitacora;

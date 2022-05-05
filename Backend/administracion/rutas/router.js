@@ -26,4 +26,9 @@ router.get("/users", PersonaCtl.getUsers);
 router.post("/reporte/log", BitacoraCtl.create);
 router.get("/reporte/log", BitacoraCtl.findAll);
 
+
+//endpoint Bitacora esb
+router.get('/report/10',BitacoraCtl.findId);
+router.get('/report/9/',ReporteCtl.newsByTeam);
+
 module.exports = router;
