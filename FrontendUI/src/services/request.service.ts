@@ -40,11 +40,11 @@ export class RequestService {
 
   //Bitacora
   getLog():any{
-    return this.http.get(this.url_server + 'esb/administracion/reporte/log', {});
+    return this.http.get(this.url_server + 'esb/administrator/reporte/log', {});
   }
 
   newLog(id_administrador:number,accion:string,is_error:number):any{
-    return this.http.post(this.url_server_admin + 'esb/administracion/reporte/log/',
+    return this.http.post(this.url_server_admin + 'esb/administrator/reporte/log/',
       {id_administrador:id_administrador,accion:accion,is_error:is_error})
   }
 
@@ -237,28 +237,28 @@ export class RequestService {
 
 
   getCountrys(): any{
-    return this.http.get(this.url_server_admin + 'esb/administracion/country/', {})
+    return this.http.get(this.url_server_admin + 'esb/administrator/country/', {})
   }
 
   getTeams(): any{
-    return this.http.get(this.url_server_admin + 'esb/administracion/team/', {})
+    return this.http.get(this.url_server_admin + 'esb/administrator/team/', {})
   }
 
   getStands(): any{
-    return this.http.get(this.url_server_admin + 'esb/administracion/stand/', {})
+    return this.http.get(this.url_server_admin + 'esb/administrator/stand/', {})
   }
 
   getPersonAll(): any{
-    return this.http.get(this.url_server_admin + 'esb/administracion/persona/', {})
+    return this.http.get(this.url_server_admin + 'esb/administrator/persona/', {})
   }
 
   deletePerson(id:number):any{
-    return this.http.delete(this.url_server_admin + 'esb/administracion/persona?id='+id, {})
+    return this.http.delete(this.url_server_admin + 'esb/administrator/persona?id='+id, {})
   }
 
   newPerson(name:string,lastname:string,birthday:string,nationality:number,id_stand:number,
             status:string,id_team:number,photo:string,type:number):any{
-    return this.http.post(this.url_server_admin + 'esb/administracion/persona/',
+    return this.http.post(this.url_server_admin + 'esb/administrator/persona/',
       {name:name,lastname:lastname,birthday:birthday,nationality:nationality,id_stand:id_stand,
         status:status,id_team:id_team,photo:photo,type:type})
   }
@@ -272,11 +272,11 @@ export class RequestService {
   }
 
   getUsers(){
-    return this.http.get( this.url_server + 'esb/administracion/users', {})
+    return this.http.get( this.url_server + 'esb/administrator/users', {})
   }
 
   deleteUserAdmin(id_user:number){
-    return this.http.delete( this.url_server + 'esb/administracion/users/delete?id='+id_user,{  } )
+    return this.http.delete( this.url_server + 'esb/administrator/users/delete?id='+id_user,{  } )
   }
 
   editUser( user ){
