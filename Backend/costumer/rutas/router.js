@@ -13,11 +13,8 @@ const {validate_session,validate_premium,alive} = require('../middleware/validat
 
 
 router.get('/',validate_session, (req, res) => {
-    //console.log(req.body.data);
-    const jwt_result = alive();
-    console.log(jwt_result);
-    
-    res.send("Modulo de Cliente prueba modificado" + jwt_result);
+    //console.log(req.body.data);   
+    res.send("Modulo de Customer");
 });
 
 //pesonage

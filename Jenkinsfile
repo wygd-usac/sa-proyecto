@@ -33,15 +33,14 @@ pipeline {
         branch 'develop'
       }
       steps {
-        echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente2-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
+        sh 'docker build --no-cache --rm -t wygd/ms-customer-test:latest -f ./Backend/costumer/Dockerfile.costumer ./Backend/costumer'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
         sh 'docker build --no-cache --rm -t wygd/ms-reporte-test:latest -f ./Backend/reporte/Dockerfile.reporte ./Backend/reporte'
         sh 'docker build --no-cache --rm -t wygd/ms-jwt-test:latest -f ./Backend/jwt/Dockerfile.jwt ./Backend/jwt'
         sh 'docker images'
-        sh 'docker ps'
       }
     }
 
@@ -51,7 +50,6 @@ pipeline {
         branch 'main'
       }
       steps {
-        echo 'Se ejecutara el deploy en producción.'
         sh 'docker build --no-cache --rm -t wygd/ms-cliente-production:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion-production:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-production:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
@@ -59,7 +57,6 @@ pipeline {
         sh 'docker build --no-cache --rm -t wygd/ms-reporte-production:latest -f ./Backend/reporte/Dockerfile.reporte ./Backend/reporte'
         sh 'docker build --no-cache --rm -t wygd/ms-jwt-production:latest -f ./Backend/jwt/Dockerfile.jwt ./Backend/jwt'
         sh 'docker images'
-        sh 'docker ps'
       }
     }
 
@@ -112,6 +109,7 @@ pipeline {
         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         sh 'docker push wygd/ms-serv-admin-test:latest'
         sh 'docker push wygd/ms-cliente2-test:latest'
+        sh 'docker push wygd/ms-customer-test:latest'
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
