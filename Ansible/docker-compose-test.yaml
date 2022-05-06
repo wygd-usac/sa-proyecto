@@ -27,7 +27,7 @@ services:
   jwt:
     image: wygd/ms-jwt-test:latest
     ports:
-      - "5050:5001"
+      - "5050:5000"
     networks:
       - red-backend
   reporte:
