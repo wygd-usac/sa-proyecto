@@ -10,11 +10,24 @@
             <label class="font-weight-bold" for="#equipos">Team</label>
         </div>
         <div class="col-4">
-            <select id="equipos" class="form-control" [(ngModel)]="equipoSeleccionado">
-                <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}">
-                {{team.name}} - {{team.id_team}}
+            
+
+            <c-input-group class="mb-3">
+              <span cInputGroupText id="inputGroup-sizing-default">Equipo</span>
+              <input aria-describedby="inputGroup-sizing-default"
+                     aria-label="Sizing example input"
+                     cFormControl
+                     [(ngModel)]="equipoSeleccionado"
+              />
+            </c-input-group>
+            <select id="player" class="form-control" [(ngModel)]="isPlayer">
+              <option ngValue="1">
+              Jugador
+              </option>
+              <option ngValue="0">
+                Entrenador
                 </option>
-            </select>
+          </select>
         </div>
         <div class="col-7">
           

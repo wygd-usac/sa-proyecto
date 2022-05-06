@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 export class ClienteteamComponent implements OnInit {
   listTeams:any;
   equipoSeleccionado!:number;
+  isPlayer!:number;
   equipoX!:string;
   equipoY!:string;
   constructor(private router: Router, private servicio: RequestService) { }
@@ -22,8 +23,9 @@ export class ClienteteamComponent implements OnInit {
   teamPersons:any;
   verPersonas(){
     
-    this.servicio.getTeamPersons(this.equipoSeleccionado).subscribe(
+    this.servicio.getTeamPersons(this.equipoSeleccionado,this.isPlayer).subscribe(
       (res: any) => {
+        console.log(res);
         this.teamPersons = res.data;
         console.log(this.teamPersons);
       },

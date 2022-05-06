@@ -351,19 +351,21 @@ export class RequestService {
     return this.http.get(this.url_server_admin + 'esb/client/countries', {})
   }
 
-  getTeamPersons(_id_team:number):any{
+  getTeamPersons(_id_team:number,_is_player:number):any{
+    var variable;
     if(localStorage.getItem("esb")=="false"){
       return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
     }else{
       return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
-        ruta: localStorage.getItem("idexterna")+"/esb/customer/report/1/?id_team="+_id_team+"&player=1",
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/1/?id_team="+_id_team+"&player="+_is_player,
           tipo:"get",
           id_rol: localStorage.getItem("id_rol"),
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-
+        
     }
+    
   }
 
   getPersonsLower(_age:number):any{
