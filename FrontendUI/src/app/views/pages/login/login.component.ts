@@ -60,6 +60,11 @@ export class LoginComponent {
 
 
   iniciar(email: string, password: string) {
+    this.servicio.loginUser(email, password).subscribe((res: any) => {
+      alert(res);
+      console.log(res);
+    })
+    /*
     try {
       this.servicio.loginUser(email, password).subscribe((res: any) => {
           if (res instanceof Array) {
@@ -111,6 +116,7 @@ export class LoginComponent {
       this.mensaje = 'ocurrio un error';
       this.toggleLiveDemo()
     }
+    */
   }
 
 }
