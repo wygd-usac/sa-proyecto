@@ -340,7 +340,18 @@ export class RequestService {
   }
 
   getTeamPersons(_id_team:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("idexterna")+"/esb/customer/report/1/?id_team="+_id_team+"&player=1",
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+
+    }
   }
 
   getPersonsLower(_age:number):any{
