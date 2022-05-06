@@ -104,7 +104,7 @@ app.post('/esb/jwt/register', async  (req, res) => {
 });
 
 
-app.post('/validate',(req,res)=>{
+app.post('/esb/jwt/validate',(req,res)=>{
     const token_header = req.headers['authorization'];
     //const token = token_header.replace('Bearer','').replace(' ','');
     if (token_header) {
@@ -134,7 +134,7 @@ app.post('/validate',(req,res)=>{
 
 });
 
-app.get('/alive',(req,res)=>{
+app.get('/esb/jwt/alive',(req,res)=>{
   console.log("fui llamado");
   res.send({mensaje:"Si soy accesible desde otros servicios!!"});
 });
