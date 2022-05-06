@@ -2,18 +2,79 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
 require('dotenv').config();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 const cors = require('cors');
+var corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 const context = '/esb/jwt';
 //const router = require('./rutas/router');
 const {executeQ,executeEPLogin} = require('./config/connection');
+const axios = require("axios");
+const {response} = require("express");
 //app.set('llave', process.env.SECRET);
 app.set('llave', 'c0ntr453ni4s3cr3t@')
 app.use(cors());
+
+app.all('*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json({ extended: true, limit: '10mb' }));
+
+app.use(cors(corsOptions));
 //app.use(context, router);
 app.listen(port, () => console.log(`${port}...`));
+
+app.post('/esb/jwt/redireccionar',(req,res)=>{
+    var mio = req.body.mio;
+    var tuyo = req.body.tuyo;
+
+    var ruta = mio.ruta;
+    var token = mio.token;
+    var tipo = mio.tipo;
+
+    let config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+token
+        }
+    }
+
+    switch (tipo){
+        case "get":
+            axios.get(ruta, config)
+                .then((response) => {
+                    res.status(200).json(response.data);
+                })
+                .catch((error) => {
+                    res.status(200).json(response.data);
+                    console.log(error);
+                })
+            break;
+        case "post":
+            axios.post(ruta, tuyo, config).then(function (x) {
+                res.status(200).json(x.data);
+            })
+            break;
+        case "delete":
+            axios.delete(ruta, config).then(function (x) {
+                res.status(200).json(x.data);
+            })
+            break;
+        case "put":
+            axios.put(ruta, tuyo, config).then(function (x) {
+                res.status(200).json(x.data);
+            })
+            break;
+        default:
+            return 'ocurrio un error'
+    }
+
+
+});
 
 app.post('/esb/jwt/register', async  (req, res) => {
     //console.log("hola");
@@ -35,6 +96,7 @@ app.post('/esb/jwt/register', async  (req, res) => {
         token: token
     });
 });
+
 
 app.post('/validate',(req,res)=>{
     const token_header = req.headers['authorization'];

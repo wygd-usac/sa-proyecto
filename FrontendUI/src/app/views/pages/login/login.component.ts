@@ -66,6 +66,7 @@ export class LoginComponent {
             this.mensaje = 'Bienvenido';
             this.user = res[0];
             localStorage.setItem("rol", (this.user.id_rol).toString());
+            localStorage.setItem("id_rol", (this.user.id_rol).toString());
             localStorage.setItem("email", this.user.email);
             localStorage.setItem("token", this.user.token);
             localStorage.setItem("photo", this.user.photo);

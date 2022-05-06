@@ -264,7 +264,18 @@ export class RequestService {
   }
 
   loginUser( _email: any, _password: any ): any{
-    return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
+    }else {
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("idexterna")+"/esb/auth",
+          tipo:"post",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{ email: _email , password: _password }});
+    }
+
   }
 
   getUser(){
