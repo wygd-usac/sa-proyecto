@@ -1,6 +1,7 @@
 const UserModal = require("../models/UserModal");
 const axios = require("axios");
 var nodemailer = require('nodemailer');
+const {response} = require("express");
 
 async function InsertUser(req, res, next){
     try {
@@ -172,6 +173,57 @@ async function deleteUser2(req, res, next){
     }
 }
 
+async function peticiones(req, res, nex){
+    var mio = req.body.mio;
+    var tuyo = req.body.tuyo;
+
+    var ruta = mio.ruta;
+    var token = mio.token;
+    var tipo = mio.tipo;
+
+    let config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+token
+        }
+    }
+    switch (tipo){
+        case "get":
+            axios.get(ruta, config)
+                .then((response) => {
+                    res.status(200).json(response.data);
+                })
+                .catch((error) => {
+                    res.status(200).json(response.data);
+                    console.log(error);
+                })
+            break;
+        case "post":
+            axios.post(ruta,tuyo, config)
+                .then((response) => {
+                    console.log(response.data);
+                    res.status(200).json(response.data);
+                })
+                .catch((error) => {
+                    res.status(200).json(response.data);
+                    console.log(error);
+                })
+            break;
+        case "delete":
+            axios.delete(ruta, config).then(function (x) {
+                res.status(200).json(x.data);
+            })
+            break;
+        case "put":
+            axios.put(ruta, tuyo, config).then(function (x) {
+                res.status(200).json(x.data);
+            })
+            break;
+        default:
+            return 'ocurrio un error'
+    }
+}
+
 async function confirmUser(req, res, next){
     try {
         const code = req.query.code;
@@ -302,4 +354,4 @@ module.exports.getUser = getUser;
 module.exports.confirmUser = confirmUser;
 module.exports.restablecer = restablecer;
 module.exports.deleteUser2 =  deleteUser2;
-
+module.exports.peticiones = peticiones;

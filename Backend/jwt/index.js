@@ -55,9 +55,15 @@ app.post('/esb/jwt/redireccionar',(req,res)=>{
                 })
             break;
         case "post":
-            axios.post(ruta, tuyo, config).then(function (x) {
-                res.status(200).json(x.data);
-            })
+            axios.post(ruta,tuyo, config)
+                .then((response) => {
+                    console.log(response.data);
+                    res.status(200).json(response.data);
+                })
+                .catch((error) => {
+                    res.status(200).json(response.data);
+                    console.log(error);
+                })
             break;
         case "delete":
             axios.delete(ruta, config).then(function (x) {
