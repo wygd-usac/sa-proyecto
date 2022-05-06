@@ -34,7 +34,6 @@ export class LoginComponent {
 
   user: any;
 
-
   restore(email: string) {
     try {
       this.servicio.restablecer(email).subscribe((res: any) => {
@@ -64,18 +63,18 @@ export class LoginComponent {
       alert(res);
       console.log(res);
     })
-    /*
+
     try {
       this.servicio.loginUser(email, password).subscribe((res: any) => {
           if (res instanceof Array) {
             this.mensaje = 'Bienvenido';
             this.user = res[0];
-            localStorage.setItem("rol", (this.user.id_rol).toString());
-            localStorage.setItem("id_rol", (this.user.id_rol).toString());
+          }else{
+            this.user = res.data;
+          }
+
             localStorage.setItem("email", this.user.email);
             localStorage.setItem("token", this.user.token);
-            localStorage.setItem("photo", this.user.photo);
-            localStorage.setItem("full_name", this.user.name+' '+this.user.lastname);
             localStorage.setItem("idu", this.user.id_user);
             localStorage.setItem("id_user", this.user.id_user);
             this.servicio.insertLog('Login');
@@ -83,6 +82,10 @@ export class LoginComponent {
               this.router.navigate(['administracion']);
             }
             this.router.navigate(['forms/editprofile']);
+            localStorage.setItem("photo", this.user.photo);
+            localStorage.setItem("full_name", this.user.name+' '+this.user.lastname);
+            localStorage.setItem("rol", (this.user.id_rol).toString());
+            localStorage.setItem("id_rol", (this.user.id_rol).toString());
             //this.toggleLiveDemo();
             const Toast = Swal.mixin({
               toast: true,
@@ -101,10 +104,7 @@ export class LoginComponent {
               title: 'Signed in successfully',
               text: 'Bienvenido '
             })
-          } else {
-            this.mensaje = 'Ocurrio un error';
-            this.toggleLiveDemo();
-          }
+
         }
         ,
         err => {
@@ -116,7 +116,7 @@ export class LoginComponent {
       this.mensaje = 'ocurrio un error';
       this.toggleLiveDemo()
     }
-    */
+
   }
 
 }
