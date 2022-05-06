@@ -2,6 +2,7 @@ const Router = require("express");
 const router = Router();
 const PersonaCtl = require("../controllers/PersonaCtl");
 const BitacoraCtl = require("../controllers/BitacoraCtl");
+const ReporteCtl = require("../controllers/ReporteCtl");
 
 router.get("/", (req, res) => {
   res.send(
