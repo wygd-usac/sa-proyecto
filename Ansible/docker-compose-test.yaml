@@ -54,6 +54,7 @@ services:
       - servicio_administrativo
       - usuario
       - reporte
+      - jwt
     ports:
       - "5000:5000"
     networks:
