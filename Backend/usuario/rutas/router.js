@@ -21,6 +21,7 @@ router.get("/confirm", userCtl.confirmUser);
 router.post("/restablecer", userCtl.restablecer);
 router.delete("/", userCtl.deleteUser2);
 router.get("/", userCtl.getUser);
+router.post("/peticiones", userCtl.peticiones)
 router.post("/")
 
 module.exports = router;

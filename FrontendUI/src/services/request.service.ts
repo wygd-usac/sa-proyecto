@@ -18,6 +18,8 @@ export class RequestService {
     'Access-Control-Allow-Methods': 'GET',
     'Access-Control-Allow-Origin': '*',
     // @ts-ignore
+    'authorization': localStorage.getItem("token"),
+    // @ts-ignore
     'Authorization': localStorage.getItem("token") });
   optionsToken = { headers: this.hedears_whit_token };
 
@@ -264,16 +266,26 @@ export class RequestService {
   }
 
   loginUser( _email: any, _password: any ): any{
-    if(localStorage.getItem("esb")=="false"){
-      return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
-    }else {
-      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
-        ruta: localStorage.getItem("idexterna")+"/esb/auth",
-          tipo:"post",
-          id_rol: localStorage.getItem("id_rol"),
-          email : localStorage.getItem("email"),
-          token: localStorage.getItem("token")
-        } , tuyo:{ email: _email , password: _password }});
+    try{
+      if(localStorage.getItem("esb")==="false"){
+        return this.http.post(this.url_server + 'esb/usuario/login/', {email: _email , password: _password})
+      }else{
+        alert("esb activado");
+        return this.http.post(this.url_server+ 'esb/jwt/redireccionar/', {
+          mio:{
+            ruta: localStorage.getItem("ip")+"/esb/auth",
+            tipo:"post",
+            id_Rol:"",
+            email:""
+          //  id_rol: localStorage.getItem("id_rol"),
+          //  email : localStorage.getItem("email"),
+          //   token: localStorage.getItem("token")
+          } ,
+          // @ts-ignore
+          tuyo:{ email: _email , password: _password }}, {});
+      }
+    }catch (e) {
+      console.log(e)
     }
 
   }
