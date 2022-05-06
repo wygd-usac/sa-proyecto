@@ -158,6 +158,20 @@ async function deleteUser(req, res, next){
     }
 }
 
+async function deleteUser2(req, res, next){
+    try {
+        const id_user = req.body.id_user;
+        let resultado = await UserModal.deleteUser(id_user);
+        if(resultado){
+            res.status(200).json({msg:"Usuario eliminado con éxito", status:200, "data":[]});
+        }else{
+            res.status(400).json({msg:"Error al eliminar el usuario", status:400, "data":[]});
+        }
+    }catch(error){
+        res.status(400).json({msg:"Error al eliminar el usuario", status:400, "data":[]});
+    }
+}
+
 async function confirmUser(req, res, next){
     try {
         const code = req.query.code;
@@ -287,3 +301,5 @@ module.exports.deleteUser = deleteUser;
 module.exports.getUser = getUser;
 module.exports.confirmUser = confirmUser;
 module.exports.restablecer = restablecer;
+module.exports.deleteUser2 =  deleteUser2;
+
