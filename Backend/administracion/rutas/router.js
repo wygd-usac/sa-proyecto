@@ -41,4 +41,6 @@ router.get('/report/9/',ReporteCtl.newsByTeam);
 
 router.get('/report/1/',ReporteCtl.suscribe);
 
+router.get('/report/3',ReporteCtl.memberships);
+
 module.exports = router;

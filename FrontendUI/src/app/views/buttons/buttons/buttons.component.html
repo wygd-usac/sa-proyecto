@@ -80,22 +80,22 @@
       </strong>
     </c-card-header>
     <c-card-body>
-      <form cForm [formGroup]="select" (ngSubmit)="buscar()">
+      <form cForm [formGroup]="select" (ngSubmit)="buscar1()">
         <table cTable [responsive]="true">
           <thead cTableColor="dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Lastname</th>
-            <th scope="col">Membership</th>
+            <th scope="col">Count</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of listUserMembershipTop; index as i">
+          <tr *ngFor="let user of listSubsByTeam1; index as i">
             <th scope="row">{{i + 1}}</th>
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
-            <td>{{user.membership}}</td>
+            <td>{{user.count}}</td>
           </tr>
           </tbody>
         </table>

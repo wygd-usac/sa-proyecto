@@ -1,5 +1,23 @@
 const Reporte = require("../models/ReporteModel");
 
+exports.memberships = (req, res) => {
+  var id = req.query.id || "";
+
+  Reporte.findmemberships(id, (err, data) => {
+    if (err)
+      res.status(400).send({
+        status: 400,
+        message: "Error al obtener usuarios con mas membresías.",
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Usuarios con mas membresías obtenidos con éxito.",
+        data: data,
+      });
+  });
+};
 
 exports.suscribe = (req, res) => {
   var id_team = req.query.id_team || "";
