@@ -322,7 +322,7 @@ router.post('/auth',(req,res)=>{
                         id_status: 1,
                         id_rol: x.data[0].id_rol,
                         id_user: x.data[0].id_user,
-                        has_membership: x[0].data.membership
+                        has_membership: x.data[0].membership
                     }
                 }
             )
