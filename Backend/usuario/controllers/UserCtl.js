@@ -123,7 +123,7 @@ async function UpdateUser(req, res, next){
                     }
                 }
             }else {
-                res.status(400).json({msg:"error en la actualizacion"});
+                res.status(400).json({status:400, data:[], msg:"error en la actualizacion"});
             }
 
         let resultado = await UserModal.updateUser(
@@ -144,9 +144,9 @@ async function UpdateUser(req, res, next){
             type
         )
         if(resultado){
-            res.status(200).json({msg:"actualizado correctamente"});
+            res.status(200).json({ status:400, data:[], msg:"actualizado correctamente" });
         }else{
-            res.status(400).json({msg:"error en la actualizacion"});
+            res.status(400).json({ status:200, data:[], msg:"error en la actualizacion"});
         }
     }catch(error){
         res.status(400).json({msg:"error la actualizacion"});
