@@ -39,4 +39,6 @@ router.get("/report/8",ReporteCtl.news);
 router.get('/report/10',BitacoraCtl.findId);
 router.get('/report/9/',ReporteCtl.newsByTeam);
 
+router.get('/report/1/',ReporteCtl.suscribe);
+
 module.exports = router;

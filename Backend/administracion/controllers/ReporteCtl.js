@@ -1,5 +1,25 @@
 const Reporte = require("../models/ReporteModel");
 
+
+exports.suscribe = (req, res) => {
+  var id_team = req.query.id_team || "";
+
+  Reporte.suscribeByTeam(id_team, (err, data) => {
+    if (err)
+      res.status(400).send({
+        status: 400,
+        message: "Error al obtener usuarios suscritos al equipo " +id_team,
+        data: [],
+      });
+    else
+      res.send({
+        status: 200,
+        message: "Usuarios suscritos al equipo x obtenidos con éxito.",
+        data: data,
+      });
+  });
+};
+
 exports.newsByTeam = (req, res) => {
     var id = req.query.id_team ;
     var order= req.query.order;

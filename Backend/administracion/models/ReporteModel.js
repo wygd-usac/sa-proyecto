@@ -210,4 +210,33 @@ Reporte.findnewsByTeam = (id,order, result) => {
     );
   };
 
+  Reporte.suscribeByTeam = (id_team, result) => {
+    conexion.query(
+      `select u.id_user as 'id', u.name, u.lastname,
+      C.country as nationality,u.photo
+      from Usuario u
+      join Equipos_Seguidos es on u.id_user = es.id_usuario
+      join Equipo e on es.id_team = e.id_team
+      join Country C on C.id_Country = u.id_Country
+      where e.id_team=?`,
+      id_team,
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(null, err);
+          return;
+        }
+        if (res.affectedRows == 0) {
+          // no se encontró el id
+          result({ kind: "el id especificado no existe" }, null);
+          return;
+        }
+  
+        console.log("Suscritos a Equipo  ", { id: id_team });
+        result(null, res);
+      }
+    );
+  };
+  
+
   module.exports = Reporte;
