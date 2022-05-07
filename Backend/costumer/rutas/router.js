@@ -311,7 +311,7 @@ router.get('/countries',validate_session,async (req,res) => {
 
 router.post('/auth',(req,res)=>{
 
-    axios.post('http://usuario:5000'+'/esb/usuario/login', req).then(function (x) {
+    axios.post('http://usuario:5000'+'/esb/usuario/login', req.body).then(function (x) {
         try{
             res.send(
                 {
