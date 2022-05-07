@@ -313,7 +313,7 @@ router.post('/auth',(req,res)=>{
 
     axios.post('http://usuario:5000'+'/esb/usuario/login', req).then(function (x) {
         try{
-            res.json(
+            res.send(
                 {
                     status: 200,
                     msg: "",
@@ -322,12 +322,12 @@ router.post('/auth',(req,res)=>{
                         "id_status": 1,
                         "id_rol": x[0].id_rol,
                         "id_user": x[0].id_user,
-                        "has_membership": 1
+                        "has_membership": x[0].membership
                     }
                 }
             )
         }catch (e) {
-            res.json(
+            res.send(
                 {
                     status: 400,
                     msg: "Error de autenticación.",
