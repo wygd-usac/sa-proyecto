@@ -13,12 +13,6 @@ const {response} = require("express");
 //-----------------------------------------------------
 //-----------------------------------------------------
 
-
-router.get('/',validate_session, (req, res) => {
-    //console.log(req.body.data);   
-    res.send("Modulo de Customer");
-});
-
 //pesonage
 router.post('/membership',validate_session,async (req,res) => {
     const {id_client} = req.body;
@@ -327,7 +321,7 @@ router.get('/', (req, res)=>{
     })
 });
 
-router.post('/auth',(req,res)=>{
+router.post('/',(req,res)=>{
 
     axios.post('http://usuario:5000'+'/esb/usuario/login', req.body).then(function (x) {
         try{

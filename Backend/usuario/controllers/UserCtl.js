@@ -49,7 +49,7 @@ async function InsertUser(req, res, next){
 
 async function UpdateUser(req, res, next){
     try {
-            const id_user  = req.body.id_user
+            let id_user  = req.body.id_user
             let name =  req.body.name
             let last_name = req.body.last_name
             let password =  req.body.password
@@ -66,9 +66,17 @@ async function UpdateUser(req, res, next){
             let type = req.body.type
 
         let helper = await UserModal.getUser(id_user);
+
+            if(! (helper instanceof Array)){
+                helper = await UserModal.getUserForEmail(email)
+            }
+
             console.log(helper);
             if(helper instanceof Array){
                 if(helper.length > 0){
+                    if(comprobadorUndifined(helper[0].id_user, id_user)){
+                        id_user = helper[0].id_user;
+                    }
                     if(comprobadorUndifined(helper[0].name, name)){
                         name = helper[0].name;
                     }
@@ -295,14 +303,15 @@ async function restablecer(req, res, next){
     if(helper[0].id_status !==undefined && helper[0].id_status !== null){
         enviarCorreo(email, "hola, de parte de Soccer Stats: puedes usar este codigo como password alterna temporal : "+
             helper[0].id_status);
-        res.status(200).json({msg:"Revisa tu correo"});
+        res.status(200).json({status:200, msg:"Se ha enviado un correo para restablecer la contraseña.", data:[]});
     }else {
-        res.status(400).json({msg:"error al enviar correo de restableciemiento, seguro estas registrado?"});
+        res.status(400).json({status:400, msg:"Error al enviar la contraseña temporal.", data:[]});
     }
     }catch(error){
-        res.status(400).json({msg:"error al enviar correo de restableciemiento, seguro estas registrado?"});
+        res.status(400).json({status:400, msg:"Error al enviar la contraseña temporal.", data:[]});
     }
 }
+
 
 function comprobadorUndifined(v1 , v2){
     return v1 !== undefined && v2 === undefined
