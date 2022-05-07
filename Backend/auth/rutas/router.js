@@ -13,6 +13,12 @@ const {response} = require("express");
 //-----------------------------------------------------
 //-----------------------------------------------------
 
+router.get('/', (req, res) => {
+    
+    res.send("Modulo de Auth funcionando");
+});
+
+
 //pesonage
 router.post('/membership',validate_session,async (req,res) => {
     const {id_client} = req.body;
