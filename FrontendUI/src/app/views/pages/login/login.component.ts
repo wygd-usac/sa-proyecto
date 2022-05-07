@@ -34,6 +34,15 @@ export class LoginComponent {
 
   user: any;
 
+  AESB(ip: string){
+    localStorage.setItem("ip", ip);
+    localStorage.setItem("esb", "true")
+  }
+
+  DESB(){
+    localStorage.setItem("esb", "true")
+  }
+
   restore(email: string) {
     try {
       this.servicio.restablecer(email).subscribe((res: any) => {
