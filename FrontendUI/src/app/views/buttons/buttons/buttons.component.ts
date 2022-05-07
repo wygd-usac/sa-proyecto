@@ -110,7 +110,7 @@ export class ButtonsComponent {
   buscar(){
     this.id_team = this.select.value.selectteam;
     try {
-      this.servicio.getSubsByTeam(this.id_team).subscribe(
+      this.servicio.getReport1(this.id_team).subscribe(
         (res: any) => {
           this.listSubsByTeam = res.data;
           if (this.listSubsByTeam.length > 0) {
