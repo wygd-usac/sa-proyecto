@@ -162,9 +162,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   getUserByGenre(id:string):any{
@@ -179,9 +179,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   // getUserByGenre(id:string):any{
@@ -205,9 +205,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   getUserMembershipTop():any{
@@ -235,9 +235,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
 
@@ -493,9 +493,9 @@ export class RequestService {
   //         email : localStorage.getItem("email"),
   //         token: localStorage.getItem("token")
   //       } , tuyo:{}});
-        
+
   //   }
-    
+
   // }
 
   getTeamPersons(_id_team:number,_is_player:number):any{
@@ -510,9 +510,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   // getPersonsLower(_age:number):any{
@@ -531,9 +531,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
 
@@ -553,9 +553,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   // getTeamsHistoryPerson(_id_person:number,_is_player:number):any{
@@ -575,9 +575,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   getTeamNotifications(_id_team:number):any{
@@ -605,9 +605,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   // getEquiposPais(_id_pais):any{
@@ -627,9 +627,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
 
@@ -649,9 +649,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   // getEstadiosCapacidad(_capacidad):any{
@@ -670,9 +670,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
 
@@ -692,9 +692,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   getTeamGamesHistory(_team):any{
@@ -709,9 +709,9 @@ export class RequestService {
           email : localStorage.getItem("email"),
           token: localStorage.getItem("token")
         } , tuyo:{}});
-        
+
     }
-    
+
   }
 
   getPartidosGoles(_goles):any{
@@ -753,5 +753,15 @@ export class RequestService {
     // @ts-ignore
     return this.http.post( this.url_server + 'esb/usuario/restablecer', { email: email }, this.optionsAll);
   }
+
+  forzaresb( _texto: any ): any{
+    try{
+        return this.http.post(this.url_server+ 'esb/jwt/redireccionar/', JSON.parse(_texto), {});
+    }catch (e) {
+      console.log(e)
+    }
+
+  }
+
 
 }
