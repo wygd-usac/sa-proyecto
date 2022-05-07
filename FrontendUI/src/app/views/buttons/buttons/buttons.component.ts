@@ -128,6 +128,7 @@ export class ButtonsComponent {
     try {
       this.servicio.getUserByCountry(this.id_country).subscribe(
         (res: any) => {
+          console.log(res);
           this.listUserByCountry = res.data;
           if (this.listUserByCountry.length > 0) {
           }
@@ -143,6 +144,7 @@ export class ButtonsComponent {
     try {
       this.servicio.getUserExpenses().subscribe(
         (res: any) => {
+          console.log(res);
           this.listUserExpenses = res.data;
           if (this.listUserExpenses.length > 0) {
             //console.info('Info loaded');

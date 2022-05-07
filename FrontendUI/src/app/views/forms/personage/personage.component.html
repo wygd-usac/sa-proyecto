@@ -22,6 +22,14 @@
                 />
               </c-input-group>
         </div>
+        <select id="player" class="form-control" [(ngModel)]="isPlayer">
+          <option ngValue="1">
+          Jugador
+          </option>
+          <option ngValue="0">
+            Entrenador
+            </option>
+      </select>
         <div class="col-4">
             <button [cModalToggle]="personasAge.id" cButton color="primary" (click)="buscarPersonas()" >Mostrar</button>
         </div>
@@ -173,11 +181,11 @@
       <th scope="col">#</th>
       <th scope="col">Photo</th>
       <th scope="col">Id</th>
-      <!-- <th scope="col">Name</th> -->
+      <th scope="col">Name</th>
       <th scope="col">Lastname</th>
       <th scope="col">Equipo</th>
       <th scope="col">Edad</th>
-      <th scope="col">Rol</th>
+      <th scope="col">Posicion</th>
       <th scope="col">Acciones</th>
     </tr>
     </thead>
@@ -188,18 +196,19 @@
           <th scope="row">{{i + 1}}</th>
           <td>
           <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
-          <td>{{person.id_person}}</td>
+          <td>{{person.id}}</td>
           <td>{{person.name}}</td>
           <td>{{person.lastname}}</td>
+          <td>{{person.team}}</td>
           <td>{{person.age}}</td>
-          <td>{{person.type}}</td>
+          <td>{{person.position}}</td>
           <!-- <td (click)="editPerson(person.id_person)">
             <svg cIcon name="cil-pencil" size="xl" >
 
             </svg>
           </td> -->
           <td >
-              <button [cModalToggle]="scrollableLongContentModal.id" class="btn btn-sm btn-primary" (click)="verEquiposPersona(person.id_person)"> Equipos</button>
+              <button [cModalToggle]="scrollableLongContentModal.id" class="btn btn-sm btn-primary" (click)="verEquiposPersona(person.id)"> Equipos</button>
             </td>
         </tr>
 
@@ -230,17 +239,19 @@
         <thead cTableColor="dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Equipo</th> 
+          <th scope="col">Id</th>
+          <th scope="col">Equipo</th>
+          <th scope="col">Pais</th>
+          <th scope="col">Foto</th> 
         </tr>
         </thead>
         <tbody>
             <tr *ngFor="let equipop of equipos; index as i">
-                <th scope="row">{{i + 1}}</th>
-                
-                <td>{{equipop.name_person}}</td>
-                <td>{{equipop.name_team}}</td>
-                
+                <td >{{i + 1}}</td>
+                <td>{{equipop.id_team}}</td>
+                <td>{{equipop.team}}</td>
+                <td>{{equipop.country}}</td>
+                <td><c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{equipop.photo}}"> </c-avatar></td>
               </tr>
 
         </tbody>

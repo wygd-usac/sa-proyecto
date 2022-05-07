@@ -133,7 +133,7 @@ async function getTeamPersons(id_team,player){
 async function getPersonsHigher(age,player){
     if(player == 1){
         var query = `Select p.id,p.name,p.lastname,p.photo ,ps.stand as 'position',
-        c.nicename as 'nationality',e.name as 'team'
+        c.nicename as 'nationality',e.name as 'team', p.age
         From(
         SELECT id_person as 'id', name, 
         lastname , photo, id_team,
@@ -149,7 +149,7 @@ async function getPersonsHigher(age,player){
         Where p.age > ${age} and p.status = 'Jugador';`;
     }else if(player == 0){
         var query = `Select p.id,p.name,p.lastname,p.photo ,ps.stand as 'position',
-        c.nicename as 'nationality',e.name as 'team'
+        c.nicename as 'nationality',e.name as 'team', p.age
         From(
         SELECT id_person as 'id', name, 
         lastname , photo, id_team,
@@ -181,7 +181,7 @@ async function getPersonsHigher(age,player){
 async function getPersonsLower(age,player){
     if(player == 1){
         var query = `Select p.id,p.name,p.lastname,p.photo ,ps.stand as 'position',
-        c.nicename as 'nationality',e.name as 'team'
+        c.nicename as 'nationality',e.name as 'team', p.age
         From(
         SELECT id_person as 'id', name, 
         lastname , photo, id_team,
@@ -194,10 +194,10 @@ async function getPersonsLower(age,player){
         On c.id_Country = p.nationality
         Join Equipo e 
         On e.id_team = p.id_team
-        Where p.age > ${age} and p.status = 'Jugador';`;
+        Where p.age < ${age} and p.status = 'Jugador';`;
     }else if(player == 0){
         var query = `Select p.id,p.name,p.lastname,p.photo ,ps.stand as 'position',
-        c.nicename as 'nationality',e.name as 'team'
+        c.nicename as 'nationality',e.name as 'team', p.age
         From(
         SELECT id_person as 'id', name, 
         lastname , photo, id_team,
@@ -214,7 +214,6 @@ async function getPersonsLower(age,player){
 
     }
     
-
     try{
         const result = await executeQ(query); 
         
@@ -269,9 +268,9 @@ async function getCountryTeams(id_country){
 }
 
 async function getTeamsByAge(age){
-    const query = `Select e.id_team,e.team,e.photo,e.foundation_date
+    const query = `Select e.id_team,e.team,e.photo,e.fundation_date as 'foundation_date'
     From(
-    SELECT id_team, name as 'team', photo, foundation_date,
+    SELECT id_team, name as 'team', photo, fundation_date,
     TIMESTAMPDIFF(YEAR,fundation_date ,CURDATE()) AS age
     FROM Equipo) as e
     Where e.age  = ${age};`;

@@ -80,16 +80,52 @@ export class RequestService {
   }
 
   getUserByCountry(id:number):any{
-    return this.http.get(this.url_server + 'esb/reporte/country/?id='+id, {});
+    var variable;
+    console.log("by country");
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/administrator/report/5/?id_country="+id, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/5/?id_country="+id,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+    }
   }
+
+
+
+  // getUserByCountry(id:number):any{
+  //   return this.http.get(this.url_server + 'esb/reporte/country/?id='+id, {});
+  // }
 
   getUserMembership():any{
     return this.http.get(this.url_server + 'esb/reporte/membership', {});
   }
 
+  // getUserExpenses():any{
+  //   return this.http.get(this.url_server + 'esb/reporte/expenses', {});
+  // }
+
   getUserExpenses():any{
-    return this.http.get(this.url_server + 'esb/reporte/expenses', {});
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/administrator/report/4", {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/4",
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
+
 
   getUserByGenre(id:string):any{
     return this.http.get(this.url_server + 'esb/reporte/genre/?genero='+id, {});
@@ -351,10 +387,27 @@ export class RequestService {
     return this.http.get(this.url_server_admin + 'esb/client/countries', {})
   }
 
+  // getTeamPersons(_id_team:number,_is_player:number):any{
+  //   var variable;
+  //   if(localStorage.getItem("esb")=="false"){
+  //     return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+  //   }else{
+  //     return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+  //       ruta: localStorage.getItem("ip")+"/esb/customer/report/1/?id_team="+_id_team+"&player="+_is_player,
+  //         tipo:"get",
+  //         id_rol: localStorage.getItem("id_rol"),
+  //         email : localStorage.getItem("email"),
+  //         token: localStorage.getItem("token")
+  //       } , tuyo:{}});
+        
+  //   }
+    
+  // }
+
   getTeamPersons(_id_team:number,_is_player:number):any{
     var variable;
     if(localStorage.getItem("esb")=="false"){
-      return this.http.get(this.url_server_admin + 'esb/client/reports/person/?id_team='+_id_team, {})
+      return this.http.get(this.url_server_admin + "esb/customer/report/1/?id_team="+_id_team+"&player="+_is_player, {})
     }else{
       return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
         ruta: localStorage.getItem("ip")+"/esb/customer/report/1/?id_team="+_id_team+"&player="+_is_player,
@@ -368,16 +421,69 @@ export class RequestService {
     
   }
 
-  getPersonsLower(_age:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/lower/?edad='+_age, {})
+  // getPersonsLower(_age:number):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/person/lower/?edad='+_age, {})
+  // }
+
+  getPersonsLower(_age:number,_is_player:number):any{
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/3/?age="+_age+"&player="+_is_player, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/3/?age="+_age+"&player="+_is_player,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
-  getPersonsHigher(_age:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/person/higher/?edad='+_age, {})
+
+  // getPersonsHigher(_age:number):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/person/higher/?edad='+_age, {})
+  // }
+
+  getPersonsHigher(_age:number,_is_player:number):any{
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/2/?age="+_age+"&player="+_is_player, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/2/?age="+_age+"&player="+_is_player,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
-  getTeamsHistoryPerson(_id_person:number):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/team/person/?persona='+_id_person, {})
+  // getTeamsHistoryPerson(_id_person:number,_is_player:number):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/team/person/?persona='+_id_person, {})
+  // }
+
+
+  getTeamsHistoryPerson(_id_person:number,_is_player:number):any{
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/10/?id="+_id_person+"&player="+_is_player, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/10/?age="+_id_person+"&player="+_is_player,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
   getTeamNotifications(_id_team:number):any{
@@ -389,24 +495,129 @@ export class RequestService {
       {id_client:_id_client,id_team:_id_team})
   }
 
+  // getEquiposCompetition(_id_competition):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/competition/team/?competicion='+_id_competition, {})
+  // }
+
   getEquiposCompetition(_id_competition):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/competition/team/?competicion='+_id_competition, {})
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/4/?id_competition="+_id_competition, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/4/?id_competition="+_id_competition,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
+
+  // getEquiposPais(_id_pais):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/country/team/?pais='+_id_pais, {})
+  // }
+
 
   getEquiposPais(_id_pais):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/country/team/?pais='+_id_pais, {})
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/5/?id_country="+_id_pais, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/5/?id_country="+_id_pais,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
+
+
+  // getEstadiosPais(_id_pais):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/country/stadium/?pais='+_id_pais, {})
+  // }
 
   getEstadiosPais(_id_pais):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/country/stadium/?pais='+_id_pais, {})
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/7/?id_country="+_id_pais, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/7/?id_country="+_id_pais,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
+
+  // getEstadiosCapacidad(_capacidad):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/stadium/capacity/?capacidad='+_capacidad, {})
+  // }
 
   getEstadiosCapacidad(_capacidad):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/stadium/capacity/?capacidad='+_capacidad, {})
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/8/?capacity="+_capacidad, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/8/?capacity="+_capacidad,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
+
+  // getEquiposAntiguedad(_age):any{
+  //   return this.http.get(this.url_server_admin + 'esb/client/reports/team/age/?edad='+_age, {})
+  // }
+
   getEquiposAntiguedad(_age):any{
-    return this.http.get(this.url_server_admin + 'esb/client/reports/team/age/?edad='+_age, {})
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/6/?age="+_age, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/6/?age="+_age,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
+  }
+
+  getTeamGamesHistory(_team):any{
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/customer/report/9/?id_team="+_team, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/customer/report/9/?id_team="+_team,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
   getPartidosGoles(_goles):any{
