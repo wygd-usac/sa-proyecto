@@ -7,17 +7,95 @@ const {validate_session,validate_premium,alive} = require('../middleware/validat
 const {response} = require("express");
 
 
-
 //-----------------------------------------------------
 //-----------------------------------------------------
 //-----------------------------------------------------
 //-----------------------------------------------------
 
+router.delete('/',(req,res)=>{
+    axios.post('http://usuario:5000'+'/esb/usuario/update', {id_user: req.body.id, password:"desactivado"}).then(function (x) {
+        try{
+            res.send(
+                {
+                    status: 200,
+                    msg: "Usuario eliminado con éxito.",
+                    data: []
+                }
+            )
+        }catch (e) {
+            res.send(
+                {
+                    status: 400,
+                    msg: "Error al eliminar el usuario.",
+                    data: []
+                }
+            )
+        }
+    }).catch((error) => {
+        res.status(200).json(
+            {
+                status: 400,
+                msg: "Error al actualizar usuario",
+                data: []
+            }
+        );
+        console.log(error);
+    })
+})
 
-router.get('/',validate_session, (req, res) => {
-    //console.log(req.body.data);   
-    res.send("Modulo de Customer");
+router.get('/',(req,res)=>{
+
+    axios.get('http://usuario:5000'+'/esb/usuario/get' + '?id=' + req.query.id ).then(function (x) {
+        try{
+            res.send(
+                {
+                    status: 200,
+                    msg: "usuario obtenido",
+                    data:[{
+                        //token: x.data[0].token,
+                        //id_status: 1,
+                        //id_rol: x.data[0].id_rol,
+                        //id_user: x.data[0].id_user,
+                        //has_membership: x.data[0].membership
+
+                        name: x.data[0].name,
+                        lastname: "generico",
+                        email: x.data[0].email,
+                        phone: x.data[0].phone,
+                        photo: x.data[0].photo,
+                        gender: "F",
+                        birth_date: "2022-01-01",
+                        address: x.data[0].address,
+                        age: x.data[0].age,
+                        id_country: 1,
+                        country: "Guatemala"
+
+                    }]
+                }
+            )
+        }catch (e) {
+            res.send(
+                {
+                    status: 400,
+                    msg: "Error de autenticación.",
+                    data: []
+                }
+            )
+        }
+    }).catch((error) => {
+        res.status(200).json(
+            {
+                status: 400,
+                msg: "Error de autenticación.",
+                data: []
+            }
+        );
+        console.log(error);
+    })
+
 });
+
+
 
 //pesonage
 router.post('/membership',validate_session,async (req,res) => {
