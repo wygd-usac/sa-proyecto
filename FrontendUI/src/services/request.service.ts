@@ -42,7 +42,18 @@ export class RequestService {
 
   //Bitacora
   getLog():any{
-    return this.http.get(this.url_server + 'esb/administrator/reporte/log', {});
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server + 'esb/administrator/report/10', {});
+    }
+    else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/10",
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+    }
   }
 
   newLog(id_administrador:number,accion:string,is_error:number):any{
