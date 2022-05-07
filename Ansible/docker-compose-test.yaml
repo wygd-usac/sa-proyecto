@@ -12,6 +12,12 @@ services:
       - "5005:5000"
     networks:
       - red-backend
+  auth:
+    image: wygd/ms-auth-test:latest
+    ports:
+      - "5002:5000"
+    networks:
+      - red-backend
   administracion:
     image: wygd/ms-administracion-test:latest
     ports:
@@ -62,6 +68,7 @@ services:
       - usuario
       - reporte
       - jwt
+      - auth
     ports:
       - "5000:5000"
     networks:

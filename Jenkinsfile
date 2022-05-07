@@ -35,6 +35,7 @@ pipeline {
       steps {
         sh 'docker build --no-cache --rm -t wygd/ms-cliente2-test:latest -f ./Backend/cliente/Dockerfile.cliente ./Backend/cliente'
         sh 'docker build --no-cache --rm -t wygd/ms-customer-test:latest -f ./Backend/costumer/Dockerfile.costumer ./Backend/costumer'
+        sh 'docker build --no-cache --rm -t wygd/ms-auth-test:latest -f ./Backend/auth/Dockerfile.auth ./Backend/auth'
         sh 'docker build --no-cache --rm -t wygd/ms-administracion-test:latest -f ./Backend/administracion/Dockerfile.administracion ./Backend/administracion'
         sh 'docker build --no-cache --rm -t wygd/ms-serv-admin-test:latest -f ./Backend/servicio_administrativo/Dockerfile.servicio_admin ./Backend/servicio_administrativo'
         sh 'docker build --no-cache --rm -t wygd/ms-usuario-test:latest -f ./Backend/usuario/Dockerfile.usuario ./Backend/usuario'
@@ -110,6 +111,7 @@ pipeline {
         sh 'docker push wygd/ms-serv-admin-test:latest'
         sh 'docker push wygd/ms-cliente2-test:latest'
         sh 'docker push wygd/ms-customer-test:latest'
+        sh 'docker push wygd/ms-auth-test:latest'
         sh 'docker push wygd/ms-administracion-test:latest'
         sh 'docker push wygd/ms-usuario-test:latest'
         sh 'docker push wygd/ms-reporte-test:latest'
