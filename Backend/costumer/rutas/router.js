@@ -318,11 +318,11 @@ router.post('/auth',(req,res)=>{
                     status: 200,
                     msg: "",
                     data: {
-                        "token": x[0].token,
-                        "id_status": 1,
-                        "id_rol": x[0].id_rol,
-                        "id_user": x[0].id_user,
-                        "has_membership": x[0].membership
+                        token: x.data[0].token,
+                        id_status: 1,
+                        id_rol: x.data[0].id_rol,
+                        id_user: x.data[0].id_user,
+                        has_membership: x[0].data.membership
                     }
                 }
             )
