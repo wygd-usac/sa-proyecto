@@ -40,6 +40,23 @@ export class RequestService {
     this.url_server_admin = environment.base_url;
   }
 
+
+  getTopMembresias():any{
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server + 'esb/administrator/report/3', {});
+    }
+    else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/3",
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+    }
+  }
+
+
   //Bitacora
   getLog():any{
     if(localStorage.getItem("esb")=="false"){
@@ -209,6 +226,8 @@ export class RequestService {
     }
     
   }
+
+  
 
   getUserMembershipTop():any{
     return this.http.get(this.url_server + 'esb/reporte/memberships', {});

@@ -26,6 +26,7 @@ export class ButtonsComponent {
   genre='';
   age=0;
   listSubsByTeam:any;
+  listSubsByTeam1:any;
   listUserMembership:any;
   listUserMembershipTop:any;
   listUserByCountry:any;
@@ -114,6 +115,22 @@ export class ButtonsComponent {
         (res: any) => {
           this.listSubsByTeam = res.data;
           if (this.listSubsByTeam.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los equipos')}
+  }
+
+  buscar1(){
+    this.id_team = this.select.value.selectteam;
+    try {
+      this.servicio.getTopMembresias().subscribe(
+        (res: any) => {
+          this.listSubsByTeam1 = res.data;
+          if (this.listSubsByTeam1.length > 0) {
           }
         },
         (err) => {

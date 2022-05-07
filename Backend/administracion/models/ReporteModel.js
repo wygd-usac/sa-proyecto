@@ -237,6 +237,35 @@ Reporte.findnewsByTeam = (id,order, result) => {
       }
     );
   };
+
+  Reporte.findmemberships = (id, result) => {
+    conexion.query(
+      `select id_user as 'id', name, lastname,  c.country as 'nationality', u.photo ,membership as 'count' from Usuario u
+      join Country c on u.id_Country = c.id_Country
+          where membership>0
+          order by u.membership desc,name,lastname`,
+      id,
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(null, err);
+          return;
+        }
+        if (res.affectedRows == 0) {
+          // no se encontró el id
+          result(
+            {
+              kind: "Ocurrió un error al obtener el top de membresias.",
+            },
+            null
+          );
+          return;
+        }
+        result(null, res);
+      }
+    );
+  };
+  
   
 
   module.exports = Reporte;
