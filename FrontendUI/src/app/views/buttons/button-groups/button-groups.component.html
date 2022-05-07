@@ -1,44 +1,47 @@
 <div class="fade-in">
-  <c-card class="mb-4">
+
+  <c-card class="mb-5">
     <c-card-header>
       <strong>
-        Reporte Empleados con Mas y Menos Noticias por Equipo
+        Reporte de Usuarios por Equipo
       </strong>
     </c-card-header>
     <c-card-body>
       <form cForm [formGroup]="select" (ngSubmit)="buscar()">
-      <label>Team</label>
-      <c-input-group class="m-md-auto col-1">
-        <select cSelect formControlName="selectteam">
-          <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
-                  value="{{team.id_team}}" >
-            {{team.name}}
-          </option>
-        </select>
-      </c-input-group>
-      <br>
-      <div class="d-grid align-content-center">
-        <button cButton color="success" type="submit">Search </button>
-      </div>
-      <br>
-      <table cTable [responsive]="true" >
-        <thead cTableColor="dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Lasname</th>
-          <th scope="col">News</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let x of listNewsByTeam; index as i">
-          <th scope="row">{{i + 1}}</th>
-          <td>{{x.name}}</td>
-          <td>{{x.lastname}}</td>
-          <td>{{x.news}}</td>
-        </tr>
-        </tbody>
-      </table>
+        <label>Team</label>
+        <c-input-group class="m-md-auto col-1">
+          <select cSelect formControlName="selectteam">
+            <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}"
+                    value="{{team.id_team}}" >
+              {{team.name}}
+            </option>
+          </select>
+        </c-input-group>
+        <br>
+        <div class="d-grid align-content-center">
+          <button cButton color="success" type="submit">Search </button>
+        </div>
+        <br>
+        <table cTable [responsive]="true">
+          <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Count</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let team of listSubsByTeam; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{team.name}}</td>
+            <td>{{team.lastname}}</td>
+            <td>{{team.nationality}}</td>
+            <td>{{team.count}}</td>
+          </tr>
+          </tbody>
+        </table>
       </form>
     </c-card-body>
   </c-card>
