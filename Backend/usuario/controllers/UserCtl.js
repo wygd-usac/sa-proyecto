@@ -270,7 +270,7 @@ async function loginUser(req, res, next){
                 email:resultado["email"]
             };
 
-            axios.post('http://jwt:5001'+'/esb/jwt/register', payload).then(function (x) {
+            axios.post('http://jwt:5000'+'/esb/jwt/register', payload).then(function (x) {
                 if(x.data.token !== undefined && resultado[0] !== undefined){
                     console.log(x.data.token);
                     resultado[0].token = x.data.token;

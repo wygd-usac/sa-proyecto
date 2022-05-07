@@ -88,19 +88,21 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Lastname</th>
-            <th scope="col">Log</th>
-            <th scope="col">Created</th>
-            <th scope="col">Is error</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Description</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let x of listLog; index as i">
             <th scope="row">{{i + 1}}</th>
-            <td>{{x.name}}</td>
-            <td>{{x.lastname}}</td>
-            <td>{{x.accion}}</td>
+            <td>{{x.user_name}}</td>
+            <td>{{x.user_lastname}}</td>
+            <td>{{x.user_role}}</td>
+            <td>{{x.action}}</td>
             <td>{{x.date}}</td>
-            <td>{{x.is_error}}</td>
+            <td>{{x.description}}</td>
           </tr>
           </tbody>
         </table>

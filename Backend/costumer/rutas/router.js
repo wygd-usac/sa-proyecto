@@ -1,8 +1,10 @@
 const Router = require('express');
 const router = Router();
 const dataOp = require('../data/dataOp');
+const axios = require("axios");
 //middleware para validar rutas y permisos
 const {validate_session,validate_premium,alive} = require('../middleware/validations');
+const {response} = require("express");
 
 
 
@@ -306,5 +308,38 @@ router.get('/countries',validate_session,async (req,res) => {
     //console.log(countries);
     res.send({'countries':countries});
 });
+
+router.post('/auth',(req,res)=>{
+
+    axios.post('http://usuario:5000'+'/esb/usuario/login', req.body).then(function (x) {
+        try{
+            res.send(
+                {
+                    status: 200,
+                    msg: "",
+                    data: {
+                        token: x.data[0].token,
+                        id_status: 1,
+                        id_rol: x.data[0].id_rol,
+                        id_user: x.data[0].id_user,
+                        has_membership: x.data[0].membership
+                    }
+                }
+            )
+        }catch (e) {
+            res.send(
+                {
+                    status: 400,
+                    msg: "Error de autenticación.",
+                    data: []
+                }
+            )
+        }
+    })
+
+});
+
+
+
 
 module.exports = router;
