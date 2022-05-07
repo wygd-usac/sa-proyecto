@@ -8,6 +8,24 @@ async function getCountries(){
     return json_c;
 }
 
+async function getFollowTeams_ESB(id){
+    const query = ` select e.id_team as 'id', eq.name, eq.fundation_date as 'foundation_date',
+    eq.photo,eq.id_Country as 'id_country',c.country from Equipos_Seguidos e
+       join Equipo eq on e.id_team = eq.id_team
+       join Country c on eq.id_Country = c.id_Country
+   where e.id_usuario =${id};`;
+
+    try{
+        const result = await executeQ(query); 
+
+        return {status:200,msg:"Favoritos obtenidos con éxito.",data:result};
+
+    }catch(error){
+        console.log(error);
+        return {status:400,msg:"Error al obtener los equipos favoritos.",data:[]};
+    }
+}
+
 async function obtainMembership(id_client){
     
         const query = `UPDATE Usuario SET membership = 1 WHERE id_user = ${id_client};`;
@@ -626,5 +644,6 @@ module.exports = {
     encryptPassword,
     urlEncoded,
     urlDecoded,
-    calcularAnios
+    calcularAnios,
+    getFollowTeams_ESB
 }

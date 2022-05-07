@@ -387,6 +387,16 @@ router.get('/countries',validate_session,async (req,res) => {
     res.send({'countries':countries});
 });
 
+router.get('/follow',validate_session,async (req,res) => {
+    const {id_client} = req.query;
+    if(id_client == undefined){
+        res.send(dataOp.getResponse(400,"Error al obtener los equipos que participaron en una competición.",[]));
+    }
+    console.log(req.query);
+
+    const result = await dataOp.getFollowTeams_ESB(id_client);
+    res.send(result);
+});
 
 
 
