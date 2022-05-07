@@ -12,15 +12,22 @@ const Reporte = function (reporte) {
   this.photo = persona.photo;
 };
 
-Reporte.findnewsByTeam = (id, result) => {
+Reporte.findnewsByTeam = (id,order, result) => {
+    var query = `select u.id_user as 'id', u.name, u.lastname, c.country as 'nationality', u.photo, count(n.id_new) as count  from Usuario u
+    join Noticia n on u.id_user = n.empleado
+    join Equipo E on n.Equipo_id_team = E.id_team
+    join Country c on u.id_Country = c.id_Country
+      where u.id_rol=2 and n.empleado=u.id_user and E.id_team = ${id}
+      group by u.id_user, u.name, u.lastname,u.photo,c.country order by count `;
+
+      if(order == 1){
+        query += 'ASC'
+      }else{
+        query += 'DESC'
+      }
+
     conexion.query(
-      `select u.id_user as 'id', u.name, u.lastname, c.country as 'nationality', u.photo, count(n.id_new) as count  from Usuario u
-      join Noticia n on u.id_user = n.empleado
-      join Equipo E on n.Equipo_id_team = E.id_team
-      join Country c on u.id_Country = c.id_Country
-        where u.id_rol=2 and n.empleado=u.id_user and E.id_team = ?
-        group by u.id_user, u.name, u.lastname,u.photo,c.country`,
-      id,
+        query,
       (err, res) => {
         if (err) {
           console.log("error: ", err);

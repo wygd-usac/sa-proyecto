@@ -2,9 +2,9 @@ const Reporte = require("../models/ReporteModel");
 
 exports.newsByTeam = (req, res) => {
     var id = req.query.id_team ;
-    var number = req.query.order || "";
+    var order= req.query.order;
   
-    Reporte.findnewsByTeam(id, (err, data) => {
+    Reporte.findnewsByTeam(id,order, (err, data) => {
       if (err)
         res.status(400).send({
           status: 400,

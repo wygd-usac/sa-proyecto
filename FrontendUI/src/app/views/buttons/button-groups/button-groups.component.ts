@@ -17,10 +17,12 @@ export class ButtonGroupsComponent {
   // @ts-ignore
   select: FormGroup;
   listTeams:any;
-  id_team = 0;
   listNewsByTeam:any;
   listNews:any;
   listLog:any;
+  listSubsByTeam:any;
+  id_team = 0;
+  order=0;
 
   ngOnInit(): void {
     const rol = localStorage.getItem("rol");
@@ -84,13 +86,15 @@ export class ButtonGroupsComponent {
       );
     } catch (e) {console.info('Error al cargar los equipos')}
   }
+
   buscar(){
+    this.order = 0;
     this.id_team = this.select.value.selectteam;
     try {
-      this.servicio.getNewsByTeam(this.id_team).subscribe(
+      this.servicio.getReport9(this.id_team,this.order).subscribe(
         (res: any) => {
-          this.listNewsByTeam = res.data;
-          if (this.listNewsByTeam.length > 0) {
+          this.listSubsByTeam = res.data;
+          if (this.listSubsByTeam.length > 0) {
           }
         },
         (err) => {
@@ -99,7 +103,8 @@ export class ButtonGroupsComponent {
       );
     } catch (e) {console.info('Error al cargar los equipos')}
   }
-  stadium: any;
+
+ stadium: any;
 
   getStadiums() {
     try {
