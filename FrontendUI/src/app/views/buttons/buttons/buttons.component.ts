@@ -20,6 +20,7 @@ export class ButtonsComponent {
               private storage: AngularFireStorage,
               private fb: FormBuilder) { }
   listTeams: any;
+  listita:any;
   listCountrys:any;
   id_team = 0;
   id_country=0;
@@ -93,7 +94,7 @@ export class ButtonsComponent {
     } catch (e) {console.info('Error al cargar los usuarios con membresia')}
 
     try {
-      this.servicio.getUserMembershipTop().subscribe(
+      this.servicio.getTopMembresias().subscribe(
         (res: any) => {
           this.listUserMembershipTop = res.data;
           if (this.listUserMembershipTop.length > 0) {
@@ -124,13 +125,14 @@ export class ButtonsComponent {
     } catch (e) {console.info('Error al cargar los equipos')}
   }
 
-  buscar1(){
-    this.id_team = this.select.value.selectteam;
+
+  buscar_usuarios(){
     try {
       this.servicio.getTopMembresias().subscribe(
         (res: any) => {
-          this.listSubsByTeam1 = res.data;
-          if (this.listSubsByTeam1.length > 0) {
+          console.log(res.data);
+          this.listita = res.data;
+          if (this.listita.length > 0) {
           }
         },
         (err) => {

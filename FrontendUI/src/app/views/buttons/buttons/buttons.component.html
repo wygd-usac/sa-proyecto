@@ -76,11 +76,11 @@
   <c-card class="mb-5">
     <c-card-header>
       <strong>
-        Reporte Top Cantidad de Membresias
+        Top de Usuarios con membresía
       </strong>
     </c-card-header>
     <c-card-body>
-      <form cForm [formGroup]="select" (ngSubmit)="buscar1()">
+      <form cForm [formGroup]="select" (ngSubmit)="buscar_usuarios()">
         <table cTable [responsive]="true">
           <thead cTableColor="dark">
           <tr>
@@ -91,7 +91,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let user of listSubsByTeam1; index as i">
+          <tr *ngFor="let user of listUserMembershipTop; index as i">
             <th scope="row">{{i + 1}}</th>
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
