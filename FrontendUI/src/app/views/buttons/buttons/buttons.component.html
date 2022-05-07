@@ -187,7 +187,7 @@
         <c-input-group class="m-md-auto col-1">
           <select cSelect formControlName="selectgenre">
             <option ngValue="F" value="F" >Femenino</option>
-            <option ngValue="M" value="F" >Masculino</option>
+            <option ngValue="M" value="M" >Masculino</option>
           </select>
         </c-input-group>
         <br>
@@ -201,6 +201,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Lastname</th>
+            <th scope="col">Nationality</th>
           </tr>
           </thead>
           <tbody>
@@ -208,6 +209,7 @@
             <th scope="row">{{i + 1}}</th>
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
+            <td>{{user.nationality}}</td>
           </tr>
           </tbody>
         </table>
@@ -238,6 +240,9 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Lastname</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Fecha nacimiento</th>
+            <th scope="col">Edad</th>
           </tr>
           </thead>
           <tbody>
@@ -245,6 +250,9 @@
             <th scope="row">{{i + 1}}</th>
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
+            <td>{{user.nationality}}</td>
+            <td>{{user.birthday}}</td>
+            <td>{{user.age}}</td>
           </tr>
           </tbody>
         </table>

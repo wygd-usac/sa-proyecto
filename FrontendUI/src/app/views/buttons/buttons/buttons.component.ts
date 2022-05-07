@@ -162,6 +162,7 @@ export class ButtonsComponent {
     try {
       this.servicio.getUserByGenre(this.genre).subscribe(
         (res: any) => {
+          console.log(res);
           this.listUserByGenre = res.data;
           if (this.listUserByGenre.length > 0) {
           }
@@ -179,6 +180,7 @@ export class ButtonsComponent {
     try {
       this.servicio.getUserByAge(Number(edad)).subscribe(
         (res: any) => {
+          console.log(res);
           this.listUserByAge = res.data;
           if (this.listUserByAge.length > 0) {
           }

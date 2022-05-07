@@ -29,7 +29,7 @@ router.get("/reporte/log", BitacoraCtl.findAll);
 
 
 //endpoint usuarios
-router.get("/report/3",ReporteCtl.expenses);
+router.get("/report/4",ReporteCtl.expenses);
 router.get("/report/5",ReporteCtl.country);
 router.get("/report/6",ReporteCtl.genre);
 router.get("/report/7",ReporteCtl.age);

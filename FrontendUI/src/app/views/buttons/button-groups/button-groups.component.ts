@@ -20,6 +20,7 @@ export class ButtonGroupsComponent {
   id_team = 0;
   listNewsByTeam:any;
   listNews:any;
+  listNewsLess:any;
   listLog:any;
 
   ngOnInit(): void {
@@ -36,16 +37,35 @@ export class ButtonGroupsComponent {
       selectgenre:[null]
     });
     this.getSelects();
-    this.getNews()
+    this.getNewsMore()
+    this.getNewsLess()
     this.getBitacora()
   }
 
-  getNews(){
+  lessMore!:number;
+  getNewsMore(){
     try {
-      this.servicio.getNews().subscribe(
+      this.servicio.getNews(0).subscribe(
         (res: any) => {
+          console.log(res);
           this.listNews = res.data;
           if (this.listNews.length > 0) {
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (e) {console.info('Error al cargar los equipos')}
+  }
+
+  getNewsLess(){
+    try {
+      this.servicio.getNews(1).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.listNewsLess = res.data;
+          if (this.listNewsLess.length > 0) {
           }
         },
         (err) => {

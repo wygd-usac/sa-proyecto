@@ -137,13 +137,47 @@ export class RequestService {
     
   }
 
-
   getUserByGenre(id:string):any{
-    return this.http.get(this.url_server + 'esb/reporte/genre/?genero='+id, {});
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/administrator/report/6/?gender="+id, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/6/?gender="+id,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
+  // getUserByGenre(id:string):any{
+  //   return this.http.get(this.url_server + 'esb/reporte/genre/?genero='+id, {});
+  // }
+
+  // getUserByAge(id:number):any{
+  //   return this.http.get(this.url_server + 'esb/reporte/age/?edad='+id, {});
+  // }
+
+
   getUserByAge(id:number):any{
-    return this.http.get(this.url_server + 'esb/reporte/age/?edad='+id, {});
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/administrator/report/7/?age="+id, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/7/?age="+id,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
 
   getUserMembershipTop():any{
@@ -154,9 +188,28 @@ export class RequestService {
     return this.http.get(this.url_server + 'esb/reporte/news/team/?equipo='+id, {});
   }
 
-  getNews():any{
-    return this.http.get(this.url_server + 'esb/reporte/news', {});
+  // getNews(lessMore:number):any{
+  //   return this.http.get(this.url_server + 'esb/reporte/news', {});
+  // }
+
+
+  getNews(lessMore:number):any{
+    var variable;
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server_admin + "esb/administrator/report/8/?order="+lessMore, {})
+    }else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/8/?order="+lessMore,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+        
+    }
+    
   }
+
 
   //Estadios
   getStadiums(): any{
