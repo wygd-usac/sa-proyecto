@@ -15,8 +15,12 @@
           </span>
           <input cFormControl placeholder="What are you looking for?" type="text" />
           <button cButton color="info">Search</button>
+
+          <textarea name="comentarios" #comentarios rows="5" cols="100"></textarea> <br>
+          <button (click)="Jala(comentarios.value)"> Extraer </button>
         </c-input-group>
       </c-col>
     </c-row>
   </c-container>
+
 </div>

@@ -8,6 +8,8 @@ import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
 import {ButtonModule, CardModule, FormModule, GridModule, ModalModule} from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
+import {Router} from "@angular/router";
+import {RequestService} from "../../../services/request.service";
 
 
 @NgModule({
@@ -30,4 +32,12 @@ import { IconModule } from '@coreui/icons-angular';
   ]
 })
 export class PagesModule {
+
+  constructor() {
+
+  }
+
+
+
+
 }
