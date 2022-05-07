@@ -1,4 +1,17 @@
 <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+
+  <input type="text"
+         id="dinamicip"
+         #dinamicip
+  >
+  <button type="button" (click)="AESB(dinamicip.value)">
+    Activar Esb
+  </button>
+
+  <button type="button" (click)="DESB()">
+    Desactivar Esb
+  </button>
+
   <c-container>
     <c-row class="justify-content-center">
       <c-col md="8">
