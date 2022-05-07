@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 export class ClienteteamComponent implements OnInit {
   listTeams:any;
   equipoSeleccionado!:number;
+  isPlayer!:number;
   equipoX!:string;
   equipoY!:string;
   constructor(private router: Router, private servicio: RequestService) { }
@@ -22,8 +23,9 @@ export class ClienteteamComponent implements OnInit {
   teamPersons:any;
   verPersonas(){
     
-    this.servicio.getTeamPersons(this.equipoSeleccionado).subscribe(
+    this.servicio.getTeamPersons(this.equipoSeleccionado,this.isPlayer).subscribe(
       (res: any) => {
+        console.log(res);
         this.teamPersons = res.data;
         console.log(this.teamPersons);
       },
@@ -33,6 +35,24 @@ export class ClienteteamComponent implements OnInit {
     );
     console.log("Listado personas de :" + this.equipoSeleccionado);
   }
+
+  teamGames:any;
+  verPartidos(){
+    
+    this.servicio.getTeamGamesHistory(this.equipoSeleccionado).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.teamGames = res.data;
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    console.log("Listado personas de :" + this.equipoSeleccionado);
+  }
+
+
   // @ts-ignore
   select: FormGroup;
   id_team=0;
@@ -128,7 +148,7 @@ export class ClienteteamComponent implements OnInit {
     this.servicio.getEstadiosPais(this.pais).subscribe(
       (res: any) => {
         this.estadiosPais = res.data;
-        console.log(this.estadiosPais);
+        console.log(res);
       },
       (err) => {
         console.log(err);
@@ -157,7 +177,7 @@ export class ClienteteamComponent implements OnInit {
     this.servicio.getEquiposAntiguedad(this.capacidad).subscribe(
       (res: any) => {
         this.equiposAntiguedad = res.data;
-        console.log(this.equiposAntiguedad);
+        console.log(res);
       },
       (err) => {
         console.log(err);

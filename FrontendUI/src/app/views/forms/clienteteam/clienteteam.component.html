@@ -10,11 +10,24 @@
             <label class="font-weight-bold" for="#equipos">Team</label>
         </div>
         <div class="col-4">
-            <select id="equipos" class="form-control" [(ngModel)]="equipoSeleccionado">
-                <option *ngFor="let team of listTeams; index as i" ngValue="{{team.id_team}}">
-                {{team.name}} - {{team.id_team}}
+            
+
+            <c-input-group class="mb-3">
+              <span cInputGroupText id="inputGroup-sizing-default">Equipo</span>
+              <input aria-describedby="inputGroup-sizing-default"
+                     aria-label="Sizing example input"
+                     cFormControl
+                     [(ngModel)]="equipoSeleccionado"
+              />
+            </c-input-group>
+            <select id="player" class="form-control" [(ngModel)]="isPlayer">
+              <option ngValue="1">
+              Jugador
+              </option>
+              <option ngValue="0">
+                Entrenador
                 </option>
-            </select>
+          </select>
         </div>
         <div class="col-7">
           
@@ -23,6 +36,7 @@
           
             <button class="btn btn-secondary" (click)="verNotificaciones()" [cModalToggle]="modalNotificaciones.id">Ver Notificaciones</button>
           
+            <button [cModalToggle]="modalPartido.id" class="btn btn-primary" (click)="verPartidos()">Ver Partidos</button>
           
             <button class="btn btn-light" (click)="follow()">Seguir</button>  
             
@@ -34,7 +48,7 @@
 
     <c-modal #modalPersonas id="modalPersonas" scrollable size="lg">
       <c-modal-header>
-        <h5 cModalTitle>Equipos en los que ha estado la persona</h5>
+        <h5 cModalTitle>Personas que han estado en el equipo</h5>
         <button [cModalToggle]="modalPersonas.id" cButtonClose></button>
       </c-modal-header>
       <c-modal-body>
@@ -57,6 +71,7 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Lastname</th>
+        <th scope="col">Nationality</th>
         <th scope="col">Type</th>
       </tr>
       </thead>
@@ -65,10 +80,11 @@
         <th scope="row">{{i + 1}}</th>
         <td>
         <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{person.photo}}"> </c-avatar></td>
-        <td>{{person.id_person}}</td>
+        <td>{{person.id}}</td>
         <td>{{person.name}}</td>
         <td>{{person.lastname}}</td>
-        <td>{{person.type}}</td>
+        <td>{{person.nationality}}</td>
+        <td>{{person.position}}</td>
         <!-- <td (click)="editPerson(person.id_person)">
           <svg cIcon name="cil-pencil" size="xl" >
 
@@ -82,6 +98,55 @@
       </tbody>
     </table>
   </ng-template>
+
+
+  <c-modal #modalPartido id="modalPartido" scrollable size="lg">
+    <c-modal-header>
+      <h5 cModalTitle>Partidos del equipo</h5>
+      <button [cModalToggle]="modalPartido.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      <ng-container *ngTemplateOutlet="PartidoContent"></ng-container>
+    </c-modal-body>
+    <c-modal-footer>
+      <button [cModalToggle]="modalPartido.id" cButton color="secondary">
+        Close
+      </button>
+
+    </c-modal-footer>
+  </c-modal>
+
+<ng-template #PartidoContent>
+  <table cTable [responsive]="true">
+    <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Attendees</th>
+      <th scope="col">Resultado Local</th>
+      <th scope="col">Resultado Visitante</th>
+      <th scope="col">Estadio</th>
+      <th scope="col">Local</th>
+      <th scope="col">Visitante</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let game of teamGames; index as i">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{game.id}}</td>
+      <td>{{game.game_date}}</td>
+      <td>{{game.attendees}}</td>
+      <td>{{game.result_local}}</td>
+      <td>{{game.result_visiting}}</td>
+      <td>{{game.stadium}}</td>
+      <td>{{game.team_local}}</td>
+      <td>{{game.team_visiting}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+</ng-template>
 
 
 
@@ -193,19 +258,21 @@
         <thead cTableColor="dark">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Competición</th>
-          <th scope="col">Equipo</th> 
+          <th scope="col">Id</th>
+          <th scope="col">Team</th> 
+          <th scope="col">Foto</th>
+          <th scope="col">Id Competición</th>
         </tr>
         </thead>
         <tbody>
             <tr *ngFor="let equipoC of equiposC; index as i">
                 <th scope="row">{{i + 1}}</th>
-                
-                <td>{{equipoC.name_competicion}}</td>
-                <td>{{equipoC.name_team}}</td>
-                
+                <td>{{equipoC.id_team}}</td>
+                <td>{{equipoC.team}}</td>
+                <td>
+                  <c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{equipoC.photo}}"> </c-avatar></td>
+                <td>{{equipoC.id_competition}}</td>
               </tr>
-
         </tbody>
       </table>
 </ng-template>
@@ -232,16 +299,19 @@
     <thead cTableColor="dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Pais</th>
+      <th scope="col">Id Equipo</th>
       <th scope="col">Equipo</th> 
+      <th scope="col">Foto</th>
+      <th scope="col">Id Pais</th>  
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let equipoPais of equiposPais; index as i">
             <th scope="row">{{i + 1}}</th>
-            
-            <td>{{equipoPais.name_country}}</td>
-            <td>{{equipoPais.name_team}}</td>
+            <td>{{equipoPais.id_team}}</td>
+            <td>{{equipoPais.team}}</td>
+            <td><c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{equipoPais.photo}}"> </c-avatar></td>
+            <td>{{equipoPais.id_country}}</td>
             
           </tr>
 
@@ -271,17 +341,20 @@
     <thead cTableColor="dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Pais</th>
-      <th scope="col">Estadio</th> 
+      <th scope="col">Id Estadio</th>
+      <th scope="col">Estadio</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Id Pais</th>
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let estadioPais of estadiosPais; index as i">
             <th scope="row">{{i + 1}}</th>
             
-            <td>{{estadioPais.name_country}}</td>
-            <td>{{estadioPais.name_stadium}}</td>
-            
+            <td>{{estadioPais.id_stadium}}</td>
+            <td>{{estadioPais.stadium}}</td>
+            <td><c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{estadioPais.photo}}"> </c-avatar></td>
+            <td>{{estadioPais.id_country}}</td>
           </tr>
 
     </tbody>
@@ -336,15 +409,21 @@
     <thead cTableColor="dark">
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Id Estadio</th>
       <th scope="col">Estadio</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Pais</th>
       <th scope="col">Capacidad</th> 
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let estadioCapacidad of estadiosCapacidad; index as i">
             <th scope="row">{{i + 1}}</th>
-            <td>{{estadioCapacidad.name_stadium}}</td>
-            <td>{{estadioCapacidad.capacidad}}</td>
+            <td>{{estadioCapacidad.id_stadium}}</td>
+            <td>{{estadioCapacidad.stadium}}</td>
+            <td><c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{estadioCapacidad.photo}}"> </c-avatar></td>
+            <td>{{estadioCapacidad.country}}</td>
+            <td>{{estadioCapacidad.capacity}}</td>
           </tr>
 
     </tbody>
@@ -374,15 +453,21 @@
     <thead cTableColor="dark">
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Id Equipo</th>
       <th scope="col">Equipo</th>
-      <th scope="col">Antiguedad</th> 
+      <th scope="col">Foto</th>
+      <th scope="col">Fecha de fundación</th>
+      <th scope="col">Pais</th> 
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let equipoAntiguedad of equiposAntiguedad; index as i">
             <th scope="row">{{i + 1}}</th>
-            <td>{{equipoAntiguedad.name_team}}</td>
-            <td>{{equipoAntiguedad.age}}</td>
+            <td>{{equipoAntiguedad.id_team}}</td>
+            <td>{{equipoAntiguedad.team}}</td>
+            <td><c-avatar cTextColor="primary" shape="rounded-0" size="md" src="{{equipoAntiguedad.photo}}"> </c-avatar></td>
+            <td>{{equipoAntiguedad.foundation_date}}</td>
+            <td>{{equipoAntiguedad.country}}</td>
           </tr>
 
     </tbody>

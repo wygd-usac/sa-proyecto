@@ -14,6 +14,7 @@ export class PersonageComponent implements OnInit {
   age!:number;
   persons:any;
   isPremium = false;
+  isPlayer!:number;
   options = [
     {id:1,description:"Menor que"},
     {id:2,description:"Mayor que"}
@@ -38,9 +39,9 @@ export class PersonageComponent implements OnInit {
         break;
     }
   }
-
+f
   loadPersonsLower(){
-    this.servicio.getPersonsLower(this.age).subscribe(
+    this.servicio.getPersonsLower(this.age,this.isPlayer).subscribe(
       (res: any) => {
         this.persons = res.data;
         console.log(this.persons);
@@ -52,7 +53,7 @@ export class PersonageComponent implements OnInit {
 
   }
   loadPersonsHigher(){
-    this.servicio.getPersonsHigher(this.age).subscribe(
+    this.servicio.getPersonsHigher(this.age,this.isPlayer).subscribe(
       (res: any) => {
         this.persons = res.data;
         console.log(this.persons);
@@ -65,7 +66,7 @@ export class PersonageComponent implements OnInit {
   equipos:any;
   verEquiposPersona(id_p:number){
     console.log(id_p);
-    this.servicio.getTeamsHistoryPerson(id_p).subscribe(
+    this.servicio.getTeamsHistoryPerson(id_p,this.isPlayer).subscribe(
       (res: any) => {
         this.equipos = res.data;
         console.log(this.equipos);
