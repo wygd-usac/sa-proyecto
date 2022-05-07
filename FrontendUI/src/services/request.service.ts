@@ -90,6 +90,21 @@ export class RequestService {
     return this.http.get(this.url_server + 'esb/reporte/suscribe/?id='+id, {});
   }
 
+  getReport9(id_team:number,order:number):any{
+    if(localStorage.getItem("esb")=="false"){
+      return this.http.get(this.url_server + 'esb/administrator/report/9?id_team='+id_team, {});
+    }
+    else{
+      return this.http.post(this.url_server+ 'esb/jwt/redireccionar', { mio:{
+        ruta: localStorage.getItem("ip")+"/esb/administrator/report/9?order=0&id_team="+id_team,
+          tipo:"get",
+          id_rol: localStorage.getItem("id_rol"),
+          email : localStorage.getItem("email"),
+          token: localStorage.getItem("token")
+        } , tuyo:{}});
+    }
+  }
+
   getUserByCountry(id:number):any{
     var variable;
     console.log("by country");
