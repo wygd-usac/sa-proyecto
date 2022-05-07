@@ -309,6 +309,24 @@ router.get('/countries',validate_session,async (req,res) => {
     res.send({'countries':countries});
 });
 
+router.get('/', (req, res)=>{
+    axios.post('http://usuario:5000'+'/esb/usuario/update"', {id_user: req.query.id, verify: 1}).then(function (x) {
+        try{
+            res.send(
+                    x.data
+            )
+        }catch (e) {
+            res.send(
+                {
+                    status: 400,
+                    msg: "Error al verificar correo.",
+                    data: []
+                }
+            )
+        }
+    })
+});
+
 router.post('/auth',(req,res)=>{
 
     axios.post('http://usuario:5000'+'/esb/usuario/login', req.body).then(function (x) {
@@ -338,6 +356,7 @@ router.post('/auth',(req,res)=>{
     })
 
 });
+
 
 
 
